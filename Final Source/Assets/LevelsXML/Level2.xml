@@ -13623,9 +13623,6 @@
         <z>1</z>
       </Scaling>
       <Tutorial>
-        <TriggerString>
-        </TriggerString>
-        <Timer>0</Timer>
         <JumpButtonTutorial>False</JumpButtonTutorial>
         <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
         <FlashButtonTutorial>False</FlashButtonTutorial>
@@ -13676,9 +13673,6 @@
         <z>1</z>
       </Scaling>
       <Tutorial>
-        <TriggerString>
-        </TriggerString>
-        <Timer>0</Timer>
         <JumpButtonTutorial>False</JumpButtonTutorial>
         <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
         <FlashButtonTutorial>False</FlashButtonTutorial>
@@ -13729,9 +13723,6 @@
         <z>1</z>
       </Scaling>
       <Tutorial>
-        <TriggerString>
-        </TriggerString>
-        <Timer>0</Timer>
         <JumpButtonTutorial>False</JumpButtonTutorial>
         <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
         <FlashButtonTutorial>False</FlashButtonTutorial>
@@ -13782,9 +13773,6 @@
         <z>1</z>
       </Scaling>
       <Tutorial>
-        <TriggerString>
-        </TriggerString>
-        <Timer>0</Timer>
         <JumpButtonTutorial>False</JumpButtonTutorial>
         <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
         <FlashButtonTutorial>False</FlashButtonTutorial>
@@ -13834,9 +13822,6 @@
         <z>1</z>
       </Scaling>
       <Tutorial>
-        <TriggerString>
-        </TriggerString>
-        <Timer>0</Timer>
         <JumpButtonTutorial>False</JumpButtonTutorial>
         <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
         <FlashButtonTutorial>False</FlashButtonTutorial>
@@ -13893,9 +13878,6 @@
         <z>1</z>
       </Scaling>
       <Tutorial>
-        <TriggerString>
-        </TriggerString>
-        <Timer>0</Timer>
         <JumpButtonTutorial>False</JumpButtonTutorial>
         <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
         <FlashButtonTutorial>False</FlashButtonTutorial>
@@ -13946,9 +13928,6 @@
         <z>1</z>
       </Scaling>
       <Tutorial>
-        <TriggerString>
-        </TriggerString>
-        <Timer>0</Timer>
         <AlphaObject>
           <Prefab>NormalShroom 3</Prefab>
           <Position>
@@ -14023,9 +14002,6 @@
         <z>1</z>
       </Scaling>
       <Tutorial>
-        <TriggerString>
-        </TriggerString>
-        <Timer>0</Timer>
         <JumpButtonTutorial>True</JumpButtonTutorial>
         <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
         <FlashButtonTutorial>False</FlashButtonTutorial>
@@ -14082,9 +14058,6 @@
         <z>1</z>
       </Scaling>
       <Tutorial>
-        <TriggerString>
-        </TriggerString>
-        <Timer>0</Timer>
         <JumpButtonTutorial>False</JumpButtonTutorial>
         <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
         <FlashButtonTutorial>False</FlashButtonTutorial>
@@ -14135,9 +14108,6 @@
         <z>1</z>
       </Scaling>
       <Tutorial>
-        <TriggerString>
-        </TriggerString>
-        <Timer>0</Timer>
         <JumpButtonTutorial>False</JumpButtonTutorial>
         <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
         <FlashButtonTutorial>False</FlashButtonTutorial>
@@ -14194,9 +14164,6 @@
         <z>1</z>
       </Scaling>
       <Tutorial>
-        <TriggerString>
-        </TriggerString>
-        <Timer>0</Timer>
         <JumpButtonTutorial>False</JumpButtonTutorial>
         <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
         <FlashButtonTutorial>False</FlashButtonTutorial>
@@ -14247,9 +14214,6 @@
         <z>1</z>
       </Scaling>
       <Tutorial>
-        <TriggerString>
-        </TriggerString>
-        <Timer>0</Timer>
         <JumpButtonTutorial>False</JumpButtonTutorial>
         <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
         <FlashButtonTutorial>False</FlashButtonTutorial>
@@ -14313,9 +14277,6 @@
         <z>1</z>
       </Scaling>
       <Tutorial>
-        <TriggerString>
-        </TriggerString>
-        <Timer>0</Timer>
         <AlphaObject>
           <Prefab>BumpyShroom 1</Prefab>
           <Position>
@@ -14390,9 +14351,6 @@
         <z>1</z>
       </Scaling>
       <Tutorial>
-        <TriggerString>
-        </TriggerString>
-        <Timer>0</Timer>
         <JumpButtonTutorial>False</JumpButtonTutorial>
         <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
         <FlashButtonTutorial>True</FlashButtonTutorial>
@@ -14435,13 +14393,13 @@
         <Textures>
           <TextureA>
             <Texturename>Use flashlight to scare away slugs and burn webs</Texturename>
-            <x>1150</x>
-            <y>100</y>
+            <x>1180</x>
+            <y>170</y>
             <Timer>20</Timer>
           </TextureA>
           <TextureB>
             <Texturename>flash attack explanation</Texturename>
-            <x>500</x>
+            <x>280</x>
             <y>100</y>
             <Timer>20</Timer>
           </TextureB>
@@ -14473,9 +14431,6 @@
         <z>1</z>
       </Scaling>
       <Tutorial>
-        <TriggerString>
-        </TriggerString>
-        <Timer>0</Timer>
         <JumpButtonTutorial>False</JumpButtonTutorial>
         <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
         <FlashButtonTutorial>False</FlashButtonTutorial>
