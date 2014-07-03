@@ -510,8 +510,8 @@ public class MenuScript : MonoBehaviour {
 			int levelCount = startLevelCount;
 			int spaceCountX = 0;
 			int spaceCountY = 0;
-			float levelButtonXSize = Screen.width 	/ 9;
-			float levelButtonYSize = Screen.height 	/ 5;
+			float levelButtonXSize = Screen.width 	/ 9.0f;
+			float levelButtonYSize = Screen.height 	/ 5.0f;
 			
 			for(int i = startLevelCount; i < startLevelCount + 6; ++i)
 			{

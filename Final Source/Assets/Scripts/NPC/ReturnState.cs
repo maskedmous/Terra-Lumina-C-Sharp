@@ -9,7 +9,7 @@ public class ReturnState:State {
 		startPosition = parentScript.getStart();
 	}
 	
-	void update (){
+	new void update (){
 		Vector3 parentPosition = parent.transform.position;
 		if (parentPosition.x < startPosition.x) speed = 70.0f;
 		else if (parentPosition.x > startPosition.x) speed = -70.0f;

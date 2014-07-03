@@ -19,7 +19,7 @@ public class MoveState:State {
 		slugBoundB = parentScript.getSlugBoundB();
 	}		
 	
-	void update (){
+	new void update (){
 		parent.rigidbody.velocity = new Vector3(speed * Time.deltaTime, parent.rigidbody.velocity.y, parent.rigidbody.velocity.z);
 		
 		if (difficulty == "Hard") {

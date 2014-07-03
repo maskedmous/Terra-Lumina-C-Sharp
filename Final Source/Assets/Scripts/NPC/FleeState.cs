@@ -6,7 +6,7 @@ using System.Collections;
 
 public class FleeState:State {
 	
-	void update (){
+	new void update (){
 		toWaitState();
 	}
 	

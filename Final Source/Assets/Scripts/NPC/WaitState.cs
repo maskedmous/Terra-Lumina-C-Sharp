@@ -10,7 +10,7 @@ public class WaitState:State {
 	
 	private GameObject player = null;
 	
-	void update (){
+	new void update (){
 		waitTime -= Time.deltaTime;
 		if (waitTime < 0) appear();
 	}

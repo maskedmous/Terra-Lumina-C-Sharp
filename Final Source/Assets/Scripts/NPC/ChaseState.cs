@@ -9,7 +9,7 @@ public class ChaseState:State {
 	private bool  targetFound = false;
 	private bool  turn = false;
 	
-	void update (){
+	new void update (){
 		targetFound = false;
 		
 		Vector3 rayStart = parent.transform.position + new Vector3(0.0f, 0.3f, 0.0f);
