@@ -30,7 +30,7 @@ public class SoundEngineScript : MonoBehaviour {
 	private AudioClip roverStopSound;
 	private AudioClip roverAimSound;
 	private AudioClip rockBreakingSound;
-	private AudioClip sunChargingSound;
+	//private AudioClip sunChargingSound;
 	private AudioClip crystalPickup;
 	private AudioClip winSound;
 	private AudioClip loseSound;
@@ -183,7 +183,7 @@ public class SoundEngineScript : MonoBehaviour {
 			audio.PlayOneShot(crystalPickup);
 		}
 		if(name == "sun"){
-			audio.PlayOneShot(sunChargingSound);
+			//audio.PlayOneShot(sunChargingSound);
 		}
 		if(name == "win"){
 			audio.PlayOneShot(winSound);

@@ -8,8 +8,6 @@ public class WaitState:State {
 
 	private float waitTime = 10.2f;
 	
-	private GameObject player = null;
-	
 	new void update (){
 		waitTime -= Time.deltaTime;
 		if (waitTime < 0) appear();

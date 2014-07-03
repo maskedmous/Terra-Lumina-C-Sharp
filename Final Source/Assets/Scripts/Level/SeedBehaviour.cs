@@ -5,12 +5,12 @@ using System.Collections;
 public class SeedBehaviour : MonoBehaviour {
 	
 	
-	private float growTime = 3.0f;
+	//private float growTime = 3.0f;
 	private GameObject shroomType = null;
-	private bool  growing = false;
-	private float startScale = 0.2f;
-	private float currentScale = 0.0f;
-	private float improveScale = 0.025f;
+	//private bool  growing = false;
+	//private float startScale = 0.2f;
+	//private float currentScale = 0.0f;
+	//private float improveScale = 0.025f;
 	private GameObject newShroom = null;
 	private MeshRenderer meshRenderer = null;
 	

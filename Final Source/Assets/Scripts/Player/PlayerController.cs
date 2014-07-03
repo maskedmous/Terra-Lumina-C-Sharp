@@ -8,7 +8,7 @@ using System.Collections.Generic;
 public class PlayerController : MonoBehaviour {
 
 	private SoundEngineScript soundEngine = null;
-	private string debugInfo = "";
+	//private string debugInfo = "";
 	
 	private string lastDirection = "Right";
 	private float maxSpeed = 7.5f;
@@ -25,20 +25,17 @@ public class PlayerController : MonoBehaviour {
 	private float x7 = 0.0f;
 	private float x8 = 2.3f;
 	private bool  increasing = true;
-	private float g = 0.0f;
-	private float tanAngle = 0.75f;
-	private float cosAngle = 0.6f;
 	private float v  = 0.0f;
 	private float vx = 0.0f;
 	private float vy = 0.0f;
 	
 	private bool  isJumping = false;
-	private bool  initializeJumping = false;
+	//private bool  initializeJumping = false;
 	private float jumpForce = 7.5f;
 	private List<GameObject> wheels = new List<GameObject>();
 	
 	//shroom seed shooting
-	private bool  isShooting = false;								//is it shooting at the moment?
+	//private bool  isShooting = false;								//is it shooting at the moment?
 	private List<GameObject> shrooms = new List<GameObject>();		//list of shrooms to shoot (should be 2)
 	private List<GameObject> crystals = new List<GameObject>();		//the crystals you collect
 	
@@ -91,7 +88,6 @@ public class PlayerController : MonoBehaviour {
 	public void Start (){
 		lineRenderer = this.gameObject.GetComponent("LineRenderer") as LineRenderer;
 		lineRenderer.enabled = false;
-		g = -Physics.gravity.y;
 		
 		rigidbody.centerOfMass = new Vector3(-0.2f, -0.25f, 0.0f);
 		
@@ -328,7 +324,7 @@ public class PlayerController : MonoBehaviour {
 		float y6 = (y0 + x6 * 0.75f) - (9.81f * x6 * x6) / (1.28f * v) + 1;
 		float y7 = (y0 + x7 * 0.75f) - (9.81f * x7 * x7) / (1.28f * v) + 1;
 		float y8 = (y0 + x8 * 0.75f) - (9.81f * x8 * x8) / (1.28f * v) + 1;
-		//0 = y0 + x8 * tanAngle - (g * x8 * x8) / (2 * (v * v * cosAngle * cosAngle))
+		//0 = y0 + x8 * tanAngle - (g * x8 * x8) / (2 * (v * v * cosAngle * cosAngle)), cosAngle = 0.6f, tanAngle = 0.75f, g = -9.81f
 		
 		if (getDirection() == "Left")
 		{

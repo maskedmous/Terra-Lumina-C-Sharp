@@ -6,8 +6,7 @@ using System.Collections;
 using TouchScript;	//we're making use of a touch library so import it
 
 public class PlayerInputScript : MonoBehaviour {
-
-	private GameObject player = null;					//the player itself
+	
 	private PlayerController playerController = null;	//the controller
 	private SoundEngineScript soundEngine = null;		//sound engine for sounds
 	private GameLogic gameLogic;						//the Game Logic

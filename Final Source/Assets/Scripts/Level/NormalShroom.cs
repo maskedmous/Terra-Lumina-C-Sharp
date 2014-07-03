@@ -7,9 +7,9 @@ public class NormalShroom : MonoBehaviour {
 	
 	private float counter = -1.0f;
 	
-	private float startScale = 0.2f;
-	private float currentScale = 0.0f;
-	private float improveScale = 0.025f;
+	//private float startScale = 0.2f;
+	//private float currentScale = 0.0f;
+	//private float improveScale = 0.025f;
 	private bool  fullGrown = false;
 	
 	private Animator animationController = null;
@@ -19,7 +19,7 @@ public class NormalShroom : MonoBehaviour {
 	
 	public void Awake (){
 		counter = 15.0f;
-		currentScale = startScale;
+		//currentScale = startScale;
 		
 		animationController = transform.parent.parent.GetComponent<Animator>();
 	}

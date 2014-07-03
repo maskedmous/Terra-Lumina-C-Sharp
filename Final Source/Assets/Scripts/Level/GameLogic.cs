@@ -42,11 +42,11 @@ public class GameLogic : MonoBehaviour
 	Action energy cost
 */
 	private float jumpDrain = 0.0f;
-	private float shootDrain = 0.0f;
-	private float pickUpDrain = 0.0f;
-	private float placeDrain = 0.0f;
+	//private float shootDrain = 0.0f;
+	//private float pickUpDrain = 0.0f;
+	//private float placeDrain = 0.0f;
 	private float flashDrain = 0.0f;
-	private float collectDrain = 0.0f;
+	//private float collectDrain = 0.0f;
 	
 /*
 	Timer variables

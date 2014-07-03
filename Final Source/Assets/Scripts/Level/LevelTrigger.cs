@@ -12,7 +12,7 @@ public class LevelTrigger : MonoBehaviour {
 	private GameLogic gameLogicScript = null;
 	private SoundEngineScript soundEngine = null;
 	private bool  notFinished = false;
-	private GUIStyle skin = new GUIStyle();
+	//private GUIStyle skin = new GUIStyle();
 	
 	public Texture toMenuWinTexture	= null;
 	private Rect winMenuRect;

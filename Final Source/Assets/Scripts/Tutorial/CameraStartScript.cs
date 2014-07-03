@@ -17,13 +17,13 @@ public class CameraStartScript : MonoBehaviour {
 	private GameObject endLevelTrigger = null;
 	
 	private int currentCrystal = 0;
-	private Vector3 startPos = Vector3.zero;
+	//private Vector3 startPos = Vector3.zero;
 	private Vector3 targetPos = Vector3.zero;
 	
 	private GameLogic gameLogic = null;
 	
 	private Texture2D tutorialTexture = null;
-	private Rect tutorialRect = new Rect(0.0f, 0.0f, 0.0f, 0.0f);
+	//private Rect tutorialRect = new Rect(0.0f, 0.0f, 0.0f, 0.0f);
 	public float textureX = 500.0f;
 	public float textureY = 500.0f;
 	
@@ -47,7 +47,7 @@ public class CameraStartScript : MonoBehaviour {
 		crystalPositions.RemoveAt(0);
 		crystalPositions = sort(crystalPositions);
 		
-		startPos = Camera.main.gameObject.transform.position;
+		//startPos = Camera.main.gameObject.transform.position;
 		targetPos = crystalPositions[0];
 		
 		gameLogic = GameObject.Find("GameLogic").GetComponent("GameLogic") as GameLogic;
@@ -95,7 +95,7 @@ public class CameraStartScript : MonoBehaviour {
 			if (timer < 0) {
 				timer = 1.5f;
 				currentCrystal++;
-				startPos = targetPos;
+				//startPos = targetPos;
 				targetPos = crystalPositions[currentCrystal];
 				speed = 140.0f;
 			}

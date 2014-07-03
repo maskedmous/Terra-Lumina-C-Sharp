@@ -6,14 +6,9 @@ using System.Collections;
 
 public class ChaseState:State {
 	
-	private bool  targetFound = false;
-	private bool  turn = false;
-	
 	new void update (){
-		targetFound = false;
 		
 		Vector3 rayStart = parent.transform.position + new Vector3(0.0f, 0.3f, 0.0f);
-		Vector3 vectorDirection = Vector3.zero;
 		RaycastHit hitSide;
 		Vector3 playerPos = target.transform.position;
 		float distanceToPlayer= Vector3.Distance(parent.transform.position, playerPos);

@@ -14,10 +14,10 @@ public class MenuScript : MonoBehaviour {
 	enum menuState {mainMenu, startMenu, optionsMenu, creditsMenu, loadingLevel}
 	
 	private menuState currentMenuState = menuState.mainMenu;
-	private float BUTTONWIDTH 				= Screen.width/6;
-	private float BUTTONHEIGHT 				= Screen.height/8;
-	private float TEXTUREWIDTH 				= Screen.width/5;
-	private float TEXTUREHEIGHT 			= Screen.height/6;
+	//private float BUTTONWIDTH 				= Screen.width/6;
+	//private float BUTTONHEIGHT 				= Screen.height/8;
+	//private float TEXTUREWIDTH 				= Screen.width/5;
+	//private float TEXTUREHEIGHT 			= Screen.height/6;
 	private Texture background				= null;
 	private Texture loadingScreen			= null;
 	private Texture level1					= null;
@@ -26,8 +26,8 @@ public class MenuScript : MonoBehaviour {
 	
 	private Texture2D creditsScreen			= null;
 	
-	private string empty 					= "";
-	private GUIStyle skin 					= new GUIStyle();
+	//private string empty 					= "";
+	//private GUIStyle skin 					= new GUIStyle();
 	
 	private string difficulty 				= "Easy";
 	private bool  openDifficultyMenu 		= false;
@@ -101,7 +101,7 @@ public class MenuScript : MonoBehaviour {
 	private Rect soundSliderThumbRect;
 	public 	float soundSliderThumbX 			= 1350.0f;
 	public 	float soundSliderThumbY 			= 338.0f;
-	private float soundSetting 					= 1.0f;
+	//private float soundSetting 					= 1.0f;
 	public GUISkin sliderSkin;
 	public Texture2D optionsScreenTexture 		= null;
 	private Rect optionsScreenRect;
@@ -510,8 +510,8 @@ public class MenuScript : MonoBehaviour {
 			int levelCount = startLevelCount;
 			int spaceCountX = 0;
 			int spaceCountY = 0;
-			float levelButtonXSize = Screen.width 	/ 9.0f;
-			float levelButtonYSize = Screen.height 	/ 5.0f;
+			//float levelButtonXSize = Screen.width 	/ 9.0f;
+			//float levelButtonYSize = Screen.height 	/ 5.0f;
 			
 			for(int i = startLevelCount; i < startLevelCount + 6; ++i)
 			{

@@ -8,11 +8,11 @@ public class BumpyShroom : MonoBehaviour {
 	
 	
 	private float counter = 10.0f;
-	private float growCounter = 2.5f;
+	//private float growCounter = 2.5f;
 	
-	private float startScale = 0.2f;
-	private float currentScale = 0.0f;
-	private float improveScale = 0.025f;
+	//private float startScale = 0.2f;
+	//private float currentScale = 0.0f;
+	//private float improveScale = 0.025f;
 	private bool  fullGrown = false;
 	private Animator animationController = null;
 	
