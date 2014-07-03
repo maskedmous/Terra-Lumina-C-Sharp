@@ -28,12 +28,19 @@ public class State : MonoBehaviour {
 	void update (){
 	}
 	
-	void bouncePlayer ( string direction  ){
-		if (direction == "right") {
-			target.rigidbody.velocity.x = 15.0f;
+	void bouncePlayer ( string direction  )
+	{
+		if (direction == "right")
+		{
+			Vector3 bounceRight = target.rigidbody.velocity;
+			bounceRight.y = 15.0f;
+			target.rigidbody.velocity = bounceRight;
 		}
-		else if (direction == "left") {
-			target.rigidbody.velocity.x = -15.0f;
+		else if (direction == "left")
+		{
+			Vector3 bounceLeft = target.rigidbody.velocity;
+			bounceLeft.x = -15.0f;
+			target.rigidbody.velocity = bounceLeft;
 		}
 	}
 }

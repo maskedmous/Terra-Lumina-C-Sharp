@@ -304,7 +304,7 @@ public class MenuScript : MonoBehaviour {
 							setLevelFileNameByInt(i);
 							currentMenuState = menuState.loadingLevel;
 							background = loadingScreen;
-							loadLevel();
+							StartCoroutine(loadLevel());
 						}
 						
 						spaceCountX ++;
@@ -795,27 +795,28 @@ public class MenuScript : MonoBehaviour {
 		return "";
 	}
 	
-	private IEnumerator setLevelFileNameByInt ( int level  ){
+	private void setLevelFileNameByInt ( int level  ){
 		//array position of the Level
 		int arrayint = level - 1;
+		int levelID = (int) levelIDs[arrayint];
 		//get difficulty somehow??
 		//difficulty = database.getDifficulty()?
 		//get the Level
 		//Level aLevel = levels[arrayint] as Level;
-		Level aLevel = getLevelByID(levelIDs[arrayint]);
+		Level aLevel = getLevelByID(levelID);
 		//get the file that has to be loaded
 		levelFilename =	aLevel.getLevelXmlByDifficulty(difficulty);
 		Debug.Log(levelFilename);
 		Debug.Log("Level ID: " + aLevel.getLevelID());
 		Debug.Log("Difficulty: " + difficulty);
-		
 	}
 	
-	private IEnumerator loadLevel (){
+	private IEnumerator loadLevel ()
+	{
 		//next scene with the loader
 		Application.LoadLevel("LevelLoaderScene");
 		//first wait for the next scene to loader		  		
-		yield return WaitForEndOfFrame;
+		yield return new WaitForEndOfFrame();
 		//get the levelloader script
 		XmlToScene levelLoader = GameObject.Find("LevelLoader").GetComponent<XmlToScene>();
 		//set the level string
