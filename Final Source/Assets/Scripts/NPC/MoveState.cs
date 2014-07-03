@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MoveState:State {
+public class MoveState:State
+{
 	
 	private string direction = "right";
 	
@@ -10,17 +11,18 @@ public class MoveState:State {
 	
 	private string difficulty = "";
 	
-	void  Start (){
+	public void  Start (){
 		difficulty = parentScript.getDifficulty();
 		slugBoundA = parentScript.getSlugBoundA();
 		slugBoundB = parentScript.getSlugBoundB();
 	}		
 	
-	new void update (){
+	public override void update ()
+	{
 		parent.rigidbody.velocity = new Vector3(speed * Time.deltaTime, parent.rigidbody.velocity.y, parent.rigidbody.velocity.z);
 		
-		if (difficulty == "Hard") {
-			
+		if (difficulty == "Hard")
+		{
 			Vector3 rayStart = parent.transform.position + new Vector3(0.0f, 0.3f, 0.0f);
 			RaycastHit hitSide;
 			Vector3 playerPos = target.transform.position;
@@ -47,7 +49,7 @@ public class MoveState:State {
 		}
 	}
 	
-	void OnTriggerEnter ( Collider collider  ){
+	public void OnTriggerEnter ( Collider collider  ){
 		if (collider.gameObject == slugBoundA || collider.gameObject == slugBoundB) {
 			speed = -speed;
 			Vector3 newRotation = parent.transform.rotation.eulerAngles;
@@ -60,7 +62,7 @@ public class MoveState:State {
 		}
 	}
 	
-	void setDirection ( string dir  ){
+	public void setDirection ( string dir  ){
 		direction = dir;
 	}
 }

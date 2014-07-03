@@ -42,6 +42,11 @@ public class SlugScript : MonoBehaviour {
 		
 		currentState.update();	
 	}
+
+	public State getState()
+	{
+		return currentState;
+	}
 	
 	public void toFleeState (){
 		if (currentState == moveState || currentState == chaseState || currentState == returnState) currentState = fleeState;

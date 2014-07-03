@@ -12,7 +12,7 @@ public class State : MonoBehaviour {
 	
 	protected int layerMask = 0;
 	
-	void  Awake (){
+	public void  Awake (){
 		parent = this.gameObject;
 		parentScript = this.gameObject.GetComponent("SlugScript") as SlugScript;
 		
@@ -22,7 +22,9 @@ public class State : MonoBehaviour {
 		layerMask = ~layerMask;
 	}
 	
-	public void update (){
+	public virtual void update ()
+	{
+	
 	}
 	
 	public void bouncePlayer ( string direction  )

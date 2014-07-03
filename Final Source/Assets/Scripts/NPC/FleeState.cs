@@ -3,7 +3,7 @@ using System.Collections;
 
 public class FleeState:State {
 	
-	new void update (){
+	public override void update (){
 		toWaitState();
 	}
 	

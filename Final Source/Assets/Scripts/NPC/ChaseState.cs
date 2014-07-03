@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ChaseState:State
 {
-	new void update (){
+	public override void update (){
 		
 		Vector3 rayStart = parent.transform.position + new Vector3(0.0f, 0.3f, 0.0f);
 		RaycastHit hitSide;
