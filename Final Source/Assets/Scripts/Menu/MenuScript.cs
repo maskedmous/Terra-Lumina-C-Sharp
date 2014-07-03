@@ -208,13 +208,13 @@ public class MenuScript : MonoBehaviour {
 		soundEngine.changeVolume(Mathf.Clamp(calculation, 0.0f, 1.0f));
 	}
 	
-	private void touchMoved ( Object sender ,   TouchEventArgs events  ){
+	private void touchMoved ( object sender ,   TouchEventArgs events  ){
 		foreach(var touchPoint in events.Touches)
 		{
 			//print(touchPoint.Position.x);
 			if(currentMenuState == menuState.optionsMenu){
 				Vector2 position = touchPoint.Position;
-				position = Vector2(position.x, (position.y - Screen.height)*-1);
+				position = new Vector2(position.x, (position.y - Screen.height)*-1);
 				//scaled rect.contains position
 				if(soundSliderRect.Contains(position))
 				{
@@ -228,13 +228,13 @@ public class MenuScript : MonoBehaviour {
 		}
 	}
 	
-	private void touchBegan ( Object sender ,   TouchEventArgs events  ){
+	private void touchBegan ( object sender ,   TouchEventArgs events  ){
 		foreach(var touchPoint in events.Touches)
 		{
 			//print(touchPoint.Position.x);
 			if(currentMenuState == menuState.optionsMenu){
 				Vector2 position = touchPoint.Position;
-				position = Vector2(position.x, (position.y - Screen.height)*-1);
+				position = new Vector2(position.x, (position.y - Screen.height)*-1);
 				//scaled rect.contains position
 				if(soundSliderRect.Contains(position)){
 					//sliderEnabled = true;
@@ -247,11 +247,11 @@ public class MenuScript : MonoBehaviour {
 		}
 	}
 	
-	private void touchEnded ( Object sender ,   TouchEventArgs events  ){
+	private void touchEnded ( object sender ,   TouchEventArgs events  ){
 		foreach(var touchPoint in events.Touches)
 		{
 			Vector2 position = touchPoint.Position;
-			position = Vector2(position.x, (position.y - Screen.height)*-1);
+			position = new Vector2(position.x, (position.y - Screen.height)*-1);
 			isReleasingButton(position);
 		}
 	}
@@ -296,7 +296,7 @@ public class MenuScript : MonoBehaviour {
 				
 				for(int i = startLevelCount; i < startLevelCount + 6; ++i)
 				{
-					if(i <= levelIDs.length)
+					if(i <= levelIDs.Count)
 					{	
 						if(scaleRect(new Rect(levelButtonX + (levelButtonSpaceX * spaceCountX), levelButtonY + (levelButtonSpaceY * spaceCountY), level1.width, level1.height)).Contains(inputXY))
 						{
@@ -318,7 +318,7 @@ public class MenuScript : MonoBehaviour {
 					}
 					
 					//next page button (if applicable)
-					if(startLevelCount + 5 < levels.length)
+					if(startLevelCount + 5 < levels.Count)
 					{
 						//there are more levels available
 						if(new Rect(Screen.width - levelButtonXSize, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize).Contains(inputXY))
@@ -515,7 +515,7 @@ public class MenuScript : MonoBehaviour {
 			
 			for(int i = startLevelCount; i < startLevelCount + 6; ++i)
 			{
-				if(i <= levelIDs.length)
+				if(i <= levelIDs.Count)
 				{
 					GUI.DrawTexture(scaleRect(new Rect(levelButtonX + (levelButtonSpaceX * spaceCountX), levelButtonY + (levelButtonSpaceY * spaceCountY), level1.width, level1.height)), level1, ScaleMode.StretchToFill);
 					
@@ -641,23 +641,23 @@ public class MenuScript : MonoBehaviour {
 	
 	private void fillXmlLevelArray (){
 		//look for all levels and fill the array	
-		FIXME_VAR_TYPE fileInfo= Directory.GetFiles(levelsXmlFilePath, "*.xml", SearchOption.AllDirectories);
+		string[] fileInfo= Directory.GetFiles(levelsXmlFilePath, "*.xml", SearchOption.AllDirectories);
 		foreach(var file in fileInfo)
 		{
-			xmlLevels.push(Path.GetFileName(file));
+			xmlLevels.Add(Path.GetFileName(file));
 		}	
-		if(xmlLevels.length == 0)
+		if(xmlLevels.Count == 0)
 		{
 			Debug.LogError("Xml level files not loaded for some reason, check the LevelsXML folder");
 		}
 		else
 		{
-			Debug.Log("Xml level files counted: " + xmlLevels.length);
+			Debug.Log("Xml level files counted: " + xmlLevels.Count);
 		}
 	}
 	
 	private void fillLevelArray (){
-		if(xmlLevels.length == 0)
+		if(xmlLevels.Count == 0)
 		{
 			Debug.LogError("No xml levels found in the array can't fill level array");
 			return;
@@ -668,7 +668,7 @@ public class MenuScript : MonoBehaviour {
 		foreach(var _level in xmlLevels)
 		{
 			//level xml name
-			FIXME_VAR_TYPE aLevel= _level as String;
+			string aLevel= _level as string;
 			//get level ID from xml
 			int levelID = getLevelID(aLevel);
 			//if levelID is valid
@@ -682,14 +682,14 @@ public class MenuScript : MonoBehaviour {
 				if(newLevelID == true)
 				{
 					//new level ID add to levelIDs
-					levelIDs.push(levelID);
+					levelIDs.Add(levelID);
 					//creating a new level
 					Level newLevel = new Level();
 					//setting the ID
 					newLevel.setLevelID(levelID);
 					//setting the filename for the level difficulty
 					newLevel.setLevelDifficultyXmlFile(aLevel, levelDifficulty);
-					levels.push(newLevel);
+					levels.Add(newLevel);
 				}
 				else
 				{
@@ -714,7 +714,7 @@ public class MenuScript : MonoBehaviour {
 	}
 	
 	private void sortByLevelID (){
-		levelIDs.sort();
+		levelIDs.Sort();
 	}
 	
 	private int getLevelID ( string levelFilename  ){
@@ -740,7 +740,7 @@ public class MenuScript : MonoBehaviour {
 		return -1;
 	}
 	
-	private Level getLevelByID (ArrayList levelID){
+	private Level getLevelByID (int levelID){
 		foreach(var aLevel in levels)
 		{
 			Level levelScript = aLevel as Level;
