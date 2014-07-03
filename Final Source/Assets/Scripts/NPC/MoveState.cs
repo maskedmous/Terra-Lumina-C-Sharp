@@ -20,7 +20,7 @@ public class MoveState:State {
 	}		
 	
 	void update (){
-		parent.rigidbody.velocity.x = speed * Time.deltaTime;
+		parent.rigidbody.velocity = new Vector3(speed * Time.deltaTime, parent.rigidbody.velocity.y, parent.rigidbody.velocity.z);
 		
 		if (difficulty == "Hard") {
 			
@@ -32,7 +32,7 @@ public class MoveState:State {
 			
 			if (Mathf.Abs(parent.transform.position.y - playerPos.y) < 1.0f) {
 				if (rayStart.x > playerPos.x) {
-					if (Physics.Raycast(rayStart, Vector3.left, hitSide, Mathf.Infinity, layerMask)) {
+					if (Physics.Raycast(rayStart, Vector3.left, out hitSide, Mathf.Infinity, layerMask)) {
 						Debug.Log(hitSide.collider.gameObject.name);
 						if (hitSide.collider.name == "Player" || hitSide.distance > distanceToPlayer) {	
 							parentScript.toChaseState();
@@ -40,7 +40,7 @@ public class MoveState:State {
 					}
 				}
 				else {
-					if (Physics.Raycast(rayStart, Vector3.right, hitSide, Mathf.Infinity, layerMask)) {
+					if (Physics.Raycast(rayStart, Vector3.right, out hitSide, Mathf.Infinity, layerMask)) {
 						Debug.Log(hitSide.collider.gameObject.name);
 						if (hitSide.collider.name == "Player" || hitSide.distance > distanceToPlayer) {	
 							parentScript.toChaseState();
@@ -54,7 +54,11 @@ public class MoveState:State {
 	void OnTriggerEnter ( Collider collider  ){
 		if (collider.gameObject == slugBoundA || collider.gameObject == slugBoundB) {
 			speed = -speed;
-			parent.gameObject.transform.rotation.eulerAngles.y += 180;
+			Vector3 newRotation = parent.transform.rotation.eulerAngles;
+			//newRotation.x = parent.transform.rotation.eulerAngles.x;
+			newRotation.y = parent.transform.rotation.eulerAngles.y + 180.0f;
+			//newRotation.z = parent.transform.rotation.eulerAngles.z;
+			parent.transform.eulerAngles = newRotation;
 			if (direction == "Right") direction = "Left";
 			else direction = "Right";
 		}

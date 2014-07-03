@@ -50,10 +50,10 @@ public class CameraStartScript : MonoBehaviour {
 		startPos = Camera.main.gameObject.transform.position;
 		targetPos = crystalPositions[0];
 		
-		gameLogic = GameObject.Find("GameLogic").GetComponent(GameLogic);
+		gameLogic = GameObject.Find("GameLogic").GetComponent("GameLogic") as GameLogic;
 		gameLogic.stopBattery();
 		
-		tutorialTexture = Resources.Load("Textures/ScoreExplanation", Texture2D) as Texture2D;
+		tutorialTexture = Resources.Load("Textures/ScoreExplanation") as Texture2D;
 		//tutorialRect = new Rect(Screen.width / 2 + tutorialTexture.width / 2, Screen.height / 2 - tutorialTexture.height / 2, tutorialTexture.width, tutorialTexture.height);
 		//zonder scale proberen?
 	}
@@ -64,13 +64,13 @@ public class CameraStartScript : MonoBehaviour {
 		if (cam.transform.position.x < -19.0f)
 		{
 			speed = 0.0f;
-			cam.transform.position.x = -19.082f;
+			cam.transform.position = new Vector3(-19.082f, cam.transform.position.y, cam.transform.position.z);
 			startGame();
 		}
 		if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.K))
 		{
 			speed = 0.0f;
-			cam.transform.position.x = -19.082f;
+			cam.transform.position = new Vector3(-19.082f, cam.transform.position.y, cam.transform.position.z);
 			startGame();
 		}
 	}
@@ -87,7 +87,7 @@ public class CameraStartScript : MonoBehaviour {
 	private void moveCamera (){
 		Vector3 camPos = Camera.main.gameObject.transform.position;
 		Camera.main.gameObject.transform.position = Vector3.MoveTowards(camPos, targetPos, speed * Time.deltaTime);
-		Camera.main.gameObject.transform.position.z = 6.0f;
+		Camera.main.gameObject.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 6.0f);
 		
 		if (Mathf.Abs(camPos.x - targetPos.x) < 0.2f) {
 			timer -= Time.deltaTime;

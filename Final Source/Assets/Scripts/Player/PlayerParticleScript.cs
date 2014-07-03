@@ -16,16 +16,16 @@ public class PlayerParticleScript : MonoBehaviour {
 	private float engineJumpTimer = 0.0f;
 	
 	public void Start (){
-		jumpDust = Instantiate(jumpDust, Vector3.zero, Quaternion.identity);
-		jumpDust.transform.rotation.eulerAngles.x = 270.0f;
+		jumpDust = Instantiate(jumpDust, Vector3.zero, Quaternion.identity) as GameObject;
+		jumpDust.transform.eulerAngles = new Vector3 (270.0f, jumpDust.transform.eulerAngles.y, jumpDust.transform.eulerAngles.z);
 		
-		landDust = Instantiate(landDust, Vector3.zero, Quaternion.identity);
+		landDust = Instantiate(landDust, Vector3.zero, Quaternion.identity) as GameObject;
 		
 		chargingEffect = this.gameObject.transform.FindChild("ChargingEffect");
 		
 		driveDust = this.gameObject.transform.FindChild("DriveDust");
 		driveDust.gameObject.transform.localPosition = new Vector3(-0.68f, -0.40f, -0.4f);
-		driveDust.gameObject.transform.rotation.eulerAngles.y = 270.0f;
+		driveDust.gameObject.transform.eulerAngles = new Vector3 (driveDust.gameObject.transform.eulerAngles.x, 270.0f, driveDust.gameObject.transform.eulerAngles.z);
 		
 		engineJump = this.gameObject.transform.FindChild("Engine");
 		engineJump.gameObject.transform.localPosition = new Vector3(-0.9f, -0.25f, 0.0f);

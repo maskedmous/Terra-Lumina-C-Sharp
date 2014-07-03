@@ -99,11 +99,11 @@ public class PlayerInputScript : MonoBehaviour {
 	
 	public void Awake (){
 		playerController = this.gameObject.GetComponent("PlayerController") as PlayerController;
-		gameLogic = GameObject.Find("GameLogic").GetComponent(GameLogic) as GameLogic;
+		gameLogic = GameObject.Find("GameLogic").GetComponent("GameLogic") as GameLogic;
 		
 		if(Application.loadedLevelName == "LevelLoaderScene")
 		{
-			soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript) as SoundEngineScript;
+			soundEngine = GameObject.Find("SoundEngine").GetComponent("SoundEngineScript") as SoundEngineScript;
 		}
 		
 		//initialize the button textures
@@ -136,7 +136,7 @@ public class PlayerInputScript : MonoBehaviour {
 			if(GameObject.Find("EndLevelTrigger") != null)
 			{
 				endLevelTriggerObject = GameObject.Find("EndLevelTrigger") as GameObject;
-				endLevelTriggerScript = endLevelTriggerObject.GetComponent(LevelTrigger) as LevelTrigger;
+				endLevelTriggerScript = endLevelTriggerObject.GetComponent("LevelTrigger") as LevelTrigger;
 			}
 		}
 		//if the game is not finished or lost yet, check for input
@@ -185,7 +185,7 @@ public class PlayerInputScript : MonoBehaviour {
 		}
 	}
 	//on press event handler
-	private void touchBegan ( Object sender ,   TouchEventArgs events  ){
+	private void touchBegan ( object sender ,   TouchEventArgs events  ){
 		if(endLevelTriggerObject != null)
 		{
 			if (!endLevelTriggerScript.getFinished() && !endLevelTriggerScript.getLost())
@@ -514,7 +514,7 @@ public class PlayerInputScript : MonoBehaviour {
 			Vector2 position = touch.Position;
 			//sendRay(position);
 			
-			position = Vector2(position.x, (position.y - Screen.height)*-1);
+			position = new Vector2(position.x, (position.y - Screen.height)*-1);
 			
 			if(!isTouchingButton(position))
 			{

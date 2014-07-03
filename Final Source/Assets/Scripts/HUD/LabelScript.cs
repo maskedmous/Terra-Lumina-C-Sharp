@@ -49,14 +49,14 @@ public class LabelScript : MonoBehaviour {
 		this.gameObject.transform.position = cam.WorldToViewportPoint(target.gameObject.transform.position + 5 * up);
 	}
 	
-	void displayFact (){
+	public void displayFact (){
 		if (this.guiText.text == "") {
 			int random = Mathf.RoundToInt(Random.value * factList.Count);
 			this.guiText.text = factList[random];	
 		}
 	}
 	
-	void stopDisplay (){
+	public void stopDisplay (){
 		this.guiText.text = "";
 	}
 }

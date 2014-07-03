@@ -44,26 +44,26 @@ public class SoundEngineScript : MonoBehaviour {
 			soundEngineExists = true;
 			DontDestroyOnLoad(this.gameObject);
 			
-			menuSound = Resources.Load("SoundEffects/Lumina Menu", AudioClip);
-			easySound = Resources.Load("SoundEffects/MusicEasy", AudioClip);
-			mediumSound = Resources.Load("SoundEffects/MusicMedium", AudioClip);
-			hardSound = Resources.Load("SoundEffects/MusicHard", AudioClip);
+			menuSound = Resources.Load("SoundEffects/Lumina Menu") as AudioClip;
+			easySound = Resources.Load("SoundEffects/MusicEasy") as AudioClip;
+			mediumSound = Resources.Load("SoundEffects/MusicMedium") as AudioClip;
+			hardSound = Resources.Load("SoundEffects/MusicHard") as AudioClip;
 			
-			bounceSound = Resources.Load("SoundEffects/Shroom Bounce", AudioClip);
-			jumpSound = Resources.Load("SoundEffects/Rover Jump New 3", AudioClip);
-			shootingSound = Resources.Load("SoundEffects/Rover Shoot", AudioClip);
-			slugForwardSound = Resources.Load("SoundEffects/Move forward", AudioClip);
-			slugBackwardSound = Resources.Load("SoundEffects/Move backwards", AudioClip);
-			roverDriveSound = Resources.Load("SoundEffects/Rover Drive New", AudioClip);
-			roverStartSound = Resources.Load("SoundEffects/Rover Drive Start New", AudioClip);
-			roverStopSound = Resources.Load("SoundEffects/Rover Drive Stop New", AudioClip);
-			roverAimSound = Resources.Load("SoundEffects/Rover Aim", AudioClip);
-			flashSound = Resources.Load("SoundEffects/Rover Flashlight", AudioClip);
-			rockBreakingSound = Resources.Load("SoundEffects/Rock Barrier Break v2", AudioClip);
-			crystalPickup = Resources.Load("SoundEffects/DiamondPickup", AudioClip);
-			//sunChargingSound = Resources.Load("SoundEffects/...", AudioClip);
-			winSound = Resources.Load("SoundEffects/Winsound v2", AudioClip);
-			loseSound = Resources.Load("SoundEffects/Losesound v1", AudioClip);
+			bounceSound = Resources.Load("SoundEffects/Shroom Bounce") as AudioClip;
+			jumpSound = Resources.Load("SoundEffects/Rover Jump New 3") as AudioClip;
+			shootingSound = Resources.Load("SoundEffects/Rover Shoot") as AudioClip;
+			slugForwardSound = Resources.Load("SoundEffects/Move forward") as AudioClip;
+			slugBackwardSound = Resources.Load("SoundEffects/Move backwards") as AudioClip;
+			roverDriveSound = Resources.Load("SoundEffects/Rover Drive New") as AudioClip;
+			roverStartSound = Resources.Load("SoundEffects/Rover Drive Start New") as AudioClip;
+			roverStopSound = Resources.Load("SoundEffects/Rover Drive Stop New") as AudioClip;
+			roverAimSound = Resources.Load("SoundEffects/Rover Aim") as AudioClip;
+			flashSound = Resources.Load("SoundEffects/Rover Flashlight") as AudioClip;
+			rockBreakingSound = Resources.Load("SoundEffects/Rock Barrier Break v2") as AudioClip;
+			crystalPickup = Resources.Load("SoundEffects/DiamondPickup") as AudioClip;
+			//sunChargingSound = Resources.Load("SoundEffects/...") as AudioClip;
+			winSound = Resources.Load("SoundEffects/Winsound v2") as AudioClip;
+			loseSound = Resources.Load("SoundEffects/Losesound v1") as AudioClip;
 			
 			changeMusic("Menu");
 		}
@@ -74,8 +74,8 @@ public class SoundEngineScript : MonoBehaviour {
 	}
 	
 	public void Update (){
-		if(gameObject.Find("Player")){
-			this.gameObject.transform.position = gameObject.Find("Player").transform.position;
+		if(GameObject.Find("Player")){
+			this.gameObject.transform.position = GameObject.Find("Player").transform.position;
 		}
 		if(driveTimerBool == true){
 			driveTimer += Time.deltaTime;

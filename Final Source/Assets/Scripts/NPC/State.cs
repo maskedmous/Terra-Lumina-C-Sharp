@@ -25,10 +25,10 @@ public class State : MonoBehaviour {
 		layerMask = ~layerMask;
 	}
 	
-	void update (){
+	public void update (){
 	}
 	
-	void bouncePlayer ( string direction  )
+	public void bouncePlayer ( string direction  )
 	{
 		if (direction == "right")
 		{

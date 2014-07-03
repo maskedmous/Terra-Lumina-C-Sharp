@@ -23,18 +23,13 @@ public class SlugScript : MonoBehaviour {
 	private Animator anim = null;
 	
 	void  Awake (){
-		fleeState = this.gameObject.AddComponent(FleeState) as FleeState;
-		moveState = this.gameObject.AddComponent(MoveState) as MoveState;
-		waitState = this.gameObject.AddComponent(WaitState) as WaitState;
+		fleeState = this.gameObject.AddComponent("FleeState") as FleeState;
+		moveState = this.gameObject.AddComponent("MoveState") as MoveState;
+		waitState = this.gameObject.AddComponent("WaitState") as WaitState;
 		
 		currentState = moveState;
 		
-		/*if (difficulty == "Hard") {
-		chaseState = this.gameObject.AddComponent<ChaseState>() as ChaseState;
-		returnState = this.gameObject.AddComponent<ReturnState>() as ReturnState;
-	}*/
-		
-		anim = this.gameObject.GetComponent(Animator);
+		anim = this.gameObject.GetComponent("Animator") as Animator;
 	}
 	
 	void  Start (){
@@ -49,25 +44,25 @@ public class SlugScript : MonoBehaviour {
 		currentState.update();	
 	}
 	
-	void toFleeState (){
+	public void toFleeState (){
 		if (currentState == moveState || currentState == chaseState || currentState == returnState) currentState = fleeState;
 		anim.SetBool("isMoving", false);
 	}
 	
-	void toMoveState (){
+	public void toMoveState (){
 		currentState = moveState;
 		anim.SetBool("isMoving", true);
 	}
 	
-	void toWaitState (){
+	public void toWaitState (){
 		currentState = waitState;
 	}
 	
-	void toReturnState (){
+	public void toReturnState (){
 		currentState = returnState;
 	}
 	
-	void toChaseState (){
+	public void toChaseState (){
 		currentState = chaseState;
 	}
 	
@@ -75,7 +70,7 @@ public class SlugScript : MonoBehaviour {
 		this.gameObject.transform.position = startPosition;
 	}
 	
-	string getDifficulty (){
+	public string getDifficulty (){
 		return difficulty;
 	}
 	

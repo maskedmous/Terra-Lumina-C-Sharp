@@ -13,7 +13,7 @@ public class ReturnState:State {
 		Vector3 parentPosition = parent.transform.position;
 		if (parentPosition.x < startPosition.x) speed = 70.0f;
 		else if (parentPosition.x > startPosition.x) speed = -70.0f;
-		parent.rigidbody.velocity.x = Time.deltaTime * speed;
+		parent.rigidbody.velocity = new Vector3(Time.deltaTime * speed, parent.rigidbody.velocity.y, parent.rigidbody.velocity.z);
 		if (Vector3.Distance(parentPosition, startPosition) < 1.0f) {
 			parentScript.toMoveState();
 		}

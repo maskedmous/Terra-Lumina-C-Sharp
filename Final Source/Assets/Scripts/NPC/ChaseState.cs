@@ -20,7 +20,7 @@ public class ChaseState:State {
 		
 		if (Mathf.Abs(parent.transform.position.y - playerPos.y) < 1.0f) {
 			if (rayStart.x > playerPos.x) {
-				if (Physics.Raycast(rayStart, Vector3.left, hitSide, Mathf.Infinity, layerMask)) {
+				if (Physics.Raycast(rayStart, Vector3.left, out hitSide, Mathf.Infinity, layerMask)) {
 					Debug.Log(hitSide.collider.gameObject.name);
 					if (hitSide.collider.name == "Player" || hitSide.distance > distanceToPlayer) {	
 						moveToTarget(Vector3.left);
@@ -31,7 +31,7 @@ public class ChaseState:State {
 				}
 			}
 			else {
-				if (Physics.Raycast(rayStart, Vector3.right, hitSide, Mathf.Infinity, layerMask)) {
+				if (Physics.Raycast(rayStart, Vector3.right, out hitSide, Mathf.Infinity, layerMask)) {
 					Debug.Log(hitSide.collider.gameObject.name);
 					if (hitSide.collider.name == "Player" || hitSide.distance > distanceToPlayer) {	
 						moveToTarget(Vector3.right);

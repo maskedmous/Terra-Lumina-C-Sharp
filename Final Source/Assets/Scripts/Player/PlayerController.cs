@@ -64,11 +64,11 @@ public class PlayerController : MonoBehaviour {
 		
 		particleScript = this.gameObject.GetComponent("PlayerParticleScript") as PlayerParticleScript;
 		
-		anim = GetComponent(Animator);
+		anim = GetComponent ("Animator") as Animator;
 		
 		if(GameObject.Find("TextureLoader") != null)
 		{
-			TextureLoader textureLoader = GameObject.Find("TextureLoader").GetComponent(TextureLoader);
+			TextureLoader textureLoader = GameObject.Find("TextureLoader").GetComponent("TextureLoader") as TextureLoader;
 			
 			highBatteryRoverTexture 	= textureLoader.getTexture("FinalTexture");
 			yellowBatteryRoverTexture 	= textureLoader.getTexture("FinalTextureYellowWarning");
@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour {
 		
 		if(Application.loadedLevelName == "LevelLoaderScene")
 		{
-			soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript) as SoundEngineScript;
+			soundEngine = GameObject.Find("SoundEngine").GetComponent("SoundEngineScript") as SoundEngineScript;
 		}
 		
 		shrooms.Add(Resources.Load("Prefabs/NormalShroom") as GameObject);
@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	public void Start (){
-		lineRenderer = this.gameObject.GetComponent(LineRenderer);
+		lineRenderer = this.gameObject.GetComponent("LineRenderer") as LineRenderer;
 		lineRenderer.enabled = false;
 		g = -Physics.gravity.y;
 		
@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour {
 	
 	public void stopMovement (){
 		float zero = 0.0f;
-		this.gameObject.rigidbody.velocity.x = new Vector3 (zero, this.gameObject.rigidbody.velocity.y, this.gameObject.rigidbody.velocity.z);
+		this.gameObject.rigidbody.velocity = new Vector3 (zero, this.gameObject.rigidbody.velocity.y, this.gameObject.rigidbody.velocity.z);
 		anim.SetBool("isMoving", false);
 	}
 	
@@ -138,13 +138,13 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	private void checkIfJumping (){
-		bool  hitFound = false;
+		bool hitFound = false;
 		RaycastHit hitDown;
 		int layerMask = 1 << 8;
 		layerMask = ~layerMask;
 		
-		for (uint i = 0; i < wheels.Count; ++i) {
-			if (Physics.Raycast(wheels[i].transform.position, Vector3.down, hitDown, 0.5f, layerMask)) {
+		for (int i = 0; i < wheels.Count; ++i) {
+			if (Physics.Raycast(wheels[i].transform.position, Vector3.down, out hitDown, 0.5f, layerMask)) {
 				hitFound = true;
 				break;
 			}
@@ -161,8 +161,16 @@ public class PlayerController : MonoBehaviour {
 		
 		//making sure rover does not rotate beyond 45 degrees from original rotation
 		float cRot = this.gameObject.transform.rotation.eulerAngles.z;
-		if (cRot > 45.0f && cRot < 180.0f) this.gameObject.transform.rotation.eulerAngles.z = 45.0f;
-		if (cRot > 180.0f && cRot < 315.0f) this.gameObject.transform.rotation.eulerAngles.z = 315.0f;
+		if (cRot > 45.0f && cRot < 180.0f) {
+			Vector3 newRotation = this.gameObject.transform.rotation.eulerAngles;
+			newRotation.z = 45.0f;
+			this.gameObject.transform.eulerAngles = newRotation;
+		}
+		if (cRot > 180.0f && cRot < 315.0f) {
+			Vector3 newRotation = this.gameObject.transform.rotation.eulerAngles;
+			newRotation.z = 315.0f;
+			this.gameObject.transform.eulerAngles = newRotation;
+		}
 	}
 	
 	public void move ( float mousePos  ){
@@ -183,14 +191,13 @@ public class PlayerController : MonoBehaviour {
 	private void moveLeft (){	
 		if (this.gameObject.rigidbody.velocity.x > -maxSpeed)
 		{
-			this.gameObject.rigidbody.velocity.x -= accelerationSpeed * Time.deltaTime;
-			if(this.gameObject.rigidbody.velocity.x < -maxSpeed) this.gameObject.rigidbody.velocity.x = -maxSpeed;
+			float vX = this.gameObject.rigidbody.velocity.x - accelerationSpeed * Time.deltaTime;
+			if (vX < -maxSpeed) vX = -maxSpeed;
+			this.gameObject.rigidbody.velocity = new Vector3(vX, this.gameObject.rigidbody.velocity.y, this.gameObject.rigidbody.velocity.z);
 		}
 		if (this.getDirection() == "Right")
 		{
-			this.gameObject.transform.rotation.eulerAngles.y = 180.0f;
-			this.gameObject.transform.rotation.eulerAngles.z *= -1;
-			this.gameObject.transform.rotation.eulerAngles.x *= -1;
+			this.gameObject.transform.eulerAngles = new Vector3(-this.gameObject.transform.eulerAngles.x, 180.0f, -this.gameObject.transform.eulerAngles.z);
 		}
 		setDirection("Left");
 	}
@@ -198,14 +205,13 @@ public class PlayerController : MonoBehaviour {
 	private void moveRight (){
 		if (this.gameObject.rigidbody.velocity.x < maxSpeed)
 		{
-			this.gameObject.rigidbody.velocity.x += accelerationSpeed * Time.deltaTime;
-			if(this.gameObject.rigidbody.velocity.x > maxSpeed) this.gameObject.rigidbody.velocity.x = maxSpeed;
+			float vX = this.gameObject.rigidbody.velocity.x + accelerationSpeed * Time.deltaTime;
+			if (vX > maxSpeed) vX = maxSpeed;
+			this.gameObject.rigidbody.velocity = new Vector3(vX, this.gameObject.rigidbody.velocity.y, this.gameObject.rigidbody.velocity.z);
 		}
 		if (this.getDirection() == "Left")
 		{
-			this.gameObject.transform.rotation.eulerAngles.y = 0.0f;
-			this.gameObject.transform.rotation.eulerAngles.z *= -1;
-			this.gameObject.transform.rotation.eulerAngles.x *= -1;
+			this.gameObject.transform.eulerAngles = new Vector3(-this.gameObject.transform.eulerAngles.x, 0.0f, -this.gameObject.transform.eulerAngles.z);
 		}
 		setDirection("Right");
 	}
@@ -215,13 +221,23 @@ public class PlayerController : MonoBehaviour {
 		{
 			float vx = this.gameObject.rigidbody.velocity.x;
 			if (Mathf.Abs(vx) > 0.01f) particleScript.playParticle("driveDust", Mathf.Abs(vx));
-			if (vx > 0.10f) this.gameObject.rigidbody.velocity.x -= 5 * Time.deltaTime;
-			else if (vx < -0.10f) this.gameObject.rigidbody.velocity.x += 5 * Time.deltaTime;
+			if (vx > 0.10f) {
+				float vX = this.gameObject.rigidbody.velocity.x;
+				vX -= 5.0f * Time.deltaTime;
+				this.gameObject.rigidbody.velocity = new Vector3(vX, this.rigidbody.velocity.y, this.rigidbody.velocity.z);
+			}
+			else if (vx < -0.10f) {
+				float vX = this.gameObject.rigidbody.velocity.x;
+				vX += 5.0f * Time.deltaTime;
+				this.gameObject.rigidbody.velocity = new Vector3(vX, this.rigidbody.velocity.y, this.rigidbody.velocity.z);
+			}
 			else if (vx > -0.10f && vx < 0.10f)
 			{
 				if(vx != 0.0f)
 				{
-					this.gameObject.rigidbody.velocity.x = 0.0f;
+					float vX = this.rigidbody.velocity.x;
+					vX = 0.0f;
+					this.gameObject.rigidbody.velocity = new Vector3(vX, this.rigidbody.velocity.y, this.rigidbody.velocity.z);
 					anim.SetBool("isMoving", false);
 					if(soundEngine != null)
 					{
@@ -240,7 +256,8 @@ public class PlayerController : MonoBehaviour {
 	public void jump (){
 		if (!isJumping)
 		{
-			this.gameObject.rigidbody.velocity.y = jumpForce;
+			//this.gameObject.rigidbody.velocity.y = jumpForce;
+			this.gameObject.rigidbody.velocity = new Vector3(this.gameObject.rigidbody.velocity.x, jumpForce, this.gameObject.rigidbody.velocity.z);
 			isJumping = true;
 			this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
 			gameLogic.decreaseBatteryBy(3.0f);
@@ -368,17 +385,17 @@ public class PlayerController : MonoBehaviour {
 		GameObject newSeed = null;
 		if (getDirection() == "Right")
 		{
-			newSeed = Instantiate(Resources.Load("Prefabs/Seed", GameObject));
+			newSeed = Instantiate(Resources.Load("Prefabs/Seed")) as GameObject;
 			newSeed.transform.position = this.gameObject.transform.position + new Vector3(2, 1, 0);
 		}
 		else
 		{
-			newSeed = Instantiate(Resources.Load("Prefabs/Seed", GameObject));
+			newSeed = Instantiate(Resources.Load("Prefabs/Seed")) as GameObject;
 			newSeed.transform.position = this.gameObject.transform.position - new Vector3(2, -1, 0);
 		}
 		newSeed.gameObject.name = "Seed";
 		newSeed.gameObject.transform.parent = GameObject.Find("SeedContainer").gameObject.transform;
-		SeedBehaviour seedBehaviour = newSeed.gameObject.GetComponent (SeedBehaviour) as SeedBehaviour;
+		SeedBehaviour seedBehaviour = newSeed.gameObject.GetComponent ("SeedBehaviour") as SeedBehaviour;
 		seedBehaviour.setShroomType(shrooms[shroomType]);
 		
 		if(soundEngine != null)
@@ -395,15 +412,15 @@ public class PlayerController : MonoBehaviour {
 	
 	public void flash (){
 		RaycastHit hit;
-		Vector3 direction;
+		Vector3 direction = Vector3.zero;
 		int layerMask = 1 << 8;
 		layerMask = ~layerMask;
 		if (getDirection() == "Right") direction = new Vector3(1.0f, 0.0f, 0.0f);
 		else if (getDirection() == "Left") direction = new Vector3(-1.0f, 0.0f, 0.0f);
-		if (Physics.Raycast(this.gameObject.transform.position, direction, hit, 20.0f, layerMask))
+		if (Physics.Raycast(this.gameObject.transform.position, direction, out hit, 20.0f, layerMask))
 		{
 			if (hit.collider.gameObject.name == "Slug") {
-				SlugScript slugScript = hit.collider.gameObject.GetComponent(SlugScript) as SlugScript;
+				SlugScript slugScript = hit.collider.gameObject.GetComponent("SlugScript") as SlugScript;
 				slugScript.toFleeState();
 			}
 			if (hit.collider.gameObject.name == "Web") hit.collider.gameObject.SetActive(false);
@@ -436,8 +453,9 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	public void bounceShroomY (){
-		this.gameObject.rigidbody.velocity.x = 0.0f;
-		this.gameObject.rigidbody.velocity.y = 15.0f;
+		this.gameObject.rigidbody.velocity = new Vector3 (0.0f, 15.0f, this.gameObject.rigidbody.velocity.z);
+		//this.gameObject.rigidbody.velocity.x = 0.0f;
+		//this.gameObject.rigidbody.velocity.y = 15.0f;
 	}
 	
 	public void bounceShroomX (){
@@ -465,7 +483,7 @@ public class PlayerController : MonoBehaviour {
 		float maxBattery = gameLogic.getBatteryCapacity();
 		float currentBatteryPower = gameLogic.getBattery();
 		
-		int amountOfBatteryBars = currentBatteryPower / (maxBattery / 10);
+		int amountOfBatteryBars = Mathf.RoundToInt(currentBatteryPower / (maxBattery / 10));
 		
 		if(amountOfBatteryBars >= 6)
 		{
