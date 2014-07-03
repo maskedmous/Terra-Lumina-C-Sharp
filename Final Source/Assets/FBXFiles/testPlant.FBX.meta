@@ -1,0 +1,228 @@
+fileFormatVersion: 2
+guid: 2d60e9c90c2936d40a5d3eea748ee747
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Base_JT
+    100002: Flower_stem_1_CTRL
+    100004: Flower_stem_2_CTRL
+    100006: Flower_stem_3_CTRL
+    100008: Highest_flower_base_JT
+    100010: Highest_flower_top_JT
+    100012: hostaflow0
+    100014: hostaflow1
+    100016: hostaflowe
+    100018: hostagonew
+    100020: Leaf_Pair_1_CTRL
+    100022: Leaf_pair_1_JT
+    100024: Leaf_Pair_2_CTRL
+    100026: Leaf_pair_2_JT
+    100028: Leaf_Pair_3_CTRL
+    100030: Leaf_pair_3_JT
+    100032: Leaf_Pair_4_CTRL
+    100034: Leaf_pair_4_JT
+    100036: Leaf_Pair_5_CTRL
+    100038: Leaf_pair_5_JT
+    100040: Leaf_Pair_6_CTRL
+    100042: Leaf_pair_6_JT
+    100044: Leaf_Pair_7_CTRL
+    100046: Leaf_pair_7_JT
+    100048: Lowest_flower_base_JT
+    100050: Lowest_flower_top_JT
+    100052: Main_CTRL
+    100054: Mesh_grp
+    100056: Middle_flower_base_JT
+    100058: Middle_flower_top_JT
+    100060: //RootNode
+    400000: Base_JT
+    400002: Flower_stem_1_CTRL
+    400004: Flower_stem_2_CTRL
+    400006: Flower_stem_3_CTRL
+    400008: Highest_flower_base_JT
+    400010: Highest_flower_top_JT
+    400012: hostaflow0
+    400014: hostaflow1
+    400016: hostaflowe
+    400018: hostagonew
+    400020: Leaf_Pair_1_CTRL
+    400022: Leaf_pair_1_JT
+    400024: Leaf_Pair_2_CTRL
+    400026: Leaf_pair_2_JT
+    400028: Leaf_Pair_3_CTRL
+    400030: Leaf_pair_3_JT
+    400032: Leaf_Pair_4_CTRL
+    400034: Leaf_pair_4_JT
+    400036: Leaf_Pair_5_CTRL
+    400038: Leaf_pair_5_JT
+    400040: Leaf_Pair_6_CTRL
+    400042: Leaf_pair_6_JT
+    400044: Leaf_Pair_7_CTRL
+    400046: Leaf_pair_7_JT
+    400048: Lowest_flower_base_JT
+    400050: Lowest_flower_top_JT
+    400052: Main_CTRL
+    400054: Mesh_grp
+    400056: Middle_flower_base_JT
+    400058: Middle_flower_top_JT
+    400060: //RootNode
+    2300000: hostaflow0
+    2300002: hostaflow1
+    2300004: hostaflowe
+    2300006: hostagonew
+    3300000: hostaflow0
+    3300002: hostaflow1
+    3300004: hostaflowe
+    3300006: hostagonew
+    4300000: hostaflow1
+    4300002: hostaflow0
+    4300004: hostagonew
+    4300006: hostaflowe
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: hostaflow0
+    13700002: hostaflow1
+    13700004: hostaflowe
+    13700006: hostagonew
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 125
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Base_JT
+        weight: 1
+      - path: Base_JT/Highest_flower_base_JT
+        weight: 1
+      - path: Base_JT/Highest_flower_base_JT/Highest_flower_top_JT
+        weight: 1
+      - path: Base_JT/Leaf_pair_1_JT
+        weight: 1
+      - path: Base_JT/Leaf_pair_2_JT
+        weight: 1
+      - path: Base_JT/Leaf_pair_3_JT
+        weight: 1
+      - path: Base_JT/Leaf_pair_4_JT
+        weight: 1
+      - path: Base_JT/Leaf_pair_5_JT
+        weight: 1
+      - path: Base_JT/Leaf_pair_6_JT
+        weight: 1
+      - path: Base_JT/Leaf_pair_7_JT
+        weight: 1
+      - path: Base_JT/Lowest_flower_base_JT
+        weight: 1
+      - path: Base_JT/Lowest_flower_base_JT/Lowest_flower_top_JT
+        weight: 1
+      - path: Base_JT/Middle_flower_base_JT
+        weight: 1
+      - path: Base_JT/Middle_flower_base_JT/Middle_flower_top_JT
+        weight: 1
+      - path: Main_CTRL
+        weight: 1
+      - path: Main_CTRL/Flower_stem_1_CTRL
+        weight: 1
+      - path: Main_CTRL/Flower_stem_2_CTRL
+        weight: 1
+      - path: Main_CTRL/Flower_stem_3_CTRL
+        weight: 1
+      - path: Main_CTRL/Leaf_Pair_1_CTRL
+        weight: 1
+      - path: Main_CTRL/Leaf_Pair_2_CTRL
+        weight: 1
+      - path: Main_CTRL/Leaf_Pair_3_CTRL
+        weight: 1
+      - path: Main_CTRL/Leaf_Pair_4_CTRL
+        weight: 1
+      - path: Main_CTRL/Leaf_Pair_5_CTRL
+        weight: 1
+      - path: Main_CTRL/Leaf_Pair_6_CTRL
+        weight: 1
+      - path: Main_CTRL/Leaf_Pair_7_CTRL
+        weight: 1
+      - path: Mesh_grp
+        weight: 1
+      - path: Mesh_grp/hostaflow0
+        weight: 1
+      - path: Mesh_grp/hostaflow1
+        weight: 1
+      - path: Mesh_grp/hostaflowe
+        weight: 1
+      - path: Mesh_grp/hostagonew
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 

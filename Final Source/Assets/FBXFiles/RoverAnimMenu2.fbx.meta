@@ -1,0 +1,1000 @@
+fileFormatVersion: 2
+guid: ad722808e47899e46a9eae9f98785a80
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: constraint_group
+    100002: CTRL_constraints
+    100004: CTRL_GRP
+    100006: Head_CTRL
+    100008: Head_end_JT
+    100010: Head_flap_IK_grp
+    100012: Head_IK
+    100014: Head_L_Lower_flap_CTRL
+    100016: Head_L_Upper_flap_CTRL
+    100018: Head_R_Lower_flap_CTRL
+    100020: Head_R_Upper_flap_CTRL
+    100022: IK_groups
+    100024: JT_group
+    100026: L_Back_wheel_CTRL
+    100028: L_Body_Shield_attachment_JT
+    100030: L_Body_Shield_JT_end
+    100032: L_Front_wheel_CTRL
+    100034: L_Head_lower_flap_JT
+    100036: L_Head_lower_flap_JT_end
+    100038: L_Head_upper_flap_JT
+    100040: L_Head_upper_flap_JT_end
+    100042: L_Leg_backwheel_JT
+    100044: L_Leg_backwheel_JT_end
+    100046: L_Leg_Body_attachment_JT
+    100048: L_Leg_frontwheel_JT
+    100050: L_Leg_frontwheel_JT_end
+    100052: L_leg_IK
+    100054: L_Leg_lowerleg_attachment_JT
+    100056: L_Leg_middlewheel_JT
+    100058: L_Leg_middlewheel_JT_end
+    100060: L_Leg_upperleg_attachment_JT
+    100062: L_Lower_flap_IK
+    100064: L_Middle_wheel_CTRL
+    100066: L_Shield_CTRL
+    100068: L_Suspension_CTRL
+    100070: L_Upper_flap_IK
+    100072: Main_body_JT
+    100074: Main_CTRL
+    100076: Neck_Body_attachment_JT
+    100078: Neck_Head_attachment_JT
+    100080: R_Back_wheel_CTRL
+    100082: R_Body_Shield_attachment_JT
+    100084: R_Body_Shield_JT_end
+    100086: R_Front_wheel_CTRL
+    100088: R_Head_lower_flap_JT
+    100090: R_Head_lower_flap_JT_end
+    100092: R_Head_upper_flap_JT
+    100094: R_Head_upper_flap_JT_end
+    100096: R_Leg_backwheel_JT
+    100098: R_Leg_backwheel_JT_end
+    100100: R_Leg_Body_attachment_JT
+    100102: R_Leg_frontwheel_JT
+    100104: R_Leg_frontwheel_JT_end
+    100106: R_leg_IK
+    100108: R_Leg_lowerleg_attachment_JT
+    100110: R_Leg_middlewheel_JT
+    100112: R_Leg_middlewheel_JT_end
+    100114: R_Leg_upperleg_attachment_JT
+    100116: R_Lower_flap_IK
+    100118: R_Middle_wheel_CTRL
+    100120: R_Shield_CTRL
+    100122: R_Suspension_CTRL
+    100124: R_Upper_flap_IK
+    100126: Rig_constraints
+    100128: Rig_grp
+    100130: //RootNode
+    100132: RoverBodyMesh
+    400000: constraint_group
+    400002: CTRL_constraints
+    400004: CTRL_GRP
+    400006: Head_CTRL
+    400008: Head_end_JT
+    400010: Head_flap_IK_grp
+    400012: Head_IK
+    400014: Head_L_Lower_flap_CTRL
+    400016: Head_L_Upper_flap_CTRL
+    400018: Head_R_Lower_flap_CTRL
+    400020: Head_R_Upper_flap_CTRL
+    400022: IK_groups
+    400024: JT_group
+    400026: L_Back_wheel_CTRL
+    400028: L_Body_Shield_attachment_JT
+    400030: L_Body_Shield_JT_end
+    400032: L_Front_wheel_CTRL
+    400034: L_Head_lower_flap_JT
+    400036: L_Head_lower_flap_JT_end
+    400038: L_Head_upper_flap_JT
+    400040: L_Head_upper_flap_JT_end
+    400042: L_Leg_backwheel_JT
+    400044: L_Leg_backwheel_JT_end
+    400046: L_Leg_Body_attachment_JT
+    400048: L_Leg_frontwheel_JT
+    400050: L_Leg_frontwheel_JT_end
+    400052: L_leg_IK
+    400054: L_Leg_lowerleg_attachment_JT
+    400056: L_Leg_middlewheel_JT
+    400058: L_Leg_middlewheel_JT_end
+    400060: L_Leg_upperleg_attachment_JT
+    400062: L_Lower_flap_IK
+    400064: L_Middle_wheel_CTRL
+    400066: L_Shield_CTRL
+    400068: L_Suspension_CTRL
+    400070: L_Upper_flap_IK
+    400072: Main_body_JT
+    400074: Main_CTRL
+    400076: Neck_Body_attachment_JT
+    400078: Neck_Head_attachment_JT
+    400080: R_Back_wheel_CTRL
+    400082: R_Body_Shield_attachment_JT
+    400084: R_Body_Shield_JT_end
+    400086: R_Front_wheel_CTRL
+    400088: R_Head_lower_flap_JT
+    400090: R_Head_lower_flap_JT_end
+    400092: R_Head_upper_flap_JT
+    400094: R_Head_upper_flap_JT_end
+    400096: R_Leg_backwheel_JT
+    400098: R_Leg_backwheel_JT_end
+    400100: R_Leg_Body_attachment_JT
+    400102: R_Leg_frontwheel_JT
+    400104: R_Leg_frontwheel_JT_end
+    400106: R_leg_IK
+    400108: R_Leg_lowerleg_attachment_JT
+    400110: R_Leg_middlewheel_JT
+    400112: R_Leg_middlewheel_JT_end
+    400114: R_Leg_upperleg_attachment_JT
+    400116: R_Lower_flap_IK
+    400118: R_Middle_wheel_CTRL
+    400120: R_Shield_CTRL
+    400122: R_Suspension_CTRL
+    400124: R_Upper_flap_IK
+    400126: Rig_constraints
+    400128: Rig_grp
+    400130: //RootNode
+    400132: RoverBodyMesh
+    4300000: RoverBodyMesh
+    7400000: Menu Idle
+    7400002: Exit
+    7400004: Options Idle
+    7400006: Level select Idle
+    7400008: Credits Idle
+    9500000: //RootNode
+    13700000: RoverBodyMesh
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Menu Idle
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 1200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: CTRL_GRP
+        weight: 1
+      - path: CTRL_GRP/Head_CTRL
+        weight: 1
+      - path: CTRL_GRP/Head_CTRL/Head_L_Lower_flap_CTRL
+        weight: 1
+      - path: CTRL_GRP/Head_CTRL/Head_L_Upper_flap_CTRL
+        weight: 1
+      - path: CTRL_GRP/Head_CTRL/Head_R_Lower_flap_CTRL
+        weight: 1
+      - path: CTRL_GRP/Head_CTRL/Head_R_Upper_flap_CTRL
+        weight: 1
+      - path: CTRL_GRP/L_Shield_CTRL
+        weight: 1
+      - path: CTRL_GRP/L_Suspension_CTRL
+        weight: 1
+      - path: CTRL_GRP/L_Suspension_CTRL/L_Back_wheel_CTRL
+        weight: 1
+      - path: CTRL_GRP/L_Suspension_CTRL/L_Front_wheel_CTRL
+        weight: 1
+      - path: CTRL_GRP/L_Suspension_CTRL/L_Middle_wheel_CTRL
+        weight: 1
+      - path: CTRL_GRP/R_Shield_CTRL
+        weight: 1
+      - path: CTRL_GRP/R_Suspension_CTRL
+        weight: 1
+      - path: CTRL_GRP/R_Suspension_CTRL/R_Back_wheel_CTRL
+        weight: 1
+      - path: CTRL_GRP/R_Suspension_CTRL/R_Front_wheel_CTRL
+        weight: 1
+      - path: CTRL_GRP/R_Suspension_CTRL/R_Middle_wheel_CTRL
+        weight: 1
+      - path: Main_CTRL
+        weight: 1
+      - path: Rig_grp
+        weight: 1
+      - path: Rig_grp/constraint_group
+        weight: 1
+      - path: Rig_grp/constraint_group/CTRL_constraints
+        weight: 1
+      - path: Rig_grp/constraint_group/Rig_constraints
+        weight: 1
+      - path: Rig_grp/IK_groups
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_flap_IK_grp
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_flap_IK_grp/L_Lower_flap_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_flap_IK_grp/L_Upper_flap_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_flap_IK_grp/R_Lower_flap_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_flap_IK_grp/R_Upper_flap_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/L_leg_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/R_leg_IK
+        weight: 1
+      - path: Rig_grp/JT_group
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Body_Shield_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Body_Shield_attachment_JT/L_Body_Shield_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_backwheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_backwheel_JT/L_Leg_backwheel_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_frontwheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_frontwheel_JT/L_Leg_frontwheel_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_middlewheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_middlewheel_JT/L_Leg_middlewheel_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/L_Head_lower_flap_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/L_Head_lower_flap_JT/L_Head_lower_flap_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/L_Head_upper_flap_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/L_Head_upper_flap_JT/L_Head_upper_flap_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/R_Head_lower_flap_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/R_Head_lower_flap_JT/R_Head_lower_flap_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/R_Head_upper_flap_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/R_Head_upper_flap_JT/R_Head_upper_flap_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Body_Shield_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Body_Shield_attachment_JT/R_Body_Shield_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_backwheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_backwheel_JT/R_Leg_backwheel_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_frontwheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_frontwheel_JT/R_Leg_frontwheel_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_middlewheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_middlewheel_JT/R_Leg_middlewheel_JT_end
+        weight: 1
+      - path: RoverBodyMesh
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Exit
+      takeName: Take 001
+      firstFrame: 1201
+      lastFrame: 1400
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: CTRL_GRP
+        weight: 1
+      - path: CTRL_GRP/Head_CTRL
+        weight: 1
+      - path: CTRL_GRP/Head_CTRL/Head_L_Lower_flap_CTRL
+        weight: 1
+      - path: CTRL_GRP/Head_CTRL/Head_L_Upper_flap_CTRL
+        weight: 1
+      - path: CTRL_GRP/Head_CTRL/Head_R_Lower_flap_CTRL
+        weight: 1
+      - path: CTRL_GRP/Head_CTRL/Head_R_Upper_flap_CTRL
+        weight: 1
+      - path: CTRL_GRP/L_Shield_CTRL
+        weight: 1
+      - path: CTRL_GRP/L_Suspension_CTRL
+        weight: 1
+      - path: CTRL_GRP/L_Suspension_CTRL/L_Back_wheel_CTRL
+        weight: 1
+      - path: CTRL_GRP/L_Suspension_CTRL/L_Front_wheel_CTRL
+        weight: 1
+      - path: CTRL_GRP/L_Suspension_CTRL/L_Middle_wheel_CTRL
+        weight: 1
+      - path: CTRL_GRP/R_Shield_CTRL
+        weight: 1
+      - path: CTRL_GRP/R_Suspension_CTRL
+        weight: 1
+      - path: CTRL_GRP/R_Suspension_CTRL/R_Back_wheel_CTRL
+        weight: 1
+      - path: CTRL_GRP/R_Suspension_CTRL/R_Front_wheel_CTRL
+        weight: 1
+      - path: CTRL_GRP/R_Suspension_CTRL/R_Middle_wheel_CTRL
+        weight: 1
+      - path: Main_CTRL
+        weight: 1
+      - path: Rig_grp
+        weight: 1
+      - path: Rig_grp/constraint_group
+        weight: 1
+      - path: Rig_grp/constraint_group/CTRL_constraints
+        weight: 1
+      - path: Rig_grp/constraint_group/Rig_constraints
+        weight: 1
+      - path: Rig_grp/IK_groups
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_flap_IK_grp
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_flap_IK_grp/L_Lower_flap_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_flap_IK_grp/L_Upper_flap_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_flap_IK_grp/R_Lower_flap_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_flap_IK_grp/R_Upper_flap_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/L_leg_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/R_leg_IK
+        weight: 1
+      - path: Rig_grp/JT_group
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Body_Shield_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Body_Shield_attachment_JT/L_Body_Shield_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_backwheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_backwheel_JT/L_Leg_backwheel_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_frontwheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_frontwheel_JT/L_Leg_frontwheel_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_middlewheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_middlewheel_JT/L_Leg_middlewheel_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/L_Head_lower_flap_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/L_Head_lower_flap_JT/L_Head_lower_flap_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/L_Head_upper_flap_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/L_Head_upper_flap_JT/L_Head_upper_flap_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/R_Head_lower_flap_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/R_Head_lower_flap_JT/R_Head_lower_flap_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/R_Head_upper_flap_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/R_Head_upper_flap_JT/R_Head_upper_flap_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Body_Shield_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Body_Shield_attachment_JT/R_Body_Shield_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_backwheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_backwheel_JT/R_Leg_backwheel_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_frontwheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_frontwheel_JT/R_Leg_frontwheel_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_middlewheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_middlewheel_JT/R_Leg_middlewheel_JT_end
+        weight: 1
+      - path: RoverBodyMesh
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Options Idle
+      takeName: Take 001
+      firstFrame: 1261
+      lastFrame: 1400
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: CTRL_GRP
+        weight: 1
+      - path: CTRL_GRP/Head_CTRL
+        weight: 1
+      - path: CTRL_GRP/Head_CTRL/Head_L_Lower_flap_CTRL
+        weight: 1
+      - path: CTRL_GRP/Head_CTRL/Head_L_Upper_flap_CTRL
+        weight: 1
+      - path: CTRL_GRP/Head_CTRL/Head_R_Lower_flap_CTRL
+        weight: 1
+      - path: CTRL_GRP/Head_CTRL/Head_R_Upper_flap_CTRL
+        weight: 1
+      - path: CTRL_GRP/L_Shield_CTRL
+        weight: 1
+      - path: CTRL_GRP/L_Suspension_CTRL
+        weight: 1
+      - path: CTRL_GRP/L_Suspension_CTRL/L_Back_wheel_CTRL
+        weight: 1
+      - path: CTRL_GRP/L_Suspension_CTRL/L_Front_wheel_CTRL
+        weight: 1
+      - path: CTRL_GRP/L_Suspension_CTRL/L_Middle_wheel_CTRL
+        weight: 1
+      - path: CTRL_GRP/R_Shield_CTRL
+        weight: 1
+      - path: CTRL_GRP/R_Suspension_CTRL
+        weight: 1
+      - path: CTRL_GRP/R_Suspension_CTRL/R_Back_wheel_CTRL
+        weight: 1
+      - path: CTRL_GRP/R_Suspension_CTRL/R_Front_wheel_CTRL
+        weight: 1
+      - path: CTRL_GRP/R_Suspension_CTRL/R_Middle_wheel_CTRL
+        weight: 1
+      - path: Main_CTRL
+        weight: 1
+      - path: Rig_grp
+        weight: 1
+      - path: Rig_grp/constraint_group
+        weight: 1
+      - path: Rig_grp/constraint_group/CTRL_constraints
+        weight: 1
+      - path: Rig_grp/constraint_group/Rig_constraints
+        weight: 1
+      - path: Rig_grp/IK_groups
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_flap_IK_grp
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_flap_IK_grp/L_Lower_flap_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_flap_IK_grp/L_Upper_flap_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_flap_IK_grp/R_Lower_flap_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_flap_IK_grp/R_Upper_flap_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/L_leg_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/R_leg_IK
+        weight: 1
+      - path: Rig_grp/JT_group
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Body_Shield_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Body_Shield_attachment_JT/L_Body_Shield_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_backwheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_backwheel_JT/L_Leg_backwheel_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_frontwheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_frontwheel_JT/L_Leg_frontwheel_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_middlewheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_middlewheel_JT/L_Leg_middlewheel_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/L_Head_lower_flap_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/L_Head_lower_flap_JT/L_Head_lower_flap_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/L_Head_upper_flap_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/L_Head_upper_flap_JT/L_Head_upper_flap_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/R_Head_lower_flap_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/R_Head_lower_flap_JT/R_Head_lower_flap_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/R_Head_upper_flap_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/R_Head_upper_flap_JT/R_Head_upper_flap_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Body_Shield_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Body_Shield_attachment_JT/R_Body_Shield_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_backwheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_backwheel_JT/R_Leg_backwheel_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_frontwheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_frontwheel_JT/R_Leg_frontwheel_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_middlewheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_middlewheel_JT/R_Leg_middlewheel_JT_end
+        weight: 1
+      - path: RoverBodyMesh
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Level select Idle
+      takeName: Take 001
+      firstFrame: 1401
+      lastFrame: 1600
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: CTRL_GRP
+        weight: 1
+      - path: CTRL_GRP/Head_CTRL
+        weight: 1
+      - path: CTRL_GRP/Head_CTRL/Head_L_Lower_flap_CTRL
+        weight: 1
+      - path: CTRL_GRP/Head_CTRL/Head_L_Upper_flap_CTRL
+        weight: 1
+      - path: CTRL_GRP/Head_CTRL/Head_R_Lower_flap_CTRL
+        weight: 1
+      - path: CTRL_GRP/Head_CTRL/Head_R_Upper_flap_CTRL
+        weight: 1
+      - path: CTRL_GRP/L_Shield_CTRL
+        weight: 1
+      - path: CTRL_GRP/L_Suspension_CTRL
+        weight: 1
+      - path: CTRL_GRP/L_Suspension_CTRL/L_Back_wheel_CTRL
+        weight: 1
+      - path: CTRL_GRP/L_Suspension_CTRL/L_Front_wheel_CTRL
+        weight: 1
+      - path: CTRL_GRP/L_Suspension_CTRL/L_Middle_wheel_CTRL
+        weight: 1
+      - path: CTRL_GRP/R_Shield_CTRL
+        weight: 1
+      - path: CTRL_GRP/R_Suspension_CTRL
+        weight: 1
+      - path: CTRL_GRP/R_Suspension_CTRL/R_Back_wheel_CTRL
+        weight: 1
+      - path: CTRL_GRP/R_Suspension_CTRL/R_Front_wheel_CTRL
+        weight: 1
+      - path: CTRL_GRP/R_Suspension_CTRL/R_Middle_wheel_CTRL
+        weight: 1
+      - path: Main_CTRL
+        weight: 1
+      - path: Rig_grp
+        weight: 1
+      - path: Rig_grp/constraint_group
+        weight: 1
+      - path: Rig_grp/constraint_group/CTRL_constraints
+        weight: 1
+      - path: Rig_grp/constraint_group/Rig_constraints
+        weight: 1
+      - path: Rig_grp/IK_groups
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_flap_IK_grp
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_flap_IK_grp/L_Lower_flap_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_flap_IK_grp/L_Upper_flap_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_flap_IK_grp/R_Lower_flap_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_flap_IK_grp/R_Upper_flap_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/L_leg_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/R_leg_IK
+        weight: 1
+      - path: Rig_grp/JT_group
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Body_Shield_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Body_Shield_attachment_JT/L_Body_Shield_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_backwheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_backwheel_JT/L_Leg_backwheel_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_frontwheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_frontwheel_JT/L_Leg_frontwheel_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_middlewheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_middlewheel_JT/L_Leg_middlewheel_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/L_Head_lower_flap_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/L_Head_lower_flap_JT/L_Head_lower_flap_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/L_Head_upper_flap_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/L_Head_upper_flap_JT/L_Head_upper_flap_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/R_Head_lower_flap_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/R_Head_lower_flap_JT/R_Head_lower_flap_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/R_Head_upper_flap_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/R_Head_upper_flap_JT/R_Head_upper_flap_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Body_Shield_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Body_Shield_attachment_JT/R_Body_Shield_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_backwheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_backwheel_JT/R_Leg_backwheel_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_frontwheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_frontwheel_JT/R_Leg_frontwheel_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_middlewheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_middlewheel_JT/R_Leg_middlewheel_JT_end
+        weight: 1
+      - path: RoverBodyMesh
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Credits Idle
+      takeName: Take 001
+      firstFrame: 1601
+      lastFrame: 1700
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: CTRL_GRP
+        weight: 1
+      - path: CTRL_GRP/Head_CTRL
+        weight: 1
+      - path: CTRL_GRP/Head_CTRL/Head_L_Lower_flap_CTRL
+        weight: 1
+      - path: CTRL_GRP/Head_CTRL/Head_L_Upper_flap_CTRL
+        weight: 1
+      - path: CTRL_GRP/Head_CTRL/Head_R_Lower_flap_CTRL
+        weight: 1
+      - path: CTRL_GRP/Head_CTRL/Head_R_Upper_flap_CTRL
+        weight: 1
+      - path: CTRL_GRP/L_Shield_CTRL
+        weight: 1
+      - path: CTRL_GRP/L_Suspension_CTRL
+        weight: 1
+      - path: CTRL_GRP/L_Suspension_CTRL/L_Back_wheel_CTRL
+        weight: 1
+      - path: CTRL_GRP/L_Suspension_CTRL/L_Front_wheel_CTRL
+        weight: 1
+      - path: CTRL_GRP/L_Suspension_CTRL/L_Middle_wheel_CTRL
+        weight: 1
+      - path: CTRL_GRP/R_Shield_CTRL
+        weight: 1
+      - path: CTRL_GRP/R_Suspension_CTRL
+        weight: 1
+      - path: CTRL_GRP/R_Suspension_CTRL/R_Back_wheel_CTRL
+        weight: 1
+      - path: CTRL_GRP/R_Suspension_CTRL/R_Front_wheel_CTRL
+        weight: 1
+      - path: CTRL_GRP/R_Suspension_CTRL/R_Middle_wheel_CTRL
+        weight: 1
+      - path: Main_CTRL
+        weight: 1
+      - path: Rig_grp
+        weight: 1
+      - path: Rig_grp/constraint_group
+        weight: 1
+      - path: Rig_grp/constraint_group/CTRL_constraints
+        weight: 1
+      - path: Rig_grp/constraint_group/Rig_constraints
+        weight: 1
+      - path: Rig_grp/IK_groups
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_flap_IK_grp
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_flap_IK_grp/L_Lower_flap_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_flap_IK_grp/L_Upper_flap_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_flap_IK_grp/R_Lower_flap_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_flap_IK_grp/R_Upper_flap_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/Head_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/L_leg_IK
+        weight: 1
+      - path: Rig_grp/IK_groups/R_leg_IK
+        weight: 1
+      - path: Rig_grp/JT_group
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Body_Shield_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Body_Shield_attachment_JT/L_Body_Shield_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_backwheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_backwheel_JT/L_Leg_backwheel_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_frontwheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_frontwheel_JT/L_Leg_frontwheel_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_middlewheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/L_Leg_Body_attachment_JT/L_Leg_upperleg_attachment_JT/L_Leg_lowerleg_attachment_JT/L_Leg_middlewheel_JT/L_Leg_middlewheel_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/L_Head_lower_flap_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/L_Head_lower_flap_JT/L_Head_lower_flap_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/L_Head_upper_flap_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/L_Head_upper_flap_JT/L_Head_upper_flap_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/R_Head_lower_flap_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/R_Head_lower_flap_JT/R_Head_lower_flap_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/R_Head_upper_flap_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/Neck_Body_attachment_JT/Neck_Head_attachment_JT/Head_end_JT/R_Head_upper_flap_JT/R_Head_upper_flap_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Body_Shield_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Body_Shield_attachment_JT/R_Body_Shield_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_backwheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_backwheel_JT/R_Leg_backwheel_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_frontwheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_frontwheel_JT/R_Leg_frontwheel_JT_end
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_middlewheel_JT
+        weight: 1
+      - path: Rig_grp/JT_group/Main_body_JT/R_Leg_Body_attachment_JT/R_Leg_upperleg_attachment_JT/R_Leg_lowerleg_attachment_JT/R_Leg_middlewheel_JT/R_Leg_middlewheel_JT_end
+        weight: 1
+      - path: RoverBodyMesh
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
