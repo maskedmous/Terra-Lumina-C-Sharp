@@ -37,9 +37,13 @@ public class XmlToScene : MonoBehaviour
 				xmlDocument.Load(filePath);
 				//getting the necessary gameobjects into variables
 				GameObject camera 	= Camera.main.gameObject;
+				Vector3 cameraPosition = new Vector3();
+				Vector3 cameraRotation = new Vector3();
 				GameLogic gameLogic = GameObject.Find("GameLogic").GetComponent<GameLogic>();
 				GameObject level 	= GameObject.Find("Level");
 				GameObject player 	= GameObject.Find("Player");
+				Vector3 playerPosition = new Vector3();
+				Vector3 playerRotation = new Vector3();
 				TextureLoader textureLoader = GameObject.Find("TextureLoader").GetComponent<TextureLoader>();
 				
 				XmlNode rootNode 		= xmlDocument.DocumentElement;
@@ -63,15 +67,15 @@ public class XmlToScene : MonoBehaviour
 								{
 									if(cameraPositionStats.Name == "x")
 									{
-										camera.transform.position.x = float.Parse(cameraPositionStats.InnerText);
+										cameraPosition.x = float.Parse(cameraPositionStats.InnerText);
 									}
 									if(cameraPositionStats.Name == "y")
 									{
-										camera.transform.position.y = float.Parse(cameraPositionStats.InnerText);
+										cameraPosition.y = float.Parse(cameraPositionStats.InnerText);
 									}
 									if(cameraPositionStats.Name == "z")
 									{
-										camera.transform.position.z = float.Parse(cameraPositionStats.InnerText);
+										cameraPosition.z = float.Parse(cameraPositionStats.InnerText);
 									}
 								}
 							}
@@ -84,15 +88,15 @@ public class XmlToScene : MonoBehaviour
 								{
 									if(cameraRotationStats.Name == "x")
 									{
-										camera.transform.rotation.eulerAngles.x = float.Parse(cameraRotationStats.InnerText);
+										cameraRotation.x = float.Parse(cameraRotationStats.InnerText);
 									}
 									if(cameraRotationStats.Name == "y")
 									{
-										camera.transform.rotation.eulerAngles.y = float.Parse(cameraRotationStats.InnerText);
+										cameraRotation.y = float.Parse(cameraRotationStats.InnerText);
 									}
 									if(cameraRotationStats.Name == "z")
 									{
-										camera.transform.rotation.eulerAngles.z = float.Parse(cameraRotationStats.InnerText);
+										cameraRotation.z = float.Parse(cameraRotationStats.InnerText);
 									}
 								}
 							}
@@ -151,7 +155,7 @@ public class XmlToScene : MonoBehaviour
 							
 							if(gameLogicStats.Name == "InfiniteAmmo")
 							{
-								gameLogic.setInfiniteAmmo(boolean.Parse(gameLogicStats.InnerText));
+								gameLogic.setInfiniteAmmo(bool.Parse(gameLogicStats.InnerText));
 							}
 							
 							if (gameLogicStats.Name == "JumpDrain")
@@ -259,7 +263,7 @@ public class XmlToScene : MonoBehaviour
 								{
 									XmlNodeList gameObjectPositionNodes = gameObjectStatsNodes.ChildNodes;
 									
-									foreach(XmlNode positionNodes in gameObjectPositionNodes)
+									foreach(XmlNode positionNode in gameObjectPositionNodes)
 									{
 										if(positionNode.Name == "x")
 										{
@@ -283,7 +287,7 @@ public class XmlToScene : MonoBehaviour
 								{
 									XmlNodeList gameObjectRotationNodes = gameObjectStatsNodes.ChildNodes;
 									
-									foreach(XmlNode rotationNodes in gameObjectRotationNodes)
+									foreach(XmlNode rotationNode in gameObjectRotationNodes)
 									{
 										if(rotationNode.Name == "x")
 										{
@@ -304,7 +308,7 @@ public class XmlToScene : MonoBehaviour
 								{
 									XmlNodeList gameObjectScalingNodes = gameObjectStatsNodes.ChildNodes;
 									
-									foreach(XmlNode scalingNodes in gameObjectScalingNodes)
+									foreach(XmlNode scalingNode in gameObjectScalingNodes)
 									{
 										if(scalingNode.Name == "x")
 										{
@@ -327,10 +331,10 @@ public class XmlToScene : MonoBehaviour
 									foreach(XmlNode ammoBoxStats in ammoBoxStatsNodes)
 									{
 										if(ammoBoxStats.Name == "ExtraSeeds") extraSeeds = int.Parse(ammoBoxStats.InnerText);
-										if(ammoBoxStats.Name == "NormalType") normalType = boolean.Parse(ammoBoxStats.InnerText);
-										if(ammoBoxStats.Name == "BumpyType") bumpyType = boolean.Parse(ammoBoxStats.InnerText);
+										if(ammoBoxStats.Name == "NormalType") normalType = bool.Parse(ammoBoxStats.InnerText);
+										if(ammoBoxStats.Name == "BumpyType") bumpyType = bool.Parse(ammoBoxStats.InnerText);
 										if(ammoBoxStats.Name == "TimeToRespawn") timeToRespawn = float.Parse(ammoBoxStats.InnerText);
-										if(ammoBoxStats.Name == "OneTimePickup") oneTimePickup = boolean.Parse(ammoBoxStats.InnerText);
+										if(ammoBoxStats.Name == "OneTimePickup") oneTimePickup = bool.Parse(ammoBoxStats.InnerText);
 									}
 								}
 								
@@ -456,33 +460,33 @@ public class XmlToScene : MonoBehaviour
 										
 										if(tutorialNodeStats.Name == "JumpButtonTutorial")
 										{
-											jumpButtonTutorial = boolean.Parse(tutorialNodeStats.InnerText);
+											jumpButtonTutorial = bool.Parse(tutorialNodeStats.InnerText);
 										}
 										if(tutorialNodeStats.Name == "NormalShroomButtonTutorial")
 										{
-											normalShroomButtonTutorial = boolean.Parse(tutorialNodeStats.InnerText);
+											normalShroomButtonTutorial = bool.Parse(tutorialNodeStats.InnerText);
 										}
 										if(tutorialNodeStats.Name == "FlashButtonTutorial")
 										{
-											flashButtonTutorial = boolean.Parse(tutorialNodeStats.InnerText);
+											flashButtonTutorial = bool.Parse(tutorialNodeStats.InnerText);
 										}
 										if(tutorialNodeStats.Name == "BumpyShroomButtonTutorial")
 										{
-											bumpyShroomButtonTutorial = boolean.Parse(tutorialNodeStats.InnerText);
+											bumpyShroomButtonTutorial = bool.Parse(tutorialNodeStats.InnerText);
 										}
 										
 										
 										if(tutorialNodeStats.Name == "LightTutorial")
 										{
-											lightTutorial = boolean.Parse(tutorialNodeStats.InnerText);
+											lightTutorial = bool.Parse(tutorialNodeStats.InnerText);
 										}
 										if(tutorialNodeStats.Name == "SlugTutorial")
 										{
-											slugTutorial = boolean.Parse(tutorialNodeStats.InnerText);
+											slugTutorial = bool.Parse(tutorialNodeStats.InnerText);
 										}
 										if(tutorialNodeStats.Name == "CrystalTutorial")
 										{
-											crystalTutorial = boolean.Parse(tutorialNodeStats.InnerText);
+											crystalTutorial = bool.Parse(tutorialNodeStats.InnerText);
 										}
 										
 										if(tutorialNodeStats.Name == "BlockObject")
@@ -515,27 +519,27 @@ public class XmlToScene : MonoBehaviour
 											{
 												if(buttonNodeStats.Name == "MovementLeft")
 												{
-													movementLeftEnabled = boolean.Parse(buttonNodeStats.InnerText);
+													movementLeftEnabled = bool.Parse(buttonNodeStats.InnerText);
 												}
 												if(buttonNodeStats.Name == "MovementRight")
 												{
-													movementRightEnabled = boolean.Parse(buttonNodeStats.InnerText);
+													movementRightEnabled = bool.Parse(buttonNodeStats.InnerText);
 												}
 												if(buttonNodeStats.Name == "JumpButton")
 												{
-													jumpButtonEnabled = boolean.Parse(buttonNodeStats.InnerText);
+													jumpButtonEnabled = bool.Parse(buttonNodeStats.InnerText);
 												}
 												if(buttonNodeStats.Name == "FlashButton")
 												{
-													flashButtonEnabled = boolean.Parse(buttonNodeStats.InnerText);
+													flashButtonEnabled = bool.Parse(buttonNodeStats.InnerText);
 												}
 												if(buttonNodeStats.Name == "NormalShroomButton")
 												{
-													normalShroomButtonEnabled = boolean.Parse(buttonNodeStats.InnerText);
+													normalShroomButtonEnabled = bool.Parse(buttonNodeStats.InnerText);
 												}
 												if(buttonNodeStats.Name == "BumpyShroomButton")
 												{
-													bumpyShroomButtonEnabled = boolean.Parse(buttonNodeStats.InnerText);
+													bumpyShroomButtonEnabled = bool.Parse(buttonNodeStats.InnerText);
 												}
 											}
 										}
@@ -597,11 +601,11 @@ public class XmlToScene : MonoBehaviour
 										}
 										if(tutorialNodeStats.Name == "DestroyOnExit")
 										{
-											destroyOnExit = boolean.Parse(tutorialNodeStats.InnerText);
+											destroyOnExit = bool.Parse(tutorialNodeStats.InnerText);
 										}
 										if(tutorialNodeStats.Name == "DestroyOnCompletion")
 										{
-											destroyOnCompletion = boolean.Parse(tutorialNodeStats.InnerText);
+											destroyOnCompletion = bool.Parse(tutorialNodeStats.InnerText);
 										}
 										if(tutorialNodeStats.Name == "BoundingBox")
 										{
@@ -628,7 +632,7 @@ public class XmlToScene : MonoBehaviour
 							}
 							
 							//instantiate the things
-							if(prefabName != "" && position != Vector3(9999,9999,9999) && rotation != Vector3(9999,9999,9999) && scaling != Vector3(9999,9999,9999))
+							if(prefabName != "" && position != new Vector3(9999,9999,9999) && rotation != new Vector3(9999,9999,9999) && scaling != new Vector3(9999,9999,9999))
 							{
 								if(Resources.Load(("Prefabs/" + prefabName)) != null)
 								{
@@ -649,7 +653,7 @@ public class XmlToScene : MonoBehaviour
 										ammoBoxScript.setOneTimePickup(oneTimePickup);
 									}
 									
-									if(newGameObject.name == "Slug" && slugBoundAPosition != Vector3(9999,9999,9999) && slugBoundBPosition != Vector3(9999,9999,9999))
+									if(newGameObject.name == "Slug" && slugBoundAPosition != new Vector3(9999,9999,9999) && slugBoundBPosition != new Vector3(9999,9999,9999))
 									{
 										GameObject slugBoundA = Instantiate(Resources.Load("Prefabs/SlugBound")) as GameObject;
 										slugBoundA.name = "SlugBound";
@@ -666,12 +670,12 @@ public class XmlToScene : MonoBehaviour
 										slugScript.setSlugBoundB(slugBoundB);
 									}
 									
-									if(newGameObject.name == "TutorialObject" && boundingBox != Vector3(9999,9999,9999))
+									if(newGameObject.name == "TutorialObject" && boundingBox != new Vector3(9999,9999,9999))
 									{
 										TutorialTriggerScript triggerScript = newGameObject.GetComponent<TutorialTriggerScript>();
 										
 										//alpha object
-										if(alphaObjectPrefabName != "" && alphaObjectPosition != Vector3(9999,9999,9999) && alphaObjectRotation != Vector3(9999,9999,9999) && alphaObjectScaling != Vector3(9999,9999,9999))
+										if(alphaObjectPrefabName != "" && alphaObjectPosition != new Vector3(9999,9999,9999) && alphaObjectRotation != new Vector3(9999,9999,9999) && alphaObjectScaling != new Vector3(9999,9999,9999))
 										{
 											GameObject alphaObject = Instantiate(Resources.Load("Prefabs/" + alphaObjectPrefabName)) as GameObject;
 											if(alphaObject != null)
@@ -686,7 +690,7 @@ public class XmlToScene : MonoBehaviour
 											else Debug.LogError("Couldn't find alphaobject prefab!");
 										}
 										
-										if(slugObjectPosition != Vector3(9999,9999,9999))
+										if(slugObjectPosition != new Vector3(9999,9999,9999))
 										{
 											GameObject newSlug = Instantiate(Resources.Load("Prefabs/Slug")) as GameObject;
 											newSlug.name = "Slug";
@@ -710,7 +714,7 @@ public class XmlToScene : MonoBehaviour
 											triggerScript.setSlugObject(newSlug);
 										}
 										
-										if(blockObjectPosition != Vector3(9999,9999,9999))
+										if(blockObjectPosition != new Vector3(9999,9999,9999))
 										{
 											GameObject newBlockObject = Instantiate(Resources.Load("Prefabs/BarrierAnimated")) as GameObject;
 											newBlockObject.name = "BarrierAnimated";
@@ -782,21 +786,21 @@ public class XmlToScene : MonoBehaviour
 							{
 								XmlNodeList playerPositionNodeList = playerStats.ChildNodes;
 								
-								foreach(XmlNode playerPosition in playerPositionNodeList)
+								foreach(XmlNode playerPositionNode in playerPositionNodeList)
 								{
-									if(playerPosition.Name == "x")
+									if(playerPositionNode.Name == "x")
 									{
-										player.transform.position.x = float.Parse(playerPosition.InnerText);
+										playerPosition.x = float.Parse(playerPositionNode.InnerText);
 									}
 									
-									if(playerPosition.Name == "y")
+									if(playerPositionNode.Name == "y")
 									{
-										player.transform.position.y = float.Parse(playerPosition.InnerText);
+										playerPosition.y = float.Parse(playerPositionNode.InnerText);
 									}
 									
-									if(playerPosition.Name == "z")
+									if(playerPositionNode.Name == "z")
 									{
-										player.transform.position.z = float.Parse(playerPosition.InnerText);
+										playerPosition.z = float.Parse(playerPositionNode.InnerText);
 									}
 								}
 							}
@@ -805,27 +809,33 @@ public class XmlToScene : MonoBehaviour
 							{
 								XmlNodeList playerRotationNodeList = playerStats.ChildNodes;
 								
-								foreach(XmlNode playerRotation in playerRotationNodeList)
+								foreach(XmlNode playerRotationNode in playerRotationNodeList)
 								{
-									if(playerRotation.Name == "x")
+									if(playerRotationNode.Name == "x")
 									{
-										player.transform.eulerAngles.x = float.Parse(playerRotation.InnerText);
+										playerRotation.x = float.Parse(playerRotationNode.InnerText);
 									}
 									
-									if(playerRotation.Name == "y")
+									if(playerRotationNode.Name == "y")
 									{
-										player.transform.eulerAngles.y = float.Parse(playerRotation.InnerText);
+										playerRotation.y = float.Parse(playerRotationNode.InnerText);
 									}
 									
-									if(playerRotation.Name == "z")
+									if(playerRotationNode.Name == "z")
 									{
-										player.transform.eulerAngles.z = float.Parse(playerRotation.InnerText);
+										playerRotation.z = float.Parse(playerRotationNode.InnerText);
 									}
 								}
 							}
 						}
 					}
 				}
+
+				camera.transform.position = cameraPosition;
+				camera.transform.eulerAngles = cameraRotation;
+
+				player.transform.position = playerPosition;
+				player.transform.eulerAngles = playerRotation;
 			}
 			else
 			{

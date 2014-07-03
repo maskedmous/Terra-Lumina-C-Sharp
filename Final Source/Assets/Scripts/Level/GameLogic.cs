@@ -104,7 +104,7 @@ public class GameLogic : MonoBehaviour
 		if(runTimer == true)
 		{
 			levelTimer += Time.deltaTime;
-			timerInt = levelTimer;
+			timerInt = Mathf.RoundToInt(levelTimer);
 		}
 		if(!charging)
 		{

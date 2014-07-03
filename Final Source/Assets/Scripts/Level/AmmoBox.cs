@@ -4,7 +4,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class MYCLASSNAME : MonoBehaviour {
+public class AmmoBox : MonoBehaviour {
 	
 	
 	public  int extraSeeds = 5;

@@ -25,7 +25,7 @@ public class BumpyShroom : MonoBehaviour {
 	public void Awake (){
 		//	counter = 30.0ff;
 		//	currentScale = startScale;
-		this.gameObject.transform.parent.transform.eulerAngles = Vector3(0, Random.Range(0, 360), 0);
+		this.gameObject.transform.parent.transform.eulerAngles = new Vector3(0, Random.Range(0, 360), 0);
 		if(GameObject.Find("SoundEngine") != null) soundEngine = GameObject.Find("SoundEngine").GetComponent<SoundEngineScript>();
 		animationController = transform.parent.parent.GetComponent<Animator>();
 		animationController.Play("Grow");
@@ -42,7 +42,9 @@ public class BumpyShroom : MonoBehaviour {
 			if(counter <= 0.0f)
 			{
 				animationController.Play("Decay");
-				this.gameObject.transform.position.y -= Time.deltaTime * slowdown;
+				Vector3 shroomPosition = this.gameObject.transform.position;
+				shroomPosition.y -= Time.deltaTime * slowdown;
+				this.gameObject.transform.position = shroomPosition;
 				//destroyShroom();
 			}
 		}

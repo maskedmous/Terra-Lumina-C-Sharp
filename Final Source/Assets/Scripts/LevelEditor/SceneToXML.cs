@@ -259,10 +259,12 @@ public class SceneToXML : MonoBehaviour
 		foreach(Transform obj in levelObject.transform)
 		{
 			if(!checkValidPrefab(obj.name)) return -1;
+			XmlElement objectNode = xmlDocument.CreateElement("GameObject");
+			levelNode.AppendChild(objectNode);
+
 			if(obj.gameObject.name != "SlugBound")
 			{
-				XmlElement objectNode 	= xmlDocument.CreateElement("GameObject");
-				levelNode.AppendChild(objectNode);
+
 				
 				//save prefab name
 				XmlElement prefabNode 	= xmlDocument.CreateElement("Prefab");
@@ -323,7 +325,7 @@ public class SceneToXML : MonoBehaviour
 				XmlElement ammoBoxNode = xmlDocument.CreateElement("AmmoBox");
 				objectNode.AppendChild(ammoBoxNode);
 				
-				AmmoBox ammoBox = (AmmoBox) obj.FindChild("AmmoBox").GetComponent<AmmoBox>();
+				AmmoBox ammoBox = (AmmoBox) obj.FindChild("AmmoBox").GetComponent(typeof(AmmoBox));
 				
 				XmlElement extraSeedsNode    = xmlDocument.CreateElement("ExtraSeeds");
 				XmlElement normalTypeNode    = xmlDocument.CreateElement("NormalType");

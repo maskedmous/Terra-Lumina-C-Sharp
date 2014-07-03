@@ -33,7 +33,9 @@ public class NormalShroom : MonoBehaviour {
 			counter -= Time.deltaTime;
 			if(counter <= 0.0f){
 				animationController.Play("Decay");
-				this.gameObject.transform.position.y -= Time.deltaTime * slowdown;
+				Vector3 shroomPosition = this.gameObject.transform.position;
+				shroomPosition.y -= Time.deltaTime * slowdown;
+				this.gameObject.transform.position = shroomPosition;
 				//destroyShroom();
 			}
 		}

@@ -59,11 +59,11 @@ public class LevelTrigger : MonoBehaviour {
 		}
 	}
 	
-	private void touchBegan ( Object sender ,   TouchEventArgs events  ){
+	private void touchBegan ( object sender ,   TouchEventArgs events  ){
 		foreach(var touchPoint in events.Touches)
 		{
 			Vector2 position = touchPoint.Position;
-			position = Vector2(position.x, (position.y - Screen.height)*-1);
+			position = new Vector2(position.x, (position.y - Screen.height)*-1);
 			
 			isPressingButton(position);
 		}
@@ -156,19 +156,19 @@ public class LevelTrigger : MonoBehaviour {
 		return newRect;
 	}
 	
-	void setFinished ( bool isFinished  ){
+	public void setFinished ( bool isFinished  ){
 		finished = isFinished;
 	}
 	
-	bool getFinished (){
+	public bool getFinished (){
 		return finished;
 	}
 	
-	void setLost ( bool isLost  ){
+	public void setLost ( bool isLost  ){
 		lost = isLost;
 	}
 	
-	bool getLost (){
+	public bool getLost (){
 		return lost;
 	}
 	
