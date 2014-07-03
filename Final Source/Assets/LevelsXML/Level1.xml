@@ -13587,6 +13587,14 @@
         </SlugBoundB>
       </Slug>
     </GameObject>
+    <GameObject />
+    <GameObject />
+    <GameObject />
+    <GameObject />
+    <GameObject />
+    <GameObject />
+    <GameObject />
+    <GameObject />
     <GameObject>
       <Prefab>SpaceShipAnim</Prefab>
       <Position>

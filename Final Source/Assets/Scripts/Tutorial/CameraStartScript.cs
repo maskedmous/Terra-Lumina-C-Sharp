@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class CameraStartScript : MonoBehaviour {
 
 	private Camera cam;
-	private float speed = 150.0f;
+	private float speed = 120.0f;
 	private float timer = 1.5f;
 	private float startTimer = 2.0f;
 	
@@ -14,13 +14,13 @@ public class CameraStartScript : MonoBehaviour {
 	private GameObject endLevelTrigger = null;
 	
 	private int currentCrystal = 0;
-	//private Vector3 startPos = Vector3.zero;
 	private Vector3 targetPos = Vector3.zero;
+	private bool goingToPlayer = false;
+	private float t = 0.0f;
 	
 	private GameLogic gameLogic = null;
 	
 	private Texture2D tutorialTexture = null;
-	//private Rect tutorialRect = new Rect(0.0f, 0.0f, 0.0f, 0.0f);
 	public float textureX = 500.0f;
 	public float textureY = 500.0f;
 	
@@ -43,16 +43,13 @@ public class CameraStartScript : MonoBehaviour {
 		}
 		crystalPositions.RemoveAt(0);
 		crystalPositions = sort(crystalPositions);
-		
-		//startPos = Camera.main.gameObject.transform.position;
+
 		targetPos = crystalPositions[0];
 		
 		gameLogic = GameObject.Find("GameLogic").GetComponent("GameLogic") as GameLogic;
 		gameLogic.stopBattery();
 		
 		tutorialTexture = Resources.Load("Textures/ScoreExplanation") as Texture2D;
-		//tutorialRect = new Rect(Screen.width / 2 + tutorialTexture.width / 2, Screen.height / 2 - tutorialTexture.height / 2, tutorialTexture.width, tutorialTexture.height);
-		//zonder scale proberen?
 	}
 	
 	public void Update (){
@@ -82,6 +79,12 @@ public class CameraStartScript : MonoBehaviour {
 	}
 	
 	private void moveCamera (){
+		if (goingToPlayer) {
+			t += Time.deltaTime;
+			speed = 120.0f - 65 * Mathf.Pow (t, 1 / 3.0f);
+			Debug.Log (t);
+		}
+
 		Vector3 camPos = Camera.main.gameObject.transform.position;
 		Camera.main.gameObject.transform.position = Vector3.MoveTowards(camPos, targetPos, speed * Time.deltaTime);
 		Camera.main.gameObject.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 6.0f);
@@ -92,9 +95,9 @@ public class CameraStartScript : MonoBehaviour {
 			if (timer < 0) {
 				timer = 1.5f;
 				currentCrystal++;
-				//startPos = targetPos;
+				if (currentCrystal + 1 == crystalPositions.Count) goingToPlayer = true;
 				targetPos = crystalPositions[currentCrystal];
-				speed = 140.0f;
+				speed = 120.0f;
 			}
 		}
 	}
@@ -117,7 +120,8 @@ public class CameraStartScript : MonoBehaviour {
 			list.RemoveAt(index);
 			highest = int.MinValue;
 		}
-		newList.Add(GameObject.Find("Player").transform.position);
+		Vector3 playerPos = GameObject.Find ("Player").transform.position + new Vector3 (0.0f, 3.0f, 0.0f);
+		newList.Add(playerPos);
 		return newList;
 	}
 	
