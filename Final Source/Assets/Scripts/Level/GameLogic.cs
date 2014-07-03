@@ -12,7 +12,7 @@ public class GameLogic : MonoBehaviour
 	Battery variables
 */
 	public float battery = 100.0f;					//current battery
-	public int maximumBatteryCapacity = 100.0f;		//max battery
+	public int maximumBatteryCapacity = 100;		//max battery
 	public float decreaseTimer = 1.0f;				//every x seconds it decreases battery
 	public int negativeBatteryFlow = 1;			//amount of battery that it decreases
 	public int positiveBatteryFlow = 2;			//amount of battery that it increases

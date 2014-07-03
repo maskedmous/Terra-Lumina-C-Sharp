@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\TextureLoader\TextureLoader.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Tutorial\TutorialTriggerScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\TextureLoader\TextureLoader.cs" Line="62" Column="22" />
+      <File FileName="Assets\Scripts\Tutorial\TutorialTriggerScript.cs" Line="86" Column="56" />
+      <File FileName="Assets\Scripts\TextureLoader\TextureLoader.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

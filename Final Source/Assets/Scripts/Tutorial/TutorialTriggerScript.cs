@@ -83,7 +83,7 @@ public class TutorialTriggerScript : MonoBehaviour
 		if (!movementLeftEnabled)
 		{
 			cameraMoving = true;								//camera should move true
-			this.gameObject.AddComponent<"CameraStartScript">();	//add the component required for the intro
+			this.gameObject.AddComponent("CameraStartScript");	//add the component required for the intro
 		}
 	}
 	

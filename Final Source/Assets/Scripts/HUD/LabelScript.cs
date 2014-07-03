@@ -51,7 +51,7 @@ public class LabelScript : MonoBehaviour {
 	
 	void displayFact (){
 		if (this.guiText.text == "") {
-			int random = Random.value * factList.Count;
+			int random = Mathf.RoundToInt(Random.value * factList.Count);
 			this.guiText.text = factList[random];	
 		}
 	}

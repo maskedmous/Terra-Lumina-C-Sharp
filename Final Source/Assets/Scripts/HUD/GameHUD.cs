@@ -105,18 +105,23 @@ public class GameHUD : MonoBehaviour {
 			
 			batteryBarTex = batteryBarTextures[0] as Texture2D;
 		}
-		fontSkin.font = Resources.Load("Fonts/sofachrome rg", Font);
+		fontSkin.font = (Font) Resources.Load("Fonts/sofachrome rg") as Font;
 		//font colour
-		fontSkin.normal.textColor.b = 197.0f / 255.0f;
-		fontSkin.normal.textColor.g = 185.0f / 255.0f;
-		fontSkin.normal.textColor.r = 147.0f / 255.0f;
+		Color fontColor = fontSkin.normal.textColor;
+
+		fontColor.b = 197.0f / 255.0f;
+		fontColor.g = 185.0f / 255.0f;
+		fontColor.r = 147.0f / 255.0f;
+
+		fontSkin.normal.textColor = fontColor;
 		
 		gameLogic = GameObject.Find("GameLogic").GetComponent<GameLogic>();
-		startCoroutine(checkInfiniteAmmo());
+		StartCoroutine(checkInfiniteAmmo());
 	}
 	
-	private IEnumerator checkInfiniteAmmo (){
-		yield return WaitForEndOfFrame;
+	private IEnumerator checkInfiniteAmmo ()
+	{
+		yield return new WaitForEndOfFrame();
 		infiniteAmmo = gameLogic.getInfiniteAmmo();
 	}
 	
@@ -145,7 +150,7 @@ public class GameHUD : MonoBehaviour {
 		{
 			string scoreText = gameLogic.getScore().ToString();
 			GUI.DrawTexture(scoreRect,scoreTexture);
-			fontSkin.fontSize = scale.x * 30;
+			fontSkin.fontSize = Mathf.RoundToInt(scale.x * 30);
 			GUI.Label(scoreTextRect,  scoreText, fontSkin);
 		}
 		
@@ -179,7 +184,7 @@ public class GameHUD : MonoBehaviour {
 		}
 		else
 		{
-			fontSkin.fontSize = scale.x * 26;
+			fontSkin.fontSize = Mathf.RoundToInt(scale.x * 26);
 			
 			int currentNormalAmmo = gameLogic.getCurrentNormalSeeds();
 			int maximumNormalAmmo = gameLogic.getMaximumNormalSeeds();
@@ -258,7 +263,7 @@ public class GameHUD : MonoBehaviour {
 		float maxBattery = gameLogic.getBatteryCapacity();
 		float currentBatteryPower 	   = gameLogic.getBattery();
 		
-		amountOfBatteryBars = currentBatteryPower / (maxBattery / 10);
+		amountOfBatteryBars = Mathf.RoundToInt(currentBatteryPower / (maxBattery / 10));
 		
 		if(amountOfBatteryBars >= 5)
 		{
