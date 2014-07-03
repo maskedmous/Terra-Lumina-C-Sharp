@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{DA00F33D-450A-47AD-2BC3-5AFDBFEEB148}</ProjectGuid>
+	<ProjectGuid>{5A09D99D-8F2E-F196-6DA2-350E0D4E4420}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -55,8 +55,8 @@
      <Compile Include="Assets\Scripts\Level\LevelTrigger.js" />
      <Compile Include="Assets\Scripts\Level\LightBeam.js" />
      <Compile Include="Assets\Scripts\Level\NormalShroom.js" />
+     <Compile Include="Assets\Scripts\Level\PickupShard.js" />
      <Compile Include="Assets\Scripts\Level\SeedBehaviour.js" />
-     <Compile Include="Assets\Scripts\Level\pickupShard.js" />
      <Compile Include="Assets\Scripts\LevelEditor\Level.js" />
      <Compile Include="Assets\Scripts\LevelEditor\SceneToXML.js" />
      <Compile Include="Assets\Scripts\LevelEditor\XmlToScene.js" />
@@ -74,7 +74,6 @@
      <Compile Include="Assets\Scripts\Player\PlayerInputScript.js" />
      <Compile Include="Assets\Scripts\Player\PlayerParticleScript.js" />
      <Compile Include="Assets\Scripts\Sound\SoundEngineScript.js" />
-     <Compile Include="Assets\Scripts\TextureLoader\TextureLoader.js" />
      <Compile Include="Assets\Scripts\Tutorial\CameraStartScript.js" />
      <Compile Include="Assets\Scripts\Tutorial\TutorialTriggerScript.js" />
      <None Include="Assets\Standard Assets\MatcapShaders\MatCap Shaders\Shaders\MatCap_TextureAdd_Bumped.shader" />
@@ -106,7 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
-      <Project>{FF21C6C4-3A7B-BBD5-02DF-14177D74D45F}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
+      <Project>{82C38E3A-866A-D001-3242-00CEBBB11E08}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
