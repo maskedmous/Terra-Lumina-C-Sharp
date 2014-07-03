@@ -1,15 +1,16 @@
-﻿#pragma strict
+﻿using UnityEngine;
+using System.Collections;
 
-class ReturnState extends State {
+public class ReturnState:State {
+		
+	private Vector3 startPosition = Vector3.zero;
 	
-	private var startPosition:Vector3 = Vector3.zero;
-	
-	function Start () {
+	void  Start (){
 		startPosition = parentScript.getStart();
 	}
-
-	function update ():void {
-		var parentPosition:Vector3 = parent.transform.position;
+	
+	void update (){
+		Vector3 parentPosition = parent.transform.position;
 		if (parentPosition.x < startPosition.x) speed = 70.0f;
 		else if (parentPosition.x > startPosition.x) speed = -70.0f;
 		parent.rigidbody.velocity.x = Time.deltaTime * speed;

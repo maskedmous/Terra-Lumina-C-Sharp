@@ -1,18 +1,22 @@
-﻿#pragma strict
+﻿// Converted from UnityScript to C# at http://www.M2H.nl/files/js_to_c.php - by Mike Hergaarden
+// Do test the code! You usually need to change a few small bits.
 
-class ChaseState extends State {
+using UnityEngine;
+using System.Collections;
 
-	private var targetFound:boolean = false;
-	private var turn:boolean = false;
-
-	function update ():void {
-		targetFound = false;
+public class ChaseState:State {
 	
-		var rayStart:Vector3 = parent.transform.position + new Vector3(0.0f, 0.3f, 0.0f);
-		var vectorDirection:Vector3 = Vector3.zero;
-		var hitSide:RaycastHit;
-		var playerPos:Vector3 = target.transform.position;
-		var distanceToPlayer = Vector3.Distance(parent.transform.position, playerPos);
+	private bool  targetFound = false;
+	private bool  turn = false;
+	
+	void update (){
+		targetFound = false;
+		
+		Vector3 rayStart = parent.transform.position + new Vector3(0.0f, 0.3f, 0.0f);
+		Vector3 vectorDirection = Vector3.zero;
+		RaycastHit hitSide;
+		Vector3 playerPos = target.transform.position;
+		float distanceToPlayer= Vector3.Distance(parent.transform.position, playerPos);
 		
 		if (Mathf.Abs(parent.transform.position.y - playerPos.y) < 1.0f) {
 			if (rayStart.x > playerPos.x) {
@@ -43,7 +47,7 @@ class ChaseState extends State {
 		}
 	}
 	
-	private function moveToTarget(direction:Vector3):void {
+	private void moveToTarget ( Vector3 direction  ){
 		parent.rigidbody.velocity = direction * Time.deltaTime * speed;
 	}
 }

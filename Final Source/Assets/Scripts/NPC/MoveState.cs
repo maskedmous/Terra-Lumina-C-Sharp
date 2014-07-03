@@ -1,30 +1,34 @@
-﻿#pragma strict
+﻿// Converted from UnityScript to C# at http://www.M2H.nl/files/js_to_c.php - by Mike Hergaarden
+// Do test the code! You usually need to change a few small bits.
 
-class MoveState extends State {
+using UnityEngine;
+using System.Collections;
 
-	private var direction:String = "right";
+public class MoveState:State {
 	
-	public var slugBoundA:GameObject;
-	public var slugBoundB:GameObject;
+	private string direction = "right";
 	
-	private var difficulty:String = "";
-			
-	function Start() {
+	public GameObject slugBoundA;
+	public GameObject slugBoundB;
+	
+	private string difficulty = "";
+	
+	void  Start (){
 		difficulty = parentScript.getDifficulty();
 		slugBoundA = parentScript.getSlugBoundA();
 		slugBoundB = parentScript.getSlugBoundB();
 	}		
-			
-	function update():void {
+	
+	void update (){
 		parent.rigidbody.velocity.x = speed * Time.deltaTime;
 		
 		if (difficulty == "Hard") {
-		
-			var rayStart:Vector3 = parent.transform.position + new Vector3(0.0f, 0.3f, 0.0f);
-			var vectorDirection:Vector3 = Vector3.zero;
-			var hitSide:RaycastHit;
-			var playerPos:Vector3 = target.transform.position;
-			var distanceToPlayer = Vector3.Distance(parent.transform.position, playerPos);
+			
+			Vector3 rayStart = parent.transform.position + new Vector3(0.0f, 0.3f, 0.0f);
+			Vector3 vectorDirection = Vector3.zero;
+			RaycastHit hitSide;
+			Vector3 playerPos = target.transform.position;
+			float distanceToPlayer= Vector3.Distance(parent.transform.position, playerPos);
 			
 			if (Mathf.Abs(parent.transform.position.y - playerPos.y) < 1.0f) {
 				if (rayStart.x > playerPos.x) {
@@ -47,7 +51,7 @@ class MoveState extends State {
 		}
 	}
 	
-	function OnTriggerEnter(collider:Collider):void {
+	void OnTriggerEnter ( Collider collider  ){
 		if (collider.gameObject == slugBoundA || collider.gameObject == slugBoundB) {
 			speed = -speed;
 			parent.gameObject.transform.rotation.eulerAngles.y += 180;
@@ -55,8 +59,8 @@ class MoveState extends State {
 			else direction = "Right";
 		}
 	}
-
-	function setDirection(dir:String):void {
+	
+	void setDirection ( string dir  ){
 		direction = dir;
 	}
 }
