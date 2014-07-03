@@ -50,7 +50,8 @@ public class TextureLoader : MonoBehaviour
 	//static variables not to be touched
 	static bool  LoaderExists = false;				//static to check if the loader exists already or not
 	
-	public void Awake (){
+	public void Awake ()
+	{
 		//we don't want the texture loader to be destroyed
 		DontDestroyOnLoad(this.gameObject);
 		
@@ -92,7 +93,8 @@ public class TextureLoader : MonoBehaviour
 	}
 	
 	//checking the dot which dot to show first second or third
-	private void checkDot (){
+	private void checkDot ()
+	{
 		dotTimer -= Time.deltaTime;
 		
 		if(dotTimer <= 0.0f)
@@ -120,7 +122,8 @@ public class TextureLoader : MonoBehaviour
 		}
 	}
 	
-	public void OnGUI (){
+	public void OnGUI ()
+	{
 		if(!loaded)
 		{
 			//scale every OnGUI call so there won't be isues resizing the window in a 16:9 aspect ratio
@@ -165,7 +168,7 @@ public class TextureLoader : MonoBehaviour
 		foreach(string file in fileInfo)
 		{	
 			//download the file via WWW
-			FIXME_VAR_TYPE wwwTexture= new WWW("file://"+file);
+			WWW wwwTexture= new WWW("file://"+file);
 			//wait for it to download
 			yield return wwwTexture;
 			Texture2D texture = wwwTexture.texture;
@@ -173,7 +176,7 @@ public class TextureLoader : MonoBehaviour
 			string pngName = Path.GetFileNameWithoutExtension(file);
 			texture.name = pngName;
 			//put the texture into the array
-			textureArray.push(texture);
+			textureArray.Add(texture);
 			//loaded files + 1
 			loadedFiles++;
 		}
@@ -183,8 +186,9 @@ public class TextureLoader : MonoBehaviour
 	}
 	
 	//returns bool  if it is still loading files
-	public bool isLoading (){
-		 if(countedFiles() == currentLoaded())
+	public bool isLoading ()
+	{
+		if(countedFiles() == currentLoaded())
 		{
 			return false;
 		}
@@ -193,7 +197,8 @@ public class TextureLoader : MonoBehaviour
 	}
 	
 	//calculating the progress of loading files
-	public string percentLoaded (){
+	public string percentLoaded ()
+	{
 		float part = currentLoaded();
 		float total = countedFiles();
 		float percentage = (part / total) * 100.0f;
@@ -202,12 +207,14 @@ public class TextureLoader : MonoBehaviour
 	}
 
 	//returns the amount of files that are to be loaded
-	public int countedFiles (){
+	public int countedFiles ()
+	{
 		return fileCount;
 	}
 	
 	//returns the amount of files that are loaded currently
-	public int currentLoaded (){
+	public int currentLoaded ()
+	{
 		return loadedFiles;
 	}
 	
@@ -226,11 +233,13 @@ public class TextureLoader : MonoBehaviour
 				if(textureExistsAlready(textureName) == false)
 				{
 					//download the texture
-					FIXME_VAR_TYPE wwwTexture= new WWW("file://"+file);
+					WWW wwwTexture = new WWW("file://"+file);
+					//wait for it to be done
+					yield return wwwTexture;
 					//add it to the array
 					Texture2D texture = wwwTexture.texture;
 					texture.name = textureName;
-					textureArray.push(texture);
+					textureArray.Add(texture);
 				}
 				else
 				{
@@ -249,9 +258,8 @@ public class TextureLoader : MonoBehaviour
 	public Texture2D getTexture ( string textureName  )
 	{		
 		//go through the textureNameArray with the given textureName
-		for(int i = 0; i<textureArray.length; ++i)
+		foreach(Texture2D checkTexture in textureArray)
 		{
-			Texture2D checkTexture = textureArray[i] as Texture2D;
 			//if the names match
 			if(checkTexture.name == textureName)
 			{
@@ -267,10 +275,8 @@ public class TextureLoader : MonoBehaviour
 	//checks if the texture is already in the textureArray
 	private bool textureExistsAlready ( string textureName  )
 	{
-		 for(int i = 0; i<textureArray.length; ++i)
+		foreach(Texture2D texture in textureArray)
 		{
-			//get the name from the textureNameArray and compare it with the incoming textureName
-			Texture2D texture = textureArray[i] as Texture2D;
 			//if this is true then it is already in the array
 			if(texture.name == textureName)
 			{
