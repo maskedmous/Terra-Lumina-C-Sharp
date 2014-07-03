@@ -1,15 +1,6 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\HUD\LabelScript.cs">
-    <Files>
-      <File FileName="Assets\Scripts\NPC\MoveState.cs" Line="53" Column="2" />
-      <File FileName="Assets\Scripts\NPC\State.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\NPC\SlugScript.cs" Line="51" Column="25" />
-      <File FileName="Assets\Scripts\NPC\FleeState.cs" Line="12" Column="8" />
-      <File FileName="Assets\Scripts\NPC\WaitState.cs" Line="9" Column="2" />
-      <File FileName="Assets\Scripts\HUD\LabelScript.cs" Line="53" Column="67" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

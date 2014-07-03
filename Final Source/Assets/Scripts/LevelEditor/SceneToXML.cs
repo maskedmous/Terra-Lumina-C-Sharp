@@ -256,13 +256,12 @@ public class SceneToXML : MonoBehaviour
 		foreach(Transform obj in levelObject.transform)
 		{
 			if(!checkValidPrefab(obj.name)) return -1;
+
 			XmlElement objectNode = xmlDocument.CreateElement("GameObject");
-			levelNode.AppendChild(objectNode);
 
 			if(obj.gameObject.name != "SlugBound")
 			{
-
-				
+				levelNode.AppendChild(objectNode);
 				//save prefab name
 				XmlElement prefabNode 	= xmlDocument.CreateElement("Prefab");
 				objectNode.AppendChild(prefabNode);
