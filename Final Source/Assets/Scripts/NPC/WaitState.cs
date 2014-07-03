@@ -5,7 +5,8 @@ public class WaitState:State {
 
 	private float waitTime = 10.2f;
 	
-	new void update (){
+	public override void update ()
+	{
 		waitTime -= Time.deltaTime;
 		if (waitTime < 0) appear();
 	}

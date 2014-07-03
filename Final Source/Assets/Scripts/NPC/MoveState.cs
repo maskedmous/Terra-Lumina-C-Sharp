@@ -49,7 +49,8 @@ public class MoveState:State
 		}
 	}
 	
-	public void OnTriggerEnter ( Collider collider  ){
+	public void OnTriggerEnter ( Collider collider  )
+	{
 		if (collider.gameObject == slugBoundA || collider.gameObject == slugBoundB) {
 			speed = -speed;
 			Vector3 newRotation = parent.transform.rotation.eulerAngles;
