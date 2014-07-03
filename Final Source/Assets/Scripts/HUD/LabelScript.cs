@@ -50,8 +50,7 @@ public class LabelScript : MonoBehaviour {
 	{
 		if (this.guiText.text == "")
 		{
-			int random = Mathf.RoundToInt(Random.value * factList.Count);
-			if(random > factList.Count) random = factList.Count - 1;		//array starts at 0 so -1 at maximum value
+			int random = Mathf.RoundToInt(Random.value * factList.Count-1);
 			this.guiText.text = factList[random];	
 		}
 	}
