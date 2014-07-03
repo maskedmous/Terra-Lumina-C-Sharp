@@ -1,98 +1,103 @@
-﻿#pragma strict
+﻿// Converted from UnityScript to C# at http://www.M2H.nl/files/js_to_c.php - by Mike Hergaarden
+// Do test the code! You usually need to change a few small bits.
 
-import System.Xml;	//needed for XML reading
-import System.IO;	//needed for File IO (example: File.Exists)
+using UnityEngine;
+using System.Collections;
+using System.Xml;
+using System.IO;
 
-public var levelName:String = "";		//name of the xml it will be saved as
-public var levelID:int 		= 0;		//level ID (level0, level1, level2 etc)
-public var overwrite:boolean = false;	//override the current .xml if it already exists
-
-public var easy:boolean = false;		//boolean for level difficulty setting
-public var medium:boolean = false;
-public var hard:boolean = false;
-
-private var xmlPath:String 	= "";		//initialized in the awake
-
-private var prefabList:String[];
-
-function Awake()
+public class SceneToXML : MonoBehaviour
 {
-	if(Application.loadedLevelName == "LevelEditor")
-	{	
-		Debug.LogError("Please save this scene first as a new scene before saving the level");
-	}
-	else
+	public string levelName = "";		//name of the xml it will be saved as
+	public int levelID 		= 0;		//level ID (level0, level1, level2 etc)
+	public bool  overwrite = false;	//override the current .xml if it already exists
+	
+	public bool  easy = false;		//bool  for level difficulty setting
+	public bool  medium = false;
+	public bool  hard = false;
+	
+	private string xmlPath 	= "";		//initialized in the awake
+	
+	private string[] prefabList;
+	
+	public void  Awake ()
 	{
-		xmlPath = Application.dataPath + "/LevelsXML/";
-		
-		if(levelName != "")
+		if(Application.loadedLevelName == "LevelEditor")
+		{	
+			Debug.LogError("Please save this scene first as a new scene before saving the level");
+		}
+		else
 		{
-			if(!levelName.Contains(".xml"))
+			xmlPath = Application.dataPath + "/LevelsXML/";
+			
+			if(levelName != "")
 			{
-				levelName = levelName + ".xml";
+				if(!levelName.Contains(".xml"))
+				{
+					levelName = levelName + ".xml";
+				}
+				
+				if(saveLevel() == -1)
+				{
+					Debug.LogError("Xml not saved due to an error");
+				}
+			}
+			else
+			{
+				Debug.LogError("You haven't filled in a Level Name, see SaveLevel");
+			}
+		}
+	}
+	
+	private int saveLevel ()
+	{
+		XmlDocument xmlDocument = new XmlDocument();
+		string filePath = xmlPath + levelName;
+		XmlElement masterNode = null;
+		
+		//check if the file already exists
+		if(File.Exists(filePath))
+		{
+			//file already exists!
+			//check if you may override or not (standard false)
+			if(overwrite)
+			{
+				Debug.Log("overwriting = true, overwriting xml file");
+				xmlDocument.Load(filePath);
+				masterNode = xmlDocument.DocumentElement;
+				masterNode.RemoveAll();
+			}
+			else
+			{
+				Debug.LogError("This file already exists and override is set to false");
+				return -1;
 			}
 			
-			if(saveLevel() == -1)
-			{
-				Debug.LogError("Xml not saved due to an error");
-			}
 		}
 		else
 		{
-			Debug.LogError("You haven't filled in a Level Name, see SaveLevel");
-		}
-	}
-}
-
-private function saveLevel():int
-{
-	var xmlDocument:XmlDocument = new XmlDocument();
-	var filePath:String = xmlPath + levelName;
-	var masterNode:XmlElement = null;
-	
-	//check if the file already exists
-	if(File.Exists(filePath))
-	{
-		//file already exists!
-		//check if you may override or not (standard false)
-		if(overwrite)
-		{
-			Debug.Log("overwriting = true, overwriting xml file");
+			//file does not exist yet so we are going to create it
+			File.WriteAllText(filePath, "<Root></Root>");
+			//load the xml document
 			xmlDocument.Load(filePath);
+			//set the masternode for appending level stuff
 			masterNode = xmlDocument.DocumentElement;
-			masterNode.RemoveAll();
-		}
-		else
-		{
-			Debug.LogError("This file already exists and override is set to false");
-			return -1;
 		}
 		
-	}
-	else
-	{
-		//file does not exist yet so we are going to create it
-		File.WriteAllText(filePath, "<Root></Root>");
-		//load the xml document
-		xmlDocument.Load(filePath);
-		//set the masternode for appending level stuff
-		masterNode = xmlDocument.DocumentElement;
-	}
-	
-	//begin saving the level elements!
-	prefabList = Directory.GetFiles(Application.dataPath + "/Resources/Prefabs", "*.prefab", SearchOption.TopDirectoryOnly);
-	//
-	//Level ID
-	//
-		var levelIDNode:XmlElement = xmlDocument.CreateElement("LevelID");
+		//begin saving the level elements!
+		prefabList = Directory.GetFiles(Application.dataPath + "/Resources/Prefabs", "*.prefab", SearchOption.TopDirectoryOnly);
+		//
+		//Level ID
+		//
+		XmlElement levelIDNode = xmlDocument.CreateElement("LevelID");
 		masterNode.AppendChild(levelIDNode);
 		levelIDNode.InnerText = levelID.ToString();
 		Debug.Log("Level ID: " + levelID);
-	
-	//
-	//Difficulty
-	//
-		var difficultyNode:XmlElement = xmlDocument.CreateElement("Difficulty");
+		
+		//
+		//Difficulty
+		//
+		XmlElement difficultyNode = xmlDocument.CreateElement("Difficulty");
 		masterNode.AppendChild(difficultyNode);
 		
 		if(easy != false || medium != false || hard != false)
@@ -123,21 +128,21 @@ private function saveLevel():int
 			Debug.LogError("Please state the difficulty setting correctly");
 			return -1;
 		}
-	
-	//
-	//camera
-	//
-		var mainCamera:GameObject = Camera.main.gameObject;
-		var cameraNode:XmlElement = xmlDocument.CreateElement("Camera");
+		
+		//
+		//camera
+		//
+		GameObject mainCamera = Camera.main.gameObject;
+		XmlElement cameraNode = xmlDocument.CreateElement("Camera");
 		masterNode.AppendChild(cameraNode);
 		
 		//save position
-		var cameraPositionNode:XmlElement = xmlDocument.CreateElement("Position");
+		XmlElement cameraPositionNode = xmlDocument.CreateElement("Position");
 		cameraNode.AppendChild(cameraPositionNode);
 		
-		var cameraXNode:XmlElement = xmlDocument.CreateElement("x");
-		var cameraYNode:XmlElement = xmlDocument.CreateElement("y");
-		var cameraZNode:XmlElement = xmlDocument.CreateElement("z");
+		XmlElement cameraXNode = xmlDocument.CreateElement("x");
+		XmlElement cameraYNode = xmlDocument.CreateElement("y");
+		XmlElement cameraZNode = xmlDocument.CreateElement("z");
 		
 		cameraPositionNode.AppendChild(cameraXNode);
 		cameraPositionNode.AppendChild(cameraYNode);
@@ -148,12 +153,12 @@ private function saveLevel():int
 		cameraZNode.InnerText = mainCamera.transform.position.z.ToString();
 		
 		//save the rotation
-		var cameraRotationNode:XmlElement = xmlDocument.CreateElement("Rotation");
+		XmlElement cameraRotationNode = xmlDocument.CreateElement("Rotation");
 		cameraNode.AppendChild(cameraRotationNode);
 		
-		var cameraXRotationNode:XmlElement = xmlDocument.CreateElement("x");
-		var cameraYRotationNode:XmlElement = xmlDocument.CreateElement("y");
-		var cameraZRotationNode:XmlElement = xmlDocument.CreateElement("z");
+		XmlElement cameraXRotationNode = xmlDocument.CreateElement("x");
+		XmlElement cameraYRotationNode = xmlDocument.CreateElement("y");
+		XmlElement cameraZRotationNode = xmlDocument.CreateElement("z");
 		
 		cameraRotationNode.AppendChild(cameraXRotationNode);
 		cameraRotationNode.AppendChild(cameraYRotationNode);
@@ -162,40 +167,40 @@ private function saveLevel():int
 		cameraXRotationNode.InnerText = mainCamera.transform.eulerAngles.x.ToString();
 		cameraYRotationNode.InnerText = mainCamera.transform.eulerAngles.y.ToString();
 		cameraZRotationNode.InnerText = mainCamera.transform.eulerAngles.z.ToString();
-	//
-	
-	//
-	//GameLogic xml
-	//
-		var gameLogic:XmlElement = xmlDocument.CreateElement("GameLogic");
+		//
+		
+		//
+		//GameLogic xml
+		//
+		XmlElement gameLogic = xmlDocument.CreateElement("GameLogic");
 		masterNode.AppendChild(gameLogic);
 		
-		var gameLogicObject:GameLogic = GameObject.Find("GameLogic").GetComponent(GameLogic);
+		GameLogic gameLogicObject = (GameLogic) GameObject.Find("GameLogic").GetComponent<GameLogic>();
 		
 		//save the variables into the GameLogic xml
-		var batteryNode:XmlElement 					= xmlDocument.CreateElement("Battery");
-		var maximumBatteryCapacityNode:XmlElement 	= xmlDocument.CreateElement("MaximumBatteryCapacity");
-		var decreaseTimerNode:XmlElement 			= xmlDocument.CreateElement("DecreaseTimer");
-		var negativeBatteryFlowNode:XmlElement 		= xmlDocument.CreateElement("NegativeBatteryFlow");
-		var positiveBatteryFlowNode:XmlElement 		= xmlDocument.CreateElement("PositiveBatteryFlow");
-		var crystalsToCompleteNode:XmlElement		= xmlDocument.CreateElement("CrystalsToComplete");
-		var speedNode:XmlElement					= xmlDocument.CreateElement("Speed");
+		XmlElement batteryNode 					= xmlDocument.CreateElement("Battery");
+		XmlElement maximumBatteryCapacityNode 	= xmlDocument.CreateElement("MaximumBatteryCapacity");
+		XmlElement decreaseTimerNode 			= xmlDocument.CreateElement("DecreaseTimer");
+		XmlElement negativeBatteryFlowNode 		= xmlDocument.CreateElement("NegativeBatteryFlow");
+		XmlElement positiveBatteryFlowNode 		= xmlDocument.CreateElement("PositiveBatteryFlow");
+		XmlElement crystalsToCompleteNode		= xmlDocument.CreateElement("CrystalsToComplete");
+		XmlElement speedNode					= xmlDocument.CreateElement("Speed");
 		
-		var currentNormalAmmoNode:XmlElement		= xmlDocument.CreateElement("CurrentNormalAmmo");
-		var maxNormalAmmoNode:XmlElement			= xmlDocument.CreateElement("MaximumNormalAmmo");
-		var currentBumpyAmmoNode:XmlElement			= xmlDocument.CreateElement("CurrentBumpyAmmo");
-		var maxBumpyAmmoNode:XmlElement				= xmlDocument.CreateElement("MaximumBumpyAmmo");
+		XmlElement currentNormalAmmoNode		= xmlDocument.CreateElement("CurrentNormalAmmo");
+		XmlElement maxNormalAmmoNode			= xmlDocument.CreateElement("MaximumNormalAmmo");
+		XmlElement currentBumpyAmmoNode			= xmlDocument.CreateElement("CurrentBumpyAmmo");
+		XmlElement maxBumpyAmmoNode				= xmlDocument.CreateElement("MaximumBumpyAmmo");
 		
-		var infiniteAmmoNode:XmlElement				= xmlDocument.CreateElement("InfiniteAmmo");
-		var jumpDrainNode:XmlElement				= xmlDocument.CreateElement("JumpDrain"); 
-		var flashDrainNode:XmlElement				= xmlDocument.CreateElement("FlashDrain");
+		XmlElement infiniteAmmoNode				= xmlDocument.CreateElement("InfiniteAmmo");
+		XmlElement jumpDrainNode				= xmlDocument.CreateElement("JumpDrain"); 
+		XmlElement flashDrainNode				= xmlDocument.CreateElement("FlashDrain");
 		
-		var platinumTimeNode:XmlElement				= xmlDocument.CreateElement("PlatinumTime");
-		var goldTimeNode:XmlElement					= xmlDocument.CreateElement("GoldTime");
-		var silverTimeNode:XmlElement				= xmlDocument.CreateElement("SilverTime");
-		var bronzeTimeNode:XmlElement				= xmlDocument.CreateElement("BronzeTime");
-
-			
+		XmlElement platinumTimeNode				= xmlDocument.CreateElement("PlatinumTime");
+		XmlElement goldTimeNode					= xmlDocument.CreateElement("GoldTime");
+		XmlElement silverTimeNode				= xmlDocument.CreateElement("SilverTime");
+		XmlElement bronzeTimeNode				= xmlDocument.CreateElement("BronzeTime");
+		
+		
 		//append them
 		gameLogic.AppendChild(batteryNode);
 		gameLogic.AppendChild(maximumBatteryCapacityNode);
@@ -242,36 +247,35 @@ private function saveLevel():int
 		goldTimeNode.InnerText					= gameLogicObject.getGoldTime().ToString();
 		silverTimeNode.InnerText				= gameLogicObject.getSilverTime().ToString();
 		bronzeTimeNode.InnerText				= gameLogicObject.getBronzeTime().ToString();
-	//
-	
-	//
-	//Level xml
-	//
-		var levelNode:XmlElement = xmlDocument.CreateElement("Level");
+		//
+		
+		//
+		//Level xml
+		//
+		XmlElement levelNode = xmlDocument.CreateElement("Level");
 		masterNode.AppendChild(levelNode);
 		
-		var levelObject:GameObject = GameObject.Find("Level");
-		for(var _obj in levelObject.transform)
+		GameObject levelObject = GameObject.Find("Level");
+		foreach(Transform obj in levelObject.transform)
 		{
-			var obj:Transform 	= _obj as Transform;
 			if(!checkValidPrefab(obj.name)) return -1;
 			if(obj.gameObject.name != "SlugBound")
 			{
-				var objectNode:XmlElement 	= xmlDocument.CreateElement("GameObject");
+				XmlElement objectNode 	= xmlDocument.CreateElement("GameObject");
 				levelNode.AppendChild(objectNode);
 				
 				//save prefab name
-				var prefabNode:XmlElement 	= xmlDocument.CreateElement("Prefab");
+				XmlElement prefabNode 	= xmlDocument.CreateElement("Prefab");
 				objectNode.AppendChild(prefabNode);
 				prefabNode.InnerText 		= obj.gameObject.name;
 				
 				//save position
-				var positionNode:XmlElement = xmlDocument.CreateElement("Position");
+				XmlElement positionNode = xmlDocument.CreateElement("Position");
 				objectNode.AppendChild(positionNode);
 				
-				var xNode:XmlElement = xmlDocument.CreateElement("x");
-				var yNode:XmlElement = xmlDocument.CreateElement("y");
-				var zNode:XmlElement = xmlDocument.CreateElement("z");
+				XmlElement xNode = xmlDocument.CreateElement("x");
+				XmlElement yNode = xmlDocument.CreateElement("y");
+				XmlElement zNode = xmlDocument.CreateElement("z");
 				
 				positionNode.AppendChild(xNode);
 				positionNode.AppendChild(yNode);
@@ -282,12 +286,12 @@ private function saveLevel():int
 				zNode.InnerText = obj.gameObject.transform.position.z.ToString();
 				
 				//save the rotation
-				var rotationNode:XmlElement = xmlDocument.CreateElement("Rotation");
+				XmlElement rotationNode = xmlDocument.CreateElement("Rotation");
 				objectNode.AppendChild(rotationNode);
 				
-				var xRotationNode:XmlElement = xmlDocument.CreateElement("x");
-				var yRotationNode:XmlElement = xmlDocument.CreateElement("y");
-				var zRotationNode:XmlElement = xmlDocument.CreateElement("z");
+				XmlElement xRotationNode = xmlDocument.CreateElement("x");
+				XmlElement yRotationNode = xmlDocument.CreateElement("y");
+				XmlElement zRotationNode = xmlDocument.CreateElement("z");
 				
 				rotationNode.AppendChild(xRotationNode);
 				rotationNode.AppendChild(yRotationNode);
@@ -298,12 +302,12 @@ private function saveLevel():int
 				zRotationNode.InnerText = obj.gameObject.transform.eulerAngles.z.ToString();
 				
 				//save the scale
-				var scaleNode:XmlElement = xmlDocument.CreateElement("Scaling");
+				XmlElement scaleNode = xmlDocument.CreateElement("Scaling");
 				objectNode.AppendChild(scaleNode);
 				
-				var xScaleNode:XmlElement = xmlDocument.CreateElement("x");
-				var yScaleNode:XmlElement = xmlDocument.CreateElement("y");
-				var zScaleNode:XmlElement = xmlDocument.CreateElement("z");
+				XmlElement xScaleNode = xmlDocument.CreateElement("x");
+				XmlElement yScaleNode = xmlDocument.CreateElement("y");
+				XmlElement zScaleNode = xmlDocument.CreateElement("z");
 				
 				scaleNode.AppendChild(xScaleNode);
 				scaleNode.AppendChild(yScaleNode);
@@ -316,16 +320,16 @@ private function saveLevel():int
 			//special nodes
 			if(obj.gameObject.name == "AmmoBox")
 			{
-				var ammoBoxNode:XmlElement = xmlDocument.CreateElement("AmmoBox");
+				XmlElement ammoBoxNode = xmlDocument.CreateElement("AmmoBox");
 				objectNode.AppendChild(ammoBoxNode);
 				
-				var ammoBox:AmmoBox = obj.FindChild("AmmoBox").GetComponent(AmmoBox) as AmmoBox;
+				AmmoBox ammoBox = (AmmoBox) obj.FindChild("AmmoBox").GetComponent<AmmoBox>();
 				
-				var extraSeedsNode:XmlElement    = xmlDocument.CreateElement("ExtraSeeds");
-				var normalTypeNode:XmlElement    = xmlDocument.CreateElement("NormalType");
-				var bumpyTypeNode:XmlElement 	 = xmlDocument.CreateElement("BumpyType");
-				var timeToRespawnNode:XmlElement = xmlDocument.CreateElement("TimeToRespawn");
-				var oneTimePickupNode:XmlElement = xmlDocument.CreateElement("OneTimePickup");
+				XmlElement extraSeedsNode    = xmlDocument.CreateElement("ExtraSeeds");
+				XmlElement normalTypeNode    = xmlDocument.CreateElement("NormalType");
+				XmlElement bumpyTypeNode 	 = xmlDocument.CreateElement("BumpyType");
+				XmlElement timeToRespawnNode = xmlDocument.CreateElement("TimeToRespawn");
+				XmlElement oneTimePickupNode = xmlDocument.CreateElement("OneTimePickup");
 				
 				ammoBoxNode.AppendChild(extraSeedsNode);
 				ammoBoxNode.AppendChild(normalTypeNode);
@@ -342,9 +346,9 @@ private function saveLevel():int
 			}
 			if(obj.gameObject.name == "Slug")
 			{
-				var slugScript:SlugScript = obj.gameObject.GetComponent(SlugScript);
-				var slugBoundA:GameObject = slugScript.getSlugBoundA();
-				var slugBoundB:GameObject = slugScript.getSlugBoundB();
+				SlugScript slugScript = (SlugScript) obj.gameObject.GetComponent<SlugScript>();
+				GameObject slugBoundA = slugScript.getSlugBoundA();
+				GameObject slugBoundB = slugScript.getSlugBoundB();
 				
 				if(slugBoundA == null || slugBoundB == null)
 				{
@@ -352,16 +356,16 @@ private function saveLevel():int
 					return -1;
 				}
 				
-				var slugNode:XmlElement = xmlDocument.CreateElement("Slug");
+				XmlElement slugNode = xmlDocument.CreateElement("Slug");
 				objectNode.AppendChild(slugNode);
 				
 				//BoundA
-				var slugBoundANode:XmlElement 	= xmlDocument.CreateElement("SlugBoundA");
+				XmlElement slugBoundANode 	= xmlDocument.CreateElement("SlugBoundA");
 				slugNode.AppendChild(slugBoundANode);
 				
-				var slugBoundAxNode:XmlElement = xmlDocument.CreateElement("x");
-				var slugBoundAyNode:XmlElement = xmlDocument.CreateElement("y");
-				var slugBoundAzNode:XmlElement = xmlDocument.CreateElement("z");
+				XmlElement slugBoundAxNode = xmlDocument.CreateElement("x");
+				XmlElement slugBoundAyNode = xmlDocument.CreateElement("y");
+				XmlElement slugBoundAzNode = xmlDocument.CreateElement("z");
 				
 				slugBoundANode.AppendChild(slugBoundAxNode);
 				slugBoundANode.AppendChild(slugBoundAyNode);
@@ -372,12 +376,12 @@ private function saveLevel():int
 				slugBoundAzNode.InnerText = slugBoundA.transform.position.z.ToString();
 				
 				//BoundB
-				var slugBoundBNode:XmlElement 	= xmlDocument.CreateElement("SlugBoundB");
+				XmlElement slugBoundBNode 	= xmlDocument.CreateElement("SlugBoundB");
 				slugNode.AppendChild(slugBoundBNode);
 				
-				var slugBoundBxNode:XmlElement = xmlDocument.CreateElement("x");
-				var slugBoundByNode:XmlElement = xmlDocument.CreateElement("y");
-				var slugBoundBzNode:XmlElement = xmlDocument.CreateElement("z");
+				XmlElement slugBoundBxNode = xmlDocument.CreateElement("x");
+				XmlElement slugBoundByNode = xmlDocument.CreateElement("y");
+				XmlElement slugBoundBzNode = xmlDocument.CreateElement("z");
 				
 				slugBoundBNode.AppendChild(slugBoundBxNode);
 				slugBoundBNode.AppendChild(slugBoundByNode);
@@ -392,35 +396,35 @@ private function saveLevel():int
 			if(obj.gameObject.name == "TutorialObject")
 			{
 				//required objects
-				var triggerScript:TutorialTriggerScript = obj.gameObject.GetComponent(TutorialTriggerScript) as TutorialTriggerScript;
-				var boxCollider:BoxCollider = obj.gameObject.GetComponent(BoxCollider) as BoxCollider;
-				var boundingBox:Vector3 = boxCollider.size;
+				TutorialTriggerScript triggerScript = (TutorialTriggerScript) obj.gameObject.GetComponent<TutorialTriggerScript>() as TutorialTriggerScript;
+				BoxCollider boxCollider = obj.gameObject.GetComponent<BoxCollider>() as BoxCollider;
+				Vector3 boundingBox = boxCollider.size;
 				
 				//tutorial node
-				var tutorialNode:XmlElement = xmlDocument.CreateElement("Tutorial");
+				XmlElement tutorialNode = xmlDocument.CreateElement("Tutorial");
 				objectNode.AppendChild(tutorialNode);
 				
 				//Alpha Object
-				var alphaObject:GameObject = triggerScript.getAlphaObject();
+				GameObject alphaObject = triggerScript.getAlphaObject();
 				
 				if(alphaObject != null)
 				{
 					//main alphaobject node
-					var alphaObjectNode:XmlElement = xmlDocument.CreateElement("AlphaObject");
+					XmlElement alphaObjectNode = xmlDocument.CreateElement("AlphaObject");
 					tutorialNode.AppendChild(alphaObjectNode);
 					
 					//prefab name
-					var alphaPrefabNode:XmlElement = xmlDocument.CreateElement("Prefab");
+					XmlElement alphaPrefabNode = xmlDocument.CreateElement("Prefab");
 					alphaObjectNode.AppendChild(alphaPrefabNode);
 					alphaPrefabNode.InnerText = alphaObject.name;
 					
 					//position
-					var alphaObjectPositionNode:XmlElement = xmlDocument.CreateElement("Position");
+					XmlElement alphaObjectPositionNode = xmlDocument.CreateElement("Position");
 					alphaObjectNode.AppendChild(alphaObjectPositionNode);
 					
-					var alphaObjectXPositionNode:XmlElement = xmlDocument.CreateElement("x");
-					var alphaObjectYPositionNode:XmlElement = xmlDocument.CreateElement("y");
-					var alphaObjectZPositionNode:XmlElement = xmlDocument.CreateElement("z");
+					XmlElement alphaObjectXPositionNode = xmlDocument.CreateElement("x");
+					XmlElement alphaObjectYPositionNode = xmlDocument.CreateElement("y");
+					XmlElement alphaObjectZPositionNode = xmlDocument.CreateElement("z");
 					
 					alphaObjectPositionNode.AppendChild(alphaObjectXPositionNode);
 					alphaObjectPositionNode.AppendChild(alphaObjectYPositionNode);
@@ -431,12 +435,12 @@ private function saveLevel():int
 					alphaObjectZPositionNode.InnerText = alphaObject.transform.position.z.ToString();
 					
 					//rotation
-					var alphaObjectRotationNode:XmlElement = xmlDocument.CreateElement("Rotation");
+					XmlElement alphaObjectRotationNode = xmlDocument.CreateElement("Rotation");
 					alphaObjectNode.AppendChild(alphaObjectRotationNode);
 					
-					var alphaObjectXRotationNode:XmlElement = xmlDocument.CreateElement("x");
-					var alphaObjectYRotationNode:XmlElement = xmlDocument.CreateElement("y");
-					var alphaObjectZRotationNode:XmlElement = xmlDocument.CreateElement("z");
+					XmlElement alphaObjectXRotationNode = xmlDocument.CreateElement("x");
+					XmlElement alphaObjectYRotationNode = xmlDocument.CreateElement("y");
+					XmlElement alphaObjectZRotationNode = xmlDocument.CreateElement("z");
 					
 					alphaObjectRotationNode.AppendChild(alphaObjectXRotationNode);
 					alphaObjectRotationNode.AppendChild(alphaObjectYRotationNode);
@@ -446,14 +450,14 @@ private function saveLevel():int
 					alphaObjectYRotationNode.InnerText = alphaObject.transform.eulerAngles.y.ToString();
 					alphaObjectZRotationNode.InnerText = alphaObject.transform.eulerAngles.z.ToString(); 
 					
-									
+					
 					//save the scale
-					var alphaObjectScaleNode:XmlElement = xmlDocument.CreateElement("Scaling");
+					XmlElement alphaObjectScaleNode = xmlDocument.CreateElement("Scaling");
 					alphaObjectNode.AppendChild(alphaObjectScaleNode);
 					
-					var alphaObjectScaleXNode:XmlElement = xmlDocument.CreateElement("x");
-					var alphaObjectScaleYNode:XmlElement = xmlDocument.CreateElement("y");
-					var alphaObjectScaleZNode:XmlElement = xmlDocument.CreateElement("z");
+					XmlElement alphaObjectScaleXNode = xmlDocument.CreateElement("x");
+					XmlElement alphaObjectScaleYNode = xmlDocument.CreateElement("y");
+					XmlElement alphaObjectScaleZNode = xmlDocument.CreateElement("z");
 					
 					alphaObjectScaleNode.AppendChild(alphaObjectScaleXNode);
 					alphaObjectScaleNode.AppendChild(alphaObjectScaleYNode);
@@ -462,17 +466,17 @@ private function saveLevel():int
 					alphaObjectScaleXNode.InnerText = alphaObject.transform.localScale.x.ToString();
 					alphaObjectScaleYNode.InnerText = alphaObject.transform.localScale.y.ToString();
 					alphaObjectScaleZNode.InnerText = alphaObject.transform.localScale.z.ToString();
-					    
+					
 				}
 				
-				var jumpButtonTutorialNode:XmlElement = xmlDocument.CreateElement("JumpButtonTutorial");
-				var normalShroomButtonTutorialNode:XmlElement = xmlDocument.CreateElement("NormalShroomButtonTutorial");
-				var flashButtonTutorialNode:XmlElement = xmlDocument.CreateElement("FlashButtonTutorial");
-				var bumpyShroomButtonTutorialNode:XmlElement = xmlDocument.CreateElement("BumpyShroomButtonTutorial");
+				XmlElement jumpButtonTutorialNode = xmlDocument.CreateElement("JumpButtonTutorial");
+				XmlElement normalShroomButtonTutorialNode = xmlDocument.CreateElement("NormalShroomButtonTutorial");
+				XmlElement flashButtonTutorialNode = xmlDocument.CreateElement("FlashButtonTutorial");
+				XmlElement bumpyShroomButtonTutorialNode = xmlDocument.CreateElement("BumpyShroomButtonTutorial");
 				
-				var lightTutorialNode:XmlElement = xmlDocument.CreateElement("LightTutorial");
-				var slugTutorialNode:XmlElement = xmlDocument.CreateElement("SlugTutorial");
-				var crystalTutorialNode:XmlElement = xmlDocument.CreateElement("CrystalTutorial");
+				XmlElement lightTutorialNode = xmlDocument.CreateElement("LightTutorial");
+				XmlElement slugTutorialNode = xmlDocument.CreateElement("SlugTutorial");
+				XmlElement crystalTutorialNode = xmlDocument.CreateElement("CrystalTutorial");
 				
 				tutorialNode.AppendChild(jumpButtonTutorialNode);
 				tutorialNode.AppendChild(normalShroomButtonTutorialNode);
@@ -491,19 +495,19 @@ private function saveLevel():int
 				slugTutorialNode.InnerText		= triggerScript.getSlugTutorial().ToString();
 				crystalTutorialNode.InnerText 	= triggerScript.getCrystalTutorial().ToString();
 				
-				var slugObject:GameObject = triggerScript.getSlugObject();
+				GameObject slugObject = triggerScript.getSlugObject();
 				
 				if(slugObject != null)
 				{
-					var slugObjectNode:XmlElement = xmlDocument.CreateElement("SlugObject");
+					XmlElement slugObjectNode = xmlDocument.CreateElement("SlugObject");
 					tutorialNode.AppendChild(slugObjectNode);
 					//position
-					var slugObjectPositionNode:XmlElement = xmlDocument.CreateElement("Position");
+					XmlElement slugObjectPositionNode = xmlDocument.CreateElement("Position");
 					slugObjectNode.AppendChild(slugObjectPositionNode);
 					
-					var slugObjectXPositionNode:XmlElement = xmlDocument.CreateElement("x");
-					var slugObjectYPositionNode:XmlElement = xmlDocument.CreateElement("y");
-					var slugObjectZPositionNode:XmlElement = xmlDocument.CreateElement("z");
+					XmlElement slugObjectXPositionNode = xmlDocument.CreateElement("x");
+					XmlElement slugObjectYPositionNode = xmlDocument.CreateElement("y");
+					XmlElement slugObjectZPositionNode = xmlDocument.CreateElement("z");
 					
 					slugObjectPositionNode.AppendChild(slugObjectXPositionNode);
 					slugObjectPositionNode.AppendChild(slugObjectYPositionNode);
@@ -514,9 +518,9 @@ private function saveLevel():int
 					slugObjectZPositionNode.InnerText = slugObject.transform.position.z.ToString();
 					
 					
-					var slugScript2:SlugScript = slugObject.gameObject.GetComponent(SlugScript);
-					var slugBoundA2:GameObject = slugScript2.getSlugBoundA();
-					var slugBoundB2:GameObject = slugScript2.getSlugBoundB();
+					SlugScript slugScript2 = slugObject.gameObject.GetComponent<SlugScript>();
+					GameObject slugBoundA2 = slugScript2.getSlugBoundA();
+					GameObject slugBoundB2 = slugScript2.getSlugBoundB();
 					
 					if(slugBoundA2 == null || slugBoundB2 == null)
 					{
@@ -525,12 +529,12 @@ private function saveLevel():int
 					}
 					
 					//BoundA
-					var slugBoundANode2:XmlElement 	= xmlDocument.CreateElement("SlugBoundA");
+					XmlElement slugBoundANode2 	= xmlDocument.CreateElement("SlugBoundA");
 					slugObjectNode.AppendChild(slugBoundANode2);
 					
-					var slugBoundAxNode2:XmlElement = xmlDocument.CreateElement("x");
-					var slugBoundAyNode2:XmlElement = xmlDocument.CreateElement("y");
-					var slugBoundAzNode2:XmlElement = xmlDocument.CreateElement("z");
+					XmlElement slugBoundAxNode2 = xmlDocument.CreateElement("x");
+					XmlElement slugBoundAyNode2 = xmlDocument.CreateElement("y");
+					XmlElement slugBoundAzNode2 = xmlDocument.CreateElement("z");
 					
 					slugBoundANode2.AppendChild(slugBoundAxNode2);
 					slugBoundANode2.AppendChild(slugBoundAyNode2);
@@ -541,12 +545,12 @@ private function saveLevel():int
 					slugBoundAzNode2.InnerText = slugBoundA2.transform.position.z.ToString();
 					
 					//BoundB
-					var slugBoundBNode2:XmlElement 	= xmlDocument.CreateElement("SlugBoundB");
+					XmlElement slugBoundBNode2 	= xmlDocument.CreateElement("SlugBoundB");
 					slugObjectNode.AppendChild(slugBoundBNode2);
 					
-					var slugBoundBxNode2:XmlElement = xmlDocument.CreateElement("x");
-					var slugBoundByNode2:XmlElement = xmlDocument.CreateElement("y");
-					var slugBoundBzNode2:XmlElement = xmlDocument.CreateElement("z");
+					XmlElement slugBoundBxNode2 = xmlDocument.CreateElement("x");
+					XmlElement slugBoundByNode2 = xmlDocument.CreateElement("y");
+					XmlElement slugBoundBzNode2 = xmlDocument.CreateElement("z");
 					
 					slugBoundBNode2.AppendChild(slugBoundBxNode2);
 					slugBoundBNode2.AppendChild(slugBoundByNode2);
@@ -557,19 +561,19 @@ private function saveLevel():int
 					slugBoundBzNode2.InnerText = slugBoundB2.transform.position.z.ToString();
 				}
 				
-				var blockObject:GameObject = triggerScript.getBlockObject();
+				GameObject blockObject = triggerScript.getBlockObject();
 				
 				if(blockObject != null)
 				{
-					var blockObjectNode:XmlElement = xmlDocument.CreateElement("BlockObject");
+					XmlElement blockObjectNode = xmlDocument.CreateElement("BlockObject");
 					tutorialNode.AppendChild(blockObjectNode);
 					//position
-					var blockObjectPositionNode:XmlElement = xmlDocument.CreateElement("Position");
+					XmlElement blockObjectPositionNode = xmlDocument.CreateElement("Position");
 					blockObjectNode.AppendChild(blockObjectPositionNode);
 					
-					var blockObjectXPositionNode:XmlElement = xmlDocument.CreateElement("x");
-					var blockObjectYPositionNode:XmlElement = xmlDocument.CreateElement("y");
-					var blockObjectZPositionNode:XmlElement = xmlDocument.CreateElement("z");
+					XmlElement blockObjectXPositionNode = xmlDocument.CreateElement("x");
+					XmlElement blockObjectYPositionNode = xmlDocument.CreateElement("y");
+					XmlElement blockObjectZPositionNode = xmlDocument.CreateElement("z");
 					
 					blockObjectPositionNode.AppendChild(blockObjectXPositionNode);
 					blockObjectPositionNode.AppendChild(blockObjectYPositionNode);
@@ -581,15 +585,15 @@ private function saveLevel():int
 				}
 				
 				//button booleans
-				var buttonsEnabledNode:XmlElement = xmlDocument.CreateElement("ButtonsEnabled");
+				XmlElement buttonsEnabledNode = xmlDocument.CreateElement("ButtonsEnabled");
 				tutorialNode.AppendChild(buttonsEnabledNode);
 				
-				var movementLeftEnabledNode				:XmlElement = xmlDocument.CreateElement("MovementLeft");
-				var movementRightEnabledNode			:XmlElement = xmlDocument.CreateElement("MovementRight");
-				var jumpButtonEnabledNode				:XmlElement	= xmlDocument.CreateElement("JumpButton");
-				var flashButtonEnabledNode				:XmlElement = xmlDocument.CreateElement("FlashButton");
-				var shootNormalShroomButtonEnabledNode	:XmlElement = xmlDocument.CreateElement("NormalShroomButton");
-				var shootBumpyShroomButtonEnabledNode	:XmlElement = xmlDocument.CreateElement("BumpyShroomButton");
+				XmlElement movementLeftEnabledNode = xmlDocument.CreateElement("MovementLeft");
+				XmlElement movementRightEnabledNode = xmlDocument.CreateElement("MovementRight");
+				XmlElement jumpButtonEnabledNode	= xmlDocument.CreateElement("JumpButton");
+				XmlElement flashButtonEnabledNode = xmlDocument.CreateElement("FlashButton");
+				XmlElement shootNormalShroomButtonEnabledNode = xmlDocument.CreateElement("NormalShroomButton");
+				XmlElement shootBumpyShroomButtonEnabledNode = xmlDocument.CreateElement("BumpyShroomButton");
 				
 				buttonsEnabledNode.AppendChild(movementLeftEnabledNode);
 				buttonsEnabledNode.AppendChild(movementRightEnabledNode);
@@ -608,21 +612,21 @@ private function saveLevel():int
 				if(triggerScript.getTutorialTextureA() != "" || triggerScript.getTutorialTextureB() != "")
 				{
 					//textures
-					var tutorialTexturesNode:XmlElement = xmlDocument.CreateElement("Textures");
+					XmlElement tutorialTexturesNode = xmlDocument.CreateElement("Textures");
 					tutorialNode.AppendChild(tutorialTexturesNode);
 					
-				
+					
 					//textureA
 					if(triggerScript.getTutorialTextureA() != "")
 					{
-						var textureANode:XmlElement = xmlDocument.CreateElement("TextureA");
+						XmlElement textureANode = xmlDocument.CreateElement("TextureA");
 						tutorialTexturesNode.AppendChild(textureANode);
-					
-					
-						var textureANameNode:XmlElement = xmlDocument.CreateElement("Texturename");
-						var textureAXPositionNode:XmlElement = xmlDocument.CreateElement("x");
-						var textureAYPositionNode:XmlElement = xmlDocument.CreateElement("y");
-						var textureATimerNode:XmlElement = xmlDocument.CreateElement("Timer");
+						
+						
+						XmlElement textureANameNode = xmlDocument.CreateElement("Texturename");
+						XmlElement textureAXPositionNode = xmlDocument.CreateElement("x");
+						XmlElement textureAYPositionNode = xmlDocument.CreateElement("y");
+						XmlElement textureATimerNode = xmlDocument.CreateElement("Timer");
 						
 						textureANode.AppendChild(textureANameNode);
 						textureANode.AppendChild(textureAXPositionNode);
@@ -637,13 +641,13 @@ private function saveLevel():int
 					//textureB
 					if(triggerScript.getTutorialTextureB() != "")
 					{
-						var textureBNode:XmlElement = xmlDocument.CreateElement("TextureB");
+						XmlElement textureBNode = xmlDocument.CreateElement("TextureB");
 						tutorialTexturesNode.AppendChild(textureBNode);
 						
-						var textureBNameNode:XmlElement = xmlDocument.CreateElement("Texturename");
-						var textureBXPositionNode:XmlElement = xmlDocument.CreateElement("x");
-						var textureBYPositionNode:XmlElement = xmlDocument.CreateElement("y");
-						var textureBTimerNode:XmlElement = xmlDocument.CreateElement("Timer");
+						XmlElement textureBNameNode = xmlDocument.CreateElement("Texturename");
+						XmlElement textureBXPositionNode = xmlDocument.CreateElement("x");
+						XmlElement textureBYPositionNode = xmlDocument.CreateElement("y");
+						XmlElement textureBTimerNode = xmlDocument.CreateElement("Timer");
 						
 						textureBNode.AppendChild(textureBNameNode);
 						textureBNode.AppendChild(textureBXPositionNode);
@@ -656,24 +660,24 @@ private function saveLevel():int
 						textureBTimerNode.InnerText 	= triggerScript.getTimerTexB().ToString();
 					}
 				}
-
 				
-				//destroy on exit boolean
-				var destroyOnExitNode:XmlElement = xmlDocument.CreateElement("DestroyOnExit");
+				
+				//destroy on exit bool
+				XmlElement destroyOnExitNode = xmlDocument.CreateElement("DestroyOnExit");
 				tutorialNode.AppendChild(destroyOnExitNode);
 				destroyOnExitNode.InnerText = triggerScript.getDestroyOnExit().ToString();
 				
-				var destroyOnCompletionNode:XmlElement = xmlDocument.CreateElement("DestroyOnCompletion");
+				XmlElement destroyOnCompletionNode = xmlDocument.CreateElement("DestroyOnCompletion");
 				tutorialNode.AppendChild(destroyOnCompletionNode);
 				destroyOnCompletionNode.InnerText = triggerScript.getDestroyOnCompletion().ToString();
 				
 				//bounding box
-				var boundingBoxNode:XmlElement = xmlDocument.CreateElement("BoundingBox");
+				XmlElement boundingBoxNode = xmlDocument.CreateElement("BoundingBox");
 				tutorialNode.AppendChild(boundingBoxNode);
 				
-				var xBoundingBoxNode:XmlElement = xmlDocument.CreateElement("x");
-				var yBoundingBoxNode:XmlElement = xmlDocument.CreateElement("y");
-				var zBoundingBoxNode:XmlElement = xmlDocument.CreateElement("z");
+				XmlElement xBoundingBoxNode = xmlDocument.CreateElement("x");
+				XmlElement yBoundingBoxNode = xmlDocument.CreateElement("y");
+				XmlElement zBoundingBoxNode = xmlDocument.CreateElement("z");
 				
 				boundingBoxNode.AppendChild(xBoundingBoxNode);
 				boundingBoxNode.AppendChild(yBoundingBoxNode);
@@ -684,64 +688,65 @@ private function saveLevel():int
 				zBoundingBoxNode.InnerText = boundingBox.z.ToString();
 			}
 		}
-	//
-	
-	//player
-	//
-			var player:GameObject = GameObject.Find("Player");
-			
-			var playerNode:XmlElement = xmlDocument.CreateElement("Player");
-			masterNode.AppendChild(playerNode);
-			
-			//save position
-			var playerPositionNode:XmlElement = xmlDocument.CreateElement("Position");
-			playerNode.AppendChild(playerPositionNode);
-			
-			var playerXNode:XmlElement = xmlDocument.CreateElement("x");
-			var playerYNode:XmlElement = xmlDocument.CreateElement("y");
-			var playerZNode:XmlElement = xmlDocument.CreateElement("z");
-			
-			playerPositionNode.AppendChild(playerXNode);
-			playerPositionNode.AppendChild(playerYNode);
-			playerPositionNode.AppendChild(playerZNode);
-			
-			playerXNode.InnerText = player.transform.position.x.ToString();
-			playerYNode.InnerText = player.transform.position.y.ToString();
-			playerZNode.InnerText = player.transform.position.z.ToString();
-			
-			//save the rotation
-			var playerRotationNode:XmlElement = xmlDocument.CreateElement("Rotation");
-			playerNode.AppendChild(playerRotationNode);
-			
-			var playerXRotationNode:XmlElement = xmlDocument.CreateElement("x");
-			var playerYRotationNode:XmlElement = xmlDocument.CreateElement("y");
-			var playerZRotationNode:XmlElement = xmlDocument.CreateElement("z");
-			
-			playerRotationNode.AppendChild(playerXRotationNode);
-			playerRotationNode.AppendChild(playerYRotationNode);
-			playerRotationNode.AppendChild(playerZRotationNode);
-			
-			playerXRotationNode.InnerText = player.transform.eulerAngles.x.ToString();
-			playerYRotationNode.InnerText = player.transform.eulerAngles.y.ToString();
-			playerZRotationNode.InnerText = player.transform.eulerAngles.z.ToString();
-	//
-	
-	xmlDocument.Save(filePath);
-	Debug.Log("Xml saved to: Assets/LevelsXML/" + levelName);
-	return 0;
-}
-
-private function checkValidPrefab(prefabName:String):boolean
-{	
-	for each(var prefab:String in prefabList)
-	{
-		if(Path.GetFileNameWithoutExtension(prefab) == prefabName)
-		{
-			return true;
-		}
+		//
+		
+		//player
+		//
+		GameObject player = GameObject.Find("Player");
+		
+		XmlElement playerNode = xmlDocument.CreateElement("Player");
+		masterNode.AppendChild(playerNode);
+		
+		//save position
+		XmlElement playerPositionNode = xmlDocument.CreateElement("Position");
+		playerNode.AppendChild(playerPositionNode);
+		
+		XmlElement playerXNode = xmlDocument.CreateElement("x");
+		XmlElement playerYNode = xmlDocument.CreateElement("y");
+		XmlElement playerZNode = xmlDocument.CreateElement("z");
+		
+		playerPositionNode.AppendChild(playerXNode);
+		playerPositionNode.AppendChild(playerYNode);
+		playerPositionNode.AppendChild(playerZNode);
+		
+		playerXNode.InnerText = player.transform.position.x.ToString();
+		playerYNode.InnerText = player.transform.position.y.ToString();
+		playerZNode.InnerText = player.transform.position.z.ToString();
+		
+		//save the rotation
+		XmlElement playerRotationNode = xmlDocument.CreateElement("Rotation");
+		playerNode.AppendChild(playerRotationNode);
+		
+		XmlElement playerXRotationNode = xmlDocument.CreateElement("x");
+		XmlElement playerYRotationNode = xmlDocument.CreateElement("y");
+		XmlElement playerZRotationNode = xmlDocument.CreateElement("z");
+		
+		playerRotationNode.AppendChild(playerXRotationNode);
+		playerRotationNode.AppendChild(playerYRotationNode);
+		playerRotationNode.AppendChild(playerZRotationNode);
+		
+		playerXRotationNode.InnerText = player.transform.eulerAngles.x.ToString();
+		playerYRotationNode.InnerText = player.transform.eulerAngles.y.ToString();
+		playerZRotationNode.InnerText = player.transform.eulerAngles.z.ToString();
+		//
+		
+		xmlDocument.Save(filePath);
+		Debug.Log("Xml saved to: Assets/LevelsXML/" + levelName);
+		return 0;
 	}
-	//can't find it so returning false
-	Debug.LogError("Can't find prefab with the name: " + prefabName);
-	Debug.LogError("Please make sure you made a prefab of the object and is located in Resources/Prefabs");
-	return false;
+	
+	private bool checkValidPrefab ( string prefabName  )
+	{	
+		foreach(string prefab in prefabList)
+		{
+			if(Path.GetFileNameWithoutExtension(prefab) == prefabName)
+			{
+				return true;
+			}
+		}
+		//can't find it so returning false
+		Debug.LogError("Can't find prefab with the name: " + prefabName);
+		Debug.LogError("Please make sure you made a prefab of the object and is located in Resources/Prefabs");
+		return false;
+	}
 }
