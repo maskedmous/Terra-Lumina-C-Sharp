@@ -1,7 +1,4 @@
-﻿// Converted from UnityScript to C# at http://www.M2H.nl/files/js_to_c.php - by Mike Hergaarden
-// Do test the code! You usually need to change a few small bits.
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 using TouchScript;
@@ -22,7 +19,7 @@ public class MenuScript : MonoBehaviour {
 	private Texture loadingScreen			= null;
 	private Texture level1					= null;
 	private Texture backToMenuButton		= null;
-	private Texture backToMenuButtonPressed	= null;
+	//private Texture backToMenuButtonPressed	= null;
 	
 	private Texture2D creditsScreen			= null;
 	
@@ -147,7 +144,7 @@ public class MenuScript : MonoBehaviour {
 		loadingScreen					= textureLoader.getTexture("Loading");
 		level1 							= textureLoader.getTexture("Level1");
 		backToMenuButton 				= textureLoader.getTexture("Terug");
-		backToMenuButtonPressed 		= textureLoader.getTexture("Terug Pressed");
+		//backToMenuButtonPressed 		= textureLoader.getTexture("Terug Pressed");
 		soundSliderTexture 				= textureLoader.getTexture("sliderBackground");
 		soundSliderThumbTexture 		= textureLoader.getTexture("sliderThumb");
 		creditsScreen 					= textureLoader.getTexture("Credits Screen");
@@ -165,7 +162,6 @@ public class MenuScript : MonoBehaviour {
 		startMenuAnim();
 		
 		soundEngine = GameObject.Find("SoundEngine").GetComponent<SoundEngineScript>() as SoundEngineScript;
-		//backButton = textureLoader.getTexture("Back");
 		
 		anim = GameObject.Find("RoverAnimMenu").GetComponent<Animator>();
 		
@@ -211,7 +207,6 @@ public class MenuScript : MonoBehaviour {
 	private void touchMoved ( object sender ,   TouchEventArgs events  ){
 		foreach(var touchPoint in events.Touches)
 		{
-			//print(touchPoint.Position.x);
 			if(currentMenuState == menuState.optionsMenu){
 				Vector2 position = touchPoint.Position;
 				position = new Vector2(position.x, (position.y - Screen.height)*-1);
@@ -817,15 +812,22 @@ public class MenuScript : MonoBehaviour {
 		Application.LoadLevel("LevelLoaderScene");
 		//first wait for the next scene to loader		  		
 		yield return new WaitForEndOfFrame();
+		yield return new WaitForEndOfFrame();
+
+		GameObject levelLoaderObject = GameObject.Find("LevelLoader");
 		//get the levelloader script
-		XmlToScene levelLoader = GameObject.Find("LevelLoader").GetComponent<XmlToScene>();
-		//set the level string
-		levelLoader.setLevel(levelFilename);
-		//load the level
-		levelLoader.loadLevel();
-		//play the music according to the difficulty
-		soundEngine.changeMusic(difficulty);
-		//destroy this gameobject as we don't need the main menu in the game
-		Destroy(this.gameObject);
+		if(levelLoaderObject != null)
+		{
+			XmlToScene levelLoader = (XmlToScene) levelLoaderObject.GetComponent(typeof(XmlToScene));
+			//set the level string
+			levelLoader.setLevel(levelFilename);
+			//load the level
+			levelLoader.loadLevel();
+			//play the music according to the difficulty
+			soundEngine.changeMusic(difficulty);
+			//destroy this gameobject as we don't need the main menu in the game
+			Destroy(this.gameObject);
+		}
+		else Debug.LogError("levelLoader is null");
 	}
 }

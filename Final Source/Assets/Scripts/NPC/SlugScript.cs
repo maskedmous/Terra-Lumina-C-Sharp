@@ -1,6 +1,3 @@
-// Converted from UnityScript to C# at http://www.M2H.nl/files/js_to_c.php - by Mike Hergaarden
-// Do test the code! You usually need to change a few small bits.
-
 using UnityEngine;
 using System.Collections;
 
@@ -22,7 +19,7 @@ public class SlugScript : MonoBehaviour {
 	
 	private Animator anim = null;
 	
-	void  Awake (){
+	public void  Awake (){
 		fleeState = this.gameObject.AddComponent("FleeState") as FleeState;
 		moveState = this.gameObject.AddComponent("MoveState") as MoveState;
 		waitState = this.gameObject.AddComponent("WaitState") as WaitState;
@@ -32,11 +29,13 @@ public class SlugScript : MonoBehaviour {
 		anim = this.gameObject.GetComponent("Animator") as Animator;
 	}
 	
-	void  Start (){
+	public void  Start ()
+	{
 		startPosition = this.gameObject.transform.position;
 	}
 	
-	void  Update (){
+	public void  Update ()
+	{
 		Vector3 myPos = this.gameObject.transform.position;
 		if (myPos.x > slugBoundA.transform.position.x && myPos.x > slugBoundB.transform.position.x) resetPosition();
 		else if (myPos.x < slugBoundA.transform.position.x && myPos.x < slugBoundB.transform.position.x ) resetPosition();
@@ -83,7 +82,7 @@ public class SlugScript : MonoBehaviour {
 		return false;
 	}
 	
-	void OnCollisionEnter ( Collision collision  ){
+	public void OnCollisionEnter ( Collision collision  ){
 		string name = collision.collider.gameObject.name;
 		if (name.Contains("Wheel") || name == "Player") {
 			if (collision.collider.gameObject.transform.position.x > this.gameObject.transform.position.x) {

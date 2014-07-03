@@ -1,6 +1,3 @@
-// Converted from UnityScript to C# at http://www.M2H.nl/files/js_to_c.php - by Mike Hergaarden
-// Do test the code! You usually need to change a few small bits.
-
 using UnityEngine;
 using System.Collections;
 
@@ -29,7 +26,6 @@ public class GameLogic : MonoBehaviour
 /*
 	Player Variables
 */
-	private PlayerController playerController = null;
 	private PlayerInputScript playerInput = null;
 	private SoundEngineScript soundEngine = null;
 	public bool  infiniteAmmo = false;
@@ -83,7 +79,6 @@ public class GameLogic : MonoBehaviour
 	public void Start (){
 		startTimer();
 		GameObject player = GameObject.Find("Player");
-		playerController = player.GetComponent<PlayerController>() as PlayerController;
 		playerInput = player.GetComponent<PlayerInputScript>() as PlayerInputScript;
 		
 		if(Application.loadedLevelName == "LevelLoaderScene")
@@ -211,7 +206,8 @@ public class GameLogic : MonoBehaviour
 		soundEngine.playSoundEffect("win");
 	}
 	
-	public void gameOverLose (){
+	public void gameOverLose ()
+	{
 		levelTriggerScript.setLost(true);
 		soundEngine.playSoundEffect("lose");
 	}

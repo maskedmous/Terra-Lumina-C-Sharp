@@ -1,7 +1,4 @@
-﻿// Converted from UnityScript to C# at http://www.M2H.nl/files/js_to_c.php - by Mike Hergaarden
-// Do test the code! You usually need to change a few small bits.
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class TutorialTriggerScript : MonoBehaviour
@@ -231,7 +228,7 @@ public class TutorialTriggerScript : MonoBehaviour
 				//if the tutorial is complete, play the animation and put it on false
 				if(gameLogic.getBattery() == gameLogic.getBatteryCapacity())
 				{
-					playAnimation();				//play the animation of the barrier
+					StartCoroutine(playAnimation());				//play the animation of the barrier
 					lightTutorial = false;			//completed objective
 				}
 			}
@@ -239,15 +236,16 @@ public class TutorialTriggerScript : MonoBehaviour
 			{
 				if(gameLogic.getCrystalsSampleCount() > 0)
 				{
-					playAnimation();
+					StartCoroutine(playAnimation());
 					crystalTutorial = false;
 				}
 			}
 			else if(slugTutorial)
 			{
-				if(slugObject.GetComponent<SlugScript>().isWaitState())
+				SlugScript slugScript = (SlugScript) slugObject.GetComponent(typeof(SlugScript));
+				if(slugScript.isWaitState())
 				{
-					playAnimation();
+					StartCoroutine(playAnimation());
 					slugTutorial = false;
 				}
 			}

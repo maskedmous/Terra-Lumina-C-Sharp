@@ -78,7 +78,7 @@ public class TextureLoader : MonoBehaviour
 			if(filePath != Application.dataPath + "/FolderName" && nextScene != "someScene")	//don't change this its a check, fill in the public variables instead
 			{
 				Debug.Log("Loading Textures...");	//showing that it'll load textures
-				fillTextureArray();					//calling the function to fill the array
+				StartCoroutine(fillTextureArray());					//calling the function to fill the array
 			}
 			else
 			{
@@ -159,22 +159,23 @@ public class TextureLoader : MonoBehaviour
 	}
 	
 	//Fills the arrays with the textures
-	private IEnumerator fillTextureArray (){
+	private IEnumerator fillTextureArray ()
+	{
 		//getting all files at the desired filePath with the desired fileType and searching through all directories
 		string[] fileInfo= Directory.GetFiles(filePath, fileType, SearchOption.AllDirectories);
 		
 		fileCount = fileInfo.Length;
-		
+
 		foreach(string file in fileInfo)
 		{	
 			//download the file via WWW
-			WWW wwwTexture= new WWW("file://"+file);
+			WWW wwwTexture = new WWW("file://"+file);
 			//wait for it to download
 			yield return wwwTexture;
 			Texture2D texture = wwwTexture.texture;
 			//assign the name to the texture
-			string pngName = Path.GetFileNameWithoutExtension(file);
-			texture.name = pngName;
+			string textureName = Path.GetFileNameWithoutExtension(file);
+			texture.name = textureName;
 			//put the texture into the array
 			textureArray.Add(texture);
 			//loaded files + 1

@@ -1,7 +1,4 @@
-﻿// Converted from UnityScript to C# at http://www.M2H.nl/files/js_to_c.php - by Mike Hergaarden
-// Do test the code! You usually need to change a few small bits.
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class FunFactScript : MonoBehaviour {
@@ -10,7 +7,7 @@ public class FunFactScript : MonoBehaviour {
 	private LabelScript labelScript = null;
 	
 	void Awake (){
-		label = Instantiate(Resources.Load("Prefabs/Label")) as GameObject;
+		label = (GameObject) Instantiate(Resources.Load("Prefabs/Label")) as GameObject;
 		label.gameObject.name = "Label";
 		labelScript = label.GetComponent("LabelScript") as LabelScript;
 	}

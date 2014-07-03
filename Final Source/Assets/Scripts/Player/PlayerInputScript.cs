@@ -1,7 +1,4 @@
-﻿// Converted from UnityScript to C# at http://www.M2H.nl/files/js_to_c.php - by Mike Hergaarden
-// Do test the code! You usually need to change a few small bits.
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using TouchScript;	//we're making use of a touch library so import it
 
@@ -39,8 +36,8 @@ public class PlayerInputScript : MonoBehaviour {
 	public  Texture2D jumpButtonInactiveTexture 	= null;	//inactive texture
 	public	Texture2D jumpButtonActiveTexture	= null;	//when pressed texture
 	private Rect jumpButtonRect;
-	public  float jumpButtonX = 0.0f;		//position of the button
-	public 	float jumpButtonY = 780.0f;
+	public  float jumpButtonX = 110.0f;		//position of the button
+	public 	float jumpButtonY = 810.0f;
 	
 	
 	private Texture2D currentFlashButtonTexture = null;
@@ -48,8 +45,8 @@ public class PlayerInputScript : MonoBehaviour {
 	public  Texture2D flashButtonInactiveTexture = null;
 	public	Texture2D flashButtonActiveTexture = null;
 	private Rect flashButtonRect;
-	public  float flashButtonX = 0.0f;
-	public  float flashButtonY = 900.0f;
+	public  float flashButtonX = -15.0f;
+	public  float flashButtonY = 575.0f;
 	
 	
 	private Texture2D currentNormalShroomButtonTexture = null;
@@ -58,7 +55,7 @@ public class PlayerInputScript : MonoBehaviour {
 	public	Texture2D normalShroomButtonActiveTexture = null;
 	private Rect normalShroomButtonRect;
 	public 	float normalShroomButtonX = 1600.0f;
-	public 	float normalShroomButtonY = 900.0f;
+	public 	float normalShroomButtonY = 810.0f;
 	
 	
 	private Texture2D currentBumpyShroomButtonTexture = null;
@@ -66,8 +63,8 @@ public class PlayerInputScript : MonoBehaviour {
 	public 	Texture2D bumpyShroomButtonInactiveTexture = null;
 	public	Texture2D bumpyShroomButtonActiveTexture = null;
 	private Rect bumpyShroomButtonRect;
-	public 	float bumpyShroomButtonX = 1600.0f;
-	public 	float bumpyShroomButtonY = 720.0f;
+	public 	float bumpyShroomButtonX = 1700.0f;
+	public 	float bumpyShroomButtonY = 630.0f;
 	
 	private Texture2D currentEscapeButtonTexture = null;
 	public Texture2D escapeButtonTexture = null;
@@ -254,7 +251,7 @@ public class PlayerInputScript : MonoBehaviour {
 		if(normalShroomButtonEnabled && chargingNormalShot && !normalShroomButtonTouched)
 		{
 			if(blinkingNormalShroomButton) blinkingNormalShroomButton = false;
-			playerController.shoot(0);
+			StartCoroutine(playerController.shoot(0));
 			chargingNormalShot = false;
 			shootTimer = 2.0f;
 		}
@@ -266,7 +263,7 @@ public class PlayerInputScript : MonoBehaviour {
 		if(bumpyShroomButtonEnabled && chargingBumpyShot && !bumpyShroomButtonTouched)
 		{
 			if(blinkingBumpyShroomButton) blinkingBumpyShroomButton = false;
-			playerController.shoot(1);
+			StartCoroutine(playerController.shoot(1));
 			chargingBumpyShot = false;
 			shootTimer = 2.0f;
 		}
