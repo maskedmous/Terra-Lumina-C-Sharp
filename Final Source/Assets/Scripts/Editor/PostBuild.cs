@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEditor;
 using UnityEditor.Callbacks;
 
 public static class PostBuild
