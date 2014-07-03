@@ -46,7 +46,37 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\HUD\GameHUD.cs" />
+     <Compile Include="Assets\Scripts\HUD\LabelScript.cs" />
+     <Compile Include="Assets\Scripts\Level\AmmoBox.cs" />
+     <Compile Include="Assets\Scripts\Level\BumpyShroom.cs" />
+     <Compile Include="Assets\Scripts\Level\Crystal.cs" />
+     <Compile Include="Assets\Scripts\Level\GameLogic.cs" />
+     <Compile Include="Assets\Scripts\Level\LevelTrigger.cs" />
+     <Compile Include="Assets\Scripts\Level\LightBeam.cs" />
+     <Compile Include="Assets\Scripts\Level\NormalShroom.cs" />
+     <Compile Include="Assets\Scripts\Level\SeedBehaviour.cs" />
+     <Compile Include="Assets\Scripts\Level\pickupShard.cs" />
+     <Compile Include="Assets\Scripts\LevelEditor\Level.cs" />
+     <Compile Include="Assets\Scripts\LevelEditor\SceneToXML.cs" />
+     <Compile Include="Assets\Scripts\LevelEditor\XmlToScene.cs" />
+     <Compile Include="Assets\Scripts\Menu\MenuScript.cs" />
+     <Compile Include="Assets\Scripts\NPC\ChaseState.cs" />
+     <Compile Include="Assets\Scripts\NPC\FleeState.cs" />
+     <Compile Include="Assets\Scripts\NPC\MoveState.cs" />
+     <Compile Include="Assets\Scripts\NPC\ReturnState.cs" />
+     <Compile Include="Assets\Scripts\NPC\SlugScript.cs" />
+     <Compile Include="Assets\Scripts\NPC\State.cs" />
+     <Compile Include="Assets\Scripts\NPC\WaitState.cs" />
+     <Compile Include="Assets\Scripts\Player\CameraScript.cs" />
+     <Compile Include="Assets\Scripts\Player\FunFactScript.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerInputScript.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerParticleScript.cs" />
+     <Compile Include="Assets\Scripts\Sound\SoundEngineScript.cs" />
      <Compile Include="Assets\Scripts\TextureLoader\TextureLoader.cs" />
+     <Compile Include="Assets\Scripts\Tutorial\CameraStartScript.cs" />
+     <Compile Include="Assets\Scripts\Tutorial\TutorialTriggerScript.cs" />
      <None Include="Assets\Standard Assets\MatcapShaders\MatCap Shaders\Shaders\MatCap_TextureAdd_Bumped.shader" />
      <None Include="Assets\Standard Assets\MatcapShaders\MatCap Shaders\Shaders\MatCap_TextureMult_Bumped.shader" />
      <None Include="Assets\LevelsXML\Level3.xml" />

@@ -5,11 +5,11 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{42F99930-D6AA-B4F9-98BF-1AF2EB47AB93}</ProjectGuid>
+	<ProjectGuid>{7D4CE364-700E-3FAB-E271-CEDE2D9F29A9}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<AssemblyName>Assembly-CSharp-Editor</AssemblyName>
 	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
 	<FileAlignment>512</FileAlignment>
 	<BaseDirectory>Assets</BaseDirectory>
@@ -46,37 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\HUD\GameHUD.cs" />
-     <Compile Include="Assets\Scripts\HUD\LabelScript.cs" />
-     <Compile Include="Assets\Scripts\Level\AmmoBox.cs" />
-     <Compile Include="Assets\Scripts\Level\BumpyShroom.cs" />
-     <Compile Include="Assets\Scripts\Level\Crystal.cs" />
-     <Compile Include="Assets\Scripts\Level\GameLogic.cs" />
-     <Compile Include="Assets\Scripts\Level\LevelTrigger.cs" />
-     <Compile Include="Assets\Scripts\Level\LightBeam.cs" />
-     <Compile Include="Assets\Scripts\Level\NormalShroom.cs" />
-     <Compile Include="Assets\Scripts\Level\SeedBehaviour.cs" />
-     <Compile Include="Assets\Scripts\Level\pickupShard.cs" />
-     <Compile Include="Assets\Scripts\LevelEditor\Level.cs" />
-     <Compile Include="Assets\Scripts\LevelEditor\SceneToXML.cs" />
-     <Compile Include="Assets\Scripts\LevelEditor\XmlToScene.cs" />
-     <Compile Include="Assets\Scripts\Menu\MenuScript.cs" />
-     <Compile Include="Assets\Scripts\NPC\ChaseState.cs" />
-     <Compile Include="Assets\Scripts\NPC\FleeState.cs" />
-     <Compile Include="Assets\Scripts\NPC\MoveState.cs" />
-     <Compile Include="Assets\Scripts\NPC\ReturnState.cs" />
-     <Compile Include="Assets\Scripts\NPC\SlugScript.cs" />
-     <Compile Include="Assets\Scripts\NPC\State.cs" />
-     <Compile Include="Assets\Scripts\NPC\WaitState.cs" />
-     <Compile Include="Assets\Scripts\Player\CameraScript.cs" />
-     <Compile Include="Assets\Scripts\Player\FunFactScript.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerInputScript.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerParticleScript.cs" />
-     <Compile Include="Assets\Scripts\Sound\SoundEngineScript.cs" />
-     <Compile Include="Assets\Scripts\TextureLoader\TextureLoader.cs" />
-     <Compile Include="Assets\Scripts\Tutorial\CameraStartScript.cs" />
-     <Compile Include="Assets\Scripts\Tutorial\TutorialTriggerScript.cs" />
+     <Compile Include="Assets\Scripts\Editor\PostBuild.cs" />
      <None Include="Assets\Standard Assets\MatcapShaders\MatCap Shaders\Shaders\MatCap_TextureAdd_Bumped.shader" />
      <None Include="Assets\Standard Assets\MatcapShaders\MatCap Shaders\Shaders\MatCap_TextureMult_Bumped.shader" />
      <None Include="Assets\LevelsXML\Level3.xml" />
@@ -91,6 +61,9 @@
      <None Include="Assets\LevelsXML\Level2.xml" />
      <None Include="Assets\Standard Assets\MatcapShaders\MatCap Shaders\Shaders\MatCap_TextureAdd.shader" />
      <None Include="Assets\Standard Assets\MatcapShaders\MatCap Shaders\_MatCap Shaders Readme.txt" />
+ <Reference Include="TouchScript.Editor">
+ <HintPath>Assets\Standard Assets\TouchScript\Editor\TouchScript.Editor.dll</HintPath>
+ </Reference>
  <Reference Include="OSCsharp">
  <HintPath>Assets\Standard Assets\TouchScript\Plugins\OSCsharp.dll</HintPath>
  </Reference>
@@ -102,6 +75,24 @@
  </Reference>
  <Reference Include="TUIOsharp">
  <HintPath>Assets\Standard Assets\TouchScript\Plugins\TUIOsharp.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.Graphs">
+ <HintPath>C:\Program Files (x86)\Unity\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.iOS.Extensions">
+ <HintPath>C:\Program Files (x86)\Unity\Editor\Data\PlaybackEngines\iPhonePlayer\EditorExtensions\UnityEditor.iOS.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.WP8.Extensions">
+ <HintPath>C:\Program Files (x86)\Unity\Editor\Data\PlaybackEngines\WP8Support\EditorExtensions\UnityEditor.WP8.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.Metro.Extensions">
+ <HintPath>C:\Program Files (x86)\Unity\Editor\Data\PlaybackEngines\MetroSupport\EditorExtensions\UnityEditor.Metro.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.BB10.Extensions">
+ <HintPath>C:\Program Files (x86)\Unity\Editor\Data\PlaybackEngines\BB10Player\EditorExtensions\UnityEditor.BB10.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.Android.Extensions">
+ <HintPath>C:\Program Files (x86)\Unity\Editor\Data\PlaybackEngines\AndroidPlayer\EditorExtensions\UnityEditor.Android.Extensions.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
