@@ -25,6 +25,7 @@ public class PlayerInputScript : MonoBehaviour
     private bool bumpyShroomButtonEnabled = true;
     private bool movementLeftEnabled = true;
     private bool movementRightEnabled = true;
+    private bool skipButtonEnabled = true;
 
     private float blinkingCounter = 0.75f;	//0.75f sec there 0.75f sec not (blinking!)
     private bool blinkingJumpButton = false;	//which button should blink
@@ -75,6 +76,11 @@ public class PlayerInputScript : MonoBehaviour
     public float escapeButtonX = 1650.0f;
     public float escapeButtonY = 20.0f;
     private bool escapePressed = false;
+
+    public Texture2D skipButtonTexture = null;
+    private Rect skipButtonRect;
+    public float skipButtonX = 0.0f;
+    public float skipButtonY = 0.0f;
 
     public Texture2D confirmationTrueTexture = null;
     public Texture2D confirmationFalseTexture = null;
@@ -354,6 +360,15 @@ public class PlayerInputScript : MonoBehaviour
                 return;
             }
         }
+        if (skipButtonEnabled)
+        {
+            if (skipButtonRect.Contains(inputXY))
+            {
+                //call skip
+                skipButtonEnabled = false;
+                return;
+            }
+        }
     }
 
     private IEnumerator returnToMenu()
@@ -449,6 +464,10 @@ public class PlayerInputScript : MonoBehaviour
                     GUI.DrawTexture(confirmationTrueRect, confirmationTrueTexture);
                     GUI.DrawTexture(confirmationFalseRect, confirmationFalseTexture);
                 }
+                if (skipButtonEnabled)
+                {
+                    GUI.DrawTexture(skipButtonRect, skipButtonTexture);
+                }
             }
         }
     }
@@ -501,12 +520,14 @@ public class PlayerInputScript : MonoBehaviour
         flashButtonRect = new Rect(flashButtonX, flashButtonY, flashButtonTexture.width, flashButtonTexture.height);
         normalShroomButtonRect = new Rect(normalShroomButtonX, normalShroomButtonY, normalShroomButtonTexture.width, normalShroomButtonTexture.height);
         bumpyShroomButtonRect = new Rect(bumpyShroomButtonX, bumpyShroomButtonY, bumpyShroomButtonTexture.width, bumpyShroomButtonTexture.height);
+        skipButtonRect = new Rect(skipButtonX, skipButtonY, skipButtonTexture.width, skipButtonTexture.height);
 
         //second scale the rectangles
         jumpButtonRect = scaleRect(jumpButtonRect);
         flashButtonRect = scaleRect(flashButtonRect);
         normalShroomButtonRect = scaleRect(normalShroomButtonRect);
         bumpyShroomButtonRect = scaleRect(bumpyShroomButtonRect);
+        skipButtonRect = scaleRect(skipButtonRect);
 
 
         if (escapeButtonTexture != null)
@@ -597,6 +618,11 @@ public class PlayerInputScript : MonoBehaviour
     public void setBumpyShroomButtonEnabled(bool value)
     {
         bumpyShroomButtonEnabled = value;
+    }
+
+    public void setSkipButtonEnabled(bool value)
+    {
+        skipButtonEnabled = value;
     }
 
     public void setBlinkingJumpButton(bool value)

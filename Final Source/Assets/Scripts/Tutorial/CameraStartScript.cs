@@ -123,8 +123,6 @@ public class CameraStartScript : MonoBehaviour {
 			list.RemoveAt(index);
 			highest = int.MinValue;
 		}
-		//Vector3 playerPos = GameObject.Find ("Player").transform.position + new Vector3 (0.0f, 3.0f, 0.0f);
-		//newList.Add(playerPos);
         newList.Add(endPos);
 		return newList;
 	}
@@ -134,6 +132,9 @@ public class CameraStartScript : MonoBehaviour {
         targetPos = crystalPositions[crystalPositions.Count - 1];
         startTimer = -1.0f;
         speed = 120.0f;
+        GameObject player = GameObject.Find("Player") as GameObject;
+        PlayerInputScript playerInputScript = player.GetComponent("PlayerInputScript") as PlayerInputScript;
+        playerInputScript.setSkipButtonEnabled(false);
     }
 	
 	private void startGame (){
@@ -144,6 +145,7 @@ public class CameraStartScript : MonoBehaviour {
 		tutorialTriggerScript.setMovementLeftEnabled(true);
 		tutorialTriggerScript.setCameraMoving(false);
 		playerInputScript.setMovementLeftEnabled(true);
+        playerInputScript.setSkipButtonEnabled(false);
 		cameraScript.setMove(true);
 		
 		gameLogic.startBattery();
