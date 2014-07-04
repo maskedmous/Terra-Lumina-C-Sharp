@@ -30,6 +30,10 @@ public class CameraStartScript : MonoBehaviour {
 	public void Awake (){
 		cameraScript = Camera.main.GetComponent("CameraScript") as CameraScript;
 		cameraScript.setMove(false);
+
+        GameObject player = GameObject.Find("Player") as GameObject;
+        PlayerInputScript playerInputScript = player.GetComponent("PlayerInputScript") as PlayerInputScript;
+        playerInputScript.setCameraStartScript(this);
 	}
 	
 	public void Start (){
@@ -127,7 +131,7 @@ public class CameraStartScript : MonoBehaviour {
 		return newList;
 	}
 
-    private void skip()
+    public void skip()
     {
         targetPos = crystalPositions[crystalPositions.Count - 1];
         startTimer = -1.0f;

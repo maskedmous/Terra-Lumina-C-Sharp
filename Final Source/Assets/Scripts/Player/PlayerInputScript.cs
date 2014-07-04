@@ -101,6 +101,8 @@ public class PlayerInputScript : MonoBehaviour
     private float originalHeight = 1080;
     private Vector3 scale;
 
+    CameraStartScript cameraStartScript = null;
+
     public void Awake()
     {
         playerController = this.gameObject.GetComponent("PlayerController") as PlayerController;
@@ -364,7 +366,7 @@ public class PlayerInputScript : MonoBehaviour
         {
             if (skipButtonRect.Contains(inputXY))
             {
-                //call skip
+                cameraStartScript.skip();
                 skipButtonEnabled = false;
                 return;
             }
@@ -647,5 +649,10 @@ public class PlayerInputScript : MonoBehaviour
     {
         //if(!value) currentBumpyShroomButtonTexture = bumpyShroomButtonTexture;
         blinkingBumpyShroomButton = value;
+    }
+
+    public void setCameraStartScript(CameraStartScript script)
+    {
+        cameraStartScript = script;
     }
 }
