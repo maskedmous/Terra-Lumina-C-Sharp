@@ -344,9 +344,7 @@ public class PlayerInputScript : MonoBehaviour
         {
             if (confirmationTrueRect.Contains(inputXY))
             {
-                gameLogic.unpauseGame();
-                Application.LoadLevel("Menu");
-                soundEngine.changeMusic("Menu");
+                StartCoroutine(returnToMenu());
                 return;
             }
             if (confirmationFalseRect.Contains(inputXY))
@@ -356,6 +354,14 @@ public class PlayerInputScript : MonoBehaviour
                 return;
             }
         }
+    }
+
+    private IEnumerator returnToMenu()
+    {
+        Application.LoadLevel("Menu");
+        yield return new WaitForEndOfFrame();
+        soundEngine.changeMusic("Menu");
+        gameLogic.unpauseGame();
     }
 
     //check if the player is touching a button
@@ -529,30 +535,32 @@ public class PlayerInputScript : MonoBehaviour
     //read all touch points and check if the player should move
     void readTouch()
     {
-        foreach (var touch in TouchManager.Instance.ActiveTouches)
+        if (!gameLogic.isPaused())
         {
-            Vector2 position = touch.Position;
-            //sendRay(position);
-
-            position = new Vector2(position.x, (position.y - Screen.height) * -1);
-
-            if (!isTouchingButton(position))
+            foreach (var touch in TouchManager.Instance.ActiveTouches)
             {
-                if (chargingNormalShot || chargingBumpyShot)
+                Vector2 position = touch.Position;
+
+                position = new Vector2(position.x, (position.y - Screen.height) * -1);
+
+                if (!isTouchingButton(position))
                 {
-                    chargingNormalShot = false;
-                    chargingBumpyShot = false;
-                    playerController.resetShot();
-                }
-                if (position.x > Screen.width / 2)
-                {
-                    if (movementRightEnabled) playerController.move(position.x);
-                    return;
-                }
-                if (position.x < Screen.width / 2)
-                {
-                    if (movementLeftEnabled) playerController.move(position.x);
-                    return;
+                    if (chargingNormalShot || chargingBumpyShot)
+                    {
+                        chargingNormalShot = false;
+                        chargingBumpyShot = false;
+                        playerController.resetShot();
+                    }
+                    if (position.x > Screen.width / 2)
+                    {
+                        if (movementRightEnabled) playerController.move(position.x);
+                        return;
+                    }
+                    if (position.x < Screen.width / 2)
+                    {
+                        if (movementLeftEnabled) playerController.move(position.x);
+                        return;
+                    }
                 }
             }
         }

@@ -870,7 +870,7 @@ public class MenuScript : MonoBehaviour
         Application.LoadLevel("LevelLoaderScene");
         //first wait for the next scene to loader		  		
         yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();       //double end of frame because the scene was not loaded yet with 1 end of frame
 
         GameObject levelLoaderObject = GameObject.Find("LevelLoader");
         //get the levelloader script
