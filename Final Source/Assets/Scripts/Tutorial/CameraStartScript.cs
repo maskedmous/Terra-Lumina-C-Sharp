@@ -15,6 +15,7 @@ public class CameraStartScript : MonoBehaviour {
 	
 	private int currentCrystal = 0;
 	private Vector3 targetPos = Vector3.zero;
+    private Vector3 endPos = Vector3.zero;
 	private bool goingToPlayer = false;
 	private float t = 0.0f;
 	
@@ -34,6 +35,7 @@ public class CameraStartScript : MonoBehaviour {
 	public void Start (){
 		cam = Camera.main;
 		endLevelTrigger = GameObject.Find ("EndLevelTrigger") as GameObject;
+        endPos = new Vector3(cam.transform.position.x, cam.transform.position.y, 6.0f);
 		cam.transform.position = new Vector3 (endLevelTrigger.transform.position.x, cam.transform.position.y, cam.transform.position.z);
 		
 		crystals = GameObject.FindGameObjectsWithTag("Pickup");
@@ -55,10 +57,10 @@ public class CameraStartScript : MonoBehaviour {
 	public void Update (){
 		if (startTimer > 0) startTimer -= Time.deltaTime;
 		else moveCamera();
-		if (cam.transform.position.x < -19.0f)
+		if (cam.transform.position.x < endPos.x + 0.01)
 		{
 			speed = 0.0f;
-			cam.transform.position = new Vector3(-19.082f, cam.transform.position.y, cam.transform.position.z);
+            cam.transform.position = endPos;//new Vector3(-19.082f, cam.transform.position.y, cam.transform.position.z);
 			startGame();
 		}
 		if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.K))
@@ -120,8 +122,9 @@ public class CameraStartScript : MonoBehaviour {
 			list.RemoveAt(index);
 			highest = int.MinValue;
 		}
-		Vector3 playerPos = GameObject.Find ("Player").transform.position + new Vector3 (0.0f, 3.0f, 0.0f);
-		newList.Add(playerPos);
+		//Vector3 playerPos = GameObject.Find ("Player").transform.position + new Vector3 (0.0f, 3.0f, 0.0f);
+		//newList.Add(playerPos);
+        newList.Add(endPos);
 		return newList;
 	}
 	
