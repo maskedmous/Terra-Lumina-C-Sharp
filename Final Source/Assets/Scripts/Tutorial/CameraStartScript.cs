@@ -69,6 +69,7 @@ public class CameraStartScript : MonoBehaviour {
 			cam.transform.position = new Vector3(-19.082f, cam.transform.position.y, cam.transform.position.z);
 			startGame();
 		}
+        if (Input.GetKeyDown(KeyCode.Q)) skip();
 	}
 	
 	public void OnGUI (){
@@ -127,6 +128,13 @@ public class CameraStartScript : MonoBehaviour {
         newList.Add(endPos);
 		return newList;
 	}
+
+    private void skip()
+    {
+        targetPos = crystalPositions[crystalPositions.Count - 1];
+        startTimer = -1.0f;
+        speed = 120.0f;
+    }
 	
 	private void startGame (){
 		TutorialTriggerScript tutorialTriggerScript = this.gameObject.GetComponent("TutorialTriggerScript") as TutorialTriggerScript;
