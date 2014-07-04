@@ -115,6 +115,7 @@ public class CameraStartScript : MonoBehaviour {
 					index = i;
 				}
 			}
+            list[index] += new Vector3(0.0f, 1.0f, 0.0f);
 			newList.Add(list[index]);
 			list.RemoveAt(index);
 			highest = int.MinValue;

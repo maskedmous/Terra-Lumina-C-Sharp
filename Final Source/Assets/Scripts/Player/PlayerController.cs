@@ -292,11 +292,11 @@ public class PlayerController : MonoBehaviour {
 		
 		//formula for max dist: d = (v*v*sin(2*angle)) / gravity
 		//replaced sin(2*angle), which is .96, with a bigger number due to the trajectory not starting on the ground.
-		if (vx < 3.0f)
+		if (vx < 1.5f)
 		{
 			increasing = true;
-			vx = 3.0f;
-			vy = 2.25f;
+			vx = 1.5f;
+			vy = 1.125f;
 		}
 		if (vx > 8.8f)
 		{
@@ -361,7 +361,7 @@ public class PlayerController : MonoBehaviour {
 	public void resetShot (){	
 		vx = 0.0f;
 		vy = 0.0f;
-		x8 = 2.3f;
+		x8 = 1.15f;
 		lineRenderer.enabled = false;
 	}
 	
@@ -410,7 +410,7 @@ public class PlayerController : MonoBehaviour {
 		layerMask = ~layerMask;
 		if (getDirection() == "Right") direction = new Vector3(1.0f, 0.0f, 0.0f);
 		else if (getDirection() == "Left") direction = new Vector3(-1.0f, 0.0f, 0.0f);
-		if (Physics.Raycast(this.gameObject.transform.position, direction, out hit, 20.0f, layerMask))
+		if (Physics.Raycast(this.gameObject.transform.position, direction, out hit, 15.0f, layerMask))
 		{
 			if (hit.collider.gameObject.name == "Slug") {
 				SlugScript slugScript = hit.collider.gameObject.GetComponent("SlugScript") as SlugScript;
