@@ -7,8 +7,6 @@ using System.Xml;
 
 public class MenuScript : MonoBehaviour
 {
-
-
     enum menuState { mainMenu, startMenu, optionsMenu, creditsMenu, loadingLevel }
 
     private menuState currentMenuState = menuState.mainMenu;
@@ -93,6 +91,12 @@ public class MenuScript : MonoBehaviour
     private Rect soundSliderThumbRect;
     public float soundSliderThumbX = 1350.0f;
     public float soundSliderThumbY = 338.0f;
+    //public Texture2D bloomCheckBoxTexture = null;
+    //public Texture2D bloomCheckBoxActiveTexture = null;
+    //public Texture2D bloomCheckBoxInactiveTexture = null;
+    //private Rect bloomCheckBoxRect;
+    //public float bloomCheckBoxX = 0.0f;
+    //public float bloomCheckBoxY = 0.0f;
     public GUISkin sliderSkin;
     public Texture2D optionsScreenTexture = null;
     private Rect optionsScreenRect;
@@ -356,6 +360,21 @@ public class MenuScript : MonoBehaviour
                         touchEnabled = false;
                         anim.SetBool("settingsBool", false);
                     }
+
+                    //if (bloomCheckBoxRect.Contains(inputXY))
+                    //{
+                    //  if(bloomCheckBoxTexture == bloomCheckBoxActiveTexture)
+                    //  {
+                    //      bloomCheckBoxTexture = bloomCheckBoxInactiveTexture;
+                    //      disableBloom();
+                    //  }
+                    //  else
+                    //  { 
+                    //      bloomCheckBoxTexture = bloomCheckBoxActiveTexture;
+                    //      enableBloom();
+                    //  }
+                    //  
+                    //}
                     break;
 
                 case (menuState.creditsMenu):
@@ -587,6 +606,7 @@ public class MenuScript : MonoBehaviour
                 GUI.DrawTexture(soundSliderRect, soundSliderTexture);
                 GUI.DrawTexture(soundSliderThumbRect, soundSliderThumbTexture);
                 GUI.DrawTexture(optionsScreenRect, optionsScreenTexture);
+                //GUI.DrawTexture(bloomCheckBoxRect, bloomCheckBoxTexture);
 
                 //back button
                 GUI.DrawTexture(backToMenuButtonRect, backToMenuButton);
@@ -629,11 +649,13 @@ public class MenuScript : MonoBehaviour
         {
             soundSliderRect = new Rect(soundSliderX, soundSliderY, soundSliderTexture.width, soundSliderTexture.height);
             soundSliderThumbRect = new Rect(soundSliderThumbX, soundSliderThumbY, soundSliderThumbTexture.width, soundSliderThumbTexture.height);
+            //bloomCheckBoxRect = new Rect(bloomCheckBoxXm bloomCheckBoxY,bloomCheckBoxTexture.width, bloomCheckBoxTexture.height);
             optionsScreenRect = new Rect(optionsScreenX, optionsScreenY, optionsScreenTexture.width, optionsScreenTexture.height);
             backToMenuButtonRect = new Rect(backToMenuButtonX, backToMenuButtonY, backToMenuButton.width, backToMenuButton.height);
 
             soundSliderRect = scaleRect(soundSliderRect);
             soundSliderThumbRect = scaleRect(soundSliderThumbRect);
+            //bloomCheckBoxRect = scaleRect(bloomCheckBoxRect);
             optionsScreenRect = scaleRect(optionsScreenRect);
             backToMenuButtonRect = scaleRect(backToMenuButtonRect);
         }

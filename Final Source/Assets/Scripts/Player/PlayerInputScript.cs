@@ -7,7 +7,8 @@ public class PlayerInputScript : MonoBehaviour {
 	private PlayerController playerController = null;	//the controller
 	private SoundEngineScript soundEngine = null;		//sound engine for sounds
 	private GameLogic gameLogic;						//the Game Logic
-	
+
+    public bool inactiveTimerEnabled = true;
 	private float inactiveTimer = 60.0f;	//if the player is inactive for 60 seconds go back to the menu
 	
 	private float shootTimer = 0.0f;				//cooldown for shooting set after shooting
@@ -155,19 +156,22 @@ public class PlayerInputScript : MonoBehaviour {
 		
 		
 		//check if the player is inactive for 60, if so return to menu
-		if(TouchManager.Instance.ActiveTouches.Count == 0)
-		{
-			inactiveTimer -= Time.deltaTime;
-			if(inactiveTimer <= 0.0f)
-			{
-				Application.LoadLevel("Menu");
-				soundEngine.changeMusic("Menu");
-			}
-		}
-		else
-		{
-			inactiveTimer = 60.0f;
-		}	
+        if (inactiveTimerEnabled)
+        {
+            if (TouchManager.Instance.ActiveTouches.Count == 0)
+            {
+                inactiveTimer -= Time.deltaTime;
+                if (inactiveTimer <= 0.0f)
+                {
+                    Application.LoadLevel("Menu");
+                    soundEngine.changeMusic("Menu");
+                }
+            }
+            else
+            {
+                inactiveTimer = 60.0f;
+            }
+        }
 	}
 	//check the ammo
 	private void  checkAmmo (){
