@@ -9,37 +9,16 @@ public class LabelScript : MonoBehaviour {
 	private Camera cam;
 	
 	private GameObject target;
-	
+
 	private List<string> factList = new List<string>();
+	private int lastFactIndex = 0;
 	
 	void  Awake (){
 		up = Vector3.up;
 		cam = Camera.main;
 		
 		target = GameObject.Find("Player");
-		
-		factList.Add("Zonne-energie is helemaal gratis en het vervuilt niet.");
-		factList.Add("Zonnepanelen zijn helaas nog duur, \n maar dit gaat veranderen in de toekomst");
-		factList.Add("Zonnepanelen werken ook op bewolkte dagen");
-		factList.Add("Er zijn 2 soorten zonnepanelen: zonnecellen voor \n electriciteit- en warmtecollectoren voor warm water");
-		factList.Add("Het installeren van zonnepanelen \n op een huis kost zo’n 7500-8500 euro");
-		factList.Add("Met een volledige installatie van zonnepanelen \n bespaar je ongeveer 125 euro per jaar");
-		factList.Add("Je hebt gemiddeld 12-25 zonnepanelen \n nodig om je huis te voorzien van stroom");
-		factList.Add("Zonnecellen zetten zonlicht om in energie");
-		factList.Add("Warmtecollectoren vangen warmte \n van de zon op en maken warm water");
-		factList.Add("Zonne energie is te gebruiken tot de zon op is");
-		factList.Add("De zon is al 5 miljard jaar oud \n en zal nog 5.5f miljard jaar branden");
-		factList.Add("De omtrek van de aarde is 40.000f km. \n Die van de zon is 4.4f miljoen!");
-		factList.Add("Zonnepanelen werken zeker 20 jaar");
-		factList.Add("Je kunt ook minder zonnepanelen op het \n dak leggen dan je eigenlijknodig hebt");
-		factList.Add("Als je meer elektriciteit opwekt dan je gebruikt \n kun je dat verkopen aan het elektriciteitsbedrijf");
-		factList.Add("Als de zon te weinig warmte heeft gegeven \n warmt de CV ketel het water verder op");
-		factList.Add("Zonnepanelen voor elektriciteit heb je \n binnen 8 tot 10 jaar terugverdiend");
-		factList.Add("Het kost electricteitscollectoren langer dan \n warmtecollectoren om hun geld terug te verdienen");
-	}
-	
-	void  Start (){
-		
+		addFacts ();
 	}
 	
 	void  Update (){
@@ -50,12 +29,38 @@ public class LabelScript : MonoBehaviour {
 	{
 		if (this.guiText.text == "")
 		{
+			Debug.Log (factList.Count);
 			int random = Mathf.RoundToInt(Random.value * factList.Count-1);
-			this.guiText.text = factList[random];	
+			this.guiText.text = factList[random];
+			lastFactIndex = random;
 		}
 	}
 	
 	public void stopDisplay (){
 		this.guiText.text = "";
+		factList.RemoveAt (lastFactIndex);
+		if (factList.Count == 0) addFacts ();
+	}
+
+	private void addFacts() {
+
+		factList.Add ("Zonne-energie is helemaal gratis en het vervuilt niet.");
+		factList.Add ("Zonnepanelen zijn helaas nog duur, \n maar dit gaat veranderen in de toekomst");
+		factList.Add ("Zonnepanelen werken ook op bewolkte dagen");
+		factList.Add ("Er zijn 2 soorten zonnepanelen: zonnecellen voor \n electriciteit- en warmtecollectoren voor warm water");
+		factList.Add ("Het installeren van zonnepanelen \n op een huis kost zo’n 7500-8500 euro");
+		factList.Add ("Met een volledige installatie van zonnepanelen \n bespaar je ongeveer 125 euro per jaar");
+		factList.Add ("Je hebt gemiddeld 12-25 zonnepanelen \n nodig om je huis te voorzien van stroom");
+		factList.Add ("Zonnecellen zetten zonlicht om in energie");
+		factList.Add ("Warmtecollectoren vangen warmte \n van de zon op en maken warm water");
+		factList.Add ("Zonne energie is te gebruiken tot de zon op is");
+		factList.Add ("De zon is al 5 miljard jaar oud \n en zal nog 5.5f miljard jaar branden");
+		factList.Add ("De omtrek van de aarde is 40.000f km. \n Die van de zon is 4.4f miljoen!");
+		factList.Add ("Zonnepanelen werken zeker 20 jaar");
+		factList.Add ("Je kunt ook minder zonnepanelen op het \n dak leggen dan je eigenlijknodig hebt");
+		factList.Add ("Als je meer elektriciteit opwekt dan je gebruikt \n kun je dat verkopen aan het elektriciteitsbedrijf");
+		factList.Add ("Als de zon te weinig warmte heeft gegeven \n warmt de CV ketel het water verder op");
+		factList.Add ("Zonnepanelen voor elektriciteit heb je \n binnen 8 tot 10 jaar terugverdiend");
+		factList.Add ("Het kost electricteitscollectoren langer dan \n warmtecollectoren om hun geld terug te verdienen");
 	}
 }
