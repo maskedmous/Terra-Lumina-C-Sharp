@@ -116,6 +116,18 @@ public class GameLogic : MonoBehaviour
 			checkLose();
 		}
 	}
+
+    public void pauseGame()
+    {
+        Time.timeScale = 0.0f;
+        AudioListener.pause = true;
+    }
+
+    public void unpauseGame()
+    {
+        Time.timeScale = 1.0f;
+        AudioListener.pause = false;
+    }
 	
 	public void decreaseBattery (){	
 		if(stopBatteryBool == false){
