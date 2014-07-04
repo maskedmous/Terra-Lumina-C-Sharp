@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour {
 	private float x5 = 0.0f;
 	private float x6 = 0.0f;
 	private float x7 = 0.0f;
-	private float x8 = 2.3f;
+	private float x8 = 1.15f;
 	private bool  increasing = true;
 	private float v  = 0.0f;
 	private float vx = 0.0f;
