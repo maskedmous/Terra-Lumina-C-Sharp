@@ -119,14 +119,14 @@ public class GameLogic : MonoBehaviour
     public void pauseGame()
     {
         Time.timeScale = 0.0f;
-        soundEngine.pauseSound();
+        if(soundEngine != null) soundEngine.pauseSound();
         gamePaused = true;
     }
 
     public void unpauseGame()
     {
         Time.timeScale = 1.0f;
-        soundEngine.unpauseSound();
+        if(soundEngine != null) soundEngine.unpauseSound();
         gamePaused = false;
     }
 

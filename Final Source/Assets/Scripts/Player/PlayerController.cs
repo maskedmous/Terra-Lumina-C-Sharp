@@ -199,7 +199,7 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isMoving", true);
     }
 
-    private void moveLeft()
+    public void moveLeft()
     {
         if (this.gameObject.rigidbody.velocity.x > -maxSpeed)
         {
@@ -214,7 +214,7 @@ public class PlayerController : MonoBehaviour
         setDirection("Left");
     }
 
-    private void moveRight()
+    public void moveRight()
     {
         if (this.gameObject.rigidbody.velocity.x < maxSpeed)
         {
