@@ -82,7 +82,6 @@ public class CameraStartScript : MonoBehaviour {
 		if (goingToPlayer) {
 			t += Time.deltaTime;
 			speed = 120.0f - 65 * Mathf.Pow (t, 1 / 3.0f);
-			Debug.Log (t);
 		}
 
 		Vector3 camPos = Camera.main.gameObject.transform.position;
