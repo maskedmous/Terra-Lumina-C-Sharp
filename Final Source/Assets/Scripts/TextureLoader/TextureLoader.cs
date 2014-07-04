@@ -153,7 +153,7 @@ public class TextureLoader : MonoBehaviour
 			//if it is still loading, update the progress
 			if(isLoading())
 			{
-				GUI.Label(new Rect(Screen.width / 2, Screen.height / 2 + (Screen.height * 5 / 16), loadedLabelWidth, loadedLabelHeight), percentLoaded(), guiStyle);
+				GUI.Label(new Rect(Screen.width / 2, Screen.height / 2 + (Screen.height * 5 / 16), loadedLabelWidth, loadedLabelHeight), percentLoaded()+"%", guiStyle);
 			}	
 		}
 	}
@@ -203,7 +203,7 @@ public class TextureLoader : MonoBehaviour
 		float part = currentLoaded();
 		float total = countedFiles();
 		float percentage = (part / total) * 100.0f;
-		percentage = Mathf.Round(percentage * 100.0f) / 100.0f;
+        percentage = Mathf.Round(percentage);
 		return percentage.ToString();
 	}
 

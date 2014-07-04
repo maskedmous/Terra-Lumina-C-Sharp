@@ -51,30 +51,30 @@ public class MenuScript : MonoBehaviour
     public Texture2D startButtonPressedTexture = null;
     private Texture2D currentStartTexture = null;
     private Rect startButtonRect;
-    public float startButtonX = -70.0f;
-    public float startButtonY = 220.0f;
+    public float startButtonX = 0.0f;
+    public float startButtonY = 300.0f;
 
     public Texture2D settingsButtonTexture = null;
     public Texture2D settingsButtonPressedTexture = null;
     private Texture2D currentSettingsTexture = null;
     private Rect settingsButtonRect;
-    public float settingsButtonX = -60.0f;
-    public float settingsButtonY = 430.0f;
+    public float settingsButtonX = 0.0f;
+    public float settingsButtonY = 469.0f;
 
     public Texture2D creditsButtonTexture = null;
     public Texture2D creditsButtonPressedTexture = null;
     private Texture2D currentCreditsTexture = null;
     private Rect creditsButtonRect;
-    public float creditsButtonX = -55.0f;
-    public float creditsButtonY = 575.0f;
+    public float creditsButtonX = 0.0f;
+    public float creditsButtonY = 599.0f;
 
     public bool exitButtonAvailable = false;
     public Texture2D exitButtonTexture = null;
     public Texture2D exitButtonPressedTexture = null;
     private Texture2D currentExitTexture = null;
     private Rect exitButtonRect;
-    public float exitButtonX = -30.0f;
-    public float exitButtonY = 720.0f;
+    public float exitButtonX = 0.0f;
+    public float exitButtonY = 730.0f;
 
     private Rect backToMenuButtonRect;
     public float backToMenuButtonX = -25.0f;
