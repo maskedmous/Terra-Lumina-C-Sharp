@@ -55,28 +55,28 @@ public class MenuScript : MonoBehaviour {
 	//button positions
 	public 	Texture2D startButtonTexture 		= null;
 	public 	Texture2D startButtonPressedTexture = null;
-	public  Texture2D currentStartTexture 		= null;
+	private  Texture2D currentStartTexture 		= null;
 	private Rect startButtonRect;
 	public  float startButtonX 					= -70.0f;
 	public 	float startButtonY 					= 220.0f;
 	
 	public 	Texture2D settingsButtonTexture 	= null;
 	public 	Texture2D settingsButtonPressedTexture = null;
-	public  Texture2D currentSettingsTexture 	= null;
+	private  Texture2D currentSettingsTexture 	= null;
 	private Rect settingsButtonRect;
 	public 	float settingsButtonX 				= -60.0f;
 	public 	float settingsButtonY 				= 430.0f;
 	
 	public 	Texture2D creditsButtonTexture 		= null;
 	public 	Texture2D creditsButtonPressedTexture = null;
-	public  Texture2D currentCreditsTexture 	= null;
+	private  Texture2D currentCreditsTexture 	= null;
 	private Rect creditsButtonRect;
 	public 	float creditsButtonX 				= -55.0f;
 	public 	float creditsButtonY 				= 575.0f;
 	
 	public 	Texture2D exitButtonTexture 		= null;
 	public 	Texture2D exitButtonPressedTexture 	= null;
-	public  Texture2D currentExitTexture		= null;
+	private  Texture2D currentExitTexture		= null;
 	private Rect exitButtonRect;
 	public 	float exitButtonX 					= -30.0f;
 	public 	float exitButtonY 					= 720.0f;
@@ -126,7 +126,8 @@ public class MenuScript : MonoBehaviour {
 	
 	private Animator anim 						= null;
 	
-	public void Awake (){
+	public void Awake ()
+	{
 		DontDestroyOnLoad(this.gameObject);
 		//getting the texture loader
 		TextureLoader textureLoader = GameObject.Find("TextureLoader").GetComponent<TextureLoader>() as TextureLoader;
@@ -168,7 +169,7 @@ public class MenuScript : MonoBehaviour {
 		min = soundSliderX + 27;
 		max = soundSliderX + soundSliderTexture.width - 20;
 		calculationLength = max - min;
-		soundSliderThumbX = (soundEngine.getVolume() * calculationLength) + min - (soundSliderThumbTexture.width / 2);
+		soundSliderThumbX = (soundEngine.getVolume() * calculationLength) + min;
 		calculateSound();
 		
 		if(startButtonTexture == null || exitButtonTexture == null || settingsButtonTexture == null || background == null || loadingScreen == null)
@@ -199,7 +200,8 @@ public class MenuScript : MonoBehaviour {
 		}
 	}
 	
-	private void  calculateSound (){
+	private void  calculateSound ()
+	{
 		calculation = (soundSliderThumbX - min) / calculationLength;
 		soundEngine.changeVolume(Mathf.Clamp(calculation, 0.0f, 1.0f));
 	}

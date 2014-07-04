@@ -4,7 +4,7 @@ using System.Collections;
 public class SoundEngineScript : MonoBehaviour {
 	
 	
-	private float volume = 1.0f;
+	private float volume = 0.9031847f;
 	//private bool  muteBool;
 	static bool  soundEngineExists = false;
 	
