@@ -44,6 +44,14 @@ public class TutorialTriggerScript : MonoBehaviour
     private float originalHeight = 1080.0f;
     //texture for the tutorial to show
     private bool showTutorialTextures = false;
+
+    private bool touchInput = true;
+    private bool keyboardInput = false;
+    private bool xboxInput = false;
+
+    //
+    //Touch Textures
+    //
     //tutorial texture A
     private Rect tutorialTextureARect;				//position and texture placed by the creative
     public Texture2D tutorialTextureA = null;
@@ -56,6 +64,38 @@ public class TutorialTriggerScript : MonoBehaviour
     public float xPositionTexB = 0;
     public float yPositionTexB = 0;
     public float timerTexB = -1;
+
+    //
+    //Keyboard Textures
+    //
+    private Rect keyboardTutorialTextureARect;				//position and texture placed by the creative
+    public Texture2D keyboardTutorialTextureA = null;
+    public float xPositionKeyboardTexA = 0.0f;
+    public float yPositionKeyboardTexA = 0.0f;
+    public float timerKeyboardTexA = -1.0f;	//timer of the texture that it'll go away
+    //tutorial texture B
+    private Rect keyboardTutorialTextureBRect;
+    public Texture2D keyboardTutorialTextureB = null;
+    public float xPositionKeyboardTexB = 0;
+    public float yPositionKeyboardTexB = 0;
+    public float timerKeyboardTexB = -1;
+
+    //
+    //Xbox Textures
+    //
+    private Rect xboxTutorialTextureARect;				//position and texture placed by the creative
+    public Texture2D xboxTutorialTextureA = null;
+    public float xPositionXboxTexA = 0.0f;
+    public float yPositionXboxTexA = 0.0f;
+    public float timerXboxTexA = -1.0f;	//timer of the texture that it'll go away
+
+    //tutorial texture B
+    private Rect xboxTutorialTextureBRect;
+    public Texture2D xboxTutorialTextureB = null;
+    public float xPositionXboxTexB = 0;
+    public float yPositionXboxTexB = 0;
+    public float timerXboxTexB = -1;
+
 
     //destroy this tutorial object on exit
     public bool destroyOnExit = false;
@@ -72,6 +112,11 @@ public class TutorialTriggerScript : MonoBehaviour
         {
             soundEngine = GameObject.Find("SoundEngine").GetComponent<SoundEngineScript>() as SoundEngineScript;
         }
+
+        //get the input type!
+        //
+        //insert code
+        //
     }
 
     public void Start()
@@ -92,15 +137,44 @@ public class TutorialTriggerScript : MonoBehaviour
         scale.x = Screen.width / originalWidth;		//X scale is the current width divided by the original width
         scale.y = Screen.height / originalHeight;	//Y scale is the current height divided by the original height
 
-        if (tutorialTextureA != null)
+        if (touchInput)
         {
-            tutorialTextureARect = new Rect(xPositionTexA, yPositionTexA, tutorialTextureA.width, tutorialTextureA.height);
-            tutorialTextureARect = scaleRect(tutorialTextureARect);
+            if (tutorialTextureA != null)
+            {
+                tutorialTextureARect = new Rect(xPositionTexA, yPositionTexA, tutorialTextureA.width, tutorialTextureA.height);
+                tutorialTextureARect = scaleRect(tutorialTextureARect);
+            }
+            if (tutorialTextureB != null)
+            {
+                tutorialTextureBRect = new Rect(xPositionTexB, yPositionTexB, tutorialTextureB.width, tutorialTextureB.height);
+                tutorialTextureBRect = scaleRect(tutorialTextureBRect);
+            }
         }
-        if (tutorialTextureB != null)
+        else if (keyboardInput)
         {
-            tutorialTextureBRect = new Rect(xPositionTexB, yPositionTexB, tutorialTextureB.width, tutorialTextureB.height);
-            tutorialTextureBRect = scaleRect(tutorialTextureBRect);
+            if (keyboardTutorialTextureA != null)
+            {
+                keyboardTutorialTextureARect = new Rect(xPositionKeyboardTexA, yPositionKeyboardTexB, keyboardTutorialTextureA.width, keyboardTutorialTextureA.height);
+                keyboardTutorialTextureARect = scaleRect(keyboardTutorialTextureARect);
+            }
+            if (keyboardTutorialTextureB != null)
+            {
+                keyboardTutorialTextureBRect = new Rect(xPositionKeyboardTexB, yPositionKeyboardTexB, keyboardTutorialTextureB.width, keyboardTutorialTextureB.height);
+                keyboardTutorialTextureBRect = scaleRect(keyboardTutorialTextureBRect);
+            }
+        }
+        else if (xboxInput)
+        {
+            if (xboxTutorialTextureA != null)
+            {
+                xboxTutorialTextureARect = new Rect(xPositionXboxTexA, yPositionXboxTexA, xboxTutorialTextureA.width, xboxTutorialTextureA.height);
+                xboxTutorialTextureARect = scaleRect(xboxTutorialTextureARect);
+            }
+            if (xboxTutorialTextureB != null)
+            {
+                xboxTutorialTextureBRect = new Rect(xPositionXboxTexB, yPositionXboxTexB, xboxTutorialTextureB.width, xboxTutorialTextureB.height);
+                xboxTutorialTextureBRect = scaleRect(xboxTutorialTextureBRect);
+            }
         }
     }
     //scaling the rectangle
@@ -116,13 +190,38 @@ public class TutorialTriggerScript : MonoBehaviour
         {
             scaleTextures();
 
-            if (tutorialTextureA != null)
+            if (touchInput)
             {
-                GUI.DrawTexture(tutorialTextureARect, tutorialTextureA);
+                if (tutorialTextureA != null)
+                {
+                    GUI.DrawTexture(tutorialTextureARect, tutorialTextureA);
+                }
+                if (tutorialTextureB != null)
+                {
+                    GUI.DrawTexture(tutorialTextureBRect, tutorialTextureB);
+                }
             }
-            if (tutorialTextureB != null)
+            else if (keyboardInput)
             {
-                GUI.DrawTexture(tutorialTextureBRect, tutorialTextureB);
+                if (keyboardTutorialTextureA != null)
+                {
+                    GUI.DrawTexture(keyboardTutorialTextureARect, keyboardTutorialTextureA);
+                }
+                if (keyboardTutorialTextureB != null)
+                {
+                    GUI.DrawTexture(keyboardTutorialTextureBRect, keyboardTutorialTextureB);
+                }
+            }
+            else if (xboxInput)
+            {
+                if (xboxTutorialTextureA != null)
+                {
+                    GUI.DrawTexture(xboxTutorialTextureARect, xboxTutorialTextureA);
+                }
+                if (xboxTutorialTextureB != null)
+                {
+                    GUI.DrawTexture(xboxTutorialTextureBRect, xboxTutorialTextureB);
+                }
             }
         }
     }
@@ -152,19 +251,26 @@ public class TutorialTriggerScript : MonoBehaviour
     //blink the buttons
     private void blinkButtons()
     {
-        if (jumpButtonTutorial) playerInput.setBlinkingJumpButton(true);
-        else if (normalShroomButtonTutorial) playerInput.setBlinkingNormalShroomButton(true);
-        else if (flashButtonTutorial) playerInput.setBlinkingFlashButton(true);
-        else if (bumpyShroomButtonTutorial) playerInput.setBlinkingBumpyShroomButton(true);
+        //xbox input has clickable buttons
+        if (touchInput)
+        {
+            if (jumpButtonTutorial) playerInput.setBlinkingJumpButton(true);
+            else if (normalShroomButtonTutorial) playerInput.setBlinkingNormalShroomButton(true);
+            else if (flashButtonTutorial) playerInput.setBlinkingFlashButton(true);
+            else if (bumpyShroomButtonTutorial) playerInput.setBlinkingBumpyShroomButton(true);
+        }
     }
 
     //reset the blinking buttons
     private void resetBlinkingButtons()
     {
-        if (jumpButtonTutorial) playerInput.setBlinkingJumpButton(false);
-        else if (normalShroomButtonTutorial) playerInput.setBlinkingNormalShroomButton(false);
-        else if (flashButtonTutorial) playerInput.setBlinkingFlashButton(false);
-        else if (bumpyShroomButtonTutorial) playerInput.setBlinkingBumpyShroomButton(false);
+        if (touchInput)
+        {
+            if (jumpButtonTutorial) playerInput.setBlinkingJumpButton(false);
+            else if (normalShroomButtonTutorial) playerInput.setBlinkingNormalShroomButton(false);
+            else if (flashButtonTutorial) playerInput.setBlinkingFlashButton(false);
+            else if (bumpyShroomButtonTutorial) playerInput.setBlinkingBumpyShroomButton(false);
+        }
     }
 
     private IEnumerator playAnimation()
@@ -198,11 +304,20 @@ public class TutorialTriggerScript : MonoBehaviour
         {
             changeControls();
             blinkButtons();
-            if (tutorialTextureA != null || tutorialTextureB != null)
+            if (isUsingTextures())
             {
                 showTutorialTextures = true;
             }
         }
+    }
+
+    private bool isUsingTextures()
+    {
+        if (tutorialTextureA != null || tutorialTextureB != null) return true;
+        if (keyboardTutorialTextureA != null || keyboardTutorialTextureB != null) return true;
+        if (xboxTutorialTextureA != null || xboxTutorialTextureB != null) return true;
+
+        return false;
     }
     //while the player stays inside the tutorial box
     public void OnTriggerStay(Collider collider)
@@ -210,17 +325,43 @@ public class TutorialTriggerScript : MonoBehaviour
         if (collider.gameObject.name == "Player")
         {
             if (!cameraMoving) timePassed += Time.deltaTime;
-            if (timePassed > timerTexA)
+
+            if (touchInput)
             {
-                tutorialTextureA = null;
+                if (timePassed > timerTexA)
+                {
+                    tutorialTextureA = null;
+                }
+                if (timePassed > timerTexB)
+                {
+                    tutorialTextureB = null;
+                }
+                if (timePassed > blinkingTime)
+                {
+                    resetBlinkingButtons();
+                }
             }
-            if (timePassed > timerTexB)
+            else if (keyboardInput)
             {
-                tutorialTextureB = null;
+                if (timePassed > timerKeyboardTexA)
+                {
+                    keyboardTutorialTextureA = null;
+                }
+                if (timePassed > timerKeyboardTexB)
+                {
+                    keyboardTutorialTextureB = null;
+                }
             }
-            if (timePassed > blinkingTime)
+            else if (xboxInput)
             {
-                resetBlinkingButtons();
+                if (timePassed > timerXboxTexA)
+                {
+                    xboxTutorialTextureA = null;
+                }
+                if (timePassed > timerXboxTexB)
+                {
+                    xboxTutorialTextureB = null;
+                }
             }
 
             if (lightTutorial)
@@ -270,7 +411,6 @@ public class TutorialTriggerScript : MonoBehaviour
     //
     //setters
     //
-
     public void setAlphaObject(GameObject alphaObj)
     {
         alphaObject = alphaObj;
@@ -348,6 +488,9 @@ public class TutorialTriggerScript : MonoBehaviour
         shootBumpyShroomButtonEnabled = value;
     }
 
+    //
+    //touch
+    //
     public void setTutorialTextureA(Texture2D tex)
     {
         tutorialTextureA = tex;
@@ -384,6 +527,83 @@ public class TutorialTriggerScript : MonoBehaviour
         timerTexB = value;
     }
 
+    //
+    //keyboard
+    //
+    public void setKeyboardTutorialTextureA(Texture2D tex)
+    {
+        keyboardTutorialTextureA = tex;
+    }
+    public void setXPositionKeyboardTexA(float value)
+    {
+        xPositionKeyboardTexA = value;
+    }
+    public void setYPositionKeyboardTexA(float value)
+    {
+        yPositionKeyboardTexA = value;
+    }
+    public void setTimerKeyboardTexA(float value)
+    {
+        timerKeyboardTexA = value;
+    }
+
+    public void setKeyboardTutorialTextureB(Texture2D tex)
+    {
+        keyboardTutorialTextureB = tex;
+    }
+
+    public void setXPositionKeyboardTexB(float value)
+    {
+        xPositionKeyboardTexB = value;
+    }
+    public void setYPositionKeyboardTexB(float value)
+    {
+        yPositionKeyboardTexB = value;
+    }
+
+    public void setTimerKeyboardTexB(float value)
+    {
+        timerKeyboardTexB = value;
+    }
+    //
+    //xbox
+    //
+    public void setXboxTutorialTextureA(Texture2D tex)
+    {
+        xboxTutorialTextureA = tex;
+    }
+    public void setXPositionXboxTexA(float value)
+    {
+        xPositionXboxTexA = value;
+    }
+    public void setYPositionXboxTexA(float value)
+    {
+        yPositionXboxTexA = value;
+    }
+    public void setTimerXboxTexA(float value)
+    {
+        timerXboxTexA = value;
+    }
+
+    public void setXboxTutorialTextureB(Texture2D tex)
+    {
+        xboxTutorialTextureB = tex;
+    }
+
+    public void setXPositionXboxTexB(float value)
+    {
+        xPositionXboxTexB = value;
+    }
+    public void setYPositionXboxTexB(float value)
+    {
+        yPositionXboxTexB = value;
+    }
+
+    public void setTimerXboxTexB(float value)
+    {
+        timerXboxTexB = value;
+    }
+    //
     public void setDestroyOnExit(bool value)
     {
         destroyOnExit = value;
@@ -477,14 +697,12 @@ public class TutorialTriggerScript : MonoBehaviour
         return shootBumpyShroomButtonEnabled;
     }
 
-    public string getTutorialTextureA()
+    //
+    //Touch
+    //
+    public Texture2D getTutorialTextureA()
     {
-        if (tutorialTextureA != null)
-        {
-            return tutorialTextureA.name;
-        }
-
-        return "";
+       return tutorialTextureA;
     }
 
     public float getXPositionTexA()
@@ -502,13 +720,9 @@ public class TutorialTriggerScript : MonoBehaviour
         return timerTexA;
     }
 
-    public string getTutorialTextureB()
+    public Texture2D getTutorialTextureB()
     {
-        if (tutorialTextureB != null)
-        {
-            return tutorialTextureB.name;
-        }
-        return "";
+      return tutorialTextureB;
     }
 
     public float getXPositionTexB()
@@ -525,6 +739,84 @@ public class TutorialTriggerScript : MonoBehaviour
     {
         return timerTexB;
     }
+
+    //
+    //keyboard
+    //
+    public Texture2D getKeyboardTutorialTextureA()
+    {
+        return keyboardTutorialTextureA;
+    }
+    public float getXPositionKeyboardTexA()
+    {
+        return xPositionKeyboardTexA;
+    }
+    public float getYPositionKeyboardTexA()
+    {
+        return yPositionKeyboardTexA;
+    }
+    public float getTimerKeyboardTexA()
+    {
+        return timerKeyboardTexA;
+    }
+
+    public Texture2D getKeyboardTutorialTextureB()
+    {
+        return keyboardTutorialTextureB;
+    }
+
+    public float getXPositionKeyboardTexB()
+    {
+        return xPositionKeyboardTexB;
+    }
+    public float getYPositionKeyboardTexB()
+    {
+        return yPositionKeyboardTexB;
+    }
+
+    public float getTimerKeyboardTexB()
+    {
+        return timerKeyboardTexB;
+    }
+    //
+    //xbox
+    //
+    public Texture2D getXboxTutorialTextureA()
+    {
+        return xboxTutorialTextureA;
+    }
+    public float getXPositionXboxTexA()
+    {
+        return xPositionXboxTexA;
+    }
+    public float getYPositionXboxTexA()
+    {
+        return yPositionXboxTexA;
+    }
+    public float getTimerXboxTexA()
+    {
+        return timerXboxTexA;
+    }
+
+    public Texture2D getXboxTutorialTextureB()
+    {
+        return xboxTutorialTextureB;
+    }
+
+    public float getXPositionXboxTexB()
+    {
+        return xPositionXboxTexB;
+    }
+    public float getYPositionXboxTexB()
+    {
+        return yPositionXboxTexB;
+    }
+
+    public float getTimerXboxTexB()
+    {
+        return timerXboxTexB;
+    }
+    //
 
     public bool getDestroyOnExit()
     {

@@ -240,15 +240,35 @@ public class XmlToScene : MonoBehaviour
                             bool normalShroomButtonEnabled = true;
                             bool bumpyShroomButtonEnabled = true;
 
+                            //touch
                             Texture2D tutorialTextureA = null;
-                            float xPositionTexA = 0;
-                            float yPositionTexA = 0;
-                            float timerTexA = 0;
+                            float xPositionTexA = 0.0f;
+                            float yPositionTexA = 0.0f;
+                            float timerTexA = 0.0f;
 
                             Texture2D tutorialTextureB = null;
-                            float xPositionTexB = 0;
-                            float yPositionTexB = 0;
-                            float timerTexB = 0;
+                            float xPositionTexB = 0.0f;
+                            float yPositionTexB = 0.0f;
+                            float timerTexB = 0.0f;
+
+                            //keyboard
+                            Texture2D keyboardTutorialTextureA = null;
+                            float xPositionKeyboardTexA = 0.0f;
+                            float yPositionKeyboardTexA = 0.0f;
+                            float timerKeyboardTexA = 0.0f;
+                            Texture2D keyboardTutorialTextureB = null;
+                            float xPositionKeyboardTexB = 0.0f;
+                            float yPositionKeyboardTexB = 0.0f;
+                            float timerKeyboardTexB = 0.0f;
+                            //xbox
+                            Texture2D xboxTutorialTextureA = null;
+                            float xPositionXboxTexA = 0.0f;
+                            float yPositionXboxTexA = 0.0f;
+                            float timerXboxTexA = 0.0f;
+                            Texture2D xboxTutorialTextureB = null;
+                            float xPositionXboxTexB = 0.0f;
+                            float yPositionXboxTexB = 0.0f;
+                            float timerXboxTexB = 0.0f;
 
                             bool destroyOnExit = false;
                             bool destroyOnCompletion = false;
@@ -549,6 +569,9 @@ public class XmlToScene : MonoBehaviour
 
                                             foreach (XmlNode textureNodeStats in textureNodes)
                                             {
+                                                //
+                                                //touch input
+                                                //
                                                 if (textureNodeStats.Name == "TextureA")
                                                 {
                                                     XmlNodeList textureANode = textureNodeStats.ChildNodes;
@@ -597,6 +620,113 @@ public class XmlToScene : MonoBehaviour
                                                         }
                                                     }
                                                 }
+                                                //
+
+                                                //
+                                                //keyboard input
+                                                //
+                                                if (textureNodeStats.Name == "KeyboardTextureA")
+                                                {
+                                                    XmlNodeList keyboardTextureANode = textureNodeStats.ChildNodes;
+
+                                                    foreach (XmlNode textureANodeStats in keyboardTextureANode)
+                                                    {
+                                                        if (textureANodeStats.Name == "Texturename")
+                                                        {
+                                                            keyboardTutorialTextureA = textureLoader.getTexture(textureANodeStats.InnerText);
+                                                        }
+                                                        if (textureANodeStats.Name == "x")
+                                                        {
+                                                            xPositionKeyboardTexA = float.Parse(textureANodeStats.InnerText);
+                                                        }
+                                                        if (textureANodeStats.Name == "y")
+                                                        {
+                                                            yPositionKeyboardTexA = float.Parse(textureANodeStats.InnerText);
+                                                        }
+                                                        if (textureANodeStats.Name == "Timer")
+                                                        {
+                                                            timerKeyboardTexA = float.Parse(textureANodeStats.InnerText);
+                                                        }
+                                                    }
+                                                }
+                                                if (textureNodeStats.Name == "KeyboardTextureB")
+                                                {
+                                                    XmlNodeList keyboardTextureBNode = textureNodeStats.ChildNodes;
+
+                                                    foreach (XmlNode textureBNodeStats in keyboardTextureBNode)
+                                                    {
+                                                        if (textureBNodeStats.Name == "Texturename")
+                                                        {
+                                                            keyboardTutorialTextureB = textureLoader.getTexture(textureBNodeStats.InnerText);
+                                                        }
+                                                        if (textureBNodeStats.Name == "x")
+                                                        {
+                                                            xPositionKeyboardTexB = float.Parse(textureBNodeStats.InnerText);
+                                                        }
+                                                        if (textureBNodeStats.Name == "y")
+                                                        {
+                                                            yPositionKeyboardTexB = float.Parse(textureBNodeStats.InnerText);
+                                                        }
+                                                        if (textureBNodeStats.Name == "Timer")
+                                                        {
+                                                            timerKeyboardTexB = float.Parse(textureBNodeStats.InnerText);
+                                                        }
+                                                    }
+                                                }
+                                                //
+
+                                                //
+                                                //xbox input
+                                                //
+                                                if (textureNodeStats.Name == "XboxTextureA")
+                                                {
+                                                    XmlNodeList xboxTextureANode = textureNodeStats.ChildNodes;
+
+                                                    foreach (XmlNode textureANodeStats in xboxTextureANode)
+                                                    {
+                                                        if (textureANodeStats.Name == "Texturename")
+                                                        {
+                                                            xboxTutorialTextureA = textureLoader.getTexture(textureANodeStats.InnerText);
+                                                        }
+                                                        if (textureANodeStats.Name == "x")
+                                                        {
+                                                            xPositionXboxTexA = float.Parse(textureANodeStats.InnerText);
+                                                        }
+                                                        if (textureANodeStats.Name == "y")
+                                                        {
+                                                            yPositionXboxTexA = float.Parse(textureANodeStats.InnerText);
+                                                        }
+                                                        if (textureANodeStats.Name == "Timer")
+                                                        {
+                                                            timerXboxTexA = float.Parse(textureANodeStats.InnerText);
+                                                        }
+                                                    }
+                                                }
+                                                if (textureNodeStats.Name == "XboxTextureB")
+                                                {
+                                                    XmlNodeList xboxTextureBNode = textureNodeStats.ChildNodes;
+
+                                                    foreach (XmlNode textureBNodeStats in xboxTextureBNode)
+                                                    {
+                                                        if (textureBNodeStats.Name == "Texturename")
+                                                        {
+                                                            xboxTutorialTextureB = textureLoader.getTexture(textureBNodeStats.InnerText);
+                                                        }
+                                                        if (textureBNodeStats.Name == "x")
+                                                        {
+                                                            xPositionXboxTexB = float.Parse(textureBNodeStats.InnerText);
+                                                        }
+                                                        if (textureBNodeStats.Name == "y")
+                                                        {
+                                                            yPositionXboxTexB = float.Parse(textureBNodeStats.InnerText);
+                                                        }
+                                                        if (textureBNodeStats.Name == "Timer")
+                                                        {
+                                                            timerXboxTexB = float.Parse(textureBNodeStats.InnerText);
+                                                        }
+                                                    }
+                                                }
+                                                //
                                             }
                                         }
                                         if (tutorialNodeStats.Name == "DestroyOnExit")
@@ -741,10 +871,10 @@ public class XmlToScene : MonoBehaviour
 
                                         if (tutorialTextureA != null)
                                         {
-                                            triggerScript.setTutorialTextureA(tutorialTextureA);
-                                            triggerScript.setXPositionTexA(xPositionTexA);
+                                            triggerScript.setTutorialTextureA(tutorialTextureA);        //set texture
+                                            triggerScript.setXPositionTexA(xPositionTexA);              //set position
                                             triggerScript.setYPositionTexA(yPositionTexA);
-                                            triggerScript.setTimerTexA(timerTexA);
+                                            triggerScript.setTimerTexA(timerTexA);                      //set timer
                                         }
 
                                         if (tutorialTextureB != null)
@@ -753,6 +883,34 @@ public class XmlToScene : MonoBehaviour
                                             triggerScript.setXPositionTexB(xPositionTexB);
                                             triggerScript.setYPositionTexB(yPositionTexB);
                                             triggerScript.setTimerTexB(timerTexB);
+                                        }
+                                        if(keyboardTutorialTextureA != null)
+                                        {
+                                            triggerScript.setKeyboardTutorialTextureA(keyboardTutorialTextureA);
+                                            triggerScript.setXPositionKeyboardTexA(xPositionKeyboardTexA);
+                                            triggerScript.setYPositionKeyboardTexA(yPositionKeyboardTexA);
+                                            triggerScript.setTimerKeyboardTexA(timerKeyboardTexA);
+                                        }
+                                        if(keyboardTutorialTextureB != null)
+                                        {
+                                            triggerScript.setKeyboardTutorialTextureB(keyboardTutorialTextureB);
+                                            triggerScript.setXPositionKeyboardTexB(xPositionKeyboardTexB);
+                                            triggerScript.setYPositionKeyboardTexB(yPositionKeyboardTexB);
+                                            triggerScript.setTimerKeyboardTexB(timerKeyboardTexB);
+                                        }
+                                        if(xboxTutorialTextureA != null)
+                                        {
+                                            triggerScript.setXboxTutorialTextureA(xboxTutorialTextureA);
+                                            triggerScript.setXPositionXboxTexA(xPositionXboxTexA);
+                                            triggerScript.setYPositionXboxTexA(yPositionXboxTexA);
+                                            triggerScript.setTimerXboxTexA(timerXboxTexA);
+                                        }
+                                        if(xboxTutorialTextureB != null)
+                                        {
+                                            triggerScript.setXboxTutorialTextureB(xboxTutorialTextureB);
+                                            triggerScript.setXPositionXboxTexB(xPositionXboxTexB);
+                                            triggerScript.setYPositionXboxTexB(yPositionXboxTexB);
+                                            triggerScript.setTimerXboxTexB(timerXboxTexB);
                                         }
 
                                         //set destroy on exit

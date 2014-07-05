@@ -607,15 +607,17 @@ public class SceneToXML : MonoBehaviour
                 shootNormalShroomButtonEnabledNode.InnerText = triggerScript.getNormalShroomButtonEnabled().ToString();
                 shootBumpyShroomButtonEnabledNode.InnerText = triggerScript.getBumpyShroomButtonEnabled().ToString();
 
-                if (triggerScript.getTutorialTextureA() != "" || triggerScript.getTutorialTextureB() != "")
+                if (triggerScript.getTutorialTextureA() != null || triggerScript.getTutorialTextureB() != null || triggerScript.getKeyboardTutorialTextureA() != null || triggerScript.getKeyboardTutorialTextureB() != null || triggerScript.getXboxTutorialTextureA() != null || triggerScript.getXboxTutorialTextureB() != null)
                 {
                     //textures
                     XmlElement tutorialTexturesNode = xmlDocument.CreateElement("Textures");
                     tutorialNode.AppendChild(tutorialTexturesNode);
 
-
+                    //
+                    //touchinput
+                    //
                     //textureA
-                    if (triggerScript.getTutorialTextureA() != "")
+                    if (triggerScript.getTutorialTextureA() != null)
                     {
                         XmlElement textureANode = xmlDocument.CreateElement("TextureA");
                         tutorialTexturesNode.AppendChild(textureANode);
@@ -631,13 +633,13 @@ public class SceneToXML : MonoBehaviour
                         textureANode.AppendChild(textureAYPositionNode);
                         textureANode.AppendChild(textureATimerNode);
 
-                        textureANameNode.InnerText = triggerScript.getTutorialTextureA();
+                        textureANameNode.InnerText = triggerScript.getTutorialTextureA().name;
                         textureAXPositionNode.InnerText = triggerScript.getXPositionTexA().ToString();
                         textureAYPositionNode.InnerText = triggerScript.getYPositionTexA().ToString();
                         textureATimerNode.InnerText = triggerScript.getTimerTexA().ToString();
                     }
                     //textureB
-                    if (triggerScript.getTutorialTextureB() != "")
+                    if (triggerScript.getTutorialTextureB() != null)
                     {
                         XmlElement textureBNode = xmlDocument.CreateElement("TextureB");
                         tutorialTexturesNode.AppendChild(textureBNode);
@@ -652,11 +654,101 @@ public class SceneToXML : MonoBehaviour
                         textureBNode.AppendChild(textureBYPositionNode);
                         textureBNode.AppendChild(textureBTimerNode);
 
-                        textureBNameNode.InnerText = triggerScript.getTutorialTextureB();
+                        textureBNameNode.InnerText = triggerScript.getTutorialTextureB().name;
                         textureBXPositionNode.InnerText = triggerScript.getXPositionTexB().ToString();
                         textureBYPositionNode.InnerText = triggerScript.getYPositionTexB().ToString();
                         textureBTimerNode.InnerText = triggerScript.getTimerTexB().ToString();
                     }
+                    //
+                    //keyboard input
+                    //
+                    if (triggerScript.getKeyboardTutorialTextureA() != null)
+                    {
+                        XmlElement keyboardTextureANode = xmlDocument.CreateElement("KeyboardTextureA");
+                        tutorialTexturesNode.AppendChild(keyboardTextureANode);
+
+                        XmlElement keyboardTextureANameNode = xmlDocument.CreateElement("Texturename");
+                        XmlElement keyboardTextureAXPositionNode = xmlDocument.CreateElement("x");
+                        XmlElement keyboardTextureAYPositionNode = xmlDocument.CreateElement("y");
+                        XmlElement keyboardTextureATimerNode = xmlDocument.CreateElement("Timer");
+
+                        keyboardTextureANode.AppendChild(keyboardTextureANameNode);
+                        keyboardTextureANode.AppendChild(keyboardTextureAXPositionNode);
+                        keyboardTextureANode.AppendChild(keyboardTextureAYPositionNode);
+                        keyboardTextureANode.AppendChild(keyboardTextureATimerNode);
+
+                        keyboardTextureANameNode.InnerText = triggerScript.getKeyboardTutorialTextureA().name;
+                        keyboardTextureAXPositionNode.InnerText = triggerScript.getXPositionKeyboardTexA().ToString();
+                        keyboardTextureAYPositionNode.InnerText = triggerScript.getYPositionKeyboardTexA().ToString();
+                        keyboardTextureATimerNode.InnerText = triggerScript.getTimerKeyboardTexA().ToString();
+
+                    }
+                    if (triggerScript.getKeyboardTutorialTextureB() != null)
+                    {
+                        XmlElement keyboardTextureBNode = xmlDocument.CreateElement("KeyboardTextureB");
+                        tutorialTexturesNode.AppendChild(keyboardTextureBNode);
+
+                        XmlElement keyboardTextureBNameNode = xmlDocument.CreateElement("Texturename");
+                        XmlElement keyboardTextureBXPositionNode = xmlDocument.CreateElement("x");
+                        XmlElement keyboardTextureBYPositionNode = xmlDocument.CreateElement("y");
+                        XmlElement keyboardTextureBTimerNode = xmlDocument.CreateElement("Timer");
+
+                        keyboardTextureBNode.AppendChild(keyboardTextureBNameNode);
+                        keyboardTextureBNode.AppendChild(keyboardTextureBXPositionNode);
+                        keyboardTextureBNode.AppendChild(keyboardTextureBYPositionNode);
+                        keyboardTextureBNode.AppendChild(keyboardTextureBTimerNode);
+
+                        keyboardTextureBNameNode.InnerText = triggerScript.getKeyboardTutorialTextureB().name;
+                        keyboardTextureBXPositionNode.InnerText = triggerScript.getXPositionKeyboardTexB().ToString();
+                        keyboardTextureBYPositionNode.InnerText = triggerScript.getYPositionKeyboardTexB().ToString();
+                        keyboardTextureBTimerNode.InnerText = triggerScript.getTimerKeyboardTexB().ToString();
+                    }
+                    //
+
+                    //
+                    //xbox input
+                    //
+                    if (triggerScript.getXboxTutorialTextureA() != null)
+                    {
+                        XmlElement xboxTextureANode = xmlDocument.CreateElement("XboxTextureA");
+                        tutorialTexturesNode.AppendChild(xboxTextureANode);
+
+                        XmlElement xboxTextureANameNode = xmlDocument.CreateElement("Texturename");
+                        XmlElement xboxTextureAXPositionNode = xmlDocument.CreateElement("x");
+                        XmlElement xboxTextureAYPositionNode = xmlDocument.CreateElement("y");
+                        XmlElement xboxTextureATimerNode = xmlDocument.CreateElement("Timer");
+
+                        xboxTextureANode.AppendChild(xboxTextureANameNode);
+                        xboxTextureANode.AppendChild(xboxTextureAXPositionNode);
+                        xboxTextureANode.AppendChild(xboxTextureAYPositionNode);
+                        xboxTextureANode.AppendChild(xboxTextureATimerNode);
+
+                        xboxTextureANameNode.InnerText = triggerScript.getXboxTutorialTextureA().name;
+                        xboxTextureAXPositionNode.InnerText = triggerScript.getXPositionXboxTexA().ToString();
+                        xboxTextureAYPositionNode.InnerText = triggerScript.getYPositionXboxTexA().ToString();
+                        xboxTextureATimerNode.InnerText = triggerScript.getTimerXboxTexA().ToString();
+                    }
+                    if (triggerScript.getXboxTutorialTextureB() != null)
+                    {
+                        XmlElement xboxTextureBNode = xmlDocument.CreateElement("XboxTextureB");
+                        tutorialTexturesNode.AppendChild(xboxTextureBNode);
+
+                        XmlElement xboxTextureBNameNode = xmlDocument.CreateElement("Texturename");
+                        XmlElement xboxTextureBXPositionNode = xmlDocument.CreateElement("x");
+                        XmlElement xboxTextureBYPositionNode = xmlDocument.CreateElement("y");
+                        XmlElement xboxTextureBTimerNode = xmlDocument.CreateElement("Timer");
+
+                        xboxTextureBNode.AppendChild(xboxTextureBNameNode);
+                        xboxTextureBNode.AppendChild(xboxTextureBXPositionNode);
+                        xboxTextureBNode.AppendChild(xboxTextureBYPositionNode);
+                        xboxTextureBNode.AppendChild(xboxTextureBTimerNode);
+
+                        xboxTextureBNameNode.InnerText = triggerScript.getXboxTutorialTextureB().name;
+                        xboxTextureBXPositionNode.InnerText = triggerScript.getXPositionXboxTexB().ToString();
+                        xboxTextureBYPositionNode.InnerText = triggerScript.getYPositionXboxTexB().ToString();
+                        xboxTextureBTimerNode.InnerText = triggerScript.getTimerXboxTexB().ToString();
+                    }
+                    //
                 }
 
 
