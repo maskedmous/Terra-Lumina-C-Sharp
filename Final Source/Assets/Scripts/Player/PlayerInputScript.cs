@@ -103,7 +103,16 @@ public class PlayerInputScript : MonoBehaviour
 
     CameraStartScript cameraStartScript = null;
 
+    //alternate control variables
     private bool useXboxController = false;
+    private bool useKeyboard = false;
+
+    private KeyCode leftKey = KeyCode.A;
+    private KeyCode rightKey = KeyCode.D;
+    private KeyCode jumpKey = KeyCode.W;
+    private KeyCode normalShroomkey = KeyCode.N;
+    private KeyCode bouncyShroomKey = KeyCode.B;
+    private KeyCode flashkey = KeyCode.LeftControl;
 
     public void Awake()
     {
