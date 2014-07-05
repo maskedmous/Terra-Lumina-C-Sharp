@@ -33,6 +33,7 @@ public class LabelScript : MonoBehaviour
         if (this.guiText.text == "")
         {
             int random = Mathf.RoundToInt(Random.value * factList.Count - 1);
+            if (random == -1) random = 0;
             this.guiText.text = factList[random];
             lastFactIndex = random;
         }
