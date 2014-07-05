@@ -144,14 +144,14 @@ public class PlayerInputScript : MonoBehaviour
     public void Update()
     {
         //check for xbox controller
-        if (Input.GetJoystickNames().Length != 0)
+        if (Input.GetJoystickNames().Length != 0 && !useXboxController)
         {
             foreach (string joystickname in Input.GetJoystickNames())
             {
                 if (joystickname.Contains("XBOX 360")) useXboxController = true;
             }
         }
-        else if(useXboxController) useXboxController = false;
+        else if(Input.GetJoystickNames().Length == 0 && useXboxController) useXboxController = false;
 
         //fix to get the endlevel trigger as it might not have been loaded yet when the player is initialized
         if (endLevelTriggerObject == null)
