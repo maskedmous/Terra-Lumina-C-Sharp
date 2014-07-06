@@ -21,6 +21,7 @@ using System.IO;
 public class TextureLoader : MonoBehaviour
 {
     //settings
+    private string pathRoot = "";
     public string filePath = "/FolderName";	//filePath of the textures
     public string fileType = "*.png";			//* means all names possible  .png means files with the png extention only
     public string nextScene = "someScene";		//next scene
@@ -59,6 +60,8 @@ public class TextureLoader : MonoBehaviour
         if (LoaderExists == false)
         {
             LoaderExists = true;				//putting the loader exists on true
+            
+            pathRoot = Path.GetPathRoot(Application.dataPath);  //get the root of the path it is currently at
 
             guiStyle.font = (Font)Resources.Load("Fonts/sofachrome rg", typeof(Font));		//loading the font
 
@@ -168,8 +171,12 @@ public class TextureLoader : MonoBehaviour
 
         foreach (string file in fileInfo)
         {
+            //encode the url first because there could be invalid characters
+            string fileURL = WWW.EscapeURL(file.Replace(pathRoot, ""), System.Text.Encoding.Default);
+            //put the pathRoot back up front because EscapeURL doesn't convert ':/' correctly
+            fileURL = pathRoot + fileURL;
             //download the file via WWW
-            WWW wwwTexture = new WWW("file://" + file);
+            WWW wwwTexture = new WWW("file:///" + file);
             //wait for it to download
             yield return wwwTexture;
             Texture2D texture = wwwTexture.texture;
@@ -233,8 +240,12 @@ public class TextureLoader : MonoBehaviour
                 //if the texture exists already in the array then you have doubles, conflicting
                 if (textureExistsAlready(textureName) == false)
                 {
+                    //encode the url first because there could be invalid characters like כהצüן# etc
+                    string fileURL = WWW.EscapeURL(file.Replace(pathRoot, ""), System.Text.Encoding.Default);
+                    //put the pathRoot back up front because EscapeURL doesn't convert ':/' correctly
+                    fileURL = pathRoot + fileURL;
                     //download the texture
-                    WWW wwwTexture = new WWW("file://" + file);
+                    WWW wwwTexture = new WWW("file://" + fileURL);
                     //wait for it to be done
                     yield return wwwTexture;
                     //add it to the array
