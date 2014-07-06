@@ -90,12 +90,16 @@ public class MenuScript : MonoBehaviour
     private Rect soundSliderThumbRect;
     public float soundSliderThumbX = 1350.0f;
     public float soundSliderThumbY = 338.0f;
-    //public Texture2D bloomCheckBoxTexture = null;
-    //public Texture2D bloomCheckBoxActiveTexture = null;
-    //public Texture2D bloomCheckBoxInactiveTexture = null;
-    //private Rect bloomCheckBoxRect;
-    //public float bloomCheckBoxX = 0.0f;
-    //public float bloomCheckBoxY = 0.0f;
+
+    //blooming checkbox
+    private BloomAndLensFlares bloomScript = null;
+    public Texture2D bloomCheckBoxTexture = null;
+    public Texture2D bloomCheckBoxActiveTexture = null;
+    public Texture2D bloomCheckBoxInactiveTexture = null;
+    private Rect bloomCheckBoxRect;
+    public float bloomCheckBoxX = 0.0f;
+    public float bloomCheckBoxY = 0.0f;
+
     public GUISkin sliderSkin;
     public Texture2D optionsScreenTexture = null;
     private Rect optionsScreenRect;
@@ -167,6 +171,8 @@ public class MenuScript : MonoBehaviour
         backToMenuButton = textureLoader.getTexture("Terug");
         soundSliderTexture = textureLoader.getTexture("sliderBackground");
         soundSliderThumbTexture = textureLoader.getTexture("sliderThumb");
+        bloomCheckBoxInactiveTexture = textureLoader.getTexture("uncheckedBox");
+        bloomCheckBoxActiveTexture = textureLoader.getTexture("checkedBox");
         creditsScreen = textureLoader.getTexture("Credits Screen");
         optionsScreenTexture = textureLoader.getTexture("Options Screen");
         easyButtonTexture = textureLoader.getTexture("Easy");
@@ -194,14 +200,17 @@ public class MenuScript : MonoBehaviour
         soundSliderThumbX = (soundEngine.getVolume() * calculationLength) + min;
         calculateSound();
 
-        if (startButtonTexture == null || exitButtonTexture == null || settingsButtonTexture == null || background == null || loadingScreen == null)
-        {
-            Debug.LogError("one of the textures loaded is null");
-        }
+        bloomScript = Camera.main.GetComponent<BloomAndLensFlares>();
+        bloomCheckBoxTexture = bloomCheckBoxActiveTexture;
 
         levelsXmlFilePath = Application.dataPath + "/LevelsXML/";
         fillXmlLevelArray();
         fillLevelArray();
+    }
+
+    public void Start()
+    {
+        
     }
 
     public void OnEnable()
@@ -230,6 +239,11 @@ public class MenuScript : MonoBehaviour
         soundEngine.changeVolume(Mathf.Clamp(calculation, 0.0f, 1.0f));
     }
 
+    private Vector2 invertY(Vector2 vector)
+    {
+        return new Vector2(vector.x, (vector.y - Screen.height) * -1);
+    }
+
     private void touchMoved(object sender, TouchEventArgs events)
     {
         foreach (var touchPoint in events.Touches)
@@ -237,7 +251,7 @@ public class MenuScript : MonoBehaviour
             if (currentMenuState == menuState.optionsMenu)
             {
                 Vector2 position = touchPoint.Position;
-                position = new Vector2(position.x, (position.y - Screen.height) * -1);
+                position = invertY(position);
 
                 updateSlider(position);
             }
@@ -248,11 +262,10 @@ public class MenuScript : MonoBehaviour
     {
         foreach (var touchPoint in events.Touches)
         {
-            //print(touchPoint.Position.x);
             if (currentMenuState == menuState.optionsMenu)
             {
                 Vector2 position = touchPoint.Position;
-                position = new Vector2(position.x, (position.y - Screen.height) * -1);
+                position = invertY(position);
 
                 updateSlider(position);
             }
@@ -277,7 +290,7 @@ public class MenuScript : MonoBehaviour
         foreach (var touchPoint in events.Touches)
         {
             Vector2 position = touchPoint.Position;
-            position = new Vector2(position.x, (position.y - Screen.height) * -1);
+            position = invertY(position);
             isReleasingButton(position);
         }
     }
@@ -327,7 +340,7 @@ public class MenuScript : MonoBehaviour
                         difficulty = "Hard";
                         currentMenuState = menuState.levelSelectionMenu;
                     }
-                    else if(backToMenuButtonRect.Contains(inputXY))
+                    else if (backToMenuButtonRect.Contains(inputXY))
                     {
                         startMenuAnim();
                         currentMenuState = menuState.mainMenu;
@@ -392,7 +405,7 @@ public class MenuScript : MonoBehaviour
                             //GUI.DrawTexture(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), backToMenuButton, ScaleMode.StretchToFill);
                             if (backToMenuButtonRect.Contains(inputXY))
                             {
-                                currentMenuState = menuState.difficultyMenu;   
+                                currentMenuState = menuState.difficultyMenu;
                             }
                         }
                     }
@@ -407,20 +420,17 @@ public class MenuScript : MonoBehaviour
                         anim.SetBool("settingsBool", false);
                     }
 
-                    //if (bloomCheckBoxRect.Contains(inputXY))
-                    //{
-                    //  if(bloomCheckBoxTexture == bloomCheckBoxActiveTexture)
-                    //  {
-                    //      bloomCheckBoxTexture = bloomCheckBoxInactiveTexture;
-                    //      disableBloom();
-                    //  }
-                    //  else
-                    //  { 
-                    //      bloomCheckBoxTexture = bloomCheckBoxActiveTexture;
-                    //      enableBloom();
-                    //  }
-                    //  
-                    //}
+                    if (bloomCheckBoxRect.Contains(inputXY))
+                    {
+                        if (isBloomEnabled())
+                        {
+                            disableBloom();
+                        }
+                        else
+                        {
+                            enableBloom();
+                        }
+                    }
                     break;
 
                 case (menuState.creditsMenu):
@@ -434,6 +444,23 @@ public class MenuScript : MonoBehaviour
                     break;
             }
         }
+    }
+
+    private bool isBloomEnabled()
+    {
+        if (bloomScript.enabled) return true;
+
+        return false;
+    }
+
+    private void disableBloom()
+    {
+        bloomScript.enabled = false;
+    }
+
+    private void enableBloom()
+    {
+        bloomScript.enabled = true;
     }
 
     public void OnGUI()
@@ -632,10 +659,16 @@ public class MenuScript : MonoBehaviour
                 break;
 
             case (menuState.optionsMenu):
+                if (isBloomEnabled())
+                {
+                    bloomCheckBoxTexture = bloomCheckBoxActiveTexture;
+                }
+                else bloomCheckBoxTexture = bloomCheckBoxInactiveTexture;
+
                 GUI.DrawTexture(soundSliderRect, soundSliderTexture);
                 GUI.DrawTexture(soundSliderThumbRect, soundSliderThumbTexture);
                 GUI.DrawTexture(optionsScreenRect, optionsScreenTexture);
-                //GUI.DrawTexture(bloomCheckBoxRect, bloomCheckBoxTexture);
+                GUI.DrawTexture(bloomCheckBoxRect, bloomCheckBoxTexture);
 
                 //back button
                 GUI.DrawTexture(backToMenuButtonRect, backToMenuButton);
@@ -678,6 +711,9 @@ public class MenuScript : MonoBehaviour
 
                 hardButtonRect = new Rect(hardButtonX, hardButtonY, hardButtonTexture.width, hardButtonTexture.height);
                 hardButtonRect = scaleRect(hardButtonRect);
+
+                backToMenuButtonRect = new Rect(backToMenuButtonX, backToMenuButtonY, backToMenuButton.width, backToMenuButton.height);
+                backToMenuButtonRect = scaleRect(backToMenuButtonRect);
                 break;
 
             case (menuState.levelSelectionMenu):
@@ -688,13 +724,13 @@ public class MenuScript : MonoBehaviour
             case (menuState.optionsMenu):
                 soundSliderRect = new Rect(soundSliderX, soundSliderY, soundSliderTexture.width, soundSliderTexture.height);
                 soundSliderThumbRect = new Rect(soundSliderThumbX, soundSliderThumbY, soundSliderThumbTexture.width, soundSliderThumbTexture.height);
-                //bloomCheckBoxRect = new Rect(bloomCheckBoxXm bloomCheckBoxY,bloomCheckBoxTexture.width, bloomCheckBoxTexture.height);
+                bloomCheckBoxRect = new Rect(bloomCheckBoxX, bloomCheckBoxY, bloomCheckBoxTexture.width, bloomCheckBoxTexture.height);
                 optionsScreenRect = new Rect(optionsScreenX, optionsScreenY, optionsScreenTexture.width, optionsScreenTexture.height);
                 backToMenuButtonRect = new Rect(backToMenuButtonX, backToMenuButtonY, backToMenuButton.width, backToMenuButton.height);
 
                 soundSliderRect = scaleRect(soundSliderRect);
                 soundSliderThumbRect = scaleRect(soundSliderThumbRect);
-                //bloomCheckBoxRect = scaleRect(bloomCheckBoxRect);
+                bloomCheckBoxRect = scaleRect(bloomCheckBoxRect);
                 optionsScreenRect = scaleRect(optionsScreenRect);
                 backToMenuButtonRect = scaleRect(backToMenuButtonRect);
                 break;
