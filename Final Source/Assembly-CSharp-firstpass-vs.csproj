@@ -72,6 +72,9 @@
  <Reference Include="TouchScript.TUIO">
  <HintPath>Assets\Standard Assets\TouchScript\Plugins\TouchScript.TUIO.dll</HintPath>
  </Reference>
+ <Reference Include="TouchScript.Windows">
+ <HintPath>Assets\Standard Assets\TouchScript\Plugins\TouchScript.Windows.dll</HintPath>
+ </Reference>
  <Reference Include="TUIOsharp">
  <HintPath>Assets\Standard Assets\TouchScript\Plugins\TUIOsharp.dll</HintPath>
  </Reference>

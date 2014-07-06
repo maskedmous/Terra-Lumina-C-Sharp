@@ -9,7 +9,7 @@ public class PlayerInputScript : MonoBehaviour
     private SoundEngineScript soundEngine = null;		//sound engine for sounds
     private GameLogic gameLogic;						//the Game Logic
 
-    public bool inactiveTimerEnabled = true;
+    public bool inactiveTimerEnabled = false;
     private float inactiveTimer = 60.0f;	//if the player is inactive for 60 seconds go back to the menu
 
     private float shootTimer = 0.0f;				//cooldown for shooting set after shooting
@@ -105,14 +105,17 @@ public class PlayerInputScript : MonoBehaviour
 
     //alternate control variables
     private bool useXboxController = false;
-    private bool useKeyboard = false;
+    private bool useKeyboard = true;
+    private bool useTouchInput = false;
+    private string keyboardSettings = "keyboardSettings.txt";
 
     private KeyCode leftKey = KeyCode.A;
     private KeyCode rightKey = KeyCode.D;
     private KeyCode jumpKey = KeyCode.W;
     private KeyCode normalShroomkey = KeyCode.N;
-    private KeyCode bouncyShroomKey = KeyCode.B;
-    private KeyCode flashkey = KeyCode.LeftControl;
+    private KeyCode bumpyShroomKey = KeyCode.B;
+    private KeyCode flashKey = KeyCode.LeftControl;
+    private KeyCode pauseKey = KeyCode.Escape;
 
     public void Awake()
     {
@@ -174,7 +177,7 @@ public class PlayerInputScript : MonoBehaviour
         //if the game is not finished or lost yet, check for input
         else if (!endLevelTriggerScript.getFinished() && !endLevelTriggerScript.getLost())
         {
-            if(!useXboxController) checkReleasingButton();
+            if(useTouchInput) checkReleasingButton();
             if (chargingNormalShot || chargingBumpyShot) playerController.chargeShot();
             checkAmmo();
             readTouch();
@@ -191,7 +194,7 @@ public class PlayerInputScript : MonoBehaviour
 
 
         //check if the player is inactive for 60, if so return to menu
-        if (inactiveTimerEnabled && !useXboxController)
+        if (inactiveTimerEnabled)
         {
             if (TouchManager.Instance.ActiveTouches.Count == 0)
             {
@@ -211,10 +214,20 @@ public class PlayerInputScript : MonoBehaviour
         //if you use an xbox controller then update the incoming controls and use em
         if(useXboxController && endLevelTriggerObject != null)
         {
-            if (escapePressed) escapeXboxControls();
+            if (escapePressed && useXboxController) escapeXboxControls();
             if (!endLevelTriggerScript.getFinished() && !endLevelTriggerScript.getLost() && !gameLogic.isPaused())
             {
                 xboxControls();
+            }
+        }
+
+        //if you use the keyboard, handle the input
+        if (useKeyboard && endLevelTriggerObject != null)
+        {
+            if (escapePressed && useKeyboard) escapeKeyboard();
+            if (!endLevelTriggerScript.getFinished() && !endLevelTriggerScript.getLost() && !gameLogic.isPaused())
+            {
+                handleKeyboardInput();
             }
         }
     }
@@ -283,6 +296,29 @@ public class PlayerInputScript : MonoBehaviour
             //check if left-stick is to the right
             else if (Input.GetAxis("Horizontal") > 0 && movementRightEnabled) playerController.moveRight();
     }
+
+    private void escapeKeyboard()
+    {
+        if (escapePressed)
+        {
+            if (Input.GetKeyDown(KeyCode.Y)) StartCoroutine(returnToMenu());
+            if (Input.GetKeyDown(KeyCode.N)) resumeGame();
+        }
+    }
+    
+    private void handleKeyboardInput()
+    {
+        if (Input.GetKey(leftKey) && movementLeftEnabled) playerController.moveLeft();
+        if (Input.GetKey(rightKey) && movementRightEnabled) playerController.moveRight();
+        if (Input.GetKeyDown(jumpKey) && jumpButtonEnabled) playerController.jump();
+        if (Input.GetKeyDown(flashKey) && flashButtonEnabled) playerController.flash();
+        if (Input.GetKeyDown(normalShroomkey) && normalShroomButtonEnabled && !chargingNormalShot) activateNormalShroom();
+        if (Input.GetKeyUp(normalShroomkey) && normalShroomButtonEnabled && chargingNormalShot) shootNormalShroom();
+        if (Input.GetKeyDown(bumpyShroomKey) && bumpyShroomButtonEnabled && !chargingBumpyShot) activateBumpyShroom();
+        if (Input.GetKeyUp(bumpyShroomKey) && bumpyShroomButtonEnabled && chargingBumpyShot) shootBumpyShroom();
+        if (Input.GetKeyDown(pauseKey) && !escapePressed) activateEscapeButton();
+    }
+
     //check the ammo
     private void checkAmmo()
     {
@@ -557,7 +593,7 @@ public class PlayerInputScript : MonoBehaviour
             {
                 //first scale the buttons before drawing them
                 scaleButtons();
-                if (!useXboxController)
+                if (useTouchInput)
                 {
                     checkBlinkingButtons();
 
