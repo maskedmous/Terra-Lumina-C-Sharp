@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 using TouchScript;	//we're making use of a touch library so import it
 
 public class PlayerInputScript : MonoBehaviour
@@ -104,18 +106,18 @@ public class PlayerInputScript : MonoBehaviour
     CameraStartScript cameraStartScript = null;
 
     //alternate control variables
-    private bool useXboxController = false;
-    private bool useKeyboard = true;
     private bool useTouchInput = false;
-    private string keyboardSettings = "keyboardSettings.txt";
+    private bool useXboxController = false;
+    private bool useKeyboard = false;
+    private string[] settings = null;
 
-    private KeyCode leftKey = KeyCode.A;
-    private KeyCode rightKey = KeyCode.D;
-    private KeyCode jumpKey = KeyCode.W;
-    private KeyCode normalShroomkey = KeyCode.N;
-    private KeyCode bumpyShroomKey = KeyCode.B;
-    private KeyCode flashKey = KeyCode.LeftControl;
-    private KeyCode pauseKey = KeyCode.Escape;
+    private string leftKey = "a";
+    private string rightKey = "d";
+    private string jumpKey = "space";
+    private string normalShroomkey = "n";
+    private string bumpyShroomKey = "b";
+    private string flashKey = "left ctrl";
+    private string pauseKey = "escape";
 
     public void Awake()
     {
@@ -133,6 +135,40 @@ public class PlayerInputScript : MonoBehaviour
         currentNormalShroomButtonTexture = normalShroomButtonTexture;
         currentBumpyShroomButtonTexture = bumpyShroomButtonTexture;
         currentEscapeButtonTexture = escapeButtonTexture;
+    }
+
+    public void Start()
+    {
+        StreamReader sr = new StreamReader(Application.dataPath + "/Settings/settings.txt");
+        string text = sr.ReadToEnd();
+
+        settings = text.Split('\n');
+        if (settings[0] == "0")
+        {
+            useTouchInput = true;
+            useXboxController = false;
+            useKeyboard = false;
+        }
+        else if (settings[0] == "1")
+        {
+            useTouchInput = false;
+            useXboxController = true;
+            useKeyboard = false;
+        }
+        else if (settings[0] == "2")
+        {
+            useTouchInput = false;
+            useXboxController = false;
+            useKeyboard = true;
+        }
+
+        leftKey = settings[1];
+        rightKey = settings[2];
+        jumpKey = settings[3];
+        normalShroomkey = settings[4];
+        bumpyShroomKey = settings[5];
+        flashKey = settings[6];
+        pauseKey = settings[7];
     }
 
     //when the player is enabled it should add a touchBegan event to the touch manager
@@ -192,6 +228,7 @@ public class PlayerInputScript : MonoBehaviour
                 if (!gameLogic.isPaused())
                 {
                     handleKeyboardInput();
+                    handleMouseInput();
                 }
             }
             //else if you use an xbox controller then update the incoming controls and use em
@@ -321,6 +358,15 @@ public class PlayerInputScript : MonoBehaviour
         if (Input.GetKeyDown(bumpyShroomKey) && bumpyShroomButtonEnabled && !chargingBumpyShot) activateBumpyShroom();
         if (Input.GetKeyUp(bumpyShroomKey) && bumpyShroomButtonEnabled && chargingBumpyShot) shootBumpyShroom();
         if (Input.GetKeyDown(pauseKey) && !escapePressed) activateEscapeButton();
+    }
+
+    private void handleMouseInput()
+    {
+        if (Input.GetMouseButtonDown(0) && normalShroomButtonEnabled && !chargingNormalShot) activateNormalShroom();
+        if (Input.GetMouseButtonUp(0) && normalShroomButtonEnabled && chargingNormalShot) shootNormalShroom();
+        if (Input.GetMouseButtonDown(1) && bumpyShroomButtonEnabled && !chargingBumpyShot) activateBumpyShroom();
+        if (Input.GetMouseButtonUp(1) && bumpyShroomButtonEnabled && chargingBumpyShot) shootBumpyShroom();
+        if (Input.GetMouseButtonDown(2) && flashButtonEnabled) playerController.flash();
     }
 
     //check the ammo

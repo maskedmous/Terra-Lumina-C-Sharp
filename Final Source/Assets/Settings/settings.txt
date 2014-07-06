@@ -1,0 +1,8 @@
+2
+a
+d
+space
+n
+b
+left ctrl
+escape

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 using TouchScript;
 using System.IO;
@@ -148,6 +149,8 @@ public class MenuScript : MonoBehaviour
     public float levelButtonX = 500.0f;
     public float levelButtonY = 300.0f;
 
+    private List<string> settings = new List<string>();
+
     private Animator anim = null;
 
     public void Awake()
@@ -210,7 +213,14 @@ public class MenuScript : MonoBehaviour
 
     public void Start()
     {
-        
+        settings.Add("2");
+        settings.Add("a");
+        settings.Add("d");
+        settings.Add("space");
+        settings.Add("n");
+        settings.Add("b");
+        settings.Add("left ctrl");
+        settings.Add("escape");
     }
 
     public void OnEnable()
@@ -941,6 +951,15 @@ public class MenuScript : MonoBehaviour
 
     private IEnumerator loadLevel()
     {
+        //writing settings to a file (retrieved by playerInput)
+        string pathName = Application.dataPath + "/Settings/settings.txt";
+        string text = "";
+        for (int i = 0; i < settings.Count; ++i)
+        {
+            text += settings[i] + "\n";
+        }
+        System.IO.File.WriteAllText(pathName, text);
+
         //next scene with the loader
         Application.LoadLevel("LevelLoaderScene");
         //first wait for the next scene to loader		  		
