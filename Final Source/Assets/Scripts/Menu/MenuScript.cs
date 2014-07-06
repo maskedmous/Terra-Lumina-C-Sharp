@@ -7,7 +7,7 @@ using System.Xml;
 
 public class MenuScript : MonoBehaviour
 {
-    enum menuState { mainMenu, startMenu, optionsMenu, creditsMenu, loadingLevel }
+    enum menuState { mainMenu, levelSelectionMenu, difficultyMenu, optionsMenu, creditsMenu, loadingLevel }
 
     private menuState currentMenuState = menuState.mainMenu;
 
@@ -19,7 +19,6 @@ public class MenuScript : MonoBehaviour
     private Texture2D creditsScreen = null;
 
     private string difficulty = "Easy";
-    private bool openDifficultyMenu = false;
 
     private string levelFilename = "";
     private ArrayList levels = new ArrayList();
@@ -117,6 +116,29 @@ public class MenuScript : MonoBehaviour
     private float calculationLength;
     private float calculation;
 
+    //level buttons
+
+    //easy
+    public Texture2D easyButtonTexture = null;
+    public Texture2D easyButtonTexturePressed = null;
+    private Rect easyButtonRect;
+    public float easyButtonX = 300.0f;
+    public float easyButtonY = 330.0f;
+
+    //medium
+    public Texture2D mediumButtonTexture = null;
+    public Texture2D mediumButtonTexturePressed = null;
+    private Rect mediumButtonRect;
+    public float mediumButtonX = 300.0f;
+    public float mediumButtonY = 500.0f;
+
+    //hard
+    public Texture2D hardButtonTexture = null;
+    public Texture2D hardButtonTexturePressed = null;
+    private Rect hardButtonRect;
+    public float hardButtonX = 300.0f;
+    public float hardButtonY = 670.0f;
+
     public float levelButtonSpaceX = 265.0f;
     public float levelButtonSpaceY = 0.0f;
     public float levelButtonX = 500.0f;
@@ -147,6 +169,9 @@ public class MenuScript : MonoBehaviour
         soundSliderThumbTexture = textureLoader.getTexture("sliderThumb");
         creditsScreen = textureLoader.getTexture("Credits Screen");
         optionsScreenTexture = textureLoader.getTexture("Options Screen");
+        easyButtonTexture = textureLoader.getTexture("Easy");
+        mediumButtonTexture = textureLoader.getTexture("Medium");
+        hardButtonTexture = textureLoader.getTexture("Hard");
 
         currentStartTexture = startButtonTexture;
         currentSettingsTexture = settingsButtonTexture;
@@ -213,15 +238,8 @@ public class MenuScript : MonoBehaviour
             {
                 Vector2 position = touchPoint.Position;
                 position = new Vector2(position.x, (position.y - Screen.height) * -1);
-                //scaled rect.contains position
-                if (soundSliderRect.Contains(position))
-                {
-                    //sliderEnabled = true;
-                    soundSliderThumbX = (position.x / scale.x) - (soundSliderThumbTexture.width / 2);
-                    if (soundSliderThumbX + (soundSliderThumbTexture.width / 2) < min) soundSliderThumbX = min - (soundSliderThumbTexture.width / 2);
-                    else if (soundSliderThumbX + (soundSliderThumbTexture.width / 2) > max) soundSliderThumbX = max - (soundSliderThumbTexture.width / 2);
-                    calculateSound();
-                }
+
+                updateSlider(position);
             }
         }
     }
@@ -235,16 +253,22 @@ public class MenuScript : MonoBehaviour
             {
                 Vector2 position = touchPoint.Position;
                 position = new Vector2(position.x, (position.y - Screen.height) * -1);
-                //scaled rect.contains position
-                if (soundSliderRect.Contains(position))
-                {
-                    //sliderEnabled = true;
-                    soundSliderThumbX = (position.x / scale.x) - ((soundSliderThumbTexture.width / 2));
-                    if (soundSliderThumbX + (soundSliderThumbTexture.width / 2) < min) soundSliderThumbX = min - (soundSliderThumbTexture.width / 2);
-                    else if (soundSliderThumbX + (soundSliderThumbTexture.width / 2) > max) soundSliderThumbX = max - (soundSliderThumbTexture.width / 2);
-                    calculateSound();
-                }
+
+                updateSlider(position);
             }
+        }
+    }
+
+    private void updateSlider(Vector2 position)
+    {
+        //scaled rect.contains position
+        if (soundSliderRect.Contains(position))
+        {
+            //sliderEnabled = true;
+            soundSliderThumbX = (position.x / scale.x) - (soundSliderThumbTexture.width / 2);
+            if (soundSliderThumbX + (soundSliderThumbTexture.width / 2) < min) soundSliderThumbX = min - (soundSliderThumbTexture.width / 2);
+            else if (soundSliderThumbX + (soundSliderThumbTexture.width / 2) > max) soundSliderThumbX = max - (soundSliderThumbTexture.width / 2);
+            calculateSound();
         }
     }
 
@@ -287,7 +311,32 @@ public class MenuScript : MonoBehaviour
                     }
                     break;
 
-                case (menuState.startMenu):
+                case (menuState.difficultyMenu):
+                    if (easyButtonRect.Contains(inputXY))
+                    {
+                        difficulty = "Easy";
+                        currentMenuState = menuState.levelSelectionMenu;
+                    }
+                    else if (mediumButtonRect.Contains(inputXY))
+                    {
+                        difficulty = "Medium";
+                        currentMenuState = menuState.levelSelectionMenu;
+                    }
+                    else if (hardButtonRect.Contains(inputXY))
+                    {
+                        difficulty = "Hard";
+                        currentMenuState = menuState.levelSelectionMenu;
+                    }
+                    else if(backToMenuButtonRect.Contains(inputXY))
+                    {
+                        startMenuAnim();
+                        currentMenuState = menuState.mainMenu;
+                        touchEnabled = false;
+                        anim.SetBool("levelBool", false);
+                    }
+                    break;
+
+                case (menuState.levelSelectionMenu):
 
                     //show all levels (max 6? per screen)
                     int levelCount = startLevelCount;
@@ -343,10 +392,7 @@ public class MenuScript : MonoBehaviour
                             //GUI.DrawTexture(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), backToMenuButton, ScaleMode.StretchToFill);
                             if (backToMenuButtonRect.Contains(inputXY))
                             {
-                                startMenuAnim();
-                                currentMenuState = menuState.mainMenu;
-                                touchEnabled = false;
-                                anim.SetBool("levelBool", false);
+                                currentMenuState = menuState.difficultyMenu;   
                             }
                         }
                     }
@@ -476,7 +522,7 @@ public class MenuScript : MonoBehaviour
                             {
                                 clickedStart = false;
                                 leaveMenuAnim = false;
-                                currentMenuState = menuState.startMenu;
+                                currentMenuState = menuState.difficultyMenu;
                             }
                         }
                     }
@@ -548,8 +594,14 @@ public class MenuScript : MonoBehaviour
                 if (exitButtonAvailable) GUI.DrawTexture(exitButtonRect, currentExitTexture);
 
                 break;
+            case (menuState.difficultyMenu):
+                GUI.DrawTexture(easyButtonRect, easyButtonTexture);
+                GUI.DrawTexture(mediumButtonRect, mediumButtonTexture);
+                GUI.DrawTexture(hardButtonRect, hardButtonTexture);
+                GUI.DrawTexture(backToMenuButtonRect, backToMenuButton);
+                break;
 
-            case (menuState.startMenu):
+            case (menuState.levelSelectionMenu):
                 //show all levels (max 6? per screen)
                 int levelCount = startLevelCount;
                 int spaceCountX = 0;
@@ -577,29 +629,6 @@ public class MenuScript : MonoBehaviour
                 {
                     GUI.DrawTexture(backToMenuButtonRect, backToMenuButton);
                 }
-
-                if (GUI.Button(scaleRect(new Rect(1700, 100, 100, 50)), difficulty))
-                {
-                    openDifficultyMenu = true;
-                }
-                if (openDifficultyMenu)
-                {
-                    if (GUI.Button(scaleRect(new Rect(1700, 150, 100, 50)), "Easy"))
-                    {
-                        difficulty = "Easy";
-                        openDifficultyMenu = false;
-                    }
-                    if (GUI.Button(scaleRect(new Rect(1700, 200, 100, 50)), "Medium"))
-                    {
-                        difficulty = "Medium";
-                        openDifficultyMenu = false;
-                    }
-                    if (GUI.Button(scaleRect(new Rect(1700, 250, 100, 50)), "Hard"))
-                    {
-                        difficulty = "Hard";
-                        openDifficultyMenu = false;
-                    }
-                }
                 break;
 
             case (menuState.optionsMenu):
@@ -625,48 +654,58 @@ public class MenuScript : MonoBehaviour
         //original width / height is defined in a variable at top, we use an aspect ratio of 16:9 and original screen size of 1920x1080
         scale.x = Screen.width / originalWidth;		//X scale is the current width divided by the original width
         scale.y = Screen.height / originalHeight;	//Y scale is the current height divided by the original height
-
-        //first put the rectangles back to its original size before scaling
-        if (currentMenuState == menuState.mainMenu)
+        switch (currentMenuState)
         {
-            startButtonRect = new Rect(startButtonX, startButtonY, startButtonTexture.width, startButtonTexture.height);
-            settingsButtonRect = new Rect(settingsButtonX, settingsButtonY, settingsButtonTexture.width, settingsButtonTexture.height);
-            creditsButtonRect = new Rect(creditsButtonX, creditsButtonY, creditsButtonTexture.width, creditsButtonTexture.height);
-            exitButtonRect = new Rect(exitButtonX, exitButtonY, exitButtonTexture.width, exitButtonTexture.height);
+            case (menuState.mainMenu):
+                startButtonRect = new Rect(startButtonX, startButtonY, startButtonTexture.width, startButtonTexture.height);
+                settingsButtonRect = new Rect(settingsButtonX, settingsButtonY, settingsButtonTexture.width, settingsButtonTexture.height);
+                creditsButtonRect = new Rect(creditsButtonX, creditsButtonY, creditsButtonTexture.width, creditsButtonTexture.height);
+                exitButtonRect = new Rect(exitButtonX, exitButtonY, exitButtonTexture.width, exitButtonTexture.height);
 
-            //second scale the rectangles
-            startButtonRect = scaleRect(startButtonRect);
-            settingsButtonRect = scaleRect(settingsButtonRect);
-            creditsButtonRect = scaleRect(creditsButtonRect);
-            exitButtonRect = scaleRect(exitButtonRect);
-        }
-        if (currentMenuState == menuState.startMenu)
-        {
-            backToMenuButtonRect = new Rect(backToMenuButtonX, backToMenuButtonY, backToMenuButton.width, backToMenuButton.height);
-            backToMenuButtonRect = scaleRect(backToMenuButtonRect);
-        }
-        if (currentMenuState == menuState.optionsMenu)
-        {
-            soundSliderRect = new Rect(soundSliderX, soundSliderY, soundSliderTexture.width, soundSliderTexture.height);
-            soundSliderThumbRect = new Rect(soundSliderThumbX, soundSliderThumbY, soundSliderThumbTexture.width, soundSliderThumbTexture.height);
-            //bloomCheckBoxRect = new Rect(bloomCheckBoxXm bloomCheckBoxY,bloomCheckBoxTexture.width, bloomCheckBoxTexture.height);
-            optionsScreenRect = new Rect(optionsScreenX, optionsScreenY, optionsScreenTexture.width, optionsScreenTexture.height);
-            backToMenuButtonRect = new Rect(backToMenuButtonX, backToMenuButtonY, backToMenuButton.width, backToMenuButton.height);
+                //second scale the rectangles
+                startButtonRect = scaleRect(startButtonRect);
+                settingsButtonRect = scaleRect(settingsButtonRect);
+                creditsButtonRect = scaleRect(creditsButtonRect);
+                exitButtonRect = scaleRect(exitButtonRect);
+                break;
 
-            soundSliderRect = scaleRect(soundSliderRect);
-            soundSliderThumbRect = scaleRect(soundSliderThumbRect);
-            //bloomCheckBoxRect = scaleRect(bloomCheckBoxRect);
-            optionsScreenRect = scaleRect(optionsScreenRect);
-            backToMenuButtonRect = scaleRect(backToMenuButtonRect);
-        }
+            case (menuState.difficultyMenu):
+                easyButtonRect = new Rect(easyButtonX, easyButtonY, easyButtonTexture.width, easyButtonTexture.height);
+                easyButtonRect = scaleRect(easyButtonRect);
 
-        if (currentMenuState == menuState.creditsMenu)
-        {
-            creditsScreenRect = new Rect(creditsScreenX, creditsScreenY, creditsScreen.width, creditsScreen.height);
-            backToMenuButtonRect = new Rect(backToMenuButtonX, backToMenuButtonY, backToMenuButton.width, backToMenuButton.height);
+                mediumButtonRect = new Rect(mediumButtonX, mediumButtonY, mediumButtonTexture.width, mediumButtonTexture.height);
+                mediumButtonRect = scaleRect(mediumButtonRect);
 
-            creditsScreenRect = scaleRect(creditsScreenRect);
-            backToMenuButtonRect = scaleRect(backToMenuButtonRect);
+                hardButtonRect = new Rect(hardButtonX, hardButtonY, hardButtonTexture.width, hardButtonTexture.height);
+                hardButtonRect = scaleRect(hardButtonRect);
+                break;
+
+            case (menuState.levelSelectionMenu):
+                backToMenuButtonRect = new Rect(backToMenuButtonX, backToMenuButtonY, backToMenuButton.width, backToMenuButton.height);
+                backToMenuButtonRect = scaleRect(backToMenuButtonRect);
+                break;
+
+            case (menuState.optionsMenu):
+                soundSliderRect = new Rect(soundSliderX, soundSliderY, soundSliderTexture.width, soundSliderTexture.height);
+                soundSliderThumbRect = new Rect(soundSliderThumbX, soundSliderThumbY, soundSliderThumbTexture.width, soundSliderThumbTexture.height);
+                //bloomCheckBoxRect = new Rect(bloomCheckBoxXm bloomCheckBoxY,bloomCheckBoxTexture.width, bloomCheckBoxTexture.height);
+                optionsScreenRect = new Rect(optionsScreenX, optionsScreenY, optionsScreenTexture.width, optionsScreenTexture.height);
+                backToMenuButtonRect = new Rect(backToMenuButtonX, backToMenuButtonY, backToMenuButton.width, backToMenuButton.height);
+
+                soundSliderRect = scaleRect(soundSliderRect);
+                soundSliderThumbRect = scaleRect(soundSliderThumbRect);
+                //bloomCheckBoxRect = scaleRect(bloomCheckBoxRect);
+                optionsScreenRect = scaleRect(optionsScreenRect);
+                backToMenuButtonRect = scaleRect(backToMenuButtonRect);
+                break;
+
+            case (menuState.creditsMenu):
+                creditsScreenRect = new Rect(creditsScreenX, creditsScreenY, creditsScreen.width, creditsScreen.height);
+                backToMenuButtonRect = new Rect(backToMenuButtonX, backToMenuButtonY, backToMenuButton.width, backToMenuButton.height);
+
+                creditsScreenRect = scaleRect(creditsScreenRect);
+                backToMenuButtonRect = scaleRect(backToMenuButtonRect);
+                break;
         }
     }
 
