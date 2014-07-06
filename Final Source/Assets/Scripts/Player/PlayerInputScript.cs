@@ -163,6 +163,7 @@ public class PlayerInputScript : MonoBehaviour
                 if (joystickname.Contains("XBOX 360")) useXboxController = true;
             }
         }
+        //disable the xbox controller because it is not connected anymore
         else if(Input.GetJoystickNames().Length == 0 && useXboxController) useXboxController = false;
 
         //fix to get the endlevel trigger as it might not have been loaded yet when the player is initialized
@@ -177,10 +178,32 @@ public class PlayerInputScript : MonoBehaviour
         //if the game is not finished or lost yet, check for input
         else if (!endLevelTriggerScript.getFinished() && !endLevelTriggerScript.getLost())
         {
-            if(useTouchInput) checkReleasingButton();
-            if (chargingNormalShot || chargingBumpyShot) playerController.chargeShot();
             checkAmmo();
-            readTouch();
+            //if you use touch input
+            if (useTouchInput)
+            {
+                checkReleasingButton();
+                readTouch();
+            }
+            //else if you use the keyboard, handle the input
+            else if(useKeyboard)
+            {
+                if (escapePressed) escapeKeyboard();
+                if (!gameLogic.isPaused())
+                {
+                    handleKeyboardInput();
+                }
+            }
+            //else if you use an xbox controller then update the incoming controls and use em
+            else if(useXboxController)
+            {
+                if (escapePressed) escapeXboxControls();
+                if (!gameLogic.isPaused())
+                {
+                    xboxControls();
+                }
+            }
+            if (chargingNormalShot || chargingBumpyShot) playerController.chargeShot();
             playerController.brake();
         }
         //else if the game is lost or finished stop the moment and control of the player
@@ -203,33 +226,14 @@ public class PlayerInputScript : MonoBehaviour
                 {
                     Application.LoadLevel("Menu");
                     soundEngine.changeMusic("Menu");
+                    if (gameLogic.isPaused()) gameLogic.unpauseGame();
                 }
             }
             else
             {
                 inactiveTimer = 60.0f;
             }
-        }
-
-        //if you use an xbox controller then update the incoming controls and use em
-        if(useXboxController && endLevelTriggerObject != null)
-        {
-            if (escapePressed && useXboxController) escapeXboxControls();
-            if (!endLevelTriggerScript.getFinished() && !endLevelTriggerScript.getLost() && !gameLogic.isPaused())
-            {
-                xboxControls();
-            }
-        }
-
-        //if you use the keyboard, handle the input
-        if (useKeyboard && endLevelTriggerObject != null)
-        {
-            if (escapePressed && useKeyboard) escapeKeyboard();
-            if (!endLevelTriggerScript.getFinished() && !endLevelTriggerScript.getLost() && !gameLogic.isPaused())
-            {
-                handleKeyboardInput();
-            }
-        }
+        }        
     }
 
     private void escapeXboxControls()
