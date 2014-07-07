@@ -8,19 +8,24 @@ using System.Xml;
 
 public class MenuScript : MonoBehaviour
 {
-    enum menuState { mainMenu, levelSelectionMenu, difficultyMenu, optionsMenu, creditsMenu, loadingLevel }
+    enum menuState { mainMenu, levelSelectionMenu, difficultyMenu, optionsMenu, setKeyboardControls, acceptSettings, creditsMenu, loadingLevel }
 
     private menuState currentMenuState = menuState.mainMenu;
+
+    private bool heimBuild = false;
 
     private Texture2D background = null;
     private Texture2D loadingScreen = null;
     private Texture2D level1 = null;
     private Texture2D backToMenuButton = null;
-
     private Texture2D creditsScreen = null;
 
+    private GUIStyle customFont = new GUIStyle();
+
+    //difficulty
     private string difficulty = "Easy";
 
+    //levels
     private string levelFilename = "";
     private ArrayList levels = new ArrayList();
     private ArrayList xmlLevels = new ArrayList();
@@ -43,6 +48,11 @@ public class MenuScript : MonoBehaviour
     private bool clickedQuit = false;
     private bool leaveMenuAnim = false;
     private bool menuAnim = true;
+
+    //scales for button positions
+    private float originalWidth = 1920.0f;
+    private float originalHeight = 1080.0f;
+    private Vector3 scale = Vector3.zero;
 
     //button positions
     public Texture2D startButtonTexture = null;
@@ -98,8 +108,8 @@ public class MenuScript : MonoBehaviour
     public Texture2D bloomCheckBoxActiveTexture = null;
     public Texture2D bloomCheckBoxInactiveTexture = null;
     private Rect bloomCheckBoxRect;
-    public float bloomCheckBoxX = 0.0f;
-    public float bloomCheckBoxY = 0.0f;
+    public float bloomCheckBoxX = 615.0f;
+    public float bloomCheckBoxY = 560.0f;
 
     public GUISkin sliderSkin;
     public Texture2D optionsScreenTexture = null;
@@ -107,10 +117,51 @@ public class MenuScript : MonoBehaviour
     public float optionsScreenX = 0.0f;
     public float optionsScreenY = 0.0f;
 
-    //scales for button positions
-    private float originalWidth = 1920.0f;
-    private float originalHeight = 1080.0f;
-    private Vector3 scale = Vector3.zero;
+    public Texture2D arrowLeftTexture = null;
+    private Rect arrowLeftRect;
+    public float arrowLeftX = 520.0f;
+    public float arrowLeftY = 700.0f;
+
+    public int controllerTypeFontSize = 26;
+    private Rect controllerTypeTextRect;
+    public float controllerTypeTextX = 710.0f;
+    public float controllerTypeTextY = 725.0f;
+    public float controllerTypeTextWidth = 200.0f;
+    public float controllerTypeTextHeight = 100.0f;
+
+    public Texture2D arrowRightTexture = null;
+    private Rect arrowRightRect;
+    public float arrowRightX = 1200.0f;
+    public float arrowRightY = 700.0f;
+
+    public Texture2D customizeKeyboardTexture = null;
+    private Rect customizeKeyboardRect;
+    public float customizeKeyboardX = 680.0f;
+    public float customizeKeyboardY = 800.0f;
+
+    public Texture2D applySettingsTexture = null;
+    private Rect applySettingsRect;
+    public float applySettingsX = 1400.0f;
+    public float applySettingsY = 900.0f;
+
+    public int questionSettingsSize = 26;
+    private Rect questionSettingsRect;
+    public float questionSettingsX = 30.0f;
+    public float questionSettingsY = 490.0f;
+    public float questionSettingsWidth = 200.0f;
+    public float questionSettingsHeight = 100.0f;
+
+    public Texture2D acceptSettingsTexture = null;
+    private Rect acceptSettingsRect;
+    public float acceptSettingsX = 140.0f;
+    public float acceptSettingsY = 600.0f;
+
+    public Texture2D revertSettingsTexture = null;
+    private Rect revertSettingsRect;
+    public float revertSettingsX = 430.0f;
+    public float revertSettingsY = 600.0f;
+
+    private bool changedSettings = false;
 
     private SoundEngineScript soundEngine = null;
     private bool touchEnabled = false;
@@ -149,13 +200,132 @@ public class MenuScript : MonoBehaviour
     public float levelButtonX = 500.0f;
     public float levelButtonY = 300.0f;
 
-    private List<string> settings = new List<string>();
-
     private Animator anim = null;
+
+
+    //different inputs
+    public bool debugTouch = false;
+    private int inputType = 0;  //tuio + mouse standard
+    private List<KeyCode> keyboardSettings = new List<KeyCode>();
+
+    private KeyCode moveLeftKey = KeyCode.A;
+    private KeyCode moveRightKey = KeyCode.D;
+    private KeyCode jumpKey = KeyCode.Space;
+    private KeyCode normalShroomKey = KeyCode.N;
+    private KeyCode bumpyShroomKey = KeyCode.B;
+    private KeyCode flashKey = KeyCode.LeftControl;
+    private KeyCode escapeKey = KeyCode.Escape;
+
+
+    TouchScript.InputSources.MouseInput mouseInput = null;
+    TouchScript.InputSources.TuioInput tuioInput = null;
+    TouchScript.InputSources.Win7TouchInput win7Input = null;
+    TouchScript.InputSources.Win8TouchInput win8Input = null;
 
     public void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+
+        initializeScripts();
+        initializeTextures();
+
+        if (!heimBuild)
+        {
+            loadSettings();
+        }
+
+        initializeSound();
+        initalizeInput();
+        startMenuAnim();
+
+        levelsXmlFilePath = Application.dataPath + "/LevelsXML/";
+        fillXmlLevelArray();
+        fillLevelArray();
+    }
+
+    private void initializeScripts()
+    {
+        anim = GameObject.Find("RoverAnimMenu").GetComponent<Animator>();
+        soundEngine = GameObject.Find("SoundEngine").GetComponent<SoundEngineScript>() as SoundEngineScript;
+        bloomScript = Camera.main.GetComponent<BloomAndLensFlares>();
+
+        GameObject inputSources = GameObject.Find("TouchScript").transform.FindChild("Inputs").gameObject;
+
+        mouseInput = inputSources.GetComponent<TouchScript.InputSources.MouseInput>();
+        tuioInput = inputSources.GetComponent<TouchScript.InputSources.TuioInput>();
+        win7Input = inputSources.GetComponent<TouchScript.InputSources.Win7TouchInput>();
+        win8Input = inputSources.GetComponent<TouchScript.InputSources.Win8TouchInput>();
+
+        
+        //setting font
+        customFont.font = (Font)Resources.Load("Fonts/sofachrome rg") as Font;
+        
+        //setting color
+        Color fontColor = customFont.normal.textColor;
+
+        fontColor.b = 197.0f / 255.0f;
+        fontColor.g = 185.0f / 255.0f;
+        fontColor.r = 147.0f / 255.0f;
+
+        customFont.normal.textColor = fontColor;
+    }
+
+
+    private void initalizeInput()
+    {
+        //tuio + mouse
+        if (inputType == 0)
+        {
+            mouseInput.enabled = true;
+            tuioInput.enabled = true;
+            win7Input.enabled = false;
+            win8Input.enabled = false;
+        }
+        //keyboard + mouse
+        else if (inputType == 1)
+        {
+            mouseInput.enabled = true;
+            tuioInput.enabled = true;
+            win7Input.enabled = false;
+            win8Input.enabled = false;
+        }
+        //win 7 touch
+        else if (inputType == 2)
+        {
+            mouseInput.enabled = false;
+            tuioInput.enabled = true;
+            win7Input.enabled = true;
+            win8Input.enabled = false;
+        }
+        //win 8 touch
+        else if (inputType == 3)
+        {
+            mouseInput.enabled = false;
+            tuioInput.enabled = true;
+            win7Input.enabled = false;
+            win8Input.enabled = true;
+        }
+        //xbox controller + mouse
+        else if (inputType == 4)
+        {
+            mouseInput.enabled = true;
+            tuioInput.enabled = true;
+            win7Input.enabled = false;
+            win8Input.enabled = false;
+        }
+    }
+
+    private void initializeSound()
+    {
+        min = soundSliderX + 27;
+        max = soundSliderX + soundSliderTexture.width - 20;
+        calculationLength = max - min;
+        soundSliderThumbX = (soundEngine.getVolume() * calculationLength) + min;
+        calculateSound();
+    }
+
+    private void initializeTextures()
+    {
         //getting the texture loader
         TextureLoader textureLoader = GameObject.Find("TextureLoader").GetComponent<TextureLoader>() as TextureLoader;
         //get the textures from the texture loader
@@ -172,10 +342,20 @@ public class MenuScript : MonoBehaviour
         loadingScreen = textureLoader.getTexture("Loading");
         level1 = textureLoader.getTexture("Level1");
         backToMenuButton = textureLoader.getTexture("Terug");
+
         soundSliderTexture = textureLoader.getTexture("sliderBackground");
         soundSliderThumbTexture = textureLoader.getTexture("sliderThumb");
         bloomCheckBoxInactiveTexture = textureLoader.getTexture("uncheckedBox");
         bloomCheckBoxActiveTexture = textureLoader.getTexture("checkedBox");
+
+        arrowLeftTexture = textureLoader.getTexture("leftArrow");
+        arrowRightTexture = textureLoader.getTexture("rightArrow");
+        applySettingsTexture = textureLoader.getTexture("applySettings");
+        acceptSettingsTexture = textureLoader.getTexture("acceptSettings");
+        revertSettingsTexture = textureLoader.getTexture("revertSettings");
+        customizeKeyboardTexture = textureLoader.getTexture("CustomizeKeyboard");
+
+
         creditsScreen = textureLoader.getTexture("Credits Screen");
         optionsScreenTexture = textureLoader.getTexture("Options Screen");
         easyButtonTexture = textureLoader.getTexture("Easy");
@@ -187,40 +367,35 @@ public class MenuScript : MonoBehaviour
         currentCreditsTexture = creditsButtonTexture;
         currentExitTexture = exitButtonTexture;
 
+        bloomCheckBoxTexture = bloomCheckBoxActiveTexture;
+
         menuButtonXStart = startButtonX;
         menuButtonXSettings = settingsButtonX;
         menuButtonXCredits = creditsButtonX;
         menuButtonXExit = exitButtonX;
-        startMenuAnim();
-
-        soundEngine = GameObject.Find("SoundEngine").GetComponent<SoundEngineScript>() as SoundEngineScript;
-
-        anim = GameObject.Find("RoverAnimMenu").GetComponent<Animator>();
-
-        min = soundSliderX + 27;
-        max = soundSliderX + soundSliderTexture.width - 20;
-        calculationLength = max - min;
-        soundSliderThumbX = (soundEngine.getVolume() * calculationLength) + min;
-        calculateSound();
-
-        bloomScript = Camera.main.GetComponent<BloomAndLensFlares>();
-        bloomCheckBoxTexture = bloomCheckBoxActiveTexture;
-
-        levelsXmlFilePath = Application.dataPath + "/LevelsXML/";
-        fillXmlLevelArray();
-        fillLevelArray();
     }
 
-    public void Start()
+    public int getInputType()
     {
-        settings.Add("2");
-        settings.Add("a");
-        settings.Add("d");
-        settings.Add("space");
-        settings.Add("n");
-        settings.Add("b");
-        settings.Add("left ctrl");
-        settings.Add("escape");
+        return inputType;
+    }
+
+    //sofachrome
+
+    private string getSelectedControllerType()
+    {
+        if (inputType == 0) return "TUIO Input";
+        else if (inputType == 1) return "Keyboard & Mouse";
+        else if (inputType == 2) return "Win 7 Touch";
+        else if (inputType == 3) return "Win 8 Touch";
+        else if (inputType == 4) return "Xbox Controller";
+
+        return "";
+    }
+
+    public List<KeyCode> getKeyboardSettings()
+    {
+        return keyboardSettings;
     }
 
     public void OnEnable()
@@ -440,9 +615,63 @@ public class MenuScript : MonoBehaviour
                         {
                             enableBloom();
                         }
+                        changedSettings = true;
+                    }
+
+                    if(!heimBuild)
+                    {
+                        if(arrowLeftRect.Contains(inputXY))
+                        {
+                            inputType--;
+                            if(inputType == -1) inputType = 4;
+                            changedSettings = true;
+                        }
+                        if(arrowRightRect.Contains(inputXY))
+                        {
+                            if (inputType++ == 4) inputType = 0;
+                            changedSettings = true;
+                        }
+                        if(applySettingsRect.Contains(inputXY) && changedSettings)
+                        {
+                            initalizeInput();
+                            currentMenuState = menuState.acceptSettings;
+                        }
+                        if(inputType == 1)//if using keyboard can customize controls
+                        {
+                            if(customizeKeyboardRect.Contains(inputXY))
+                            {
+                                currentMenuState = menuState.setKeyboardControls;
+                            }
+                        }
+                    }
+
+                    break;
+                case(menuState.setKeyboardControls):
+                    //the whole table thing
+                    //
+                    //
+                    //
+                    if(backToMenuButtonRect.Contains(inputXY))
+                    {
+                        changedSettings = true;
+                        currentMenuState = menuState.optionsMenu;
                     }
                     break;
-
+                case(menuState.acceptSettings):
+                    if(acceptSettingsRect.Contains(inputXY))
+                    {
+                        saveSettings();
+                        changedSettings = false;
+                        startMenuAnim();
+                        currentMenuState = menuState.mainMenu;
+                    }
+                    if(revertSettingsRect.Contains(inputXY))
+                    {
+                        loadSettings();
+                        changedSettings = false;
+                        currentMenuState = menuState.optionsMenu;
+                    }
+                    break;
                 case (menuState.creditsMenu):
                     if (backToMenuButtonRect.Contains(inputXY))
                     {
@@ -473,8 +702,35 @@ public class MenuScript : MonoBehaviour
         bloomScript.enabled = true;
     }
 
+    private string isMouseInputEnabled()
+    {
+        if (mouseInput.enabled) return "Mouse Input is Enabled";
+
+        return "Mouse input is disabled";
+    }
+
+    private string isWin7InputEnabled()
+    {
+        if (win7Input.enabled) return "Win 7 Input is Enabled";
+
+        return "Win 7 Input is Disabled";
+    }
+
+    private string isWin8InputEnabled()
+    {
+        if (win8Input.enabled) return "Win 8 Input is Enabled";
+
+        return "Win 8 Input is Disabled";
+    }
+
+    private string numberOfTouches()
+    {
+        return "Number of Touches: " + TouchManager.Instance.ActiveTouches.Count.ToString();
+    }
+
     public void OnGUI()
     {
+        if (debugTouch) GUI.Label(new Rect(0, 0, Screen.width, 200), "InputType: " + getInputType() + "\n" + isMouseInputEnabled() + "\n" + isWin7InputEnabled() + "\n" + isWin8InputEnabled() + "\n" + numberOfTouches());
         //background texture
         GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), background);
 
@@ -680,9 +936,38 @@ public class MenuScript : MonoBehaviour
                 GUI.DrawTexture(optionsScreenRect, optionsScreenTexture);
                 GUI.DrawTexture(bloomCheckBoxRect, bloomCheckBoxTexture);
 
+                if (!heimBuild)
+                {
+                    GUI.DrawTexture(arrowLeftRect, arrowLeftTexture);
+
+                    //scale the font 16
+                    customFont.fontSize = Mathf.RoundToInt(scale.x * controllerTypeFontSize);
+
+
+                    GUI.Label(controllerTypeTextRect, getSelectedControllerType(), customFont);
+                    GUI.DrawTexture(arrowRightRect, arrowRightTexture);
+
+                    if (inputType == 1) GUI.DrawTexture(customizeKeyboardRect, customizeKeyboardTexture);
+                    if (changedSettings) GUI.DrawTexture(applySettingsRect, applySettingsTexture);
+                }
+
                 //back button
                 GUI.DrawTexture(backToMenuButtonRect, backToMenuButton);
 
+                break;
+            case(menuState.setKeyboardControls):
+                //Draw things
+                //
+                //
+                //back button
+                GUI.DrawTexture(backToMenuButtonRect, backToMenuButton);
+
+                break;
+            case(menuState.acceptSettings):
+                customFont.fontSize = Mathf.RoundToInt(scale.x * questionSettingsSize);
+                GUI.Label(questionSettingsRect, "Are you sure you want these changes?", customFont);
+                GUI.DrawTexture(acceptSettingsRect, acceptSettingsTexture);
+                GUI.DrawTexture(revertSettingsRect, revertSettingsTexture);
                 break;
             case (menuState.creditsMenu):
                 GUI.DrawTexture(creditsScreenRect, creditsScreen);
@@ -737,11 +1022,51 @@ public class MenuScript : MonoBehaviour
                 bloomCheckBoxRect = new Rect(bloomCheckBoxX, bloomCheckBoxY, bloomCheckBoxTexture.width, bloomCheckBoxTexture.height);
                 optionsScreenRect = new Rect(optionsScreenX, optionsScreenY, optionsScreenTexture.width, optionsScreenTexture.height);
                 backToMenuButtonRect = new Rect(backToMenuButtonX, backToMenuButtonY, backToMenuButton.width, backToMenuButton.height);
-
+                
                 soundSliderRect = scaleRect(soundSliderRect);
                 soundSliderThumbRect = scaleRect(soundSliderThumbRect);
                 bloomCheckBoxRect = scaleRect(bloomCheckBoxRect);
                 optionsScreenRect = scaleRect(optionsScreenRect);
+                backToMenuButtonRect = scaleRect(backToMenuButtonRect);
+
+                if (!heimBuild)
+                {
+                    arrowLeftRect = new Rect(arrowLeftX, arrowLeftY, arrowLeftTexture.width, arrowLeftTexture.height);
+                    controllerTypeTextRect = new Rect(controllerTypeTextX, controllerTypeTextY, controllerTypeTextWidth, controllerTypeTextHeight);
+                    arrowRightRect = new Rect(arrowRightX, arrowRightY, arrowRightTexture.width, arrowRightTexture.height);
+
+                    arrowLeftRect = scaleRect(arrowLeftRect);
+                    controllerTypeTextRect = scaleRect(controllerTypeTextRect);
+                    arrowRightRect = scaleRect(arrowRightRect);
+
+                    if (inputType == 1)
+                    {
+                        customizeKeyboardRect = new Rect(customizeKeyboardX, customizeKeyboardY, customizeKeyboardTexture.width, customizeKeyboardTexture.height);
+                        customizeKeyboardRect = scaleRect(customizeKeyboardRect);
+                    }
+
+                    if(changedSettings)
+                    {
+                        applySettingsRect = new Rect(applySettingsX, applySettingsY, applySettingsTexture.width, applySettingsTexture.height);
+                        applySettingsRect = scaleRect(applySettingsRect);
+                    }
+                    
+                }
+                
+                break;
+            case(menuState.acceptSettings):
+                acceptSettingsRect = new Rect(acceptSettingsX, acceptSettingsY, acceptSettingsTexture.width, acceptSettingsTexture.height);
+                acceptSettingsRect = scaleRect(acceptSettingsRect);
+
+                revertSettingsRect = new Rect(revertSettingsX, revertSettingsY, revertSettingsTexture.width, revertSettingsTexture.height);
+                revertSettingsRect = scaleRect(revertSettingsRect);
+
+                questionSettingsRect = new Rect(questionSettingsX, questionSettingsY, questionSettingsWidth, questionSettingsHeight);
+                questionSettingsRect = scaleRect(questionSettingsRect);
+
+                break;
+            case(menuState.setKeyboardControls):
+                backToMenuButtonRect = new Rect(backToMenuButtonX, backToMenuButtonY, backToMenuButton.width, backToMenuButton.height);
                 backToMenuButtonRect = scaleRect(backToMenuButtonRect);
                 break;
 
@@ -949,17 +1274,83 @@ public class MenuScript : MonoBehaviour
         Debug.Log("Difficulty: " + difficulty);
     }
 
+    private void createSettings()
+    {
+        Debug.Log("Creating Settings...");
+        //create keys and values with defaults
+        PlayerPrefs.SetFloat("Volume", 0.9031847f);
+        PlayerPrefs.SetInt("Bloom", 1);
+        PlayerPrefs.SetInt("InputType", 0);
+        PlayerPrefs.SetString("MoveLeft", KeyCode.A.ToString());
+        PlayerPrefs.SetString("MoveRight", KeyCode.D.ToString());
+        PlayerPrefs.SetString("Jump", KeyCode.Space.ToString());
+        PlayerPrefs.SetString("NormalShroom", KeyCode.N.ToString());
+        PlayerPrefs.SetString("BumpyShroom", KeyCode.B.ToString());
+        PlayerPrefs.SetString("Flash", KeyCode.LeftControl.ToString());
+        PlayerPrefs.SetString("Escape", KeyCode.Escape.ToString());
+        PlayerPrefs.SetInt("CreatedSettings", 1);
+
+        PlayerPrefs.Save();
+        Debug.Log("Saving Created Settings");
+    }
+
+    private void saveSettings()
+    {
+        Debug.Log("Saving Settings...");
+        PlayerPrefs.SetFloat("Volume", soundEngine.getVolume());
+        if (isBloomEnabled()) PlayerPrefs.SetInt("Bloom", 1);
+        else PlayerPrefs.SetInt("Bloom", 0);
+        PlayerPrefs.SetInt("InputType", inputType);
+        PlayerPrefs.SetString("MoveLeft", moveLeftKey.ToString());
+        PlayerPrefs.SetString("MoveRight", moveRightKey.ToString());
+        PlayerPrefs.SetString("Jump", jumpKey.ToString());
+        PlayerPrefs.SetString("NormalShroom", normalShroomKey.ToString());
+        PlayerPrefs.SetString("BumpyShroom", bumpyShroomKey.ToString());
+        PlayerPrefs.SetString("Flash", flashKey.ToString());
+        PlayerPrefs.SetString("Escape", escapeKey.ToString());
+
+        PlayerPrefs.Save();
+        Debug.Log("Saved Settings");
+    }
+
+    private void loadSettings()
+    {
+        if (PlayerPrefs.HasKey("CreatedSettings"))
+        {
+            Debug.Log("Loading Settings...");
+            soundEngine.changeVolume(PlayerPrefs.GetFloat("Volume"));
+            if (PlayerPrefs.GetInt("Bloom") == 1) enableBloom();
+            else disableBloom();
+
+            //set input type
+            inputType = PlayerPrefs.GetInt("InputType");
+            keyboardSettings.Clear();
+            //load keyboard Settings
+            keyboardSettings.Add((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("MoveLeft")));
+            keyboardSettings.Add((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("MoveRight")));
+            keyboardSettings.Add((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Jump")));
+            keyboardSettings.Add((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("NormalShroom")));
+            keyboardSettings.Add((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("BumpyShroom")));
+            keyboardSettings.Add((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Flash")));
+            keyboardSettings.Add((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Escape")));
+
+            Debug.Log("Settings Loaded");
+        }
+        else createSettings();
+    }
+
+    private void resetSettings()
+    {
+        //delete em
+        PlayerPrefs.DeleteAll();
+        //create em
+        createSettings();
+        //load em
+        loadSettings();
+    }
+
     private IEnumerator loadLevel()
     {
-        //writing settings to a file (retrieved by playerInput)
-        string pathName = Application.dataPath + "/Settings/settings.txt";
-        string text = "";
-        for (int i = 0; i < settings.Count; ++i)
-        {
-            text += settings[i] + "\n";
-        }
-        System.IO.File.WriteAllText(pathName, text);
-
         //next scene with the loader
         Application.LoadLevel("LevelLoaderScene");
         //first wait for the next scene to loader		  		

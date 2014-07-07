@@ -21,7 +21,6 @@ using System.IO;
 public class TextureLoader : MonoBehaviour
 {
     //settings
-    private string pathRoot = "";
     public string filePath = "/FolderName";	//filePath of the textures
     public string fileType = "*.png";			//* means all names possible  .png means files with the png extention only
     public string nextScene = "someScene";		//next scene
@@ -36,6 +35,7 @@ public class TextureLoader : MonoBehaviour
     private ArrayList textureArray = new ArrayList();		//array where we put all textures in
     private GUIStyle guiStyle = new GUIStyle();	//style for the loading % in a different font
     private bool loaded = false;			//bool  to see if it is loaded or not
+    private bool validPath = false;
 
     private float dotTimer = 1.0f;						//timer for going to the new dot
     public Texture2D dotTexture = null;					//texture for the dot
@@ -48,6 +48,8 @@ public class TextureLoader : MonoBehaviour
     private Vector2 scale = new Vector2();				//scale for texture scaling 16:9
     private float originalWidth = 1920.0f;					//original width and height of a 16:9 ratio
     private float originalHeight = 1080.0f;
+
+    private bool invalidPath = false;
     //static variables not to be touched
     static bool LoaderExists = false;				//static to check if the loader exists already or not
 
@@ -60,8 +62,6 @@ public class TextureLoader : MonoBehaviour
         if (LoaderExists == false)
         {
             LoaderExists = true;				//putting the loader exists on true
-            
-            pathRoot = Path.GetPathRoot(Application.dataPath);  //get the root of the path it is currently at
 
             guiStyle.font = (Font)Resources.Load("Fonts/sofachrome rg", typeof(Font));		//loading the font
 
@@ -76,7 +76,8 @@ public class TextureLoader : MonoBehaviour
 
             //the filePath of the textures you want to load(use the root folder, it searches through all subfolders)
             filePath = Application.dataPath + filePath;
-
+            validPath = checkValidFilePath(filePath);
+            
             //check if the filePath is initialized properly
             if (filePath != Application.dataPath + "/FolderName" && nextScene != "someScene")	//don't change this its a check, fill in the public variables instead
             {
@@ -93,6 +94,23 @@ public class TextureLoader : MonoBehaviour
             //destroy this because it exists already
             Destroy(this.gameObject);
         }
+    }
+
+    private string fixPath(string path)
+    {
+        if(path.Contains("ה")) path = path.Replace("ה", "%E4");
+        if(path.Contains("כ")) path = path.Replace("כ", "%EB");
+        if(path.Contains("צ")) path = path.Replace("צ", "%F6");
+        if(path.Contains("ü")) path = path.Replace("ü", "%FC");
+        if(path.Contains("ן")) path = path.Replace("ן", "%EF");
+        if(path.Contains("#")) path = path.Replace("#", "%23");
+        return path;
+    }
+
+    private bool checkValidFilePath(string path)
+    {
+        if (path.Contains("ה") || path.Contains("כ") || path.Contains("צ") || path.Contains("ü") || path.Contains("ן") || path.Contains("#")) return false;
+        return true;
     }
 
     //checking the dot which dot to show first second or third
@@ -159,6 +177,8 @@ public class TextureLoader : MonoBehaviour
                 GUI.Label(new Rect(Screen.width / 2, Screen.height / 2 + (Screen.height * 5 / 16), loadedLabelWidth, loadedLabelHeight), percentLoaded() + "%", guiStyle);
             }
         }
+
+        if (invalidPath) GUI.Label(new Rect(0, 0, Screen.width, 200), "The filepath you installed the game is invalid!\nplease move it to Program Files or Program Files(x86)", guiStyle);
     }
 
     //Fills the arrays with the textures
@@ -169,16 +189,20 @@ public class TextureLoader : MonoBehaviour
 
         fileCount = fileInfo.Length;
 
+        //checks if valid path if not fix it
+        
+
         foreach (string file in fileInfo)
         {
-            //encode the url first because there could be invalid characters
-            string fileURL = WWW.EscapeURL(file.Replace(pathRoot, ""), System.Text.Encoding.Default);
-            //put the pathRoot back up front because EscapeURL doesn't convert ':/' correctly
-            fileURL = pathRoot + fileURL;
+            string path = file;
+
+            if (!validPath) path = fixPath(file);               //it is detected that the path is not valid so try fixing it before using it in the WWW
+
             //download the file via WWW
-            WWW wwwTexture = new WWW("file:///" + file);
+            WWW wwwTexture = new WWW("file:///" + path);
             //wait for it to download
             yield return wwwTexture;
+            if (!string.IsNullOrEmpty(wwwTexture.error)) invalidPath = true;
             Texture2D texture = wwwTexture.texture;
             //assign the name to the texture
             string textureName = Path.GetFileNameWithoutExtension(file);
@@ -190,7 +214,7 @@ public class TextureLoader : MonoBehaviour
         }
         loaded = true; 						// it is loaded up so loaded is true
         Debug.Log("Done loading textures");	//giving the msg that it is done loading
-        Application.LoadLevel(nextScene);	//its done loading so load the next scene
+        if(!invalidPath) Application.LoadLevel(nextScene);	//its done loading so load the next scene
     }
 
     //returns bool  if it is still loading files
@@ -240,12 +264,8 @@ public class TextureLoader : MonoBehaviour
                 //if the texture exists already in the array then you have doubles, conflicting
                 if (textureExistsAlready(textureName) == false)
                 {
-                    //encode the url first because there could be invalid characters like כהצüן# etc
-                    string fileURL = WWW.EscapeURL(file.Replace(pathRoot, ""), System.Text.Encoding.Default);
-                    //put the pathRoot back up front because EscapeURL doesn't convert ':/' correctly
-                    fileURL = pathRoot + fileURL;
                     //download the texture
-                    WWW wwwTexture = new WWW("file://" + fileURL);
+                    WWW wwwTexture = new WWW("file://" + file);
                     //wait for it to be done
                     yield return wwwTexture;
                     //add it to the array
