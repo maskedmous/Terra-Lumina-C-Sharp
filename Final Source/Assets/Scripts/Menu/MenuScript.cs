@@ -501,7 +501,7 @@ public class MenuScript : MonoBehaviour
                         anim.SetBool("creditsBool", true);
                         leaveMenuAnim = clickedCredits = true;
                     }
-                    if (exitButtonRect.Contains(inputXY) && heimBuild)
+                    if (exitButtonRect.Contains(inputXY) && !heimBuild)
                     {
                         leaveMenuAnim = clickedQuit = true;
                         anim.SetBool("exitBool", true);
@@ -883,7 +883,7 @@ public class MenuScript : MonoBehaviour
                 GUI.DrawTexture(creditsButtonRect, currentCreditsTexture);
 
                 //exit button
-                if (heimBuild) GUI.DrawTexture(exitButtonRect, currentExitTexture);
+                if (!heimBuild) GUI.DrawTexture(exitButtonRect, currentExitTexture);
 
                 break;
             case (menuState.difficultyMenu):
