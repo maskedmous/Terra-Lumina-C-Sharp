@@ -475,11 +475,11 @@ public class MenuScript : MonoBehaviour
         {
             Vector2 position = touchPoint.Position;
             position = invertY(position);
-            isReleasingButton(position);
+            if(isReleasingButton(position)) return;
         }
     }
 
-    private void isReleasingButton(Vector2 inputXY)
+    private bool isReleasingButton(Vector2 inputXY)
     {
         if (touchEnabled)
         {
@@ -490,21 +490,25 @@ public class MenuScript : MonoBehaviour
                     {
                         leaveMenuAnim = clickedStart = true;
                         anim.SetBool("levelBool", true);
+                        return true;
                     }
                     else if (settingsButtonRect.Contains(inputXY))
                     {
                         anim.SetBool("settingsBool", true);
                         leaveMenuAnim = clickedSettings = true;
+                        return true;
                     }
                     else if (creditsButtonRect.Contains(inputXY))
                     {
                         anim.SetBool("creditsBool", true);
                         leaveMenuAnim = clickedCredits = true;
+                        return true;
                     }
                     if (exitButtonRect.Contains(inputXY) && !heimBuild)
                     {
                         leaveMenuAnim = clickedQuit = true;
                         anim.SetBool("exitBool", true);
+                        return true;
                     }
                     break;
 
@@ -513,16 +517,19 @@ public class MenuScript : MonoBehaviour
                     {
                         difficulty = "Easy";
                         currentMenuState = menuState.levelSelectionMenu;
+                        return true;
                     }
                     else if (mediumButtonRect.Contains(inputXY))
                     {
                         difficulty = "Medium";
                         currentMenuState = menuState.levelSelectionMenu;
+                        return true;
                     }
                     else if (hardButtonRect.Contains(inputXY))
                     {
                         difficulty = "Hard";
                         currentMenuState = menuState.levelSelectionMenu;
+                        return true;
                     }
                     else if (backToMenuButtonRect.Contains(inputXY))
                     {
@@ -530,6 +537,7 @@ public class MenuScript : MonoBehaviour
                         currentMenuState = menuState.mainMenu;
                         touchEnabled = false;
                         anim.SetBool("levelBool", false);
+                        return true;
                     }
                     break;
 
@@ -553,6 +561,7 @@ public class MenuScript : MonoBehaviour
                                 currentMenuState = menuState.loadingLevel;
                                 background = loadingScreen;
                                 StartCoroutine(loadLevel());
+                                return true;
                             }
 
                             spaceCountX++;
@@ -572,6 +581,7 @@ public class MenuScript : MonoBehaviour
                             if (new Rect(Screen.width - levelButtonXSize, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize).Contains(inputXY))
                             {
                                 startLevelCount += 6;
+                                return true;
                             }
                         }
                         //previous page button (if applicable)
@@ -580,6 +590,7 @@ public class MenuScript : MonoBehaviour
                             if (new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize).Contains(inputXY))
                             {
                                 startLevelCount -= 6;
+                                return true;
                             }
                         }
                         //back button
@@ -590,6 +601,7 @@ public class MenuScript : MonoBehaviour
                             if (backToMenuButtonRect.Contains(inputXY))
                             {
                                 currentMenuState = menuState.difficultyMenu;
+                                return true;
                             }
                         }
                     }
@@ -602,6 +614,7 @@ public class MenuScript : MonoBehaviour
                         currentMenuState = menuState.mainMenu;
                         touchEnabled = false;
                         anim.SetBool("settingsBool", false);
+                        return true;
                     }
 
                     if (bloomCheckBoxRect.Contains(inputXY))
@@ -615,6 +628,7 @@ public class MenuScript : MonoBehaviour
                             enableBloom();
                         }
                         changedSettings = true;
+                        return true;
                     }
 
                     if(!heimBuild)
@@ -624,22 +638,26 @@ public class MenuScript : MonoBehaviour
                             inputType--;
                             if(inputType == -1) inputType = 4;
                             changedSettings = true;
+                            return true;
                         }
                         if(arrowRightRect.Contains(inputXY))
                         {
                             if (inputType++ == 4) inputType = 0;
                             changedSettings = true;
+                            return true;
                         }
                         if(applySettingsRect.Contains(inputXY) && changedSettings)
                         {
                             initalizeInput();
                             currentMenuState = menuState.acceptSettings;
+                            return true;
                         }
                         if(inputType == 1)//if using keyboard can customize controls
                         {
                             if(customizeKeyboardRect.Contains(inputXY))
                             {
                                 currentMenuState = menuState.setKeyboardControls;
+                                return true;
                             }
                         }
                     }
@@ -655,6 +673,7 @@ public class MenuScript : MonoBehaviour
                     {
                         changedSettings = true;
                         currentMenuState = menuState.optionsMenu;
+                        return true;
                     }
                     break;
                 case(menuState.acceptSettings):
@@ -664,12 +683,14 @@ public class MenuScript : MonoBehaviour
                         changedSettings = false;
                         startMenuAnim();
                         currentMenuState = menuState.mainMenu;
+                        return true;
                     }
                     if(revertSettingsRect.Contains(inputXY))
                     {
                         loadSettings();
                         changedSettings = false;
                         currentMenuState = menuState.optionsMenu;
+                        return true;
                     }
                     break;
                 case (menuState.creditsMenu):
@@ -679,10 +700,13 @@ public class MenuScript : MonoBehaviour
                         currentMenuState = menuState.mainMenu;
                         touchEnabled = false;
                         anim.SetBool("creditsBool", false);
+                        return true;
                     }
                     break;
             }
         }
+
+        return false;
     }
 
     private bool isBloomEnabled()
