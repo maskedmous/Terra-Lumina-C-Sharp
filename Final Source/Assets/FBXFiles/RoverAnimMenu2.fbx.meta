@@ -324,7 +324,7 @@ ModelImporter:
       name: Exit
       takeName: Take 001
       firstFrame: 1201
-      lastFrame: 1400
+      lastFrame: 1260
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -483,7 +483,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Options Idle
       takeName: Take 001
-      firstFrame: 1261
+      firstFrame: 1264
       lastFrame: 1400
       wrapMode: 0
       orientationOffsetY: 0

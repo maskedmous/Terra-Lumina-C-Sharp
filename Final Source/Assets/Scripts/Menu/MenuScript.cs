@@ -13,6 +13,7 @@ public class MenuScript : MonoBehaviour
     private menuState currentMenuState = menuState.mainMenu;
 
     public bool heimBuild = false;
+    public bool debugTouch = false;
 
     private Texture2D background = null;
     private Texture2D loadingScreen = null;
@@ -107,8 +108,8 @@ public class MenuScript : MonoBehaviour
     public Texture2D bloomCheckBoxActiveTexture = null;
     public Texture2D bloomCheckBoxInactiveTexture = null;
     private Rect bloomCheckBoxRect;
-    public float bloomCheckBoxX = 615.0f;
-    public float bloomCheckBoxY = 560.0f;
+    public float bloomCheckBoxX = 525.0f;
+    public float bloomCheckBoxY = 490.0f;
 
     public GUISkin sliderSkin;
     public Texture2D optionsScreenTexture = null;
@@ -159,7 +160,8 @@ public class MenuScript : MonoBehaviour
     private Rect revertSettingsRect;
     public float revertSettingsX = 430.0f;
     public float revertSettingsY = 600.0f;
-
+    private float revertTimer = 10.0f;
+    private bool revertTimerEnabled = false;
     private bool changedSettings = false;
 
     private SoundEngineScript soundEngine = null;
@@ -203,7 +205,7 @@ public class MenuScript : MonoBehaviour
 
 
     //different inputs
-    public bool debugTouch = false;
+
     private int inputType = 0;  //tuio + mouse standard
     private List<KeyCode> keyboardSettings = new List<KeyCode>();
 
@@ -242,6 +244,22 @@ public class MenuScript : MonoBehaviour
         fillLevelArray();
     }
 
+    public void Update()
+    {
+        if (revertTimerEnabled)
+        {
+            revertTimer -= Time.deltaTime;
+
+            if (revertTimer <= 0.0f)
+            {
+                loadSettings(); //load previous settings
+                initalizeInput();
+                currentMenuState = menuState.optionsMenu;
+                revertTimerEnabled = false;
+            }
+        }
+    }
+
     private void initializeScripts()
     {
         anim = GameObject.Find("RoverAnimMenu").GetComponent<Animator>();
@@ -255,10 +273,10 @@ public class MenuScript : MonoBehaviour
         win7Input = inputSources.GetComponent<TouchScript.InputSources.Win7TouchInput>();
         win8Input = inputSources.GetComponent<TouchScript.InputSources.Win8TouchInput>();
 
-        
+
         //setting font
         customFont.font = (Font)Resources.Load("Fonts/sofachrome rg") as Font;
-        
+
         //setting color
         Color fontColor = customFont.normal.textColor;
 
@@ -339,7 +357,7 @@ public class MenuScript : MonoBehaviour
         settingsButtonPressedTexture = textureLoader.getTexture("settingsbuttonPressed");
         background = textureLoader.getTexture("Background");
         loadingScreen = textureLoader.getTexture("Loading");
-        level1 = textureLoader.getTexture("Level1");
+        level1 = textureLoader.getTexture("Level 1 Idle");
         backToMenuButton = textureLoader.getTexture("Terug");
 
         soundSliderTexture = textureLoader.getTexture("sliderBackground");
@@ -357,9 +375,14 @@ public class MenuScript : MonoBehaviour
 
         creditsScreen = textureLoader.getTexture("Credits Screen");
         optionsScreenTexture = textureLoader.getTexture("Options Screen");
-        easyButtonTexture = textureLoader.getTexture("Easy");
-        mediumButtonTexture = textureLoader.getTexture("Medium");
-        hardButtonTexture = textureLoader.getTexture("Hard");
+
+        easyButtonTexture = textureLoader.getTexture("Easy Idle");
+        mediumButtonTexture = textureLoader.getTexture("Medium Idle");
+        hardButtonTexture = textureLoader.getTexture("Hard Idle");
+
+        easyButtonTexturePressed = textureLoader.getTexture("Easy Pressed");
+        mediumButtonTexturePressed = textureLoader.getTexture("Medium Pressed");
+        hardButtonTexturePressed = textureLoader.getTexture("Hard Pressed");
 
         currentStartTexture = startButtonTexture;
         currentSettingsTexture = settingsButtonTexture;
@@ -436,7 +459,7 @@ public class MenuScript : MonoBehaviour
             {
                 Vector2 position = touchPoint.Position;
                 position = invertY(position);
-
+                updatePressedMenuTextures(position);
                 updateSlider(position);
             }
         }
@@ -450,9 +473,28 @@ public class MenuScript : MonoBehaviour
             {
                 Vector2 position = touchPoint.Position;
                 position = invertY(position);
-
+                updatePressedMenuTextures(position);
                 updateSlider(position);
             }
+        }
+    }
+
+    private void updatePressedMenuTextures(Vector2 inputXY)
+    {
+        switch (currentMenuState)
+        {
+            case (menuState.mainMenu):
+
+                break;
+            case (menuState.difficultyMenu):
+
+                break;
+            case (menuState.levelSelectionMenu):
+
+                break;
+            case (menuState.creditsMenu):
+
+                break;
         }
     }
 
@@ -466,6 +508,7 @@ public class MenuScript : MonoBehaviour
             if (soundSliderThumbX + (soundSliderThumbTexture.width / 2) < min) soundSliderThumbX = min - (soundSliderThumbTexture.width / 2);
             else if (soundSliderThumbX + (soundSliderThumbTexture.width / 2) > max) soundSliderThumbX = max - (soundSliderThumbTexture.width / 2);
             calculateSound();
+            changedSettings = true;
         }
     }
 
@@ -475,7 +518,7 @@ public class MenuScript : MonoBehaviour
         {
             Vector2 position = touchPoint.Position;
             position = invertY(position);
-            if(isReleasingButton(position)) return;
+            if (isReleasingButton(position)) return;
         }
     }
 
@@ -614,6 +657,8 @@ public class MenuScript : MonoBehaviour
                         currentMenuState = menuState.mainMenu;
                         touchEnabled = false;
                         anim.SetBool("settingsBool", false);
+                        changedSettings = false;
+                        loadSettings();
                         return true;
                     }
 
@@ -631,30 +676,32 @@ public class MenuScript : MonoBehaviour
                         return true;
                     }
 
-                    if(!heimBuild)
+                    if (!heimBuild)
                     {
-                        if(arrowLeftRect.Contains(inputXY))
+                        if (arrowLeftRect.Contains(inputXY))
                         {
                             inputType--;
-                            if(inputType == -1) inputType = 4;
+                            if (inputType == -1) inputType = 4;
                             changedSettings = true;
                             return true;
                         }
-                        if(arrowRightRect.Contains(inputXY))
+                        if (arrowRightRect.Contains(inputXY))
                         {
                             if (inputType++ == 4) inputType = 0;
                             changedSettings = true;
                             return true;
                         }
-                        if(applySettingsRect.Contains(inputXY) && changedSettings)
+                        if (applySettingsRect.Contains(inputXY) && changedSettings)
                         {
                             initalizeInput();
+                            revertTimer = 10.0f;
+                            revertTimerEnabled = true;
                             currentMenuState = menuState.acceptSettings;
                             return true;
                         }
-                        if(inputType == 1)//if using keyboard can customize controls
+                        if (inputType == 1)//if using keyboard can customize controls
                         {
-                            if(customizeKeyboardRect.Contains(inputXY))
+                            if (customizeKeyboardRect.Contains(inputXY))
                             {
                                 currentMenuState = menuState.setKeyboardControls;
                                 return true;
@@ -663,21 +710,21 @@ public class MenuScript : MonoBehaviour
                     }
 
                     break;
-                case(menuState.setKeyboardControls):
+                case (menuState.setKeyboardControls):
                     //the whole table thing
                     //
                     //
                     //
 
-                    if(backToMenuButtonRect.Contains(inputXY))
+                    if (backToMenuButtonRect.Contains(inputXY))
                     {
                         changedSettings = true;
                         currentMenuState = menuState.optionsMenu;
                         return true;
                     }
                     break;
-                case(menuState.acceptSettings):
-                    if(acceptSettingsRect.Contains(inputXY))
+                case (menuState.acceptSettings):
+                    if (acceptSettingsRect.Contains(inputXY))
                     {
                         saveSettings();
                         changedSettings = false;
@@ -685,7 +732,7 @@ public class MenuScript : MonoBehaviour
                         currentMenuState = menuState.mainMenu;
                         return true;
                     }
-                    if(revertSettingsRect.Contains(inputXY))
+                    if (revertSettingsRect.Contains(inputXY))
                     {
                         loadSettings();
                         changedSettings = false;
@@ -857,6 +904,7 @@ public class MenuScript : MonoBehaviour
                             {
                                 clickedSettings = false;
                                 leaveMenuAnim = false;
+                                if (!heimBuild) loadSettings();
                                 currentMenuState = menuState.optionsMenu;
                             }
                         }
@@ -979,8 +1027,8 @@ public class MenuScript : MonoBehaviour
                 GUI.DrawTexture(backToMenuButtonRect, backToMenuButton);
 
                 break;
-            case(menuState.setKeyboardControls):
-                
+            case (menuState.setKeyboardControls):
+
                 //Draw things
                 string inputString = "";
                 Event e = Event.current;
@@ -994,9 +1042,9 @@ public class MenuScript : MonoBehaviour
                 GUI.DrawTexture(backToMenuButtonRect, backToMenuButton);
 
                 break;
-            case(menuState.acceptSettings):
+            case (menuState.acceptSettings):
                 customFont.fontSize = Mathf.RoundToInt(scale.x * questionSettingsSize);
-                GUI.Label(questionSettingsRect, "Are you sure you want these changes?", customFont);
+                GUI.Label(questionSettingsRect, "Are you sure you want these changes? " + Mathf.RoundToInt(revertTimer).ToString(), customFont);
                 GUI.DrawTexture(acceptSettingsRect, acceptSettingsTexture);
                 GUI.DrawTexture(revertSettingsRect, revertSettingsTexture);
                 break;
@@ -1053,7 +1101,7 @@ public class MenuScript : MonoBehaviour
                 bloomCheckBoxRect = new Rect(bloomCheckBoxX, bloomCheckBoxY, bloomCheckBoxTexture.width, bloomCheckBoxTexture.height);
                 optionsScreenRect = new Rect(optionsScreenX, optionsScreenY, optionsScreenTexture.width, optionsScreenTexture.height);
                 backToMenuButtonRect = new Rect(backToMenuButtonX, backToMenuButtonY, backToMenuButton.width, backToMenuButton.height);
-                
+
                 soundSliderRect = scaleRect(soundSliderRect);
                 soundSliderThumbRect = scaleRect(soundSliderThumbRect);
                 bloomCheckBoxRect = scaleRect(bloomCheckBoxRect);
@@ -1076,16 +1124,16 @@ public class MenuScript : MonoBehaviour
                         customizeKeyboardRect = scaleRect(customizeKeyboardRect);
                     }
 
-                    if(changedSettings)
+                    if (changedSettings)
                     {
                         applySettingsRect = new Rect(applySettingsX, applySettingsY, applySettingsTexture.width, applySettingsTexture.height);
                         applySettingsRect = scaleRect(applySettingsRect);
                     }
-                    
+
                 }
-                
+
                 break;
-            case(menuState.acceptSettings):
+            case (menuState.acceptSettings):
                 acceptSettingsRect = new Rect(acceptSettingsX, acceptSettingsY, acceptSettingsTexture.width, acceptSettingsTexture.height);
                 acceptSettingsRect = scaleRect(acceptSettingsRect);
 
@@ -1096,7 +1144,7 @@ public class MenuScript : MonoBehaviour
                 questionSettingsRect = scaleRect(questionSettingsRect);
 
                 break;
-            case(menuState.setKeyboardControls):
+            case (menuState.setKeyboardControls):
                 backToMenuButtonRect = new Rect(backToMenuButtonX, backToMenuButtonY, backToMenuButton.width, backToMenuButton.height);
                 backToMenuButtonRect = scaleRect(backToMenuButtonRect);
                 break;
