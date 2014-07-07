@@ -77,7 +77,7 @@ public class TextureLoader : MonoBehaviour
             //the filePath of the textures you want to load(use the root folder, it searches through all subfolders)
             filePath = Application.dataPath + filePath;
             validPath = checkValidFilePath(filePath);
-            
+
             //check if the filePath is initialized properly
             if (filePath != Application.dataPath + "/FolderName" && nextScene != "someScene")	//don't change this its a check, fill in the public variables instead
             {
@@ -98,12 +98,12 @@ public class TextureLoader : MonoBehaviour
 
     private string fixPath(string path)
     {
-        if(path.Contains("ä")) path = path.Replace("ä", "%E4");
-        if(path.Contains("ë")) path = path.Replace("ë", "%EB");
-        if(path.Contains("ö")) path = path.Replace("ö", "%F6");
-        if(path.Contains("ü")) path = path.Replace("ü", "%FC");
-        if(path.Contains("ï")) path = path.Replace("ï", "%EF");
-        if(path.Contains("#")) path = path.Replace("#", "%23");
+        if (path.Contains("ä")) path = path.Replace("ä", "%E4");
+        if (path.Contains("ë")) path = path.Replace("ë", "%EB");
+        if (path.Contains("ö")) path = path.Replace("ö", "%F6");
+        if (path.Contains("ü")) path = path.Replace("ü", "%FC");
+        if (path.Contains("ï")) path = path.Replace("ï", "%EF");
+        if (path.Contains("#")) path = path.Replace("#", "%23");
         return path;
     }
 
@@ -190,7 +190,7 @@ public class TextureLoader : MonoBehaviour
         fileCount = fileInfo.Length;
 
         //checks if valid path if not fix it
-        
+
 
         foreach (string file in fileInfo)
         {
@@ -214,7 +214,7 @@ public class TextureLoader : MonoBehaviour
         }
         loaded = true; 						// it is loaded up so loaded is true
         Debug.Log("Done loading textures");	//giving the msg that it is done loading
-        if(!invalidPath) Application.LoadLevel(nextScene);	//its done loading so load the next scene
+        if (!invalidPath) Application.LoadLevel(nextScene);	//its done loading so load the next scene
     }
 
     //returns bool  if it is still loading files

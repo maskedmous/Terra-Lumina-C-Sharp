@@ -884,28 +884,28 @@ public class XmlToScene : MonoBehaviour
                                             triggerScript.setYPositionTexB(yPositionTexB);
                                             triggerScript.setTimerTexB(timerTexB);
                                         }
-                                        if(keyboardTutorialTextureA != null)
+                                        if (keyboardTutorialTextureA != null)
                                         {
                                             triggerScript.setKeyboardTutorialTextureA(keyboardTutorialTextureA);
                                             triggerScript.setXPositionKeyboardTexA(xPositionKeyboardTexA);
                                             triggerScript.setYPositionKeyboardTexA(yPositionKeyboardTexA);
                                             triggerScript.setTimerKeyboardTexA(timerKeyboardTexA);
                                         }
-                                        if(keyboardTutorialTextureB != null)
+                                        if (keyboardTutorialTextureB != null)
                                         {
                                             triggerScript.setKeyboardTutorialTextureB(keyboardTutorialTextureB);
                                             triggerScript.setXPositionKeyboardTexB(xPositionKeyboardTexB);
                                             triggerScript.setYPositionKeyboardTexB(yPositionKeyboardTexB);
                                             triggerScript.setTimerKeyboardTexB(timerKeyboardTexB);
                                         }
-                                        if(xboxTutorialTextureA != null)
+                                        if (xboxTutorialTextureA != null)
                                         {
                                             triggerScript.setXboxTutorialTextureA(xboxTutorialTextureA);
                                             triggerScript.setXPositionXboxTexA(xPositionXboxTexA);
                                             triggerScript.setYPositionXboxTexA(yPositionXboxTexA);
                                             triggerScript.setTimerXboxTexA(timerXboxTexA);
                                         }
-                                        if(xboxTutorialTextureB != null)
+                                        if (xboxTutorialTextureB != null)
                                         {
                                             triggerScript.setXboxTutorialTextureB(xboxTutorialTextureB);
                                             triggerScript.setXPositionXboxTexB(xPositionXboxTexB);

@@ -31,6 +31,7 @@ public class SoundEngineScript : MonoBehaviour
     private AudioClip rockBreakingSound;
     //private AudioClip sunChargingSound;
     private AudioClip crystalPickup;
+    private AudioClip shardPickup;
     private AudioClip winSound;
     private AudioClip loseSound;
 
@@ -61,7 +62,8 @@ public class SoundEngineScript : MonoBehaviour
             roverAimSound = Resources.Load("SoundEffects/Rover Aim") as AudioClip;
             flashSound = Resources.Load("SoundEffects/Rover Flashlight") as AudioClip;
             rockBreakingSound = Resources.Load("SoundEffects/Rock Barrier Break v2") as AudioClip;
-            crystalPickup = Resources.Load("SoundEffects/DiamondPickup") as AudioClip;
+            crystalPickup = Resources.Load("SoundEffects/CrystalSound") as AudioClip;
+            shardPickup = Resources.Load("SoundEffects/ShardSound") as AudioClip;
             //sunChargingSound = Resources.Load("SoundEffects/...") as AudioClip;
             winSound = Resources.Load("SoundEffects/Winsound v2") as AudioClip;
             loseSound = Resources.Load("SoundEffects/Losesound v1") as AudioClip;
@@ -204,9 +206,13 @@ public class SoundEngineScript : MonoBehaviour
             {
                 audio.PlayOneShot(rockBreakingSound);
             }
-            if (name == "pickup")
+            if (name == "crystalPickup")
             {
                 audio.PlayOneShot(crystalPickup);
+            }
+            if (name == "shardPickup")
+            {
+                audio.PlayOneShot(shardPickup);
             }
             if (name == "sun")
             {

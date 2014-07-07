@@ -165,7 +165,9 @@ public class PlayerInputScript : MonoBehaviour
 
     private void initializeInput()
     {
-        int inputType = PlayerPrefs.GetInt("InputType");
+        int inputType = 0;  //standard TUIO input
+        if (PlayerPrefs.HasKey("InputType")) inputType = PlayerPrefs.GetInt("InputType");   //if heim build they have no player prefs so standard TUIO input
+            
         //TUIO input
         if (inputType == 0)
         {

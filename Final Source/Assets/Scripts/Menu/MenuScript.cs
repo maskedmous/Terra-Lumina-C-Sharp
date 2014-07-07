@@ -223,6 +223,8 @@ public class MenuScript : MonoBehaviour
     TouchScript.InputSources.Win7TouchInput win7Input = null;
     TouchScript.InputSources.Win8TouchInput win8Input = null;
 
+    private float combinationCooldown = 0.0f;
+
     public void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -256,6 +258,28 @@ public class MenuScript : MonoBehaviour
                 initalizeInput();
                 currentMenuState = menuState.optionsMenu;
                 revertTimerEnabled = false;
+            }
+        }
+
+        combinationCooldown -= Time.deltaTime;
+
+        if (combinationCooldown <= 0.0f)
+        {
+            combinationCooldown = 0.0f;
+
+            if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKey(KeyCode.F1))
+            {
+                if (debugTouch) debugTouch = false;
+                else debugTouch = true;
+
+                combinationCooldown = 1.0f;
+            }
+            else if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKey(KeyCode.F2))
+            {
+                if (heimBuild) heimBuild = false;
+                else heimBuild = true;
+
+                combinationCooldown = 1.0f;
             }
         }
     }

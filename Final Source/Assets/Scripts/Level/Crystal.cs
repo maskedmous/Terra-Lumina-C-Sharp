@@ -22,7 +22,7 @@ public class Crystal : MonoBehaviour
             GameObject.Find("GameLogic").GetComponent<GameLogic>().addCrystalSample(this.gameObject);
             if (soundEngine != null)
             {
-                soundEngine.playSoundEffect("pickup");
+                soundEngine.playSoundEffect("crystalPickup");
             }
             Destroy(this.gameObject);
         }

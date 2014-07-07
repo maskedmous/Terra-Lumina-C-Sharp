@@ -702,7 +702,7 @@ public class TutorialTriggerScript : MonoBehaviour
     //
     public Texture2D getTutorialTextureA()
     {
-       return tutorialTextureA;
+        return tutorialTextureA;
     }
 
     public float getXPositionTexA()
@@ -722,7 +722,7 @@ public class TutorialTriggerScript : MonoBehaviour
 
     public Texture2D getTutorialTextureB()
     {
-      return tutorialTextureB;
+        return tutorialTextureB;
     }
 
     public float getXPositionTexB()
