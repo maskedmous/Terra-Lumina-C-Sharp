@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
     private float vy = 0.0f;
 
     private bool isJumping = false;
-    //private bool  initializeJumping = false;
     private float jumpForce = 7.5f;
     private List<GameObject> wheels = new List<GameObject>();
 
@@ -196,11 +195,11 @@ public class PlayerController : MonoBehaviour
         }
         if (mousePos > Screen.width / 2) moveRight();
         if (mousePos < Screen.width / 2) moveLeft();
-        anim.SetBool("isMoving", true);
     }
 
     public void moveLeft()
     {
+        anim.SetBool("isMoving", true);
         if (this.gameObject.rigidbody.velocity.x > -maxSpeed)
         {
             float vX = this.gameObject.rigidbody.velocity.x - accelerationSpeed * Time.deltaTime;
@@ -216,6 +215,7 @@ public class PlayerController : MonoBehaviour
 
     public void moveRight()
     {
+        anim.SetBool("isMoving", true);
         if (this.gameObject.rigidbody.velocity.x < maxSpeed)
         {
             float vX = this.gameObject.rigidbody.velocity.x + accelerationSpeed * Time.deltaTime;
@@ -273,7 +273,6 @@ public class PlayerController : MonoBehaviour
     {
         if (!isJumping)
         {
-            //this.gameObject.rigidbody.velocity.y = jumpForce;
             this.gameObject.rigidbody.velocity = new Vector3(this.gameObject.rigidbody.velocity.x, jumpForce, this.gameObject.rigidbody.velocity.z);
             isJumping = true;
             this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
@@ -445,7 +444,6 @@ public class PlayerController : MonoBehaviour
                 SlugScript slugScript = hit.collider.gameObject.GetComponent("SlugScript") as SlugScript;
                 slugScript.toFleeState();
             }
-            if (hit.collider.gameObject.name == "Web") hit.collider.gameObject.SetActive(false);
         }
         if (flashBool == false)
         {
@@ -480,8 +478,6 @@ public class PlayerController : MonoBehaviour
     public void bounceShroomY()
     {
         this.gameObject.rigidbody.velocity = new Vector3(0.0f, 15.0f, this.gameObject.rigidbody.velocity.z);
-        //this.gameObject.rigidbody.velocity.x = 0.0f;
-        //this.gameObject.rigidbody.velocity.y = 15.0f;
     }
 
     public void bounceShroomX()

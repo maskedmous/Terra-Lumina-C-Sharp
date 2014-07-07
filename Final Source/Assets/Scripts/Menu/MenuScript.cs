@@ -956,8 +956,8 @@ public class MenuScript : MonoBehaviour
 
                 break;
             case(menuState.setKeyboardControls):
+                
                 //Draw things
-
                 string inputString = "";
                 Event e = Event.current;
                 if (e.isKey)
