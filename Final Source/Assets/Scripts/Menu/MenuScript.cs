@@ -12,7 +12,7 @@ public class MenuScript : MonoBehaviour
 
     private menuState currentMenuState = menuState.mainMenu;
 
-    private bool heimBuild = false;
+    public bool heimBuild = false;
 
     private Texture2D background = null;
     private Texture2D loadingScreen = null;
@@ -76,7 +76,6 @@ public class MenuScript : MonoBehaviour
     public float creditsButtonX = 0.0f;
     public float creditsButtonY = 599.0f;
 
-    public bool exitButtonAvailable = false;
     public Texture2D exitButtonTexture = null;
     public Texture2D exitButtonPressedTexture = null;
     private Texture2D currentExitTexture = null;
@@ -502,7 +501,7 @@ public class MenuScript : MonoBehaviour
                         anim.SetBool("creditsBool", true);
                         leaveMenuAnim = clickedCredits = true;
                     }
-                    if (exitButtonRect.Contains(inputXY) && exitButtonAvailable)
+                    if (exitButtonRect.Contains(inputXY) && heimBuild)
                     {
                         leaveMenuAnim = clickedQuit = true;
                         anim.SetBool("exitBool", true);
@@ -884,7 +883,7 @@ public class MenuScript : MonoBehaviour
                 GUI.DrawTexture(creditsButtonRect, currentCreditsTexture);
 
                 //exit button
-                if (exitButtonAvailable) GUI.DrawTexture(exitButtonRect, currentExitTexture);
+                if (heimBuild) GUI.DrawTexture(exitButtonRect, currentExitTexture);
 
                 break;
             case (menuState.difficultyMenu):
