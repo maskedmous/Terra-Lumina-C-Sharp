@@ -106,18 +106,18 @@ public class PlayerInputScript : MonoBehaviour
     CameraStartScript cameraStartScript = null;
 
     //alternate control variables
-    private bool useTouchInput = false;
+    private bool useTouchInput = true;
     private bool useXboxController = false;
     private bool useKeyboard = false;
-    private string[] settings = null;
+    private List<KeyCode> keyboardSettings = null;
 
-    private string leftKey = "a";
-    private string rightKey = "d";
-    private string jumpKey = "space";
-    private string normalShroomkey = "n";
-    private string bumpyShroomKey = "b";
-    private string flashKey = "left ctrl";
-    private string pauseKey = "escape";
+    private KeyCode leftKey;
+    private KeyCode rightKey;
+    private KeyCode jumpKey;
+    private KeyCode normalShroomkey;
+    private KeyCode bumpyShroomKey;
+    private KeyCode flashKey;
+    private KeyCode escapeKey;
 
     public void Awake()
     {
@@ -135,40 +135,65 @@ public class PlayerInputScript : MonoBehaviour
         currentNormalShroomButtonTexture = normalShroomButtonTexture;
         currentBumpyShroomButtonTexture = bumpyShroomButtonTexture;
         currentEscapeButtonTexture = escapeButtonTexture;
+
+        initializeInput();
     }
 
-    public void Start()
+    public void setKeyboardSettings(List<KeyCode> settings)
     {
-        StreamReader sr = new StreamReader(Application.dataPath + "/Settings/settings.txt");
-        string text = sr.ReadToEnd();
+        keyboardSettings = settings;
+        initializeKeyboard();
+    }
 
-        settings = text.Split('\n');
-        if (settings[0] == "0")
+    private void initializeKeyboard()
+    {
+        if (keyboardSettings.Count != 0 && keyboardSettings.Count == 7)
+        {
+            leftKey = keyboardSettings[0];
+            rightKey = keyboardSettings[1];
+            jumpKey = keyboardSettings[2];
+            normalShroomkey = keyboardSettings[3];
+            bumpyShroomKey = keyboardSettings[4];
+            flashKey = keyboardSettings[5];
+            escapeKey = keyboardSettings[6];
+        }
+        else
+        {
+            Debug.LogError("Keyboard settings Incorrect");
+        }
+    }
+
+    private void initializeInput()
+    {
+        int inputType = PlayerPrefs.GetInt("InputType");
+        //TUIO input
+        if (inputType == 0)
         {
             useTouchInput = true;
             useXboxController = false;
             useKeyboard = false;
         }
-        else if (settings[0] == "1")
-        {
-            useTouchInput = false;
-            useXboxController = true;
-            useKeyboard = false;
-        }
-        else if (settings[0] == "2")
+        //Keyboard + mouse input
+        else if (inputType == 1)
         {
             useTouchInput = false;
             useXboxController = false;
             useKeyboard = true;
         }
-
-        leftKey = settings[1];
-        rightKey = settings[2];
-        jumpKey = settings[3];
-        normalShroomkey = settings[4];
-        bumpyShroomKey = settings[5];
-        flashKey = settings[6];
-        pauseKey = settings[7];
+        //win 7 & 8 touch
+        else if (inputType == 2 || inputType == 3)
+        {
+            useTouchInput = true;
+            useXboxController = false;
+            useKeyboard = false;
+        }
+        //xbox controller
+        else if (inputType == 4)
+        {
+            useTouchInput = false;
+            useXboxController = true;
+            useKeyboard = false;
+        }
     }
 
     //when the player is enabled it should add a touchBegan event to the touch manager
@@ -196,11 +221,20 @@ public class PlayerInputScript : MonoBehaviour
         {
             foreach (string joystickname in Input.GetJoystickNames())
             {
-                if (joystickname.Contains("XBOX 360")) useXboxController = true;
+                if (joystickname.Contains("XBOX 360"))
+                {
+                    useTouchInput = false;
+                    useKeyboard = false;
+                    useXboxController = true;
+                }
             }
         }
         //disable the xbox controller because it is not connected anymore
-        else if(Input.GetJoystickNames().Length == 0 && useXboxController) useXboxController = false;
+        else if (Input.GetJoystickNames().Length == 0 && useXboxController)
+        {
+            useXboxController = false;
+            initializeInput();          //re-initialize old input
+        }
 
         //fix to get the endlevel trigger as it might not have been loaded yet when the player is initialized
         if (endLevelTriggerObject == null)
@@ -224,6 +258,8 @@ public class PlayerInputScript : MonoBehaviour
             //else if you use the keyboard, handle the input
             else if(useKeyboard)
             {
+                checkReleasingButtonKeyboardInput();
+                
                 if (escapePressed) escapeKeyboard();
                 if (!gameLogic.isPaused())
                 {
@@ -343,7 +379,7 @@ public class PlayerInputScript : MonoBehaviour
         if (escapePressed)
         {
             if (Input.GetKeyDown(KeyCode.Y)) StartCoroutine(returnToMenu());
-            if (Input.GetKeyDown(KeyCode.N)) resumeGame();
+            else if (Input.GetKeyDown(KeyCode.N)) resumeGame();
         }
     }
     
@@ -357,16 +393,18 @@ public class PlayerInputScript : MonoBehaviour
         if (Input.GetKeyUp(normalShroomkey) && normalShroomButtonEnabled && chargingNormalShot) shootNormalShroom();
         if (Input.GetKeyDown(bumpyShroomKey) && bumpyShroomButtonEnabled && !chargingBumpyShot) activateBumpyShroom();
         if (Input.GetKeyUp(bumpyShroomKey) && bumpyShroomButtonEnabled && chargingBumpyShot) shootBumpyShroom();
-        if (Input.GetKeyDown(pauseKey) && !escapePressed) activateEscapeButton();
+        if (Input.GetKeyDown(escapeKey) && !escapePressed) activateEscapeButton();
     }
 
     private void handleMouseInput()
     {
-        if (Input.GetMouseButtonDown(0) && normalShroomButtonEnabled && !chargingNormalShot) activateNormalShroom();
-        if (Input.GetMouseButtonUp(0) && normalShroomButtonEnabled && chargingNormalShot) shootNormalShroom();
-        if (Input.GetMouseButtonDown(1) && bumpyShroomButtonEnabled && !chargingBumpyShot) activateBumpyShroom();
-        if (Input.GetMouseButtonUp(1) && bumpyShroomButtonEnabled && chargingBumpyShot) shootBumpyShroom();
-        if (Input.GetMouseButtonDown(2) && flashButtonEnabled) playerController.flash();
+        Vector2 mouseCoordinates = new Vector2();
+        mouseCoordinates = new Vector2(Input.mousePosition.x, -Input.mousePosition.y);
+        if (Input.GetMouseButtonDown(0) && !isTouchingButton(mouseCoordinates) && normalShroomButtonEnabled && !chargingNormalShot) activateNormalShroom();
+        if (Input.GetMouseButtonUp(0) && !isTouchingButton(mouseCoordinates) && normalShroomButtonEnabled && chargingNormalShot) shootNormalShroom();
+        if (Input.GetMouseButtonDown(1) && !isTouchingButton(mouseCoordinates) && bumpyShroomButtonEnabled && !chargingBumpyShot) activateBumpyShroom();
+        if (Input.GetMouseButtonUp(1) && !isTouchingButton(mouseCoordinates) && bumpyShroomButtonEnabled && chargingBumpyShot) shootBumpyShroom();
+        if (Input.GetMouseButtonDown(2) && !isTouchingButton(mouseCoordinates) && flashButtonEnabled) playerController.flash();
     }
 
     //check the ammo
@@ -396,6 +434,27 @@ public class PlayerInputScript : MonoBehaviour
                     isPressingButton(position);	//check if the player is pressing a button if so activate it
                 }
             }
+        }
+    }
+
+    private void checkReleasingButtonKeyboardInput()
+    {
+        bool escapeButtonTouched = false;
+
+        foreach (var touchPoint in TouchManager.Instance.ActiveTouches)
+        {
+            Vector2 inputXY = touchPoint.Position;
+            inputXY = new Vector2(inputXY.x, (inputXY.y - Screen.height) * -1);
+            
+            if (escapeButtonRect.Contains(inputXY))
+            {
+                escapeButtonTouched = true;
+            }
+        }
+
+        if (!escapeButtonTouched)
+        {
+            currentEscapeButtonTexture = escapeButtonTexture;
         }
     }
 
@@ -632,6 +691,14 @@ public class PlayerInputScript : MonoBehaviour
         {
             return true;
         }
+        if(confirmationFalseRect.Contains(inputXY))
+        {
+            return true;
+        }
+        if (confirmationTrueRect.Contains(inputXY))
+        {
+            return true;
+        }
         return false;
     }
 
@@ -643,6 +710,7 @@ public class PlayerInputScript : MonoBehaviour
             {
                 //first scale the buttons before drawing them
                 scaleButtons();
+                
                 if (useTouchInput)
                 {
                     checkBlinkingButtons();
@@ -690,7 +758,26 @@ public class PlayerInputScript : MonoBehaviour
                         GUI.DrawTexture(escapeButtonRect, currentEscapeButtonTexture);
                     }
 
-                    if (skipButtonEnabled)
+                    if (skipButtonEnabled && !gameLogic.isPaused())
+                    {
+                        GUI.DrawTexture(skipButtonRect, skipButtonTexture);
+                    }
+                }
+                else if(useKeyboard)
+                {
+                    if (!escapePressed && escapeButtonTexture != null)
+                    {
+                        GUI.DrawTexture(escapeButtonRect, currentEscapeButtonTexture);
+                    }
+
+                    if (skipButtonEnabled && !gameLogic.isPaused())
+                    {
+                        GUI.DrawTexture(skipButtonRect, skipButtonTexture);
+                    }
+                }
+                else if(useXboxController)
+                {
+                    if (skipButtonEnabled && !gameLogic.isPaused())
                     {
                         GUI.DrawTexture(skipButtonRect, skipButtonTexture);
                     }

@@ -1364,6 +1364,13 @@ public class MenuScript : MonoBehaviour
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();       //double end of frame because the scene was not loaded yet with 1 end of frame
 
+        //if they input type is keyboard -> push it to the player to update
+        if (inputType == 1)
+        {
+            PlayerInputScript playerInput = GameObject.Find("Player").GetComponent<PlayerInputScript>();
+            playerInput.setKeyboardSettings(keyboardSettings);
+        }
+
         GameObject levelLoaderObject = GameObject.Find("LevelLoader");
         //get the levelloader script
         if (levelLoaderObject != null)

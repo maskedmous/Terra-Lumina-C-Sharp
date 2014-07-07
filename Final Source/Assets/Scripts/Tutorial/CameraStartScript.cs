@@ -76,8 +76,9 @@ public class CameraStartScript : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Q)) skip();
 	}
 	
-	public void OnGUI (){
-		if(tutorialTexture != null) GUI.DrawTexture(scaleRect(new Rect(textureX, textureY, tutorialTexture.width, tutorialTexture.height)), tutorialTexture);
+	public void OnGUI ()
+    {
+		if(tutorialTexture != null && !gameLogic.isPaused()) GUI.DrawTexture(scaleRect(new Rect(textureX, textureY, tutorialTexture.width, tutorialTexture.height)), tutorialTexture);
 	}
 	
 	private Rect scaleRect ( Rect rect  ){
