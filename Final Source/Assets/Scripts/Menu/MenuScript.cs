@@ -650,6 +650,7 @@ public class MenuScript : MonoBehaviour
                     //
                     //
                     //
+
                     if(backToMenuButtonRect.Contains(inputXY))
                     {
                         changedSettings = true;
@@ -956,8 +957,15 @@ public class MenuScript : MonoBehaviour
                 break;
             case(menuState.setKeyboardControls):
                 //Draw things
-                //
-                //
+
+                string inputString = "";
+                Event e = Event.current;
+                if (e.isKey)
+                {
+                    if (e.keyCode == KeyCode.None || e.type == EventType.keyUp) return;
+                    inputString = e.keyCode.ToString();
+                }
+
                 //back button
                 GUI.DrawTexture(backToMenuButtonRect, backToMenuButton);
 
