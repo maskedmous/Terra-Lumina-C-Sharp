@@ -15,6 +15,7 @@ public class CameraScript : MonoBehaviour
     public bool cameraYClipDisabled = false;
     public bool cameraFoilage = false;
     public bool cameraCrystal = false;
+    public bool cameraRightToLeft = false;
 
     private float appropriateZAxis = 0.0f;
 
@@ -82,8 +83,16 @@ public class CameraScript : MonoBehaviour
         }
         else if (busyAnimation)
         {
-            this.transform.LookAt(crystalTarget.transform);
-            transform.Translate(Vector3.right * Time.deltaTime);
+            if (!cameraRightToLeft)
+            {
+                this.transform.LookAt(crystalTarget.transform);
+                transform.Translate(Vector3.right * Time.deltaTime);
+            }
+            else
+            {
+                this.transform.LookAt(crystalTarget.transform);
+                transform.Translate(Vector3.left * Time.deltaTime);
+            }
         }
     }
 
@@ -115,6 +124,10 @@ public class CameraScript : MonoBehaviour
         else if (cameraClose)
         {
             currentCameraState = cameraState.cameraClose;
+        }
+        else if(cameraFree)
+        {
+            currentCameraState = cameraState.cameraFree;
         }
         else if (cameraYClipDisabled)
         {
