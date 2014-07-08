@@ -114,9 +114,42 @@ public class TutorialTriggerScript : MonoBehaviour
         }
 
         //get the input type!
-        //
-        //insert code
-        //
+        initializeInputType();
+    }
+
+    private void initializeInputType()
+    {
+        int inputType = 0;
+        if (PlayerPrefs.HasKey("InputType")) inputType = PlayerPrefs.GetInt("InputType");
+
+        //TUIO input
+        if (inputType == 0)
+        {
+            touchInput = true;
+            xboxInput = false;
+            keyboardInput = false;
+        }
+        //Keyboard + mouse input
+        else if (inputType == 1)
+        {
+            touchInput = false;
+            xboxInput = false;
+            keyboardInput = true;
+        }
+        //win 7 & 8 touch
+        else if (inputType == 2 || inputType == 3)
+        {
+            touchInput = true;
+            xboxInput = false;
+            keyboardInput = false;
+        }
+        //xbox controller
+        else if (inputType == 4)
+        {
+            touchInput = false;
+            xboxInput = true;
+            keyboardInput = false;
+        }
     }
 
     public void Start()
@@ -136,6 +169,15 @@ public class TutorialTriggerScript : MonoBehaviour
         //original width / height is defined in a variable at top, we use an aspect ratio of 16:9 and original screen size of 1920x1080
         scale.x = Screen.width / originalWidth;		//X scale is the current width divided by the original width
         scale.y = Screen.height / originalHeight;	//Y scale is the current height divided by the original height
+
+        //check xbox
+        if (playerInput.isUsingXboxController())
+        {
+            xboxInput = true;
+            touchInput = false;
+            keyboardInput = false;
+        }
+        else if (!playerInput.isUsingXboxController() && xboxInput == true) initializeInputType();  //initialize old input xbox controller is disconnected
 
         if (touchInput)
         {

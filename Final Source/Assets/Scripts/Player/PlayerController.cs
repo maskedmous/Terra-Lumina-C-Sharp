@@ -182,7 +182,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void move(float mousePos)
+    private void useDriveSound()
     {
         if (soundEngine != null)
         {
@@ -193,12 +193,11 @@ public class PlayerController : MonoBehaviour
             }
             soundEngine.playSoundEffect("roverDrive");
         }
-        if (mousePos > Screen.width / 2) moveRight();
-        if (mousePos < Screen.width / 2) moveLeft();
     }
 
     public void moveLeft()
     {
+        useDriveSound();
         anim.SetBool("isMoving", true);
         if (this.gameObject.rigidbody.velocity.x > -maxSpeed)
         {
@@ -215,6 +214,7 @@ public class PlayerController : MonoBehaviour
 
     public void moveRight()
     {
+        useDriveSound();
         anim.SetBool("isMoving", true);
         if (this.gameObject.rigidbody.velocity.x < maxSpeed)
         {

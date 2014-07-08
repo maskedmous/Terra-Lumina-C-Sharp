@@ -79,8 +79,7 @@ public class LevelTrigger : MonoBehaviour
         {
             if (winMenuRect.Contains(inputXY))
             {
-                Application.LoadLevel("Menu");
-                soundEngine.changeMusic("Menu");
+                loadMenu();
             }
         }
 
@@ -88,10 +87,15 @@ public class LevelTrigger : MonoBehaviour
         {
             if (loseMenuRect.Contains(inputXY))
             {
-                Application.LoadLevel("Menu");
-                soundEngine.changeMusic("Menu");
+                loadMenu();
             }
         }
+    }
+
+    public void loadMenu()
+    {
+        Application.LoadLevel("Menu");
+        soundEngine.changeMusic("Menu");
     }
 
     void OnTriggerEnter(Collider hit)

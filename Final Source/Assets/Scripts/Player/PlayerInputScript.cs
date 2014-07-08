@@ -11,6 +11,8 @@ public class PlayerInputScript : MonoBehaviour
     private SoundEngineScript soundEngine = null;		//sound engine for sounds
     private GameLogic gameLogic;						//the Game Logic
 
+    private bool endGame = false;
+
     public bool inactiveTimerEnabled = false;
     private float inactiveTimer = 60.0f;	//if the player is inactive for 60 seconds go back to the menu
 
@@ -167,7 +169,7 @@ public class PlayerInputScript : MonoBehaviour
     {
         int inputType = 0;  //standard TUIO input
         if (PlayerPrefs.HasKey("InputType")) inputType = PlayerPrefs.GetInt("InputType");   //if heim build they have no player prefs so standard TUIO input
-            
+
         //TUIO input
         if (inputType == 0)
         {
@@ -196,6 +198,11 @@ public class PlayerInputScript : MonoBehaviour
             useXboxController = true;
             useKeyboard = false;
         }
+    }
+
+    public bool isUsingXboxController()
+    {
+        return useXboxController;
     }
 
     //when the player is enabled it should add a touchBegan event to the touch manager
@@ -258,10 +265,10 @@ public class PlayerInputScript : MonoBehaviour
                 readTouch();
             }
             //else if you use the keyboard, handle the input
-            else if(useKeyboard)
+            else if (useKeyboard)
             {
                 checkReleasingButtonKeyboardInput();
-                
+
                 if (escapePressed) escapeKeyboard();
                 if (!gameLogic.isPaused())
                 {
@@ -270,7 +277,7 @@ public class PlayerInputScript : MonoBehaviour
                 }
             }
             //else if you use an xbox controller then update the incoming controls and use em
-            else if(useXboxController)
+            else if (useXboxController)
             {
                 if (escapePressed) escapeXboxControls();
                 if (!gameLogic.isPaused())
@@ -286,6 +293,7 @@ public class PlayerInputScript : MonoBehaviour
         {
             playerController.stopMovement();
             playerController.stopControl();
+            endGame = true;
         }
 
         if (shootTimer > 0.0f) shootTimer -= Time.deltaTime;
@@ -308,13 +316,13 @@ public class PlayerInputScript : MonoBehaviour
             {
                 inactiveTimer = 60.0f;
             }
-        }        
+        }
     }
 
     private void escapeXboxControls()
     {
         //else check if the A button is pressed while the escape has been pressed
-        if(Input.GetButtonDown("360_AButton") && escapePressed)
+        if (Input.GetButtonDown("360_AButton") && escapePressed)
         {
             StartCoroutine(returnToMenu());
         }
@@ -327,53 +335,58 @@ public class PlayerInputScript : MonoBehaviour
 
     private void xboxControls()
     {
-            //check if the A button is pressed while skipping is enabled
-            if(Input.GetButtonDown("360_AButton") && skipButtonEnabled)
-            {
-                skipIntro();
-            }
-            //check if button A is pressed to activate the jump
-            else if(Input.GetButtonDown("360_AButton") && jumpButtonEnabled)
-            {
-                activateJump();
-            }
-            
-            //check if button X is pressed and activate the flash
-            if (Input.GetButtonDown("360_XButton") && flashButtonEnabled)
-            {
-                activateFlash();
-            }
-            //check if button B is pressed down and activate aiming
-            if (Input.GetButtonDown("360_BButton") && normalShroomButtonEnabled && !chargingNormalShot)
-            {
-                activateNormalShroom();
-            }
-            //check if button B is lifted and activate shooting
-            if(Input.GetButtonUp("360_BButton") && normalShroomButtonEnabled && chargingNormalShot)
-            {
-                shootNormalShroom();
-            }
-            //check if button Y is pressed down and activated aiming
-            if (Input.GetButtonDown("360_YButton") && bumpyShroomButtonEnabled && !chargingBumpyShot)
-            {
-                activateBumpyShroom();
-            }
-            //check if button Y is lifted and activate shooting
-            if(Input.GetButtonUp("360_YButton") && bumpyShroomButtonEnabled && chargingBumpyShot)
-            {
-                shootBumpyShroom();
-            }
+        //check if the A button is pressed while skipping is enabled
+        if (Input.GetButtonDown("360_AButton") && skipButtonEnabled)
+        {
+            skipIntro();
+        }
+        //the game is lost or finished if pressing A returns to menu
+        else if (Input.GetButtonDown("360_AButton") && endGame)
+        {
+            endLevelTriggerScript.loadMenu();
+        }
+        //check if button A is pressed to activate the jump
+        else if (Input.GetButtonDown("360_AButton") && jumpButtonEnabled)
+        {
+            activateJump();
+        }
 
-            //start is the escape button
-            if(Input.GetButtonDown("360_StartButton") && !escapePressed)
-            {
-                activateEscapeButton();
-            }
+        //check if button X is pressed and activate the flash
+        if (Input.GetButtonDown("360_XButton") && flashButtonEnabled)
+        {
+            activateFlash();
+        }
+        //check if button B is pressed down and activate aiming
+        if (Input.GetButtonDown("360_BButton") && normalShroomButtonEnabled && !chargingNormalShot)
+        {
+            activateNormalShroom();
+        }
+        //check if button B is lifted and activate shooting
+        if (Input.GetButtonUp("360_BButton") && normalShroomButtonEnabled && chargingNormalShot)
+        {
+            shootNormalShroom();
+        }
+        //check if button Y is pressed down and activated aiming
+        if (Input.GetButtonDown("360_YButton") && bumpyShroomButtonEnabled && !chargingBumpyShot)
+        {
+            activateBumpyShroom();
+        }
+        //check if button Y is lifted and activate shooting
+        if (Input.GetButtonUp("360_YButton") && bumpyShroomButtonEnabled && chargingBumpyShot)
+        {
+            shootBumpyShroom();
+        }
 
-            //check if left-stick is to the left
-            if (Input.GetAxis("Horizontal") < 0 && movementLeftEnabled) playerController.moveLeft();
-            //check if left-stick is to the right
-            else if (Input.GetAxis("Horizontal") > 0 && movementRightEnabled) playerController.moveRight();
+        //start is the escape button
+        if (Input.GetButtonDown("360_StartButton") && !escapePressed)
+        {
+            activateEscapeButton();
+        }
+
+        //check if left-stick is to the left
+        if (Input.GetAxis("Horizontal") < 0 && movementLeftEnabled) playerController.moveLeft();
+        //check if left-stick is to the right
+        else if (Input.GetAxis("Horizontal") > 0 && movementRightEnabled) playerController.moveRight();
     }
 
     private void escapeKeyboard()
@@ -384,7 +397,7 @@ public class PlayerInputScript : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.N)) resumeGame();
         }
     }
-    
+
     private void handleKeyboardInput()
     {
         if (Input.GetKey(leftKey) && movementLeftEnabled) playerController.moveLeft();
@@ -447,7 +460,7 @@ public class PlayerInputScript : MonoBehaviour
         {
             Vector2 inputXY = touchPoint.Position;
             inputXY = new Vector2(inputXY.x, (inputXY.y - Screen.height) * -1);
-            
+
             if (escapeButtonRect.Contains(inputXY))
             {
                 escapeButtonTouched = true;
@@ -693,7 +706,7 @@ public class PlayerInputScript : MonoBehaviour
         {
             return true;
         }
-        if(confirmationFalseRect.Contains(inputXY))
+        if (confirmationFalseRect.Contains(inputXY))
         {
             return true;
         }
@@ -708,89 +721,96 @@ public class PlayerInputScript : MonoBehaviour
     {
         if (endLevelTriggerObject != null)
         {
+
             if (!endLevelTriggerScript.getFinished() && !endLevelTriggerScript.getLost())
             {
                 //first scale the buttons before drawing them
                 scaleButtons();
                 
-                if (useTouchInput)
+                if (!gameLogic.isPaused())  //game is not paused so draw the buttons
                 {
-                    checkBlinkingButtons();
+                    if (useTouchInput)
+                    {
+                        checkBlinkingButtons();
 
-                    //if the jump button is enabled it will be drawn
-                    if (jumpButtonEnabled)
-                    {
-                        //this is the texture of the button
-                        GUI.DrawTexture(jumpButtonRect, currentJumpButtonTexture);
-                    }
-                    else
-                    {
-                        //this is the texture of the inactive button
-                        GUI.DrawTexture(jumpButtonRect, jumpButtonInactiveTexture);
-                    }
-                    if (flashButtonEnabled)
-                    {
-                        GUI.DrawTexture(flashButtonRect, currentFlashButtonTexture);
-                    }
-                    else
-                    {
-                        GUI.DrawTexture(flashButtonRect, flashButtonInactiveTexture);
-                    }
+                        //if the jump button is enabled it will be drawn
+                        if (jumpButtonEnabled)
+                        {
+                            //this is the texture of the button
+                            GUI.DrawTexture(jumpButtonRect, currentJumpButtonTexture);
+                        }
+                        else
+                        {
+                            //this is the texture of the inactive button
+                            GUI.DrawTexture(jumpButtonRect, jumpButtonInactiveTexture);
+                        }
+                        if (flashButtonEnabled)
+                        {
+                            GUI.DrawTexture(flashButtonRect, currentFlashButtonTexture);
+                        }
+                        else
+                        {
+                            GUI.DrawTexture(flashButtonRect, flashButtonInactiveTexture);
+                        }
 
-                    if (normalShroomButtonEnabled)
-                    {
-                        GUI.DrawTexture(normalShroomButtonRect, currentNormalShroomButtonTexture);
-                    }
-                    else
-                    {
-                        GUI.DrawTexture(normalShroomButtonRect, normalShroomButtonInactiveTexture);
-                    }
+                        if (normalShroomButtonEnabled)
+                        {
+                            GUI.DrawTexture(normalShroomButtonRect, currentNormalShroomButtonTexture);
+                        }
+                        else
+                        {
+                            GUI.DrawTexture(normalShroomButtonRect, normalShroomButtonInactiveTexture);
+                        }
 
-                    if (bumpyShroomButtonEnabled)
-                    {
-                        GUI.DrawTexture(bumpyShroomButtonRect, currentBumpyShroomButtonTexture);
-                    }
-                    else
-                    {
-                        GUI.DrawTexture(bumpyShroomButtonRect, bumpyShroomButtonInactiveTexture);
-                    }
+                        if (bumpyShroomButtonEnabled)
+                        {
+                            GUI.DrawTexture(bumpyShroomButtonRect, currentBumpyShroomButtonTexture);
+                        }
+                        else
+                        {
+                            GUI.DrawTexture(bumpyShroomButtonRect, bumpyShroomButtonInactiveTexture);
+                        }
 
-                    if (!escapePressed && escapeButtonTexture != null)
-                    {
-                        GUI.DrawTexture(escapeButtonRect, currentEscapeButtonTexture);
-                    }
+                        if (!escapePressed && escapeButtonTexture != null)
+                        {
+                            GUI.DrawTexture(escapeButtonRect, currentEscapeButtonTexture);
+                        }
 
-                    if (skipButtonEnabled && !gameLogic.isPaused())
+                        if (skipButtonEnabled && !gameLogic.isPaused())
+                        {
+                            GUI.DrawTexture(skipButtonRect, skipButtonTexture);
+                        }
+                    }
+                    else if (useKeyboard)
                     {
-                        GUI.DrawTexture(skipButtonRect, skipButtonTexture);
+                        if (!escapePressed && escapeButtonTexture != null)
+                        {
+                            GUI.DrawTexture(escapeButtonRect, currentEscapeButtonTexture);
+                        }
+
+                        if (skipButtonEnabled && !gameLogic.isPaused())
+                        {
+                            GUI.DrawTexture(skipButtonRect, skipButtonTexture);
+                        }
+                    }
+                    else if (useXboxController)
+                    {
+                        if (skipButtonEnabled && !gameLogic.isPaused())
+                        {
+                            GUI.DrawTexture(skipButtonRect, skipButtonTexture);
+                        }
                     }
                 }
-                else if(useKeyboard)
-                {
-                    if (!escapePressed && escapeButtonTexture != null)
-                    {
-                        GUI.DrawTexture(escapeButtonRect, currentEscapeButtonTexture);
-                    }
-
-                    if (skipButtonEnabled && !gameLogic.isPaused())
-                    {
-                        GUI.DrawTexture(skipButtonRect, skipButtonTexture);
-                    }
-                }
-                else if(useXboxController)
-                {
-                    if (skipButtonEnabled && !gameLogic.isPaused())
-                    {
-                        GUI.DrawTexture(skipButtonRect, skipButtonTexture);
-                    }
-                }
-                if (escapePressed && confirmationScreenTexture != null)
+                else if (escapePressed && confirmationScreenTexture != null)
                 {
                     GUI.DrawTexture(confirmationScreenRect, confirmationScreenTexture);
                     GUI.DrawTexture(confirmationTrueRect, confirmationTrueTexture);
                     GUI.DrawTexture(confirmationFalseRect, confirmationFalseTexture);
                 }
+
             }
+
+            
         }
     }
     //check for blinking buttons, if so blink em!
@@ -896,12 +916,12 @@ public class PlayerInputScript : MonoBehaviour
                     }
                     if (position.x > Screen.width / 2)
                     {
-                        if (movementRightEnabled) playerController.move(position.x);
+                        if (movementRightEnabled) playerController.moveRight();
                         return;
                     }
                     if (position.x < Screen.width / 2)
                     {
-                        if (movementLeftEnabled) playerController.move(position.x);
+                        if (movementLeftEnabled) playerController.moveLeft();
                         return;
                     }
                 }
