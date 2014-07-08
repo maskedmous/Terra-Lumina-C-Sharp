@@ -300,6 +300,10 @@ public class MenuScript : MonoBehaviour
         {
             loadSettings();
         }
+        else
+        {
+            deleteSettings();
+        }
 
         initializeSound();
         initalizeInput();
@@ -797,7 +801,7 @@ public class MenuScript : MonoBehaviour
                         touchEnabled = false;
                         anim.SetBool("settingsBool", false);
                         changedSettings = false;
-                        loadSettings();
+                        if(!heimBuild) loadSettings();
                         return true;
                     }
 
@@ -1668,6 +1672,11 @@ public class MenuScript : MonoBehaviour
         createSettings();
         //load em
         loadSettings();
+    }
+
+    private void deleteSettings()
+    {
+        PlayerPrefs.DeleteAll();
     }
 
     private IEnumerator loadLevel()
