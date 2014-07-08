@@ -31,7 +31,7 @@ public class CameraStartScript : MonoBehaviour
     public void Awake()
     {
         cameraScript = Camera.main.GetComponent("CameraScript") as CameraScript;
-        cameraScript.setMove(false);
+        cameraScript.setCameraStatic(false);
 
         GameObject player = GameObject.Find("Player") as GameObject;
         PlayerInputScript playerInputScript = player.GetComponent("PlayerInputScript") as PlayerInputScript;
@@ -164,7 +164,7 @@ public class CameraStartScript : MonoBehaviour
         tutorialTriggerScript.setCameraMoving(false);
         playerInputScript.setMovementLeftEnabled(true);
         playerInputScript.setSkipButtonEnabled(false);
-        cameraScript.setMove(true);
+        cameraScript.setCameraStatic(true);
 
         gameLogic.startBattery();
 

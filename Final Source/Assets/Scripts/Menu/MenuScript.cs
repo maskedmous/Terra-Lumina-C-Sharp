@@ -139,6 +139,70 @@ public class MenuScript : MonoBehaviour
     public float customizeKeyboardX = 680.0f;
     public float customizeKeyboardY = 800.0f;
 
+    private bool changeKey = false;
+    private bool insertMoveLeft = false;
+    private bool insertMoveRight = false;
+    private bool insertJump = false;
+    private bool insertFlash = false;
+    private bool insertShootNormal = false;
+    private bool insertShootBumpy = false;
+
+    private KeyCode inputKey = KeyCode.None;
+    public Texture2D insertTextureBackground = null;
+
+    //move Left
+    private Rect moveLeftCustomizeRect;
+    public float moveLeftCustomizeX = 0.0f;
+    public float moveLeftCustomizeY = 0.0f;
+    
+    private Rect insertMoveLeftCustomizeRect;
+    public float insertMoveLeftCustomizeX = 0.0f;
+    public float insertMoveLeftCustomizeY = 0.0f;
+
+    //move Right
+    private Rect moveRightCustomizeRect;
+    public float moveRightCustomizeX = 0.0f;
+    public float moveRightCustomizeY = 0.0f;
+
+    private Rect insertMoveRightCustomizeRect;
+    public float insertMoveRightCustomizeX = 0.0f;
+    public float insertMoveRightCustomizeY = 0.0f;
+    //jump
+    private Rect jumpCustomizeRect;
+    public float jumpCustomizeX = 0.0f;
+    public float jumpCustomizeY = 0.0f;
+
+    private Rect insertJumpCustomizeRect;
+    public float insertJumpCustomizeX = 0.0f;
+    public float insertJumpCustomizeY = 0.0f;
+    //flash
+    private Rect flashCustomizeRect;
+    public float flashCustomizeX = 0.0f;
+    public float flashCustomizeY = 0.0f;
+
+    private Rect insertFlashCustomizeRect;
+    public float insertFlashCustomizeX = 0.0f;
+    public float insertFlashCustomizeY = 0.0f;
+
+    //Shoot Normal
+    private Rect shootNormalCustomizeRect;
+    public float shootNormalCustomizeX = 0.0f;
+    public float shootNormalCustomizeY = 0.0f;
+
+    private Rect insertShootNormalCustomizeRect;
+    public float insertShootNormalCustomizeX = 0.0f;
+    public float insertShootNormalCustomizeY = 0.0f;
+    //shoot bumpy
+    private Rect shootBumpyCustomizeRect;
+    public float shootBumpyCustomizeX = 0.0f;
+    public float shootBumpyCustomizeY = 0.0f;
+
+    private Rect insertShootBumpyCustomizeRect;
+    public float insertShootBumpyCustomizeX = 0.0f;
+    public float insertShootBumpyCustomizeY = 0.0f;
+
+
+
     public Texture2D applySettingsTexture = null;
     private Rect applySettingsRect;
     public float applySettingsX = 1400.0f;
@@ -261,6 +325,44 @@ public class MenuScript : MonoBehaviour
             }
         }
 
+        if (currentMenuState == menuState.setKeyboardControls && changeKey)
+        {
+            if (inputKey != KeyCode.None)
+            {
+                Debug.Log("changing key");
+                if (insertMoveLeft)
+                {
+                    moveLeftKey = inputKey;
+                    resetInsertKey();
+                }
+                else if (insertMoveRight)
+                {
+                    moveRightKey = inputKey;
+                    resetInsertKey();
+                }
+                else if (insertJump)
+                {
+                    jumpKey = inputKey;
+                    resetInsertKey();
+                }
+                else if (insertFlash)
+                {
+                    flashKey = inputKey;
+                    resetInsertKey();
+                }
+                else if (insertShootNormal)
+                {
+                    normalShroomKey = inputKey;
+                    resetInsertKey();
+                }
+                else if (insertShootBumpy)
+                {
+                    bumpyShroomKey = inputKey;
+                    resetInsertKey();
+                }
+            }
+        }
+
         combinationCooldown -= Time.deltaTime;
 
         if (combinationCooldown <= 0.0f)
@@ -282,6 +384,19 @@ public class MenuScript : MonoBehaviour
                 combinationCooldown = 1.0f;
             }
         }
+    }
+
+    private void resetInsertKey()
+    {
+        Debug.Log("resetting");
+        inputKey = KeyCode.None;
+        changeKey = false;
+        insertMoveLeft = false;
+        insertMoveRight = false;
+        insertJump = false;
+        insertFlash = false;
+        insertShootNormal = false;
+        insertShootBumpy = false;
     }
 
     private void initializeScripts()
@@ -395,7 +510,7 @@ public class MenuScript : MonoBehaviour
         acceptSettingsTexture = textureLoader.getTexture("acceptSettings");
         revertSettingsTexture = textureLoader.getTexture("revertSettings");
         customizeKeyboardTexture = textureLoader.getTexture("CustomizeKeyboard");
-
+        insertTextureBackground = textureLoader.getTexture("InsertBackground");
 
         creditsScreen = textureLoader.getTexture("Credits Screen");
         optionsScreenTexture = textureLoader.getTexture("Options Screen");
@@ -736,9 +851,65 @@ public class MenuScript : MonoBehaviour
                     break;
                 case (menuState.setKeyboardControls):
                     //the whole table thing
-                    //
-                    //
-                    //
+                    Event e = Event.current;
+                   
+                    if (e != null && changeKey)
+                    {
+                        Debug.Log("finding key");
+                        if (e.isKey)
+                        {
+                            Debug.Log("found key: " + e.keyCode);
+
+                            if (e.keyCode != KeyCode.None && e.type != EventType.keyUp)
+                            {
+                                Debug.Log("putting in other key");
+                                inputKey = e.keyCode;
+                            }
+                        }
+                    }
+                    //move Left
+                    if (insertMoveLeftCustomizeRect.Contains(inputXY) && !changeKey)
+                    {
+                        Debug.Log("change move left key");
+                        changeKey = true;
+                        insertMoveLeft = true;
+                        return true;
+                    }
+                    //move Right
+                    else if (insertMoveRightCustomizeRect.Contains(inputXY) && !changeKey)
+                    {
+                        changeKey = true;
+                        insertMoveRight = true;
+                        return true;
+                    }
+                    //Jump
+                    else if (insertJumpCustomizeRect.Contains(inputXY) && !changeKey)
+                    {
+                        changeKey = true;
+                        insertJump = true;
+                        return true;
+                    }
+                    //Flash
+                    else if (insertFlashCustomizeRect.Contains(inputXY) && !changeKey)
+                    {
+                        changeKey = true;
+                        insertFlash = true;
+                        return true;
+                    }
+                    //Normal Shroom
+                    else if (insertShootNormalCustomizeRect.Contains(inputXY) && !changeKey)
+                    {
+                        changeKey = true;
+                        insertShootNormal = true;
+                        return true;
+                    }
+                    //Bumpy Shroom
+                    else if (insertShootNormalCustomizeRect.Contains(inputXY) && !changeKey)
+                    {
+                        changeKey = true;
+                        insertShootBumpy = true;
+                        return true;
+                    }
 
                     if (backToMenuButtonRect.Contains(inputXY))
                     {
@@ -1053,14 +1224,31 @@ public class MenuScript : MonoBehaviour
                 break;
             case (menuState.setKeyboardControls):
 
+                //backgrounds for inserting key
+                GUI.DrawTexture(insertMoveLeftCustomizeRect, insertTextureBackground);
+                GUI.DrawTexture(insertMoveRightCustomizeRect, insertTextureBackground);
+                GUI.DrawTexture(insertJumpCustomizeRect, insertTextureBackground);
+                GUI.DrawTexture(insertFlashCustomizeRect, insertTextureBackground);
+                GUI.DrawTexture(insertShootNormalCustomizeRect, insertTextureBackground);
+                GUI.DrawTexture(insertShootBumpyCustomizeRect, insertTextureBackground);
+
                 //Draw things
-                string inputString = "";
-                Event e = Event.current;
-                if (e.isKey)
-                {
-                    if (e.keyCode == KeyCode.None || e.type == EventType.keyUp) return;
-                    inputString = e.keyCode.ToString();
-                }
+                customFont.fontSize = Mathf.RoundToInt(scale.x * 26); //font
+
+                //move Left
+                GUI.Label(moveLeftCustomizeRect, "Move Left:    " + moveLeftKey.ToString(), customFont);
+                //move Right
+                GUI.Label(moveRightCustomizeRect, "Move Right:    " + moveRightKey.ToString(), customFont);
+                //jump
+                GUI.Label(jumpCustomizeRect, "Jump:    " + jumpKey.ToString(), customFont);
+                //flash
+                GUI.Label(flashCustomizeRect, "Flash:    " + flashKey.ToString(), customFont);
+                //Shoot Normal
+                GUI.Label(shootNormalCustomizeRect, "Normal Shroom:    " + normalShroomKey.ToString(), customFont);
+                //shoot bumpy
+                GUI.Label(shootBumpyCustomizeRect, "Bumpy Shroom:    " + bumpyShroomKey.ToString(), customFont);
+
+                
 
                 //back button
                 GUI.DrawTexture(backToMenuButtonRect, backToMenuButton);
@@ -1169,6 +1357,36 @@ public class MenuScript : MonoBehaviour
 
                 break;
             case (menuState.setKeyboardControls):
+                moveLeftCustomizeRect = new Rect(moveLeftCustomizeX, moveLeftCustomizeY, 200, 100);
+                moveRightCustomizeRect = new Rect(moveRightCustomizeX, moveRightCustomizeY, 200, 100);
+                jumpCustomizeRect = new Rect(jumpCustomizeX, jumpCustomizeY, 200, 100);
+                flashCustomizeRect = new Rect(flashCustomizeX, flashCustomizeY, 200, 100);
+                shootNormalCustomizeRect = new Rect(shootNormalCustomizeX, shootNormalCustomizeY, 200, 100);
+                shootBumpyCustomizeRect = new Rect(shootBumpyCustomizeX, shootBumpyCustomizeY, 200, 100);
+
+                moveLeftCustomizeRect = scaleRect(moveLeftCustomizeRect);
+                moveRightCustomizeRect = scaleRect(moveRightCustomizeRect);
+                jumpCustomizeRect = scaleRect(jumpCustomizeRect);
+                flashCustomizeRect = scaleRect(flashCustomizeRect);
+                shootNormalCustomizeRect = scaleRect(shootNormalCustomizeRect);
+                shootBumpyCustomizeRect = scaleRect(shootBumpyCustomizeRect);
+
+
+                insertMoveLeftCustomizeRect = new Rect(insertMoveLeftCustomizeX, insertMoveLeftCustomizeY, insertTextureBackground.width, insertTextureBackground.height);
+                insertMoveRightCustomizeRect = new Rect(insertMoveRightCustomizeX, insertMoveRightCustomizeY, insertTextureBackground.width, insertTextureBackground.height);
+                insertJumpCustomizeRect = new Rect(insertJumpCustomizeX, insertJumpCustomizeY, insertTextureBackground.width, insertTextureBackground.height);
+                insertFlashCustomizeRect = new Rect(insertFlashCustomizeX, insertFlashCustomizeY, insertTextureBackground.width, insertTextureBackground.height);
+                insertShootNormalCustomizeRect = new Rect(insertShootNormalCustomizeX, insertShootNormalCustomizeY, insertTextureBackground.width, insertTextureBackground.height);
+                insertShootBumpyCustomizeRect = new Rect(insertShootBumpyCustomizeX, insertShootBumpyCustomizeY, insertTextureBackground.width, insertTextureBackground.height);
+
+                insertMoveLeftCustomizeRect = scaleRect(insertMoveLeftCustomizeRect);
+                insertMoveRightCustomizeRect = scaleRect(insertMoveRightCustomizeRect);
+                insertJumpCustomizeRect = scaleRect(insertJumpCustomizeRect);
+                insertFlashCustomizeRect = scaleRect(insertFlashCustomizeRect);
+                insertShootNormalCustomizeRect = scaleRect(insertShootNormalCustomizeRect);
+                insertShootBumpyCustomizeRect = scaleRect(insertShootBumpyCustomizeRect);
+                
+
                 backToMenuButtonRect = new Rect(backToMenuButtonX, backToMenuButtonY, backToMenuButton.width, backToMenuButton.height);
                 backToMenuButtonRect = scaleRect(backToMenuButtonRect);
                 break;
