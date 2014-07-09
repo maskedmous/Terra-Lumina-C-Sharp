@@ -5,9 +5,9 @@ using System.IO;
 
 public class XmlToScene : MonoBehaviour
 {
-    private string xmlPath = "";
+    private string xmlPath = "";    //path for loading
     private string xmlLevel = "";
-    private bool isLoading = false;
+    private bool isLoading = false; //it shouldn't load the level twice so set a boolean
 
     public void Awake()
     {
@@ -31,7 +31,7 @@ public class XmlToScene : MonoBehaviour
             isLoading = true;
             string filePath = xmlPath + xmlLevel;
             XmlDocument xmlDocument = new XmlDocument();
-
+            //load up that XML and read it out
             if (File.Exists(filePath))
             {
                 xmlDocument.Load(filePath);
@@ -48,7 +48,7 @@ public class XmlToScene : MonoBehaviour
 
                 XmlNode rootNode = xmlDocument.DocumentElement;
                 XmlNodeList masterNode = rootNode.ChildNodes;
-
+                //go read nodes and load the things into the variables then apply them
                 foreach (XmlNode nodes in masterNode)
                 {
                     if (nodes.Name == "Camera")

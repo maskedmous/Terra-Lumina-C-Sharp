@@ -8,48 +8,50 @@ using System.IO;
 //Written by: Kevin Mettes
 //Usage:
 //Create a scene, a GameObject, attach the script
-//fill in the desired filePath
+//fill in the desired folder path
 //fill in the desired fileType what it should search for
 //fill in the next scene it should load
 //add a loading screen texture
 //
 //
+//Edited from standard for Terra Lumina Project
 ///////////////////////////////////////////////////
 
 
 
 public class TextureLoader : MonoBehaviour
 {
-    //settings
-    public string filePath = "/FolderName";	//filePath of the textures
+    //standard settings
+    public string filePath = "/FolderName";	    //filePath of the textures
     public string fileType = "*.png";			//* means all names possible  .png means files with the png extention only
     public string nextScene = "someScene";		//next scene
-    public Texture2D loadingScreen = null;				//texture2D loadingscreen
-    public int loadedLabelWidth = 100;				//width and height for the % loaded
+    public Texture2D loadingScreen = null;		//texture2D loadingscreen
+    public int loadedLabelWidth = 100;			//width and height for the % loaded
     public int loadedLabelHeight = 100;
-    public int fontSize = 18;				//font size for the loading %
+    public int fontSize = 18;				    //font size for the loading %
 
     //private variables not to be touched
-    private int fileCount = 0;				//the amount of files that are to be loaded
-    private int loadedFiles = 0;				//the amount that is loaded at this point
-    private ArrayList textureArray = new ArrayList();		//array where we put all textures in
-    private GUIStyle guiStyle = new GUIStyle();	//style for the loading % in a different font
-    private bool loaded = false;			//bool  to see if it is loaded or not
-    private bool validPath = false;
+    private int fileCount = 0;				            //the amount of files that are to be loaded
+    private int loadedFiles = 0;				        //the amount that is loaded at this point
+    private ArrayList textureArray = new ArrayList();	//array where we put all textures in
+    private GUIStyle guiStyle = new GUIStyle();	        //style for the loading % in a different font
+    private bool loaded = false;			            //bool  to see if it is loaded or not
+    private bool validPath = false;                     //seperate bools for valid / invalid path
+    private bool invalidPath = false;
 
     private float dotTimer = 1.0f;						//timer for going to the new dot
     public Texture2D dotTexture = null;					//texture for the dot
     public float dotX = 0.0f;							//position of the initial dot
     public float dotY = 0.0f;
-    private bool firstDot = true;					//booleans to show which dot
+    private bool firstDot = true;					    //booleans to show which dot at loading screen
     private bool secondDot = false;
     private bool thirdDot = false;
 
     private Vector2 scale = new Vector2();				//scale for texture scaling 16:9
-    private float originalWidth = 1920.0f;					//original width and height of a 16:9 ratio
+    private float originalWidth = 1920.0f;				//original width and height of a 16:9 ratio
     private float originalHeight = 1080.0f;
 
-    private bool invalidPath = false;
+    
     //static variables not to be touched
     static bool LoaderExists = false;				//static to check if the loader exists already or not
 
@@ -76,26 +78,29 @@ public class TextureLoader : MonoBehaviour
 
             //the filePath of the textures you want to load(use the root folder, it searches through all subfolders)
             filePath = Application.dataPath + filePath;
+            //check if it is a valid path though
             validPath = checkValidFilePath(filePath);
 
             //check if the filePath is initialized properly
             if (filePath != Application.dataPath + "/FolderName" && nextScene != "someScene")	//don't change this its a check, fill in the public variables instead
             {
                 Debug.Log("Loading Textures...");	//showing that it'll load textures
-                StartCoroutine(fillTextureArray());					//calling the function to fill the array
+                StartCoroutine(fillTextureArray());	//calling the function to fill the array
             }
             else
             {
-                Debug.LogError("You probably forgot to set either the foldername or nextscene");
+                Debug.LogError("You probably forgot to set either the foldername or nextscene");    //error if something goes wrong, failsaves
             }
         }
         else
         {
-            //destroy this because it exists already
+            //destroy this because it exists already, failsave because this scene should not be loaded multiple times
             Destroy(this.gameObject);
         }
     }
 
+    //fixes the pathing with some characters that WWW does not understand.
+    //URL encoding did not work so doing this manually which will not exclude every possibility but still the major ones
     private string fixPath(string path)
     {
         if (path.Contains("ä")) path = path.Replace("ä", "%E4");
@@ -106,7 +111,7 @@ public class TextureLoader : MonoBehaviour
         if (path.Contains("#")) path = path.Replace("#", "%23");
         return path;
     }
-
+    //check if it has a valid path without the WWW-nonunderstandable characters
     private bool checkValidFilePath(string path)
     {
         if (path.Contains("ä") || path.Contains("ë") || path.Contains("ö") || path.Contains("ü") || path.Contains("ï") || path.Contains("#")) return false;
@@ -196,13 +201,14 @@ public class TextureLoader : MonoBehaviour
         {
             string path = file;
 
-            if (!validPath) path = fixPath(file);               //it is detected that the path is not valid so try fixing it before using it in the WWW
+            if (!validPath) path = fixPath(file);  //it is detected that the path is not valid so try fixing it before using it in the WWW else it'll error
 
             //download the file via WWW
             WWW wwwTexture = new WWW("file:///" + path);
             //wait for it to download
             yield return wwwTexture;
-            if (!string.IsNullOrEmpty(wwwTexture.error)) invalidPath = true;
+            if (!string.IsNullOrEmpty(wwwTexture.error)) invalidPath = true;    //if it is still invalid after fixing set invalidPath to true this means the game has to be moved to a valid path like Program Files
+            //get the texture data out of the WWW download
             Texture2D texture = wwwTexture.texture;
             //assign the name to the texture
             string textureName = Path.GetFileNameWithoutExtension(file);
@@ -248,42 +254,6 @@ public class TextureLoader : MonoBehaviour
     public int currentLoaded()
     {
         return loadedFiles;
-    }
-
-    //load additional textures into the array if the path is different
-    public IEnumerator loadTextureInArray(string aFilePath, string textureName)
-    {
-        //searching for the specific texture
-        string[] fileInfo = Directory.GetFiles(aFilePath, textureName + fileType, SearchOption.AllDirectories);
-        //if the texture is found then the length would be 1 if not found it would be 0
-        //so if it is not 0 continue
-        if (fileInfo.Length != 0)
-        {
-            foreach (string file in fileInfo)
-            {
-                //if the texture exists already in the array then you have doubles, conflicting
-                if (textureExistsAlready(textureName) == false)
-                {
-                    //download the texture
-                    WWW wwwTexture = new WWW("file://" + file);
-                    //wait for it to be done
-                    yield return wwwTexture;
-                    //add it to the array
-                    Texture2D texture = wwwTexture.texture;
-                    texture.name = textureName;
-                    textureArray.Add(texture);
-                }
-                else
-                {
-                    //you tried to add a texture that was already added previously
-                    Debug.LogError("You tried to add a texture but the texture was already in there. Texture: " + textureName);
-                }
-            }
-        }
-        else
-        {
-            Debug.LogError("You tried to use loadTexture but the texture was not found. Texture: " + textureName);
-        }
     }
 
     //getter for textures

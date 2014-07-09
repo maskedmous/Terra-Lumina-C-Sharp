@@ -138,26 +138,26 @@ public class PlayerInputScript : MonoBehaviour
         currentBumpyShroomButtonTexture = bumpyShroomButtonTexture;
         currentEscapeButtonTexture = escapeButtonTexture;
 
-        initializeInput();
+        initializeInput(); //initialize the input type (Heim TUIO standard) // windows build has different input types
     }
-
+    //set the keyboard settings using the list of settings
     public void setKeyboardSettings(List<KeyCode> settings)
     {
         keyboardSettings = settings;
         initializeKeyboard();
     }
-
+    //initialize the keyboard from the keyboardsettings
     private void initializeKeyboard()
     {
-        if (keyboardSettings.Count != 0 && keyboardSettings.Count == 7)
+        if (keyboardSettings.Count != 0 && keyboardSettings.Count == 6)
         {
             leftKey = keyboardSettings[0];
             rightKey = keyboardSettings[1];
             jumpKey = keyboardSettings[2];
-            normalShroomkey = keyboardSettings[3];
-            bumpyShroomKey = keyboardSettings[4];
-            flashKey = keyboardSettings[5];
-            escapeKey = keyboardSettings[6];
+            flashKey = keyboardSettings[3];
+            normalShroomkey = keyboardSettings[4];
+            bumpyShroomKey = keyboardSettings[5];           
+            escapeKey = KeyCode.Escape;    //default key is always escape
         }
         else
         {
@@ -267,7 +267,7 @@ public class PlayerInputScript : MonoBehaviour
             //else if you use the keyboard, handle the input
             else if (useKeyboard)
             {
-                checkReleasingButtonKeyboardInput();
+                checkReleasingButtonKeyboardControls();
 
                 if (escapePressed) escapeKeyboard();
                 if (!gameLogic.isPaused())
@@ -291,30 +291,30 @@ public class PlayerInputScript : MonoBehaviour
         //else if the game is lost or finished stop the moment and control of the player
         else if (endLevelTriggerScript.getFinished() || endLevelTriggerScript.getLost())
         {
-            playerController.stopMovement();
+            playerController.stopMovement();    //stop movement and controls the game has ended
             playerController.stopControl();
             endGame = true;
         }
 
-        if (shootTimer > 0.0f) shootTimer -= Time.deltaTime;
+        if (shootTimer > 0.0f) shootTimer -= Time.deltaTime;    //cool down for shooting shrooms
 
 
-        //check if the player is inactive for 60, if so return to menu
-        if (inactiveTimerEnabled)
+        //check if the player is inactive for 60, if so return to menu Heim build //windows build it should be disabled
+        if (inactiveTimerEnabled && !PlayerPrefs.HasKey("CreatedSettings"))
         {
             if (TouchManager.Instance.ActiveTouches.Count == 0)
             {
                 inactiveTimer -= Time.deltaTime;
                 if (inactiveTimer <= 0.0f)
                 {
-                    Application.LoadLevel("Menu");
-                    soundEngine.changeMusic("Menu");
-                    if (gameLogic.isPaused()) gameLogic.unpauseGame();
+                    Application.LoadLevel("Menu");  //load the menu
+                    soundEngine.changeMusic("Menu");    //change the music to the menu
+                    if (gameLogic.isPaused()) gameLogic.unpauseGame();  //game could be on paused if it loads the menu it would be stuck at the menu so unpause the game if paused
                 }
             }
             else
             {
-                inactiveTimer = 60.0f;
+                inactiveTimer = 60.0f;  //if there is input reset the timer to 60
             }
         }
     }
@@ -393,8 +393,8 @@ public class PlayerInputScript : MonoBehaviour
     {
         if (escapePressed)
         {
-            if (Input.GetKeyDown(KeyCode.Y)) StartCoroutine(returnToMenu());
-            else if (Input.GetKeyDown(KeyCode.N)) resumeGame();
+            if (Input.GetKeyDown(KeyCode.Y)) StartCoroutine(returnToMenu()); //quit to menu
+            else if (Input.GetKeyDown(KeyCode.N)) resumeGame(); //resume playing the game
         }
     }
 
@@ -422,7 +422,7 @@ public class PlayerInputScript : MonoBehaviour
         if (Input.GetMouseButtonDown(2) && !isTouchingButton(mouseCoordinates) && flashButtonEnabled) playerController.flash();
     }
 
-    //check the ammo
+    //check the ammo if you have enough else disable shroom buttons
     private void checkAmmo()
     {
         if (!gameLogic.getInfiniteAmmo())
@@ -434,7 +434,7 @@ public class PlayerInputScript : MonoBehaviour
             else setBumpyShroomButtonEnabled(true);
         }
     }
-    //on press event handler
+    //on press event handler of touch events
     private void touchBegan(object sender, TouchEventArgs events)
     {
         if (endLevelTriggerObject != null)
@@ -451,8 +451,8 @@ public class PlayerInputScript : MonoBehaviour
             }
         }
     }
-
-    private void checkReleasingButtonKeyboardInput()
+    //check if releasing button when using keyboard controls
+    private void checkReleasingButtonKeyboardControls()
     {
         bool escapeButtonTouched = false;
 
@@ -473,7 +473,7 @@ public class PlayerInputScript : MonoBehaviour
         }
     }
 
-    //checks whether the button is still being pressed or not
+    //checks whether the button is still being pressed or not (for TUIO, win7, win8 touch input)
     private void checkReleasingButton()
     {
         bool jumpingButtonTouched = false;
@@ -544,7 +544,7 @@ public class PlayerInputScript : MonoBehaviour
         }
     }
 
-    //jumping
+    //jumping button functionality
     private void activateJump()
     {
         currentJumpButtonTexture = jumpButtonActiveTexture;
@@ -554,7 +554,7 @@ public class PlayerInputScript : MonoBehaviour
         chargingBumpyShot = false;
         playerController.resetShot();
     }
-    //flashing
+    //flash button functionality
     private void activateFlash()
     {
         currentFlashButtonTexture = flashButtonActiveTexture;
@@ -562,12 +562,13 @@ public class PlayerInputScript : MonoBehaviour
         playerController.flash();
         playerController.resetShot();
     }
-    //shooting normal shroom
+    //shooting normal shroom button functionality
     private void activateNormalShroom()
     {
         currentNormalShroomButtonTexture = normalShroomButtonActiveTexture;
         if (shootTimer <= 0.0f && !chargingNormalShot) chargingNormalShot = true;
     }
+    //shoot on release of the button functionality
     private void shootNormalShroom()
     {
         if (blinkingNormalShroomButton) blinkingNormalShroomButton = false;
@@ -575,13 +576,13 @@ public class PlayerInputScript : MonoBehaviour
         chargingNormalShot = false;
         shootTimer = 2.0f;
     }
-    //shooting bumpy shroom
+    //shoot bumpy shroom button functionality
     private void activateBumpyShroom()
     {
         currentBumpyShroomButtonTexture = bumpyShroomButtonActiveTexture;
         if (shootTimer <= 0.0f && !chargingBumpyShot) chargingBumpyShot = true;
     }
-    //shoots the bumpy shroom
+    //shoot on release of the button functionality
     private void shootBumpyShroom()
     {
         if (blinkingBumpyShroomButton) blinkingBumpyShroomButton = false;
@@ -589,7 +590,7 @@ public class PlayerInputScript : MonoBehaviour
         chargingBumpyShot = false;
         shootTimer = 2.0f;
     }
-    //escape to be able to end the game
+    //escape to be able to end the game or pause it (heim build the timer still counts)
     private void activateEscapeButton()
     {
         escapePressed = true;
@@ -683,7 +684,7 @@ public class PlayerInputScript : MonoBehaviour
         gameLogic.unpauseGame();
     }
 
-    //check if the player is touching a button
+    //check if the player is touching a button if so you might want to stop seeing it as movement
     private bool isTouchingButton(Vector2 inputXY)
     {
         if (jumpButtonRect.Contains(inputXY))
@@ -717,6 +718,7 @@ public class PlayerInputScript : MonoBehaviour
         return false;
     }
 
+    //draw of all the buttons
     public void OnGUI()
     {
         if (endLevelTriggerObject != null)

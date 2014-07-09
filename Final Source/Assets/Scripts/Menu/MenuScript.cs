@@ -12,8 +12,8 @@ public class MenuScript : MonoBehaviour
 
     private menuState currentMenuState = menuState.mainMenu;
 
-    public bool heimBuild = false;
-    public bool debugTouch = false;
+    public bool heimBuild = false;      //switch between heim build and windows build
+    public bool debugTouch = false;     //debug the touch
 
     private Texture2D background = null;
     private Texture2D loadingScreen = null;
@@ -21,10 +21,10 @@ public class MenuScript : MonoBehaviour
     private Texture2D backToMenuButton = null;
     private Texture2D creditsScreen = null;
 
-    private GUIStyle customFont = new GUIStyle();
+    private GUIStyle customFont = new GUIStyle();   //custom font we're using
 
     //difficulty
-    private string difficulty = "Easy";
+    private string difficulty = "Easy"; //the difficulty set by the player
 
     //levels
     private string levelFilename = "";
@@ -154,7 +154,7 @@ public class MenuScript : MonoBehaviour
     private Rect moveLeftCustomizeRect;
     public float moveLeftCustomizeX = 0.0f;
     public float moveLeftCustomizeY = 0.0f;
-    
+
     private Rect insertMoveLeftCustomizeRect;
     public float insertMoveLeftCustomizeX = 0.0f;
     public float insertMoveLeftCustomizeY = 0.0f;
@@ -232,10 +232,10 @@ public class MenuScript : MonoBehaviour
     private bool touchEnabled = false;
 
     //sound slider
-    private float min;
-    private float max;
-    private float calculationLength;
-    private float calculation;
+    private float min = 0.0f;
+    private float max = 0.0f;
+    private float calculationLength = 0.0f;
+    private float calculation = 0.0f;
 
     //level buttons
 
@@ -265,7 +265,7 @@ public class MenuScript : MonoBehaviour
     public float levelButtonX = 500.0f;
     public float levelButtonY = 300.0f;
 
-    private Animator anim = null;
+    private Animator roverAnim = null;   //call animations of the rover
 
 
     //different inputs
@@ -279,7 +279,6 @@ public class MenuScript : MonoBehaviour
     private KeyCode normalShroomKey = KeyCode.N;
     private KeyCode bumpyShroomKey = KeyCode.B;
     private KeyCode flashKey = KeyCode.LeftControl;
-    private KeyCode escapeKey = KeyCode.Escape;
 
 
     TouchScript.InputSources.MouseInput mouseInput = null;
@@ -287,112 +286,104 @@ public class MenuScript : MonoBehaviour
     TouchScript.InputSources.Win7TouchInput win7Input = null;
     TouchScript.InputSources.Win8TouchInput win8Input = null;
 
-    private float combinationCooldown = 0.0f;
+    //private float combinationCooldown = 0.0f; //debugging
 
     public void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
 
-        initializeScripts();
-        initializeTextures();
+        initializeScripts();    //load scripts for communication
+        initializeTextures();   //load textures for the buttons
 
         if (!heimBuild)
         {
-            loadSettings();
+            loadSettings(); //load the settings set by the player
         }
-        else
-        {
-            deleteSettings();
-        }
+        else deleteSettings();
 
-        initializeSound();
-        initalizeInput();
-        startMenuAnim();
+        initializeSound();  //initialize the sound
+        initalizeInput();   //initialize the input from the inputtype (heim = TUIO)
+        startMenuAnim();    //start the animation of the menu
 
+        //load the levels that are in the xml
         levelsXmlFilePath = Application.dataPath + "/LevelsXML/";
+        //fill the xml Level array
         fillXmlLevelArray();
+        //fill the level array
         fillLevelArray();
     }
 
     public void Update()
     {
-        if (revertTimerEnabled)
+        //non-heim features
+        if (!heimBuild)
         {
-            revertTimer -= Time.deltaTime;
-
-            if (revertTimer <= 0.0f)
+            //if the revert timer is enabled
+            if (revertTimerEnabled)
             {
-                loadSettings(); //load previous settings
-                initalizeInput();
-                currentMenuState = menuState.optionsMenu;
-                revertTimerEnabled = false;
+                //count down in seconds
+                revertTimer -= Time.deltaTime;
+                //if the countdown is finished
+                if (revertTimer <= 0.0f)
+                {
+                    loadSettings(); //reload the settings
+                    initalizeInput();   //re-initialize the input from the reloaded settings
+                    currentMenuState = menuState.optionsMenu;   //go back to the options menu
+                    revertTimerEnabled = false;                 //set the revert  timer to false
+                }
             }
-        }
-
-        if (currentMenuState == menuState.setKeyboardControls && changeKey)
-        {
-            if (inputKey != KeyCode.None)
+            //if the player is trying to change keys in the setkeyboardcontrols
+            if (currentMenuState == menuState.setKeyboardControls && changeKey)
             {
-                Debug.Log("changing key");
-                if (insertMoveLeft)
+                //if the input is filled in set it to the correct key
+                if (inputKey != KeyCode.None)
                 {
-                    moveLeftKey = inputKey;
-                    resetInsertKey();
-                }
-                else if (insertMoveRight)
-                {
-                    moveRightKey = inputKey;
-                    resetInsertKey();
-                }
-                else if (insertJump)
-                {
-                    jumpKey = inputKey;
-                    resetInsertKey();
-                }
-                else if (insertFlash)
-                {
-                    flashKey = inputKey;
-                    resetInsertKey();
-                }
-                else if (insertShootNormal)
-                {
-                    normalShroomKey = inputKey;
-                    resetInsertKey();
-                }
-                else if (insertShootBumpy)
-                {
-                    bumpyShroomKey = inputKey;
+                    Debug.Log("changing key");  //notify that you're changing the key
+
+                    //check which one should be changed
+                    if (insertMoveLeft) moveLeftKey = inputKey;
+                    else if (insertMoveRight) moveRightKey = inputKey;
+                    else if (insertJump) jumpKey = inputKey;
+                    else if (insertFlash) flashKey = inputKey;
+                    else if (insertShootNormal) normalShroomKey = inputKey;
+                    else if (insertShootBumpy) bumpyShroomKey = inputKey;
+
+                    //once its done changing reset the insertKeys so it won't constantly ask for a key
+                    //and make sure that the player isn't able to insert multiple keys at the same time
                     resetInsertKey();
                 }
             }
         }
 
-        combinationCooldown -= Time.deltaTime;
+        //
+        //Debugging section for debugging keys
+        //
 
-        if (combinationCooldown <= 0.0f)
-        {
-            combinationCooldown = 0.0f;
+        //combinationCooldown -= Time.deltaTime;
 
-            if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKey(KeyCode.F1))
-            {
-                if (debugTouch) debugTouch = false;
-                else debugTouch = true;
+        //if (combinationCooldown <= 0.0f)
+        //{
+        //    combinationCooldown = 0.0f;
 
-                combinationCooldown = 1.0f;
-            }
-            else if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKey(KeyCode.F2))
-            {
-                if (heimBuild) heimBuild = false;
-                else heimBuild = true;
+        //    if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKey(KeyCode.F1))
+        //    {
+        //        if (debugTouch) debugTouch = false;
+        //        else debugTouch = true;
 
-                combinationCooldown = 1.0f;
-            }
-        }
+        //        combinationCooldown = 1.0f;
+        //    }
+        //    else if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKey(KeyCode.F2))
+        //    {
+        //        if (heimBuild) heimBuild = false;
+        //        else heimBuild = true;
+
+        //        combinationCooldown = 1.0f;
+        //    }
+        //}
     }
 
     private void resetInsertKey()
     {
-        Debug.Log("resetting");
         inputKey = KeyCode.None;
         changeKey = false;
         insertMoveLeft = false;
@@ -405,7 +396,7 @@ public class MenuScript : MonoBehaviour
 
     private void initializeScripts()
     {
-        anim = GameObject.Find("RoverAnimMenu").GetComponent<Animator>();
+        roverAnim = GameObject.Find("RoverAnimMenu").GetComponent<Animator>();
         soundEngine = GameObject.Find("SoundEngine").GetComponent<SoundEngineScript>() as SoundEngineScript;
         bloomScript = Camera.main.GetComponent<BloomAndLensFlares>();
 
@@ -594,6 +585,7 @@ public class MenuScript : MonoBehaviour
         return new Vector2(vector.x, (vector.y - Screen.height) * -1);
     }
 
+    //if a touch event is moved
     private void touchMoved(object sender, TouchEventArgs events)
     {
         foreach (var touchPoint in events.Touches)
@@ -602,12 +594,11 @@ public class MenuScript : MonoBehaviour
             {
                 Vector2 position = touchPoint.Position;
                 position = invertY(position);
-                updatePressedMenuTextures(position);
                 updateSlider(position);
             }
         }
     }
-
+    //if a touch event is made
     private void touchBegan(object sender, TouchEventArgs events)
     {
         foreach (var touchPoint in events.Touches)
@@ -616,31 +607,21 @@ public class MenuScript : MonoBehaviour
             {
                 Vector2 position = touchPoint.Position;
                 position = invertY(position);
-                updatePressedMenuTextures(position);
                 updateSlider(position);
             }
         }
     }
-
-    private void updatePressedMenuTextures(Vector2 inputXY)
+    //if a touch has ended
+    private void touchEnded(object sender, TouchEventArgs events)
     {
-        switch (currentMenuState)
+        foreach (var touchPoint in events.Touches)
         {
-            case (menuState.mainMenu):
-
-                break;
-            case (menuState.difficultyMenu):
-
-                break;
-            case (menuState.levelSelectionMenu):
-
-                break;
-            case (menuState.creditsMenu):
-
-                break;
+            Vector2 position = touchPoint.Position;
+            position = invertY(position);
+            if (isReleasingButton(position)) return;
         }
     }
-
+    //update the slider
     private void updateSlider(Vector2 position)
     {
         //scaled rect.contains position
@@ -655,18 +636,9 @@ public class MenuScript : MonoBehaviour
         }
     }
 
-    private void touchEnded(object sender, TouchEventArgs events)
-    {
-        foreach (var touchPoint in events.Touches)
-        {
-            Vector2 position = touchPoint.Position;
-            position = invertY(position);
-            if (isReleasingButton(position)) return;
-        }
-    }
-
     private bool isReleasingButton(Vector2 inputXY)
     {
+        //only if the touch is enabled it should read touches
         if (touchEnabled)
         {
             switch (currentMenuState)
@@ -675,25 +647,25 @@ public class MenuScript : MonoBehaviour
                     if (startButtonRect.Contains(inputXY))
                     {
                         leaveMenuAnim = clickedStart = true;
-                        anim.SetBool("levelBool", true);
+                        roverAnim.SetBool("levelBool", true);
                         return true;
                     }
                     else if (settingsButtonRect.Contains(inputXY))
                     {
-                        anim.SetBool("settingsBool", true);
+                        roverAnim.SetBool("settingsBool", true);
                         leaveMenuAnim = clickedSettings = true;
                         return true;
                     }
                     else if (creditsButtonRect.Contains(inputXY))
                     {
-                        anim.SetBool("creditsBool", true);
+                        roverAnim.SetBool("creditsBool", true);
                         leaveMenuAnim = clickedCredits = true;
                         return true;
                     }
                     if (exitButtonRect.Contains(inputXY) && !heimBuild)
                     {
                         leaveMenuAnim = clickedQuit = true;
-                        anim.SetBool("exitBool", true);
+                        roverAnim.SetBool("exitBool", true);
                         return true;
                     }
                     break;
@@ -702,19 +674,41 @@ public class MenuScript : MonoBehaviour
                     if (easyButtonRect.Contains(inputXY))
                     {
                         difficulty = "Easy";
-                        currentMenuState = menuState.levelSelectionMenu;
+                        if (heimBuild)
+                        {
+                            loadHeimLevel();
+                        }
+                        else
+                        {
+                            currentMenuState = menuState.levelSelectionMenu;
+                        }
                         return true;
                     }
                     else if (mediumButtonRect.Contains(inputXY))
                     {
                         difficulty = "Medium";
-                        currentMenuState = menuState.levelSelectionMenu;
+                        if (heimBuild)
+                        {
+                            loadHeimLevel();
+                        }
+                        else
+                        {
+                            currentMenuState = menuState.levelSelectionMenu;
+                        }
                         return true;
                     }
                     else if (hardButtonRect.Contains(inputXY))
                     {
                         difficulty = "Hard";
-                        currentMenuState = menuState.levelSelectionMenu;
+                        if (heimBuild)
+                        {
+                            loadHeimLevel();
+                        }
+                        else
+                        {
+                            currentMenuState = menuState.levelSelectionMenu;
+                        }
+
                         return true;
                     }
                     else if (backToMenuButtonRect.Contains(inputXY))
@@ -722,21 +716,18 @@ public class MenuScript : MonoBehaviour
                         startMenuAnim();
                         currentMenuState = menuState.mainMenu;
                         touchEnabled = false;
-                        anim.SetBool("levelBool", false);
+                        roverAnim.SetBool("levelBool", false);
                         return true;
                     }
                     break;
 
+                //non-heim only
                 case (menuState.levelSelectionMenu):
-
-                    //show all levels (max 6? per screen)
-                    int levelCount = startLevelCount;
-                    int spaceCountX = 0;
+                    int levelCount = startLevelCount;   //begin at level 1
+                    int spaceCountX = 0;                //space multiplyer between buttons
                     int spaceCountY = 0;
-                    float levelButtonXSize = Screen.width / 9;
-                    float levelButtonYSize = Screen.height / 5;
 
-                    for (int i = startLevelCount; i < startLevelCount + 6; ++i)
+                    for (int i = startLevelCount; i < startLevelCount + 6; ++i) //draw maximum of 6 levels
                     {
                         if (i <= levelIDs.Count)
                         {
@@ -744,8 +735,6 @@ public class MenuScript : MonoBehaviour
                             {
                                 touchEnabled = false;
                                 setLevelFileNameByInt(i);
-                                currentMenuState = menuState.loadingLevel;
-                                background = loadingScreen;
                                 StartCoroutine(loadLevel());
                                 return true;
                             }
@@ -760,35 +749,11 @@ public class MenuScript : MonoBehaviour
                             }
                         }
 
-                        //next page button (if applicable)
-                        if (startLevelCount + 5 < levels.Count)
-                        {
-                            //there are more levels available
-                            if (new Rect(Screen.width - levelButtonXSize, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize).Contains(inputXY))
-                            {
-                                startLevelCount += 6;
-                                return true;
-                            }
-                        }
-                        //previous page button (if applicable)
-                        if (startLevelCount > 6)
-                        {
-                            if (new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize).Contains(inputXY))
-                            {
-                                startLevelCount -= 6;
-                                return true;
-                            }
-                        }
                         //back button
-
-                        if (startLevelCount < 6)
+                        if (backToMenuButtonRect.Contains(inputXY))
                         {
-                            //GUI.DrawTexture(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), backToMenuButton, ScaleMode.StretchToFill);
-                            if (backToMenuButtonRect.Contains(inputXY))
-                            {
-                                currentMenuState = menuState.difficultyMenu;
-                                return true;
-                            }
+                            currentMenuState = menuState.difficultyMenu;
+                            return true;
                         }
                     }
                     break;
@@ -799,9 +764,9 @@ public class MenuScript : MonoBehaviour
                         startMenuAnim();
                         currentMenuState = menuState.mainMenu;
                         touchEnabled = false;
-                        anim.SetBool("settingsBool", false);
+                        roverAnim.SetBool("settingsBool", false);
                         changedSettings = false;
-                        if(!heimBuild) loadSettings();
+                        if (!heimBuild) loadSettings();
                         return true;
                     }
 
@@ -846,6 +811,7 @@ public class MenuScript : MonoBehaviour
                         {
                             if (customizeKeyboardRect.Contains(inputXY))
                             {
+                                getKeyboardSettings();                              //load the keyboard settings in
                                 currentMenuState = menuState.setKeyboardControls;
                                 return true;
                             }
@@ -854,23 +820,9 @@ public class MenuScript : MonoBehaviour
 
                     break;
                 case (menuState.setKeyboardControls):
-                    //the whole table thing
-                    Event e = Event.current;
-                   
-                    if (e != null && changeKey)
-                    {
-                        Debug.Log("finding key");
-                        if (e.isKey)
-                        {
-                            Debug.Log("found key: " + e.keyCode);
+                    //if the player clicks on the customize key rectangle, it should take the next input as keycode
+                    //it should only execute this if the player is not already changing a key
 
-                            if (e.keyCode != KeyCode.None && e.type != EventType.keyUp)
-                            {
-                                Debug.Log("putting in other key");
-                                inputKey = e.keyCode;
-                            }
-                        }
-                    }
                     //move Left
                     if (insertMoveLeftCustomizeRect.Contains(inputXY) && !changeKey)
                     {
@@ -917,7 +869,7 @@ public class MenuScript : MonoBehaviour
 
                     if (backToMenuButtonRect.Contains(inputXY))
                     {
-                        changedSettings = true;
+                        if (hasKeyboardChanges()) changedSettings = true;
                         currentMenuState = menuState.optionsMenu;
                         return true;
                     }
@@ -925,10 +877,12 @@ public class MenuScript : MonoBehaviour
                 case (menuState.acceptSettings):
                     if (acceptSettingsRect.Contains(inputXY))
                     {
-                        saveSettings();
-                        changedSettings = false;
-                        startMenuAnim();
-                        currentMenuState = menuState.mainMenu;
+                        saveSettings(); // save the settings
+                        getKeyboardSettingsFromPreferences(); //apply the preferences
+                        changedSettings = false;        //you're not changing settings anymore
+                        revertTimerEnabled = false;     //revert timer is disabled cause you accepted the changes
+                        revertTimer = 10.0f;            //timer is set back to 10.0f
+                        currentMenuState = menuState.optionsMenu;  //go back to options menu
                         return true;
                     }
                     if (revertSettingsRect.Contains(inputXY))
@@ -945,7 +899,7 @@ public class MenuScript : MonoBehaviour
                         startMenuAnim();
                         currentMenuState = menuState.mainMenu;
                         touchEnabled = false;
-                        anim.SetBool("creditsBool", false);
+                        roverAnim.SetBool("creditsBool", false);
                         return true;
                     }
                     break;
@@ -1000,7 +954,10 @@ public class MenuScript : MonoBehaviour
 
     public void OnGUI()
     {
+        //debug the touch so we are able to see which input type is used and if it is enabled or not
+        //showing how many number of touches there are as well
         if (debugTouch) GUI.Label(new Rect(0, 0, Screen.width, 200), "InputType: " + getInputType() + "\n" + isMouseInputEnabled() + "\n" + isWin7InputEnabled() + "\n" + isWin8InputEnabled() + "\n" + numberOfTouches());
+
         //background texture
         GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), background);
 
@@ -1010,7 +967,7 @@ public class MenuScript : MonoBehaviour
         switch (currentMenuState)
         {
             case (menuState.mainMenu):
-
+                //Animations of the menu
                 if (menuAnim)
                 {
                     currentStartTexture = startButtonTexture;
@@ -1061,9 +1018,9 @@ public class MenuScript : MonoBehaviour
                                 exitButtonX = menuButtonXExit;
                                 menuAnim = false;
                                 touchEnabled = true;
-                                anim.SetBool("levelBool", false);
-                                anim.SetBool("settingsBool", false);
-                                anim.SetBool("creditsBool", false);
+                                roverAnim.SetBool("levelBool", false);
+                                roverAnim.SetBool("settingsBool", false);
+                                roverAnim.SetBool("creditsBool", false);
                             }
                         }
                     }
@@ -1103,7 +1060,7 @@ public class MenuScript : MonoBehaviour
                             {
                                 clickedSettings = false;
                                 leaveMenuAnim = false;
-                                if (!heimBuild) loadSettings();
+                                if (!heimBuild) loadSettings(); //load the current Settings
                                 currentMenuState = menuState.optionsMenu;
                             }
                         }
@@ -1145,6 +1102,8 @@ public class MenuScript : MonoBehaviour
                         }
                     }
                 }
+                //end of animations of the menu
+
                 //start button
                 GUI.DrawTexture(startButtonRect, currentStartTexture);
 
@@ -1166,20 +1125,24 @@ public class MenuScript : MonoBehaviour
                 break;
 
             case (menuState.levelSelectionMenu):
-                //show all levels (max 6? per screen)
-                int levelCount = startLevelCount;
-                int spaceCountX = 0;
+                int levelCount = startLevelCount;//level count which level are we starting with? starts at 1, but changable with buttons to support more levels
+                int spaceCountX = 0; //no space needed the first time but the second time there needs to be space so buttons don't overlap on the same spot
                 int spaceCountY = 0;
 
                 for (int i = startLevelCount; i < startLevelCount + 6; ++i)
                 {
+                    //if the i smaller than the levelID count else it may not draw
                     if (i <= levelIDs.Count)
                     {
+                        //draw the level button
                         GUI.DrawTexture(scaleRect(new Rect(levelButtonX + (levelButtonSpaceX * spaceCountX), levelButtonY + (levelButtonSpaceY * spaceCountY), level1.width, level1.height)), level1, ScaleMode.StretchToFill);
 
+                        //add 1 space in X for the next button
                         spaceCountX++;
+                        //we are having the next level button so levelCount ++
                         levelCount++;
 
+                        //once we draw 3 levels we up the Y so it will pick a new line, reset the spaceCountX to 1
                         if (levelCount == 3)
                         {
                             spaceCountY++;
@@ -1196,6 +1159,7 @@ public class MenuScript : MonoBehaviour
                 break;
 
             case (menuState.optionsMenu):
+                //flip the bloom texture
                 if (isBloomEnabled())
                 {
                     bloomCheckBoxTexture = bloomCheckBoxActiveTexture;
@@ -1207,6 +1171,7 @@ public class MenuScript : MonoBehaviour
                 GUI.DrawTexture(optionsScreenRect, optionsScreenTexture);
                 GUI.DrawTexture(bloomCheckBoxRect, bloomCheckBoxTexture);
 
+                //only non-heim builds should have these options available
                 if (!heimBuild)
                 {
                     GUI.DrawTexture(arrowLeftRect, arrowLeftTexture);
@@ -1240,19 +1205,53 @@ public class MenuScript : MonoBehaviour
                 customFont.fontSize = Mathf.RoundToInt(scale.x * 26); //font
 
                 //move Left
-                GUI.Label(moveLeftCustomizeRect, "Move Left:    " + moveLeftKey.ToString(), customFont);
+                if (insertMoveLeft && changeKey) GUI.Label(moveLeftCustomizeRect, "Move Left:    ...", customFont);
+                else GUI.Label(moveLeftCustomizeRect, "Move Left:    " + moveLeftKey.ToString(), customFont);
                 //move Right
-                GUI.Label(moveRightCustomizeRect, "Move Right:    " + moveRightKey.ToString(), customFont);
+                if (insertMoveRight && changeKey) GUI.Label(moveRightCustomizeRect, "Move Right:    ...", customFont);
+                else GUI.Label(moveRightCustomizeRect, "Move Right:    " + moveRightKey.ToString(), customFont);
                 //jump
-                GUI.Label(jumpCustomizeRect, "Jump:    " + jumpKey.ToString(), customFont);
+                if (insertJump && changeKey) GUI.Label(jumpCustomizeRect, "Jump:    ...", customFont);
+                else GUI.Label(jumpCustomizeRect, "Jump:    " + jumpKey.ToString(), customFont);
                 //flash
-                GUI.Label(flashCustomizeRect, "Flash:    " + flashKey.ToString(), customFont);
+                if (insertFlash && changeKey) GUI.Label(flashCustomizeRect, "Flash:    ...", customFont);
+                else GUI.Label(flashCustomizeRect, "Flash:    " + flashKey.ToString(), customFont);
                 //Shoot Normal
-                GUI.Label(shootNormalCustomizeRect, "Normal Shroom:    " + normalShroomKey.ToString(), customFont);
+                if (insertShootNormal && changeKey) GUI.Label(shootNormalCustomizeRect, "Normal Shroom:    ...", customFont);
+                else GUI.Label(shootNormalCustomizeRect, "Normal Shroom:    " + normalShroomKey.ToString(), customFont);
                 //shoot bumpy
-                GUI.Label(shootBumpyCustomizeRect, "Bumpy Shroom:    " + bumpyShroomKey.ToString(), customFont);
+                if (insertShootBumpy && changeKey) GUI.Label(shootBumpyCustomizeRect, "Bumpy Shroom:    ...", customFont);
+                else GUI.Label(shootBumpyCustomizeRect, "Bumpy Shroom:    " + bumpyShroomKey.ToString(), customFont);
 
-                
+
+
+                //only execute when changing keys
+                if (changeKey)
+                {
+                    //read out the next keyboard input event
+                    Event e = Event.current;
+                    //if the key is a keyboard key and it not being null
+                    if (e.isKey && e != null)
+                    {
+                        //if the keycode isn't NONE or a key up key (only key downs)
+                        if (e.keyCode != KeyCode.None && e.type != EventType.keyUp)
+                        {
+                            //check if it is a valid key because we don't want duplicates do we?
+                            if (checkValidKey(e.keyCode))
+                            {
+                                Debug.Log("Inserted new keycode: " + e.keyCode.ToString());
+                                //insert the new keycode into the inputKey
+                                inputKey = e.keyCode;
+                            }
+                            //the key is invalid
+                            else
+                            {
+                                resetInsertKey();                       //reset insert key so it won't ask for a key
+                                getKeyboardSettingsFromPreferences(); //reload the keyboard settings becuase it was invalid
+                            }
+                        }
+                    }
+                }
 
                 //back button
                 GUI.DrawTexture(backToMenuButtonRect, backToMenuButton);
@@ -1269,6 +1268,20 @@ public class MenuScript : MonoBehaviour
                 GUI.DrawTexture(backToMenuButtonRect, backToMenuButton);
                 break;
         }
+    }
+
+    private bool checkValidKey(KeyCode aKey)
+    {
+        //check if the key matches an other key
+        //if so revert it back immediately
+        if (aKey == moveLeftKey) return false;
+        else if (aKey == moveRightKey) return false;
+        else if (aKey == jumpKey) return false;
+        else if (aKey == flashKey) return false;
+        else if (aKey == normalShroomKey) return false;
+        else if (aKey == bumpyShroomKey) return false;
+
+        return true;
     }
 
     private void scaleButtons()
@@ -1389,7 +1402,7 @@ public class MenuScript : MonoBehaviour
                 insertFlashCustomizeRect = scaleRect(insertFlashCustomizeRect);
                 insertShootNormalCustomizeRect = scaleRect(insertShootNormalCustomizeRect);
                 insertShootBumpyCustomizeRect = scaleRect(insertShootBumpyCustomizeRect);
-                
+
 
                 backToMenuButtonRect = new Rect(backToMenuButtonX, backToMenuButtonY, backToMenuButton.width, backToMenuButton.height);
                 backToMenuButtonRect = scaleRect(backToMenuButtonRect);
@@ -1584,21 +1597,6 @@ public class MenuScript : MonoBehaviour
         return "";
     }
 
-    private void setLevelFileNameByInt(int level)
-    {
-        //array position of the Level
-        int arrayint = level - 1;
-        int levelID = (int)levelIDs[arrayint];
-        //get the Level
-        Level aLevel = getLevelByID(levelID);
-        //get the file that has to be loaded
-        levelFilename = aLevel.getLevelXmlByDifficulty(difficulty);
-        //log what is loaded
-        Debug.Log(levelFilename);
-        Debug.Log("Level ID: " + aLevel.getLevelID());
-        Debug.Log("Difficulty: " + difficulty);
-    }
-
     private void createSettings()
     {
         Debug.Log("Creating Settings...");
@@ -1606,13 +1604,15 @@ public class MenuScript : MonoBehaviour
         PlayerPrefs.SetFloat("Volume", 0.9031847f);
         PlayerPrefs.SetInt("Bloom", 1);
         PlayerPrefs.SetInt("InputType", 0);
+
+        //save default keyboard keys
         PlayerPrefs.SetString("MoveLeft", KeyCode.A.ToString());
         PlayerPrefs.SetString("MoveRight", KeyCode.D.ToString());
         PlayerPrefs.SetString("Jump", KeyCode.Space.ToString());
+        PlayerPrefs.SetString("Flash", KeyCode.LeftControl.ToString());
         PlayerPrefs.SetString("NormalShroom", KeyCode.N.ToString());
         PlayerPrefs.SetString("BumpyShroom", KeyCode.B.ToString());
-        PlayerPrefs.SetString("Flash", KeyCode.LeftControl.ToString());
-        PlayerPrefs.SetString("Escape", KeyCode.Escape.ToString());
+        //set the created settings to "true", there is no SetBool so int = 1 for true int = 0 for false
         PlayerPrefs.SetInt("CreatedSettings", 1);
 
         PlayerPrefs.Save();
@@ -1622,17 +1622,18 @@ public class MenuScript : MonoBehaviour
     private void saveSettings()
     {
         Debug.Log("Saving Settings...");
+
         PlayerPrefs.SetFloat("Volume", soundEngine.getVolume());
         if (isBloomEnabled()) PlayerPrefs.SetInt("Bloom", 1);
         else PlayerPrefs.SetInt("Bloom", 0);
         PlayerPrefs.SetInt("InputType", inputType);
+
         PlayerPrefs.SetString("MoveLeft", moveLeftKey.ToString());
         PlayerPrefs.SetString("MoveRight", moveRightKey.ToString());
         PlayerPrefs.SetString("Jump", jumpKey.ToString());
+        PlayerPrefs.SetString("Flash", flashKey.ToString());
         PlayerPrefs.SetString("NormalShroom", normalShroomKey.ToString());
         PlayerPrefs.SetString("BumpyShroom", bumpyShroomKey.ToString());
-        PlayerPrefs.SetString("Flash", flashKey.ToString());
-        PlayerPrefs.SetString("Escape", escapeKey.ToString());
 
         PlayerPrefs.Save();
         Debug.Log("Saved Settings");
@@ -1642,26 +1643,71 @@ public class MenuScript : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("CreatedSettings"))
         {
-            Debug.Log("Loading Settings...");
             soundEngine.changeVolume(PlayerPrefs.GetFloat("Volume"));
             if (PlayerPrefs.GetInt("Bloom") == 1) enableBloom();
             else disableBloom();
 
             //set input type
             inputType = PlayerPrefs.GetInt("InputType");
-            keyboardSettings.Clear();
-            //load keyboard Settings
-            keyboardSettings.Add((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("MoveLeft")));
-            keyboardSettings.Add((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("MoveRight")));
-            keyboardSettings.Add((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Jump")));
-            keyboardSettings.Add((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("NormalShroom")));
-            keyboardSettings.Add((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("BumpyShroom")));
-            keyboardSettings.Add((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Flash")));
-            keyboardSettings.Add((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Escape")));
+            //load  to keyboard Settings array
+            getKeyboardSettingsFromPreferences();
+            //apply the settings that are loaded
+            applyKeyboardSettingsToKeys();
 
-            Debug.Log("Settings Loaded");
+            Debug.Log("loaded settings");
         }
         else createSettings();
+    }
+
+    //check if there are any keyboard changes, if so return true
+    private bool hasKeyboardChanges()
+    {
+        bool moveLeftChanged = true;
+        bool moveRightChanged = true;
+        bool jumpChanged = true;
+        bool flashChanged = true;
+        bool normalShroomChanged = true;
+        bool bumpyShroomChanged = true;
+
+        getKeyboardSettingsFromPreferences(); //first reload keyboardSettings array with the last input
+
+        //check if the current keys put in has changed
+        if (moveLeftKey == keyboardSettings[0]) moveLeftChanged = false;
+        if (moveRightKey == keyboardSettings[1]) moveRightChanged = false;
+        if (jumpKey == keyboardSettings[2]) jumpChanged = false;
+        if (flashKey == keyboardSettings[3]) flashChanged = false;
+        if (normalShroomKey == keyboardSettings[4]) normalShroomChanged = false;
+        if (bumpyShroomKey == keyboardSettings[5]) bumpyShroomChanged = false;
+
+        if (moveLeftChanged || moveRightChanged || jumpChanged || flashChanged || normalShroomChanged || bumpyShroomChanged)
+        {
+            return true;
+        }
+
+        return false;
+    }
+    //load the keys into the array
+    private void getKeyboardSettingsFromPreferences()
+    {
+        keyboardSettings.Clear();
+
+        keyboardSettings.Add((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("MoveLeft")));
+        keyboardSettings.Add((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("MoveRight")));
+        keyboardSettings.Add((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Jump")));
+        keyboardSettings.Add((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Flash")));
+        keyboardSettings.Add((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("NormalShroom")));
+        keyboardSettings.Add((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("BumpyShroom")));
+    }
+
+    //when loading the settings it should apply them
+    private void applyKeyboardSettingsToKeys()
+    {
+        moveLeftKey = keyboardSettings[0];
+        moveRightKey = keyboardSettings[1];
+        jumpKey = keyboardSettings[2];
+        flashKey = keyboardSettings[3];
+        normalShroomKey = keyboardSettings[4];
+        bumpyShroomKey = keyboardSettings[5];
     }
 
     private void resetSettings()
@@ -1679,8 +1725,46 @@ public class MenuScript : MonoBehaviour
         PlayerPrefs.DeleteAll();
     }
 
+    private void setLevelFileNameByInt(int level)
+    {
+        //array position of the Level
+        int arrayint = level - 1;
+        int levelID = (int)levelIDs[arrayint];
+        //get the Level
+        Level aLevel = getLevelByID(levelID);
+        //get the file that has to be loaded
+        levelFilename = aLevel.getLevelXmlByDifficulty(difficulty);
+        //log what is loaded
+        Debug.Log(levelFilename);
+        Debug.Log("Level ID: " + aLevel.getLevelID());
+        Debug.Log("Difficulty: " + difficulty);
+    }
+
+    private void loadHeimLevel()
+    {
+        int levelID = (int)levelIDs[0];    //get first level ID
+        Level aLevel = getLevelByID(levelID); //get the level
+        levelFilename = aLevel.getLevelXmlByDifficulty(difficulty); //get the file from the given difficulty
+
+        //some debugs to show which level is loaded up at which difficulty
+        Debug.Log(levelFilename);
+        Debug.Log("Level ID: " + aLevel.getLevelID());
+        Debug.Log("Difficulty: " + difficulty);
+
+        //set the loading screen
+        StartCoroutine(loadLevel());
+    }
+
     private IEnumerator loadLevel()
     {
+        //set the state on loading level
+        currentMenuState = menuState.loadingLevel;
+        //put the background to loading level
+        background = loadingScreen;
+
+        //is bloom enabled?
+        bool bloom = isBloomEnabled();
+
         //next scene with the loader
         Application.LoadLevel("LevelLoaderScene");
         //first wait for the next scene to loader		  		
@@ -1698,11 +1782,18 @@ public class MenuScript : MonoBehaviour
         //get the levelloader script
         if (levelLoaderObject != null)
         {
+            //get the level loader
             XmlToScene levelLoader = (XmlToScene)levelLoaderObject.GetComponent(typeof(XmlToScene));
             //set the level string
             levelLoader.setLevel(levelFilename);
             //load the level
             levelLoader.loadLevel();
+            //set the bloom if heim build, heim build doesn't have playerprefs else it'll be loaded automatically
+            if (heimBuild)
+            {
+                BloomAndLensFlares bloomScript = Camera.main.GetComponent<BloomAndLensFlares>();
+                bloomScript.enabled = bloom;
+            }
             //play the music according to the difficulty
             soundEngine.changeMusic(difficulty);
             //destroy this gameobject as we don't need the main menu in the game

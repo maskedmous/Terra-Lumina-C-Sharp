@@ -15,33 +15,34 @@ public class SceneToXML : MonoBehaviour
 
     private string xmlPath = "";		//initialized in the awake
 
-    private string[] prefabList;
+    private string[] prefabList;        //list of the prefabs available to check if there are any invalid prefabs saved to xml
 
     public void Awake()
     {
+        //the creative tried to save the XML while still being in the LevelEditor scene, save it as a new scene first before saving it to XML as stated in the manual
         if (Application.loadedLevelName == "LevelEditor")
         {
             Debug.LogError("Please save this scene first as a new scene before saving the level");
         }
         else
         {
-            xmlPath = Application.dataPath + "/LevelsXML/";
+            xmlPath = Application.dataPath + "/LevelsXML/"; //the path to the xml
 
-            if (levelName != "")
+            if (levelName != "")    //extra failsaves if it isn't filled in correctly
             {
                 if (!levelName.Contains(".xml"))
                 {
                     levelName = levelName + ".xml";
                 }
 
-                if (saveLevel() == -1)
+                if (saveLevel() == -1) //try to save the level, if it returns a -1 there has been an error and it is not saved, which error is stated in the saveLevel() itself before returning
                 {
                     Debug.LogError("Xml not saved due to an error");
                 }
             }
             else
             {
-                Debug.LogError("You haven't filled in a Level Name, see SaveLevel");
+                Debug.LogError("You haven't filled in a Level Name, see SaveLevel"); //failsave to fill in the level name
             }
         }
     }
@@ -97,6 +98,7 @@ public class SceneToXML : MonoBehaviour
         XmlElement difficultyNode = xmlDocument.CreateElement("Difficulty");
         masterNode.AppendChild(difficultyNode);
 
+        //failsaves to chose the right difficulty!, not 2 or 3.. just 1!
         if (easy != false || medium != false || hard != false)
         {
             if (easy == true && medium == false && hard == false)
@@ -116,15 +118,17 @@ public class SceneToXML : MonoBehaviour
             }
             else
             {
-                Debug.LogError("Something went wrong with selecting the difficulty setting, thicked 2 boxes perhaps?");
+                Debug.LogError("Something went wrong with selecting the difficulty setting, thicked 2 boxes perhaps?"); //state the error what could've went wrong
                 return -1;
             }
         }
         else
         {
-            Debug.LogError("Please state the difficulty setting correctly");
+            Debug.LogError("Please state the difficulty setting correctly");    //hasn't filled in the details so fill it in!
             return -1;
         }
+
+        //save all the things to xml
 
         //
         //camera
@@ -255,7 +259,7 @@ public class SceneToXML : MonoBehaviour
         GameObject levelObject = GameObject.Find("Level");
         foreach (Transform obj in levelObject.transform)
         {
-            if (!checkValidPrefab(obj.name)) return -1;
+            if (!checkValidPrefab(obj.name)) return -1; //failsave to check if the prefab is available in the prefab folder else it'll miss in the game which is a potential error!
 
             XmlElement objectNode = xmlDocument.CreateElement("GameObject");
 
@@ -821,10 +825,10 @@ public class SceneToXML : MonoBehaviour
         //
 
         xmlDocument.Save(filePath);
-        Debug.Log("Xml saved to: Assets/LevelsXML/" + levelName);
+        Debug.Log("Xml saved to: Assets/LevelsXML/" + levelName);   //the xml has been successfully saved
         return 0;
     }
-
+    //check if the prefab is in the prefab folder
     private bool checkValidPrefab(string prefabName)
     {
         foreach (string prefab in prefabList)

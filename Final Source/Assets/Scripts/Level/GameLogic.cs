@@ -51,8 +51,6 @@ public class GameLogic : MonoBehaviour
     /*
     Score Variables
     */
-    public int techieTime = 45;
-
     public int platinumTime = 50;
     public int goldTime = 80;
     public int silverTime = 130;
@@ -69,79 +67,104 @@ public class GameLogic : MonoBehaviour
     Other
     */
     private LevelTrigger levelTriggerScript = null;
-    private Animator anim;
+    private Animator roverAnim;
     private bool gamePaused = false;
 
 
     public void Start()
     {
-        startTimer();
-        GameObject player = GameObject.Find("Player");
-        playerInput = player.GetComponent<PlayerInputScript>() as PlayerInputScript;
+        startTimer();   //start the timer
+        GameObject player = GameObject.Find("Player");  //get the player
+        playerInput = player.GetComponent<PlayerInputScript>() as PlayerInputScript; // get the input of the player
 
         if (Application.loadedLevelName == "LevelLoaderScene")
         {
-            soundEngine = GameObject.Find("SoundEngine").GetComponent<SoundEngineScript>() as SoundEngineScript;
+            soundEngine = GameObject.Find("SoundEngine").GetComponent<SoundEngineScript>() as SoundEngineScript;    //only try to get the soundengine if its played through the texture loader
         }
 
-        anim = player.GetComponent<Animator>();
+        roverAnim = player.GetComponent<Animator>();    //animator component of the rover to call / set animations
+
+        //enabled / disable bloom via playerPrefs -- Windows Build
+        if (PlayerPrefs.HasKey("Bloom")) //Heim build has no keys
+        {
+            bool bloom = false;
+            if (PlayerPrefs.GetInt("Bloom") == 1) bloom = true;
+
+            if (!bloom) Camera.main.GetComponent<BloomAndLensFlares>().enabled = false;
+        }
     }
 
 
     public void Update()
     {
+        //if level trigger script is null, it should search for end level trigger, if found add it
+        //fix because leveltrigger was not initialised at start for some reason
         if (levelTriggerScript == null && GameObject.Find("EndLevelTrigger") != null)
         {
             levelTriggerScript = GameObject.Find("EndLevelTrigger").GetComponent<LevelTrigger>() as LevelTrigger;
         }
 
+        //if the timer is running
         if (runTimer == true)
         {
-            levelTimer += Time.deltaTime;
-            timerInt = Mathf.RoundToInt(levelTimer);
+            levelTimer += Time.deltaTime;   //increase the timer by delta time (time between frames)
+            timerInt = Mathf.RoundToInt(levelTimer);    //round to int for full seconds
         }
+        //if its not charging it should drain de battery
         if (!charging)
         {
-            decreaseBattery();
-            anim.SetBool("isCharging", false);
+            decreaseBattery();  //call to decrease the battery (has a timer in there so its not every frame)
+            roverAnim.SetBool("isCharging", false); //it ain't charging so set it to false
         }
         else if (secondTimer != 0.0f)
         {
+            //if it is charging reset the second timer so it takes a while to decrease the battery
+            //wouldn't be fair if the player would be drained when just going outside the sunlight
             secondTimer = 0.0f;
         }
 
         if (lose == false)
         {
+            //check if the player has lost
             checkLose();
         }
     }
 
     public void pauseGame()
     {
+        //pausing the game by setting the time scale to 0.0 which stops time / movement
         Time.timeScale = 0.0f;
+        //we want to pause the incoming sound effects only keep the music running
         if (soundEngine != null) soundEngine.pauseSound();
+        //game is paused
         gamePaused = true;
     }
 
     public void unpauseGame()
     {
+        //we unpaused the game so the time scale is 1.0 again
         Time.timeScale = 1.0f;
+        //unpause the sound so sound effects are going again
         if (soundEngine != null) soundEngine.unpauseSound();
+        //well the game has been unpaused
         gamePaused = false;
     }
 
     public void decreaseBattery()
     {
+        //only decrease the battery if the stopBattery is false
         if (stopBatteryBool == false)
         {
+            //if the second timer is larger than the decrease timer (decrease timer is the amount of seconds it takes to drain the battery)
             if (secondTimer > decreaseTimer)
             {
-                battery -= negativeBatteryFlow;
-                if (battery < 0.0f) battery = 0.0f;
-                secondTimer = 0.0f;
+                battery -= negativeBatteryFlow; //drain the battery by the negative flow (which is customizable by creatives in the level design)
+                if (battery < 0.0f) battery = 0.0f; //if the battery is lower than 0.0f then clip it
+                secondTimer = 0.0f; //second timer reset to 0
             }
             else
             {
+                //the time is increased till it is larger than the decreaseTimer
                 secondTimer += Time.deltaTime;
             }
         }
@@ -149,68 +172,79 @@ public class GameLogic : MonoBehaviour
 
     public void decreaseBatteryBy(float value)
     {
+        //drain the battery by an amount set by the tech
         battery -= value;
-
-        if (battery < 0.0f) battery = 0.0f;	//no negative battery values
+        //if the battery is lower than 0 clip it so there is no negative battery value
+        if (battery < 0.0f) battery = 0.0f;
     }
 
     public void addBatteryPower()
     {
-        anim.SetBool("isCharging", true);
+        //set the animation to charging
+        roverAnim.SetBool("isCharging", true);
+        //if the battery is lower than its capacity increase it
         if (battery < maximumBatteryCapacity)
         {
             battery += positiveBatteryFlow;
         }
-
+        //if the battery is over its capacity then clip it and put fully charged to true to stop charging animations
         if (battery > maximumBatteryCapacity)
         {
             battery = maximumBatteryCapacity;
-            anim.SetBool("isFullyCharged", true);
+            roverAnim.SetBool("isFullyCharged", true);
         }
     }
 
+    //stop the battery from draining
     public void stopBattery()
     {
         stopBatteryBool = true;
     }
-
+    //start the battery to drain
     public void startBattery()
     {
         stopBatteryBool = false;
     }
-
+    //cjecl of the player has lost
     void checkLose()
     {
-        if (battery <= 0.1f)
+        //the battery is clipped so it is 0.0f but it doesn't hurt to check for negative as well
+        if (battery <= 0.0f)
         {
-            gameOverLose();
+            gameOverLose(); //the player has lost the game because the battery is drained to 0
             lose = true;
         }
     }
 
+    //add the collected crystal to the array and add a score of 100
     public void addCrystalSample(GameObject newSample)
     {
         crystalSamples.Add(newSample);
         addScore(100);
     }
 
+    //get the current crystal that the player has collected
     public int getCrystalsSampleCount()
     {
         return crystalSamples.Count;
     }
 
+    //check if the player has won
     public bool checkWin()
     {
+        //if the player has gotten enough crystals
         if (crystalsToComplete <= getCrystalsSampleCount())
         {
+            //get the amount of and check if it is the maximum amount of crystals
             if (getCrystalsSampleCount() == maxCrystals)
             {
-                addScore(200);
+                //if the player collected all the crystals then add a bonus of 300
+                addScore(300);
                 return true;
             }
             else return true;
         }
-
+        //if the player collected enough crystals to complete he won the game
         if (crystalsToComplete >= getMaxCrystals())
         {
             if (getCrystalsSampleCount() == getMaxCrystals())
@@ -218,34 +252,36 @@ public class GameLogic : MonoBehaviour
                 return true;
             }
         }
-
+        //player hasn't collected enough so he hasn't won return false
         return false;
     }
 
+    //game is over with a win
     public void gameOverWin()
     {
         levelTriggerScript.setFinished(true);
         soundEngine.playSoundEffect("win");
     }
-
+    //game is over with a loss
     public void gameOverLose()
     {
         levelTriggerScript.setLost(true);
         soundEngine.playSoundEffect("lose");
     }
 
+    //start the timer
     public void startTimer()
     {
         runTimer = true;
     }
 
+    //stop the timer and calculate the bonus score given
     public void stopTimer()
     {
         runTimer = false;
         if (levelTriggerScript.getFinished())
         {
-            if (timerInt <= techieTime) addScore(500);
-            if (timerInt <= platinumTime && timerInt >= techieTime + 1) addScore(300);
+            if (timerInt <= platinumTime) addScore(300);
             if (timerInt <= goldTime && timerInt >= platinumTime + 1) addScore(200);
             if (timerInt <= silverTime && timerInt >= goldTime + 1) addScore(150);
             if (timerInt <= bronzeTime && timerInt >= silverTime + 1) addScore(100);
@@ -259,12 +295,12 @@ public class GameLogic : MonoBehaviour
 Adders
 
 */
-
+    //adds score
     public void addScore(int value)
     {
         score += value;
     }
-
+    //adds the shard score defined
     public void addShardScore()
     {
         addScore(shardScore);
@@ -282,9 +318,10 @@ Adders
             if (currentBumpySeeds > maximumBumpySeeds) currentBumpySeeds = maximumBumpySeeds;
         }
     }
-    //function overload to specify type
+    //function overload to specify type of ammo that needs to be added
     public void addAmmo(int amount, int ammoType)
     {
+        //theres no use to add something to infinite ammo
         if (!infiniteAmmo)
         {
             //Type 0 = normal, Type 1 = bumpy
@@ -307,7 +344,7 @@ Adders
 Decreasers
 
 */
-
+    //decrease the seed by 1 and if the player is out of seeds disable the button
     public void decreaseNormalSeeds()
     {
         currentNormalSeeds--;
@@ -540,7 +577,7 @@ Setters
 
     public void setFullyChargedFalse()
     {
-        anim.SetBool("isFullyCharged", false);
+        roverAnim.SetBool("isFullyCharged", false);
     }
 
     //

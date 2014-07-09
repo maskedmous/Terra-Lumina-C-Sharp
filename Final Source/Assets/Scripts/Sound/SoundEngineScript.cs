@@ -35,10 +35,10 @@ public class SoundEngineScript : MonoBehaviour
     private AudioClip winSound;
     private AudioClip loseSound;
 
+    private Transform playerTransform = null;
+
     public void Awake()
     {
-
-
         if (soundEngineExists == false)
         {
             audio.volume = volume;
@@ -46,6 +46,7 @@ public class SoundEngineScript : MonoBehaviour
             soundEngineExists = true;
             DontDestroyOnLoad(this.gameObject);
 
+            //load all the sounds from resources
             menuSound = Resources.Load("SoundEffects/Lumina Menu") as AudioClip;
             easySound = Resources.Load("SoundEffects/MusicEasy") as AudioClip;
             mediumSound = Resources.Load("SoundEffects/MusicMedium") as AudioClip;
@@ -68,6 +69,7 @@ public class SoundEngineScript : MonoBehaviour
             winSound = Resources.Load("SoundEffects/Winsound v2") as AudioClip;
             loseSound = Resources.Load("SoundEffects/Losesound v1") as AudioClip;
 
+            //done loading so change the music to menu music
             changeMusic("Menu");
         }
         else
@@ -78,10 +80,21 @@ public class SoundEngineScript : MonoBehaviour
 
     public void Update()
     {
-        if (GameObject.Find("Player"))
+        //optimization, because we can't clip the sound engine to the player cause of scene switching
+        //we need to search the player, but we don't want to search for the player every frame, especially not if it is a huge level with lots of objects
+        //so if the sound engine is in the menu and there is a playertransform? set it to null
+        if(Application.loadedLevelName == "Menu")
         {
-            this.gameObject.transform.position = GameObject.Find("Player").transform.position;
+            if (playerTransform != null) playerTransform = null;
         }
+        //if it is in the level loader scene there is a player already there so find it and set the transform
+        else if (Application.loadedLevelName == "LevelLoaderScene")
+        {
+            if (playerTransform == null) playerTransform = GameObject.Find("Player").transform;
+        }
+        //if the playertransform isn't null then we can set the position to clip the sound engine to the player manually
+        if (playerTransform != null) this.gameObject.transform.position = playerTransform.position;
+        
         if (driveTimerBool == true)
         {
             driveTimer += Time.deltaTime;
@@ -92,7 +105,7 @@ public class SoundEngineScript : MonoBehaviour
             }
         }
     }
-
+    //change the music
     public void changeMusic(string name)
     {
         audio.Stop();
@@ -150,10 +163,10 @@ public class SoundEngineScript : MonoBehaviour
     {
         audio.loop = newLoop;
     }
-
+    //play a SFX
     public void playSoundEffect(string name)
     {
-        if (!pausedSound)
+        if (!pausedSound)//only play SFX if the sound is not paused
         {
             if (name == "bounce")
             {

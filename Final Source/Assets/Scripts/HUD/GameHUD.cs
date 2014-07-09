@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameHUD : MonoBehaviour
 {
-
+    //public variables of X and Y position for creatives so they can move around the HUD to where ever they want
 
     //
     //Show Battery power
