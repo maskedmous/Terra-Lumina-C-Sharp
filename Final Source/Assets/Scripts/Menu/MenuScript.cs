@@ -13,6 +13,7 @@ public class MenuScript : MonoBehaviour
     private menuState currentMenuState = menuState.mainMenu;
 
     public bool heimBuild = false;      //switch between heim build and windows build
+    public bool exitButtonEnabled = false;
     public bool debugTouch = false;     //debug the touch
 
     private Texture2D background = null;
@@ -1114,7 +1115,7 @@ public class MenuScript : MonoBehaviour
                 GUI.DrawTexture(creditsButtonRect, currentCreditsTexture);
 
                 //exit button
-                if (!heimBuild) GUI.DrawTexture(exitButtonRect, currentExitTexture);
+                if (!heimBuild || exitButtonEnabled) GUI.DrawTexture(exitButtonRect, currentExitTexture);
 
                 break;
             case (menuState.difficultyMenu):
@@ -1438,6 +1439,7 @@ public class MenuScript : MonoBehaviour
     {
         //look for all levels and fill the array	
         string[] fileInfo = Directory.GetFiles(levelsXmlFilePath, "*.xml", SearchOption.AllDirectories);
+        
         foreach (var file in fileInfo)
         {
             xmlLevels.Add(Path.GetFileName(file));
