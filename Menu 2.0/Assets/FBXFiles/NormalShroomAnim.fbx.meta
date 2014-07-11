@@ -1,0 +1,415 @@
+fileFormatVersion: 2
+guid: 83aae37ea3f31af478885b6919c2f377
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Level1
+    100002: Level2
+    100004: Level3
+    100006: Level4
+    100008: Main_CTRL
+    100010: //RootNode
+    100012: Plateau1_CTRL
+    100014: Plateau1_rim_CTRL
+    100016: Plateau1Bottom_JT
+    100018: Plateau1Top_JT
+    100020: Plateau2_CTRL1
+    100022: Plateau2_rim_CTRL
+    100024: Plateau2Bottom_JT
+    100026: Plateau2Top_JT
+    100028: Plateau3_CTRL2
+    100030: Plateau3_rim_CTRL
+    100032: Plateau3Bottom_JT
+    100034: Plateau3Top_JT
+    100036: Plateau4_CTRL
+    100038: Plateau4_rim_CTRL
+    100040: Plateau4Bottom_JT
+    100042: Plateau4Top_JT
+    100044: Rig
+    100046: ShroomMesh
+    400000: Level1
+    400002: Level2
+    400004: Level3
+    400006: Level4
+    400008: Main_CTRL
+    400010: //RootNode
+    400012: Plateau1_CTRL
+    400014: Plateau1_rim_CTRL
+    400016: Plateau1Bottom_JT
+    400018: Plateau1Top_JT
+    400020: Plateau2_CTRL1
+    400022: Plateau2_rim_CTRL
+    400024: Plateau2Bottom_JT
+    400026: Plateau2Top_JT
+    400028: Plateau3_CTRL2
+    400030: Plateau3_rim_CTRL
+    400032: Plateau3Bottom_JT
+    400034: Plateau3Top_JT
+    400036: Plateau4_CTRL
+    400038: Plateau4_rim_CTRL
+    400040: Plateau4Bottom_JT
+    400042: Plateau4Top_JT
+    400044: Rig
+    400046: ShroomMesh
+    4300000: Level1
+    4300002: Level2
+    4300004: Level3
+    4300006: Level4
+    7400000: Grow
+    7400002: OnJumping
+    7400004: Idle
+    7400006: Decay
+    9500000: //RootNode
+    13700000: Level1
+    13700002: Level2
+    13700004: Level3
+    13700006: Level4
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Grow
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Main_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau1_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau1_CTRL/Plateau1_rim_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau2_CTRL1
+        weight: 1
+      - path: Main_CTRL/Plateau2_CTRL1/Plateau2_rim_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau3_CTRL2
+        weight: 1
+      - path: Main_CTRL/Plateau3_CTRL2/Plateau3_rim_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau4_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau4_CTRL/Plateau4_rim_CTRL
+        weight: 1
+      - path: Rig
+        weight: 1
+      - path: Rig/Plateau1Bottom_JT
+        weight: 1
+      - path: Rig/Plateau1Bottom_JT/Plateau1Top_JT
+        weight: 1
+      - path: Rig/Plateau2Bottom_JT
+        weight: 1
+      - path: Rig/Plateau2Bottom_JT/Plateau2Top_JT
+        weight: 1
+      - path: Rig/Plateau3Bottom_JT
+        weight: 1
+      - path: Rig/Plateau3Bottom_JT/Plateau3Top_JT
+        weight: 1
+      - path: Rig/Plateau4Bottom_JT
+        weight: 1
+      - path: Rig/Plateau4Bottom_JT/Plateau4Top_JT
+        weight: 1
+      - path: ShroomMesh
+        weight: 1
+      - path: ShroomMesh/Level1
+        weight: 1
+      - path: ShroomMesh/Level2
+        weight: 1
+      - path: ShroomMesh/Level3
+        weight: 1
+      - path: ShroomMesh/Level4
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: OnJumping
+      takeName: Take 001
+      firstFrame: 81
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Main_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau1_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau1_CTRL/Plateau1_rim_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau2_CTRL1
+        weight: 1
+      - path: Main_CTRL/Plateau2_CTRL1/Plateau2_rim_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau3_CTRL2
+        weight: 1
+      - path: Main_CTRL/Plateau3_CTRL2/Plateau3_rim_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau4_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau4_CTRL/Plateau4_rim_CTRL
+        weight: 1
+      - path: Rig
+        weight: 1
+      - path: Rig/Plateau1Bottom_JT
+        weight: 1
+      - path: Rig/Plateau1Bottom_JT/Plateau1Top_JT
+        weight: 1
+      - path: Rig/Plateau2Bottom_JT
+        weight: 1
+      - path: Rig/Plateau2Bottom_JT/Plateau2Top_JT
+        weight: 1
+      - path: Rig/Plateau3Bottom_JT
+        weight: 1
+      - path: Rig/Plateau3Bottom_JT/Plateau3Top_JT
+        weight: 1
+      - path: Rig/Plateau4Bottom_JT
+        weight: 1
+      - path: Rig/Plateau4Bottom_JT/Plateau4Top_JT
+        weight: 1
+      - path: ShroomMesh
+        weight: 1
+      - path: ShroomMesh/Level1
+        weight: 1
+      - path: ShroomMesh/Level2
+        weight: 1
+      - path: ShroomMesh/Level3
+        weight: 1
+      - path: ShroomMesh/Level4
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 81
+      lastFrame: 81.0999985
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Main_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau1_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau1_CTRL/Plateau1_rim_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau2_CTRL1
+        weight: 1
+      - path: Main_CTRL/Plateau2_CTRL1/Plateau2_rim_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau3_CTRL2
+        weight: 1
+      - path: Main_CTRL/Plateau3_CTRL2/Plateau3_rim_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau4_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau4_CTRL/Plateau4_rim_CTRL
+        weight: 1
+      - path: Rig
+        weight: 1
+      - path: Rig/Plateau1Bottom_JT
+        weight: 1
+      - path: Rig/Plateau1Bottom_JT/Plateau1Top_JT
+        weight: 1
+      - path: Rig/Plateau2Bottom_JT
+        weight: 1
+      - path: Rig/Plateau2Bottom_JT/Plateau2Top_JT
+        weight: 1
+      - path: Rig/Plateau3Bottom_JT
+        weight: 1
+      - path: Rig/Plateau3Bottom_JT/Plateau3Top_JT
+        weight: 1
+      - path: Rig/Plateau4Bottom_JT
+        weight: 1
+      - path: Rig/Plateau4Bottom_JT/Plateau4Top_JT
+        weight: 1
+      - path: ShroomMesh
+        weight: 1
+      - path: ShroomMesh/Level1
+        weight: 1
+      - path: ShroomMesh/Level2
+        weight: 1
+      - path: ShroomMesh/Level3
+        weight: 1
+      - path: ShroomMesh/Level4
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Decay
+      takeName: Take 001
+      firstFrame: 101
+      lastFrame: 160
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Main_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau1_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau1_CTRL/Plateau1_rim_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau2_CTRL1
+        weight: 1
+      - path: Main_CTRL/Plateau2_CTRL1/Plateau2_rim_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau3_CTRL2
+        weight: 1
+      - path: Main_CTRL/Plateau3_CTRL2/Plateau3_rim_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau4_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau4_CTRL/Plateau4_rim_CTRL
+        weight: 1
+      - path: Rig
+        weight: 1
+      - path: Rig/Plateau1Bottom_JT
+        weight: 1
+      - path: Rig/Plateau1Bottom_JT/Plateau1Top_JT
+        weight: 1
+      - path: Rig/Plateau2Bottom_JT
+        weight: 1
+      - path: Rig/Plateau2Bottom_JT/Plateau2Top_JT
+        weight: 1
+      - path: Rig/Plateau3Bottom_JT
+        weight: 1
+      - path: Rig/Plateau3Bottom_JT/Plateau3Top_JT
+        weight: 1
+      - path: Rig/Plateau4Bottom_JT
+        weight: 1
+      - path: Rig/Plateau4Bottom_JT/Plateau4Top_JT
+        weight: 1
+      - path: ShroomMesh
+        weight: 1
+      - path: ShroomMesh/Level1
+        weight: 1
+      - path: ShroomMesh/Level2
+        weight: 1
+      - path: ShroomMesh/Level3
+        weight: 1
+      - path: ShroomMesh/Level4
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

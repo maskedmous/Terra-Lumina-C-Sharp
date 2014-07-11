@@ -112,7 +112,6 @@ public class MenuScript : MonoBehaviour
     public float bloomCheckBoxX = 525.0f;
     public float bloomCheckBoxY = 490.0f;
 
-    public GUISkin sliderSkin;
     public Texture2D optionsScreenTexture = null;
     private Rect optionsScreenRect;
     public float optionsScreenX = 0.0f;

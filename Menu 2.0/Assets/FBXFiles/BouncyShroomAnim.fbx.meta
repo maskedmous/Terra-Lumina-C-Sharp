@@ -1,0 +1,393 @@
+fileFormatVersion: 2
+guid: 31084dfe9110ed84d8cb5a012e738e3b
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Big_head_CTRL
+    100002: //RootNode
+    100004: Branch1
+    100006: Branch2
+    100008: Lower_branch_CTRL
+    100010: Lower_branch_head_base_JT
+    100012: Lower_branch_head_top_JT
+    100014: Lower_branch_JT
+    100016: Main
+    100018: Main_branch_CTRL
+    100020: Main_CTRL
+    100022: Main_head_base_JT
+    100024: Main_head_top_JT
+    100026: Main_JT
+    100028: Main_middle_JT
+    100030: Medium_head_CTRL
+    100032: Mesh_grp
+    100034: Small_head_CTRL
+    100036: Upper_branch_CTRL
+    100038: Upper_branch_head_base_JT
+    100040: Upper_branch_head_top_JT
+    100042: Upper_branch_JT
+    400000: Big_head_CTRL
+    400002: //RootNode
+    400004: Branch1
+    400006: Branch2
+    400008: Lower_branch_CTRL
+    400010: Lower_branch_head_base_JT
+    400012: Lower_branch_head_top_JT
+    400014: Lower_branch_JT
+    400016: Main
+    400018: Main_branch_CTRL
+    400020: Main_CTRL
+    400022: Main_head_base_JT
+    400024: Main_head_top_JT
+    400026: Main_JT
+    400028: Main_middle_JT
+    400030: Medium_head_CTRL
+    400032: Mesh_grp
+    400034: Small_head_CTRL
+    400036: Upper_branch_CTRL
+    400038: Upper_branch_head_base_JT
+    400040: Upper_branch_head_top_JT
+    400042: Upper_branch_JT
+    4300000: Branch2
+    4300002: Branch1
+    4300004: Main
+    7400000: Grow
+    7400002: Bounce
+    7400004: Idle
+    7400006: Decay
+    9500000: //RootNode
+    13700000: Branch1
+    13700002: Branch2
+    13700004: Main
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Grow
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Main_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL/Big_head_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL/Lower_branch_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL/Lower_branch_CTRL/Medium_head_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL/Upper_branch_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL/Upper_branch_CTRL/Small_head_CTRL
+        weight: 1
+      - path: Main_JT
+        weight: 1
+      - path: Main_JT/Lower_branch_JT
+        weight: 1
+      - path: Main_JT/Lower_branch_JT/Lower_branch_head_base_JT
+        weight: 1
+      - path: Main_JT/Lower_branch_JT/Lower_branch_head_base_JT/Lower_branch_head_top_JT
+        weight: 1
+      - path: Main_JT/Main_middle_JT
+        weight: 1
+      - path: Main_JT/Main_middle_JT/Main_head_base_JT
+        weight: 1
+      - path: Main_JT/Main_middle_JT/Main_head_base_JT/Main_head_top_JT
+        weight: 1
+      - path: Main_JT/Upper_branch_JT
+        weight: 1
+      - path: Main_JT/Upper_branch_JT/Upper_branch_head_base_JT
+        weight: 1
+      - path: Main_JT/Upper_branch_JT/Upper_branch_head_base_JT/Upper_branch_head_top_JT
+        weight: 1
+      - path: Mesh_grp
+        weight: 1
+      - path: Mesh_grp/Branch1
+        weight: 1
+      - path: Mesh_grp/Branch2
+        weight: 1
+      - path: Mesh_grp/Main
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Bounce
+      takeName: Take 001
+      firstFrame: 61
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Main_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL/Big_head_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL/Lower_branch_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL/Lower_branch_CTRL/Medium_head_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL/Upper_branch_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL/Upper_branch_CTRL/Small_head_CTRL
+        weight: 1
+      - path: Main_JT
+        weight: 1
+      - path: Main_JT/Lower_branch_JT
+        weight: 1
+      - path: Main_JT/Lower_branch_JT/Lower_branch_head_base_JT
+        weight: 1
+      - path: Main_JT/Lower_branch_JT/Lower_branch_head_base_JT/Lower_branch_head_top_JT
+        weight: 1
+      - path: Main_JT/Main_middle_JT
+        weight: 1
+      - path: Main_JT/Main_middle_JT/Main_head_base_JT
+        weight: 1
+      - path: Main_JT/Main_middle_JT/Main_head_base_JT/Main_head_top_JT
+        weight: 1
+      - path: Main_JT/Upper_branch_JT
+        weight: 1
+      - path: Main_JT/Upper_branch_JT/Upper_branch_head_base_JT
+        weight: 1
+      - path: Main_JT/Upper_branch_JT/Upper_branch_head_base_JT/Upper_branch_head_top_JT
+        weight: 1
+      - path: Mesh_grp
+        weight: 1
+      - path: Mesh_grp/Branch1
+        weight: 1
+      - path: Mesh_grp/Branch2
+        weight: 1
+      - path: Mesh_grp/Main
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 61
+      lastFrame: 61.0999985
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Main_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL/Big_head_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL/Lower_branch_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL/Lower_branch_CTRL/Medium_head_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL/Upper_branch_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL/Upper_branch_CTRL/Small_head_CTRL
+        weight: 1
+      - path: Main_JT
+        weight: 1
+      - path: Main_JT/Lower_branch_JT
+        weight: 1
+      - path: Main_JT/Lower_branch_JT/Lower_branch_head_base_JT
+        weight: 1
+      - path: Main_JT/Lower_branch_JT/Lower_branch_head_base_JT/Lower_branch_head_top_JT
+        weight: 1
+      - path: Main_JT/Main_middle_JT
+        weight: 1
+      - path: Main_JT/Main_middle_JT/Main_head_base_JT
+        weight: 1
+      - path: Main_JT/Main_middle_JT/Main_head_base_JT/Main_head_top_JT
+        weight: 1
+      - path: Main_JT/Upper_branch_JT
+        weight: 1
+      - path: Main_JT/Upper_branch_JT/Upper_branch_head_base_JT
+        weight: 1
+      - path: Main_JT/Upper_branch_JT/Upper_branch_head_base_JT/Upper_branch_head_top_JT
+        weight: 1
+      - path: Mesh_grp
+        weight: 1
+      - path: Mesh_grp/Branch1
+        weight: 1
+      - path: Mesh_grp/Branch2
+        weight: 1
+      - path: Mesh_grp/Main
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Decay
+      takeName: Take 001
+      firstFrame: 101
+      lastFrame: 160
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Main_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL/Big_head_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL/Lower_branch_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL/Lower_branch_CTRL/Medium_head_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL/Upper_branch_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL/Upper_branch_CTRL/Small_head_CTRL
+        weight: 1
+      - path: Main_JT
+        weight: 1
+      - path: Main_JT/Lower_branch_JT
+        weight: 1
+      - path: Main_JT/Lower_branch_JT/Lower_branch_head_base_JT
+        weight: 1
+      - path: Main_JT/Lower_branch_JT/Lower_branch_head_base_JT/Lower_branch_head_top_JT
+        weight: 1
+      - path: Main_JT/Main_middle_JT
+        weight: 1
+      - path: Main_JT/Main_middle_JT/Main_head_base_JT
+        weight: 1
+      - path: Main_JT/Main_middle_JT/Main_head_base_JT/Main_head_top_JT
+        weight: 1
+      - path: Main_JT/Upper_branch_JT
+        weight: 1
+      - path: Main_JT/Upper_branch_JT/Upper_branch_head_base_JT
+        weight: 1
+      - path: Main_JT/Upper_branch_JT/Upper_branch_head_base_JT/Upper_branch_head_top_JT
+        weight: 1
+      - path: Mesh_grp
+        weight: 1
+      - path: Mesh_grp/Branch1
+        weight: 1
+      - path: Mesh_grp/Branch2
+        weight: 1
+      - path: Mesh_grp/Main
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
