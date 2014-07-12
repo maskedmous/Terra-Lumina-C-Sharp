@@ -28,6 +28,7 @@ public class Button : MonoBehaviour
     public bool enabledBox = true;
     public float checkboxX = 0.0f;
     public float checkboxY = 0.0f;
+
     public string checkedBoxName = "";
     private Texture2D checkedBoxTexture = null;
     public string uncheckedBoxName = "";
@@ -48,14 +49,30 @@ public class Button : MonoBehaviour
     private ButtonBehaviour buttonBehaviour = null; //behaviour tied to the button
     public int layerID = 1; //second layer
 
+    //menu animations
+    private Vector2 oldWinPosition = new Vector2();
+    private Vector2 oldHeimPosition = new Vector2();
+
     public void Awake()
     {
         menu = GameObject.Find("Menu").GetComponent<Menu>();
         initializeButton();
     }
 
+    public void resetButton()
+    {
+        winX = oldWinPosition.x;
+        winY = oldWinPosition.y;
+
+        heimX = oldHeimPosition.x;
+        heimY = oldHeimPosition.y;
+    }
+
     public void initializeButton()
     {
+       oldWinPosition = new Vector2(winX, winY);
+       oldHeimPosition = new Vector2(heimX, heimY);
+
         TextureLoader textureLoader = null;
         //use the texture loader to get the texture
         if (textureLoader = GameObject.Find("TextureLoader").GetComponent<TextureLoader>())
@@ -286,6 +303,38 @@ public class Button : MonoBehaviour
         get
         {
             return buttonName;
+        }
+    }
+
+    public float widthOfHeimTexture
+    {
+        get
+        {
+            return idleHeimTexture.width;
+        }
+    }
+    public float widthOfWinTexture
+    {
+        get
+        {
+            return idleWinTexture.width;
+        }
+    }
+
+
+    public float xPositionHeimButton
+    {
+        get
+        {
+            return oldHeimPosition.x;
+        }
+    }
+
+    public float xPositionWinButton
+    {
+        get
+        {
+            return oldWinPosition.x;
         }
     }
 }

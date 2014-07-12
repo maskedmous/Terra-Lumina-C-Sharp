@@ -50,6 +50,15 @@ public class Menu : MonoBehaviour
 
     private bool changingKey = false;
 
+    //button animation
+    private bool touchEnabled = true;
+    private string menuAnimation = "";
+    List<Button> movingButtonList = new List<Button>();
+    private int buttonAnimationIterator = 0;
+    private float buttonMoveSpeed = 0.0f;
+    private bool animationDone = false;
+    private Button lastButton = null;
+
     TouchScript.InputSources.MouseInput mouseInput = null;  //all sorts of input
     TouchScript.InputSources.TuioInput tuioInput = null;
     TouchScript.InputSources.Win7TouchInput win7Input = null;
@@ -85,6 +94,8 @@ public class Menu : MonoBehaviour
                 currentState = aState;
                 //set it on active
                 currentState.SetActive(true);
+                //reset the previous button positions
+                resetButtonPositions();
                 //initialize the buttons of this state
                 initializeButtons();
                 //initialize the sliders of this state
@@ -92,6 +103,130 @@ public class Menu : MonoBehaviour
                 //initialize input control button changers
                 initializeInputControlButtons();
             }
+        }
+    }
+
+    public void animateMenu(string buttonName)
+    {
+        menuAnimation = buttonName;
+
+        //clear the list
+        movingButtonList.Clear();
+        //add the buttons that have to move to the list
+        foreach(Button menuButton in buttonList)
+        {
+            if(menuButton.nameOfButton != buttonName)
+            {
+                //only add heim buttons
+                if(heimBuild && menuButton.heimButton) movingButtonList.Add(menuButton);
+                //add any button cause non-heim
+                if (!heimBuild) movingButtonList.Add(menuButton);
+            }
+            else
+            {
+                lastButton = menuButton;
+            }
+        }
+        //reset the iterator to 0
+        buttonAnimationIterator = 0;
+        touchEnabled = false;
+    }
+
+    public void Update()
+    {
+        //menu animation has been engaged
+        if(menuAnimation != "")
+        {
+            //get the current button to be animated
+            Button menuButton = movingButtonList[buttonAnimationIterator];
+            //heimbuild animation
+            if (heimBuild)
+            {
+                //check if the animation is completed yet
+                if (menuButton.heimX >= 0 - menuButton.widthOfHeimTexture)
+                {
+                    //calculate the movement speed
+                    buttonMoveSpeed = menuButton.xPositionHeimButton + menuButton.widthOfHeimTexture;
+                    //apply the speed
+                    menuButton.heimX -= (buttonMoveSpeed * 5) * Time.deltaTime;
+                }
+                else if (buttonAnimationIterator < (movingButtonList.Count - 1))
+                {
+                    buttonAnimationIterator++;
+                }
+                else if (lastButton.heimX >= 0 - lastButton.widthOfHeimTexture)
+                {
+                    //calculate the movement speed
+                    buttonMoveSpeed = menuButton.xPositionHeimButton + menuButton.widthOfHeimTexture;
+                    //apply the speed
+                    lastButton.heimX -= (buttonMoveSpeed * 5) * Time.deltaTime;
+                }
+                else
+                {
+                    animationDone = true;
+                    touchEnabled = true;
+                }
+            }
+            //windows build animation
+            else
+            {
+                //check if the animation is completed yet
+                if (menuButton.winX >= 0 - menuButton.widthOfWinTexture)
+                {
+                    //calculate the movement speed
+                    buttonMoveSpeed = menuButton.xPositionWinButton + menuButton.widthOfWinTexture;
+                    //apply the speed
+                    menuButton.winX -= (buttonMoveSpeed * 5) * Time.deltaTime;
+                }
+                else if (buttonAnimationIterator < (movingButtonList.Count - 1))
+                {
+                    buttonAnimationIterator++;
+                }
+                else if (lastButton.winX >= 0 - lastButton.widthOfWinTexture)
+                {
+                    //calculate the movement speed
+                    buttonMoveSpeed = menuButton.xPositionWinButton + menuButton.widthOfWinTexture;
+                    //apply the speed
+                    lastButton.winX -= (buttonMoveSpeed * 5) * Time.deltaTime;
+                }
+                else
+                {
+                    animationDone = true;
+                    touchEnabled = true;
+                }
+            }
+        }
+    }
+
+    public string menuAnimationButton
+    {
+        get
+        {
+            return menuAnimation;
+        }
+        set
+        {
+            menuAnimation = value;
+        }
+    }
+
+    public bool isAnimationDone
+    {
+        get
+        {
+            return animationDone;
+        }
+        set
+        {
+            animationDone = value;
+        }
+    }
+
+    private void resetButtonPositions()
+    {
+        foreach(Button menuButton in buttonList)
+        {
+            menuButton.resetButton();
         }
     }
 
@@ -260,27 +395,30 @@ public class Menu : MonoBehaviour
     //if a touch event is made
     private void touchBegan(object sender, TouchEventArgs touchEvent)
     {
-        foreach (var point in touchEvent.Touches)
+        if (touchEnabled)
         {
-            Vector2 touchPoint = point.Position;
-            touchPoint = invertY(touchPoint);
+            foreach (var point in touchEvent.Touches)
+            {
+                Vector2 touchPoint = point.Position;
+                touchPoint = invertY(touchPoint);
 
-            foreach (Button aButton in buttonList)
-            {
-                aButton.isTouched(touchPoint);
-            }
-            if (sliderList.Count != 0)
-            {
-                foreach (Slider aSlider in sliderList)
+                foreach (Button aButton in buttonList)
                 {
-                    aSlider.isTouched(touchPoint);
+                    aButton.isTouched(touchPoint);
                 }
-            }
-            if(insertControlList.Count != 0)
-            {
-                foreach(InsertControlButton aControlButton in insertControlList)
+                if (sliderList.Count != 0)
                 {
-                    aControlButton.isTouched(touchPoint);
+                    foreach (Slider aSlider in sliderList)
+                    {
+                        aSlider.isTouched(touchPoint);
+                    }
+                }
+                if (insertControlList.Count != 0)
+                {
+                    foreach (InsertControlButton aControlButton in insertControlList)
+                    {
+                        aControlButton.isTouched(touchPoint);
+                    }
                 }
             }
         }
@@ -288,27 +426,30 @@ public class Menu : MonoBehaviour
     //if a touch event is moved
     private void touchMoved(object sender, TouchEventArgs touchEvent)
     {
-        foreach (var point in touchEvent.Touches)
+        if (touchEnabled)
         {
-            Vector2 touchPoint = point.Position;
-            touchPoint = invertY(touchPoint);
+            foreach (var point in touchEvent.Touches)
+            {
+                Vector2 touchPoint = point.Position;
+                touchPoint = invertY(touchPoint);
 
-            foreach (Button aButton in buttonList)
-            {
-                aButton.isStillTouching(touchPoint);
-            }
-            if (sliderList.Count != 0)
-            {
-                foreach (Slider aSlider in sliderList)
+                foreach (Button aButton in buttonList)
                 {
-                    aSlider.isStillTouching(touchPoint);
+                    aButton.isStillTouching(touchPoint);
                 }
-            }
-            if (insertControlList.Count != 0)
-            {
-                foreach (InsertControlButton aControlButton in insertControlList)
+                if (sliderList.Count != 0)
                 {
-                    aControlButton.isStillTouching(touchPoint);
+                    foreach (Slider aSlider in sliderList)
+                    {
+                        aSlider.isStillTouching(touchPoint);
+                    }
+                }
+                if (insertControlList.Count != 0)
+                {
+                    foreach (InsertControlButton aControlButton in insertControlList)
+                    {
+                        aControlButton.isStillTouching(touchPoint);
+                    }
                 }
             }
         }
@@ -317,29 +458,33 @@ public class Menu : MonoBehaviour
     //if a touch has ended
     private void touchEnded(object sender, TouchEventArgs touchEvent)
     {
-        foreach (var point in touchEvent.Touches)
+        if (touchEnabled)
         {
-            Vector2 touchPoint = point.Position;
-            touchPoint = invertY(touchPoint);
-            if (buttonList.Count != 0)
+
+            foreach (var point in touchEvent.Touches)
             {
-                foreach (Button aButton in buttonList)
+                Vector2 touchPoint = point.Position;
+                touchPoint = invertY(touchPoint);
+                if (buttonList.Count != 0)
                 {
-                    if (aButton.isTouchReleased(touchPoint)) return;
+                    foreach (Button aButton in buttonList)
+                    {
+                        if (aButton.isTouchReleased(touchPoint)) return;
+                    }
                 }
-            }
-            if (sliderList.Count != 0)
-            {
-                foreach (Slider aSlider in sliderList)
+                if (sliderList.Count != 0)
                 {
-                    aSlider.isTouchReleased(touchPoint);
+                    foreach (Slider aSlider in sliderList)
+                    {
+                        aSlider.isTouchReleased(touchPoint);
+                    }
                 }
-            }
-            if (insertControlList.Count != 0)
-            {
-                foreach (InsertControlButton aControlButton in insertControlList)
+                if (insertControlList.Count != 0)
                 {
-                    aControlButton.isTouchReleased(touchPoint);
+                    foreach (InsertControlButton aControlButton in insertControlList)
+                    {
+                        aControlButton.isTouchReleased(touchPoint);
+                    }
                 }
             }
         }
