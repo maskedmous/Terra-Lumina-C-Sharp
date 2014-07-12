@@ -20,7 +20,7 @@ public class GraphicTexture : MonoBehaviour
     public bool isEnabled = true;
     public bool heim = false;
     private Menu menu = null;
-    public int layerID = 1; //second layer
+    public int layerID = 3; //third layer
 
 
     public void Awake()

@@ -23,7 +23,7 @@ public class SwitchGraphicTexture : MonoBehaviour
     public bool isEnabled = true;
 
     private Menu menu = null;
-    public int layerID = 1; //second layer
+    public int layerID = 3; //second layer
 
     public void Awake()
     {
@@ -85,7 +85,7 @@ public class SwitchGraphicTexture : MonoBehaviour
         }
     }
 
-    public string name
+    public string nameOfSwitchGraphic
     {
         get
         {

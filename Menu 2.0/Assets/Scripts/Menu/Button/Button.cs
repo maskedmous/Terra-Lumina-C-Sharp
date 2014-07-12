@@ -46,7 +46,7 @@ public class Button : MonoBehaviour
     public bool heimButton = true;
     private Menu menu = null;
     private ButtonBehaviour buttonBehaviour = null; //behaviour tied to the button
-    public int layerID = 0; //second layer
+    public int layerID = 1; //second layer
 
     public void Awake()
     {
@@ -116,7 +116,7 @@ public class Button : MonoBehaviour
 
             foreach(SwitchGraphicTexture aSwitchGraphic in switchGraphicsList)
             {
-                if(aSwitchGraphic.name == switchGraphicName)
+                if(aSwitchGraphic.nameOfSwitchGraphic == switchGraphicName)
                 {
                     switchGraphicTexture = aSwitchGraphic;
                 }
@@ -281,7 +281,7 @@ public class Button : MonoBehaviour
         return false;
     }
 
-    public string name
+    public string nameOfButton
     {
         get
         {

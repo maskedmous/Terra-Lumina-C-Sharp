@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{82C38E3A-866A-D001-3242-00CEBBB11E08}</ProjectGuid>
+	<ProjectGuid>{0F627634-60FE-C46A-A907-18AA4FEF6913}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -146,19 +146,19 @@
      <None Include="Assets\Standard Assets\MatcapShaders\MatCap Shaders\_MatCap Shaders Readme.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendForBloom.shader" />
  <Reference Include="OSCsharp">
- <HintPath>C:/Users/MaskedMouse/Desktop/new Button Try/Final Source/Assets/Standard Assets/TouchScript/Plugins/OSCsharp.dll</HintPath>
+ <HintPath>C:/Users/MaskedMouse/Documents/School/Github/Terra Lumina C-Sharp/Menu 2.0/Assets/Standard Assets/TouchScript/Plugins/OSCsharp.dll</HintPath>
  </Reference>
  <Reference Include="TouchScript">
- <HintPath>C:/Users/MaskedMouse/Desktop/new Button Try/Final Source/Assets/Standard Assets/TouchScript/Plugins/TouchScript.dll</HintPath>
+ <HintPath>C:/Users/MaskedMouse/Documents/School/Github/Terra Lumina C-Sharp/Menu 2.0/Assets/Standard Assets/TouchScript/Plugins/TouchScript.dll</HintPath>
  </Reference>
  <Reference Include="TouchScript.TUIO">
- <HintPath>C:/Users/MaskedMouse/Desktop/new Button Try/Final Source/Assets/Standard Assets/TouchScript/Plugins/TouchScript.TUIO.dll</HintPath>
+ <HintPath>C:/Users/MaskedMouse/Documents/School/Github/Terra Lumina C-Sharp/Menu 2.0/Assets/Standard Assets/TouchScript/Plugins/TouchScript.TUIO.dll</HintPath>
  </Reference>
  <Reference Include="TouchScript.Windows">
- <HintPath>C:/Users/MaskedMouse/Desktop/new Button Try/Final Source/Assets/Standard Assets/TouchScript/Plugins/TouchScript.Windows.dll</HintPath>
+ <HintPath>C:/Users/MaskedMouse/Documents/School/Github/Terra Lumina C-Sharp/Menu 2.0/Assets/Standard Assets/TouchScript/Plugins/TouchScript.Windows.dll</HintPath>
  </Reference>
  <Reference Include="TUIOsharp">
- <HintPath>C:/Users/MaskedMouse/Desktop/new Button Try/Final Source/Assets/Standard Assets/TouchScript/Plugins/TUIOsharp.dll</HintPath>
+ <HintPath>C:/Users/MaskedMouse/Documents/School/Github/Terra Lumina C-Sharp/Menu 2.0/Assets/Standard Assets/TouchScript/Plugins/TUIOsharp.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

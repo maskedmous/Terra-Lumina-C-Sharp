@@ -15,6 +15,7 @@ public class Menu : MonoBehaviour
     public List<GameObject> states = new List<GameObject>();
     List<Button> buttonList = new List<Button>();
     List<Slider> sliderList = new List<Slider>();
+    List<InsertControlButton> insertControlList = new List<InsertControlButton>();
 
     private BloomAndLensFlares bloomScript = null;
 
@@ -46,6 +47,8 @@ public class Menu : MonoBehaviour
     private KeyCode normalShroomKey = KeyCode.N;
     private KeyCode bumpyShroomKey = KeyCode.B;
     private KeyCode flashKey = KeyCode.LeftControl;
+
+    private bool changingKey = false;
 
     TouchScript.InputSources.MouseInput mouseInput = null;  //all sorts of input
     TouchScript.InputSources.TuioInput tuioInput = null;
@@ -86,6 +89,8 @@ public class Menu : MonoBehaviour
                 initializeButtons();
                 //initialize the sliders of this state
                 initializeSliders();
+                //initialize input control button changers
+                initializeInputControlButtons();
             }
         }
     }
@@ -117,6 +122,16 @@ public class Menu : MonoBehaviour
         for (int i = 0; i < sliders.Length; ++i)
         {
             sliderList.Add(sliders[i]);
+        }
+    }
+    private void initializeInputControlButtons()
+    {
+        insertControlList.Clear();
+        InsertControlButton[] insertControlButtons = currentState.GetComponents<InsertControlButton>();
+
+        for (int i =0; i < insertControlButtons.Length; ++i)
+        {
+            insertControlList.Add(insertControlButtons[i]);
         }
     }
     private void initializeScripts()
@@ -261,6 +276,13 @@ public class Menu : MonoBehaviour
                     aSlider.isTouched(touchPoint);
                 }
             }
+            if(insertControlList.Count != 0)
+            {
+                foreach(InsertControlButton aControlButton in insertControlList)
+                {
+                    aControlButton.isTouched(touchPoint);
+                }
+            }
         }
     }
     //if a touch event is moved
@@ -280,6 +302,13 @@ public class Menu : MonoBehaviour
                 foreach (Slider aSlider in sliderList)
                 {
                     aSlider.isStillTouching(touchPoint);
+                }
+            }
+            if (insertControlList.Count != 0)
+            {
+                foreach (InsertControlButton aControlButton in insertControlList)
+                {
+                    aControlButton.isStillTouching(touchPoint);
                 }
             }
         }
@@ -304,6 +333,13 @@ public class Menu : MonoBehaviour
                 foreach (Slider aSlider in sliderList)
                 {
                     aSlider.isTouchReleased(touchPoint);
+                }
+            }
+            if (insertControlList.Count != 0)
+            {
+                foreach (InsertControlButton aControlButton in insertControlList)
+                {
+                    aControlButton.isTouchReleased(touchPoint);
                 }
             }
         }
@@ -343,7 +379,7 @@ public class Menu : MonoBehaviour
         if (debugTouch) GUI.Label(new Rect(0, 0, Screen.width, 200), "InputType: " + getInputType() + "\n" + isMouseInputEnabled() + "\n" + isWin7InputEnabled() + "\n" + isWin8InputEnabled() + "\n" + numberOfTouches());
     }
 
-    private bool checkValidKey(KeyCode aKey)
+    public bool checkValidKey(KeyCode aKey)
     {
         //check if the key matches an other key
         //if so revert it back immediately
@@ -692,6 +728,109 @@ public class Menu : MonoBehaviour
         {
             difficulty = value;
         }
+    }
+
+    public GUIStyle getCustomFont
+    {
+        get
+        {
+            return customFont;
+        }
+    }
+
+    public bool isChangingKey
+    {
+        get
+        {
+            return changingKey;
+        }
+        set
+        {
+            changingKey = value;
+        }
+    }
+
+    public string getKeyCode(string key)
+    {
+        if (key == "MoveLeft")
+        {
+            return shortcutKeyCode(moveLeftKey.ToString());
+        }
+
+        if (key == "MoveRight")
+        {
+            return shortcutKeyCode(moveRightKey.ToString());
+        }
+
+        if (key == "Jump")
+        {
+            return shortcutKeyCode(jumpKey.ToString());
+        }
+
+        if (key == "Flash")
+        {
+            return shortcutKeyCode(flashKey.ToString());
+        }
+
+        if (key == "NormalShroom")
+        {
+            return shortcutKeyCode(normalShroomKey.ToString());
+        }
+
+        if (key == "BumpyShroom")
+        {
+            return shortcutKeyCode(bumpyShroomKey.ToString());
+        }
+
+        return "";
+    }
+
+    public void setKeyCode(string key, KeyCode keyCode)
+    {
+        if (key == "MoveLeft")
+        {
+            moveLeftKey = keyCode;
+        }
+
+        if (key == "MoveRight")
+        {
+            moveRightKey = keyCode;
+        }
+
+        if (key == "Jump")
+        {
+            jumpKey = keyCode;
+        }
+
+        if (key == "Flash")
+        {
+            flashKey = keyCode;
+        }
+
+        if (key == "NormalShroom")
+        {
+            normalShroomKey = keyCode;
+        }
+
+        if (key == "BumpyShroom")
+        {
+            bumpyShroomKey = keyCode;
+        }
+    }
+
+    private string shortcutKeyCode(string aKey)
+    {
+        string key = aKey;
+
+        if (key.Contains("Left")) key = key.Replace("Left", "L");
+        else if (key.Contains("Right")) key = key.Replace("Right", "R");
+        
+        if (key.Contains("Control")) key = key.Replace("Control", "CTRL");
+        if (key.Contains("CapsLock")) key = key.Replace("CapsLock", "CapsL");
+        if (key.Contains("PageUp")) key = key.Replace("PageUp", "PgUp");
+        if (key.Contains("PageDown")) key = key.Replace("PageDown", "PgDn");
+
+        return key;
     }
 
     private void setLevelFileNameByInt(int level)

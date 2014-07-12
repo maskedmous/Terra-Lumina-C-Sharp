@@ -11,6 +11,12 @@ public class ButtonBehaviour : MonoBehaviour
         menu = GameObject.Find("Menu").GetComponent<Menu>();
         button = aButton;
     }
+
+    public virtual void Update()
+    {
+
+    }
+
     //executes the button
     public virtual void executeButton()
     {
