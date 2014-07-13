@@ -106,9 +106,16 @@ public class TextureLoader : MonoBehaviour
         //take a screenshot
         if (Input.GetKeyDown(KeyCode.F9))
         {
-            string fileName = "Screenshot" + screenshotCount + ".png";
+            string fileName = "";
+            
+            do
+            {
+                screenshotCount++;
+                fileName = "Screenshot" + screenshotCount + ".png";
+
+            } while (System.IO.File.Exists(screenshotFilename));
+            
             Application.CaptureScreenshot(fileName);
-            screenshotCount++;
         }
     }
 
