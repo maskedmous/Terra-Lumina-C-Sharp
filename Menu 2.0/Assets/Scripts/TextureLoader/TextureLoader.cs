@@ -113,7 +113,7 @@ public class TextureLoader : MonoBehaviour
                 screenshotCount++;
                 fileName = "Screenshot" + screenshotCount + ".png";
 
-            } while (System.IO.File.Exists(screenshotFilename));
+            } while (System.IO.File.Exists(fileName));
             
             Application.CaptureScreenshot(fileName);
         }
