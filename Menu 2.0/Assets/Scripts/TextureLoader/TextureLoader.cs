@@ -51,6 +51,8 @@ public class TextureLoader : MonoBehaviour
     private float originalWidth = 1920.0f;				//original width and height of a 16:9 ratio
     private float originalHeight = 1080.0f;
 
+    private int screenshotCount = 0;
+
     
     //static variables not to be touched
     static bool LoaderExists = false;				//static to check if the loader exists already or not
@@ -96,6 +98,17 @@ public class TextureLoader : MonoBehaviour
         {
             //destroy this because it exists already, failsave because this scene should not be loaded multiple times
             Destroy(this.gameObject);
+        }
+    }
+
+    public void Update()
+    {
+        //take a screenshot
+        if (Input.GetKeyDown(KeyCode.F9))
+        {
+            string fileName = "Screenshot" + screenshotCount + ".png";
+            Application.CaptureScreenshot(fileName);
+            screenshotCount++;
         }
     }
 
