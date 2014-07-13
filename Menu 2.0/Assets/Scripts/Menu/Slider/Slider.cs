@@ -88,6 +88,15 @@ public class Slider : MonoBehaviour
         debugDotRightGraphic.initialize(debugDot, debugLayer);
     }
 
+    public void setPosition(float position)
+    {
+        position = Mathf.Clamp(position, 0.0f, 1.0f);
+        
+        xButton = minRange + (position * (maxRange - minRange));
+        if (xButton > maxRange) xButton = maxRange;
+        else if (xButton < minRange) xButton = minRange;
+    }
+
     public bool isTouched(Vector2 input)
     {
         if (sliderBackgroundRect.Contains(input))
@@ -154,11 +163,8 @@ public class Slider : MonoBehaviour
     {
         float percentage = 0.0f;
 
-        float min = minX - (sliderButtonTexture.width / 2);
-        float max = maxX - (sliderButtonTexture.width / 2);
-
-        float percentScale = (max - min) / 100;
-        percentage = ((xButton - min) / percentScale) / 100;
+        float percentScale = (maxRange - minRange) / 100;
+        percentage = ((xButton - minRange) / percentScale) / 100;
 
         percentage = Mathf.Clamp(percentage, 0.0f, 1.0f);
 
@@ -230,7 +236,7 @@ public class Slider : MonoBehaviour
     {
         get
         {
-            return minX;
+            return minX - (sliderButtonTexture.width / 2);
         }
     }
 
@@ -238,7 +244,7 @@ public class Slider : MonoBehaviour
     {
         get
         {
-            return maxX;
+            return maxX - (sliderButtonTexture.width / 2);
         }
     }
 }

@@ -5,7 +5,7 @@ public class SoundEngineScript : MonoBehaviour
 {
 
     private bool pausedSound = false;
-    private float volume = 0.9031847f;
+    private float volume = 1.0f;
     static bool soundEngineExists = false;
 
     private bool aim = false;

@@ -38,7 +38,8 @@ public class Menu : MonoBehaviour
     private Animator roverAnim = null;   //call animations of the rover
 
     //different inputs
-    private int inputType = 0;  //tuio + mouse standard
+    private int inputType = 0;  //tuio + mouse standard input for Heim Build
+    //Keyboard & Mouse for standard windows store input!
     private List<KeyCode> keyboardSettings = new List<KeyCode>(); //keyboard settings in an array
 
     private KeyCode moveLeftKey = KeyCode.A;    //standard keyboard input
@@ -49,6 +50,7 @@ public class Menu : MonoBehaviour
     private KeyCode flashKey = KeyCode.LeftControl;
 
     private bool changingKey = false;
+    private bool settingsChanged = false;
 
     //button animation
     private bool touchEnabled = true;
@@ -67,6 +69,11 @@ public class Menu : MonoBehaviour
     public void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+
+        if(heimBuild && PlayerPrefs.HasKey("CreatedSettings"))
+        {
+            deleteSettings();
+        }
 
         initializeScripts();    //load scripts for communication
         initalizeInput();   //initialize the input from the inputtype (heim = TUIO)
@@ -113,12 +120,12 @@ public class Menu : MonoBehaviour
         //clear the list
         movingButtonList.Clear();
         //add the buttons that have to move to the list
-        foreach(Button menuButton in buttonList)
+        foreach (Button menuButton in buttonList)
         {
-            if(menuButton.nameOfButton != buttonName)
+            if (menuButton.nameOfButton != buttonName)
             {
                 //only add heim buttons
-                if(heimBuild && menuButton.heimButton) movingButtonList.Add(menuButton);
+                if (heimBuild && menuButton.heimButton) movingButtonList.Add(menuButton);
                 //add any button cause non-heim
                 if (!heimBuild) movingButtonList.Add(menuButton);
             }
@@ -135,7 +142,7 @@ public class Menu : MonoBehaviour
     public void Update()
     {
         //menu animation has been engaged
-        if(menuAnimation != "")
+        if (menuAnimation != "")
         {
             //get the current button to be animated
             Button menuButton = movingButtonList[buttonAnimationIterator];
@@ -224,7 +231,7 @@ public class Menu : MonoBehaviour
 
     private void resetButtonPositions()
     {
-        foreach(Button menuButton in buttonList)
+        foreach (Button menuButton in buttonList)
         {
             menuButton.resetButton();
         }
@@ -264,7 +271,7 @@ public class Menu : MonoBehaviour
         insertControlList.Clear();
         InsertControlButton[] insertControlButtons = currentState.GetComponents<InsertControlButton>();
 
-        for (int i =0; i < insertControlButtons.Length; ++i)
+        for (int i = 0; i < insertControlButtons.Length; ++i)
         {
             insertControlList.Add(insertControlButtons[i]);
         }
@@ -298,6 +305,17 @@ public class Menu : MonoBehaviour
 
     private void initalizeInput()
     {
+
+        if (!heimBuild)
+        {
+            inputType = 1;  //default input type is 1 on non heim builds
+            loadSettings();
+        }
+        else
+        {
+            inputType = 0;
+        }
+
         //tuio + mouse
         if (inputType == 0)
         {
@@ -346,21 +364,28 @@ public class Menu : MonoBehaviour
         soundEngine.changeVolume(volume);
     }
 
-    public int getInputType()
+    public int selectedInputType
     {
-        return inputType;
+        get
+        {
+            return inputType;
+        }
+        set
+        {
+            inputType = value;   
+        }
     }
 
-    //sofachrome
-    private string getSelectedControllerType()
+    public bool changedSettings
     {
-        if (inputType == 0) return "TUIO Input";
-        else if (inputType == 1) return "Keyboard & Mouse";
-        else if (inputType == 2) return "Win 7 Touch";
-        else if (inputType == 3) return "Win 8 Touch";
-        else if (inputType == 4) return "Xbox Controller";
-
-        return "";
+        get
+        {
+            return settingsChanged;
+        }
+        set
+        {
+            settingsChanged = value;
+        }
     }
 
     public List<KeyCode> getKeyboardSettings()
@@ -521,7 +546,7 @@ public class Menu : MonoBehaviour
     {
         //debug the touch so we are able to see which input type is used and if it is enabled or not
         //showing how many number of touches there are as well
-        if (debugTouch) GUI.Label(new Rect(0, 0, Screen.width, 200), "InputType: " + getInputType() + "\n" + isMouseInputEnabled() + "\n" + isWin7InputEnabled() + "\n" + isWin8InputEnabled() + "\n" + numberOfTouches());
+        if (debugTouch) GUI.Label(new Rect(0, 0, Screen.width, 200), "InputType: " + selectedInputType + "\n" + isMouseInputEnabled() + "\n" + isWin7InputEnabled() + "\n" + isWin8InputEnabled() + "\n" + numberOfTouches());
     }
 
     public bool checkValidKey(KeyCode aKey)
@@ -727,9 +752,9 @@ public class Menu : MonoBehaviour
     {
         Debug.Log("Creating Settings...");
         //create keys and values with defaults
-        PlayerPrefs.SetFloat("Volume", 0.9031847f);
+        PlayerPrefs.SetFloat("Volume", 1.0f);
         PlayerPrefs.SetInt("Bloom", 1);
-        PlayerPrefs.SetInt("InputType", 0);
+        PlayerPrefs.SetInt("InputType", 1);
 
         //save default keyboard keys
         PlayerPrefs.SetString("MoveLeft", KeyCode.A.ToString());
@@ -846,10 +871,11 @@ public class Menu : MonoBehaviour
     //    loadSettings();
     //}
 
-    //private void deleteSettings()
-    //{
-    //    PlayerPrefs.DeleteAll();
-    //}
+    private void deleteSettings()
+    {
+        Debug.Log("Deleting settings");
+        PlayerPrefs.DeleteAll();
+    }
 
     public bool isHeimBuild
     {
@@ -969,7 +995,7 @@ public class Menu : MonoBehaviour
 
         if (key.Contains("Left")) key = key.Replace("Left", "L");
         else if (key.Contains("Right")) key = key.Replace("Right", "R");
-        
+
         if (key.Contains("Control")) key = key.Replace("Control", "CTRL");
         if (key.Contains("CapsLock")) key = key.Replace("CapsLock", "CapsL");
         if (key.Contains("PageUp")) key = key.Replace("PageUp", "PgUp");

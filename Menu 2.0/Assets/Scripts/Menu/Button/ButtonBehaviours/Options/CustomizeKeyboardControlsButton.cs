@@ -7,4 +7,16 @@ public class CustomizeKeyboardControlsButton : ButtonBehaviour
     {
         menu.switchMenuState("SetKeyboardControls");
     }
+
+    public override void Update()
+    {
+        if(menu.selectedInputType == 1)
+        {
+            if(!button.isEnabled) button.isEnabled = true;
+        }
+        else
+        {
+            if (button.isEnabled) button.isEnabled = false;
+        }
+    }
 }

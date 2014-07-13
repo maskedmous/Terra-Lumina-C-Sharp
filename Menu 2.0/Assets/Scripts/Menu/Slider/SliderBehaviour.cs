@@ -14,6 +14,12 @@ public class SliderBehaviour : MonoBehaviour
     public void initializeSlider(Slider sliderScript)
     {
         slider = sliderScript;
+        initializeSetting();
+    }
+
+    public virtual void initializeSetting()
+    {
+
     }
 
     public virtual void executeSliderFunction(Vector2 input)

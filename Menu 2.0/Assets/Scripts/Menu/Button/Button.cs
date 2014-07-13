@@ -157,6 +157,18 @@ public class Button : MonoBehaviour
         }
     }
 
+    public int iterator
+    {
+        get
+        {
+            if(switchGraphicTexture != null)
+            {
+                return switchGraphicTexture.interation;
+            }
+            return 1;
+        }
+    }
+
     public void OnGUI()
     {
         //if the button is enabled
@@ -221,23 +233,26 @@ public class Button : MonoBehaviour
     //check if the button is being touched, if so use the pressed texture
     public bool isTouched(Vector2 input)
     {
-        //if the input is within the rectangle then it is being touched
-        if (buttonRect.Contains(input))
+        if (isEnabled)
         {
-            //if it is not a checkbox then they're normal button textures
-            //they're being touched so put the pressed texture on
-            if (!checkBox)
+            //if the input is within the rectangle then it is being touched
+            if (buttonRect.Contains(input))
             {
-                if (!menu.isHeimBuild) currentButtonTexture = pressedWinTexture;
-                else currentButtonTexture = pressedHeimTexture;
+                //if it is not a checkbox then they're normal button textures
+                //they're being touched so put the pressed texture on
+                if (!checkBox)
+                {
+                    if (!menu.isHeimBuild) currentButtonTexture = pressedWinTexture;
+                    else currentButtonTexture = pressedHeimTexture;
+                }
+                //it is a checkbox so on press behaviour
+                else if (buttonBehaviour != null && checkBox)
+                {
+                    //execute the checkbox function
+                    buttonBehaviour.executeButton();
+                }
+                return true;
             }
-            //it is a checkbox so on press behaviour
-            else if (buttonBehaviour != null && checkBox)
-            {
-                //execute the checkbox function
-                buttonBehaviour.executeButton();
-            }
-            return true;
         }
         return false;
     }
@@ -260,17 +275,20 @@ public class Button : MonoBehaviour
     //if it is still touching the button after movement
     public bool isStillTouching(Vector2 input)
     {
-        if (buttonRect.Contains(input))
+        if (isEnabled)
         {
-            if (!menu.isHeimBuild && !checkBox && currentButtonTexture == idleWinTexture) currentButtonTexture = pressedWinTexture;
-            else if (menu.isHeimBuild && !checkBox && currentButtonTexture == idleHeimTexture) currentButtonTexture = pressedHeimTexture;
-            return true;
-        }
-        if (!checkBox)
-        {
-            //if the button was touched before and isn't touched anymore, reset the texture
-            if (!menu.isHeimBuild && currentButtonTexture == pressedWinTexture) currentButtonTexture = idleWinTexture;
-            else if (menu.isHeimBuild && currentButtonTexture == pressedHeimTexture) currentButtonTexture = idleHeimTexture;
+            if (buttonRect.Contains(input))
+            {
+                if (!menu.isHeimBuild && !checkBox && currentButtonTexture == idleWinTexture) currentButtonTexture = pressedWinTexture;
+                else if (menu.isHeimBuild && !checkBox && currentButtonTexture == idleHeimTexture) currentButtonTexture = pressedHeimTexture;
+                return true;
+            }
+            if (!checkBox)
+            {
+                //if the button was touched before and isn't touched anymore, reset the texture
+                if (!menu.isHeimBuild && currentButtonTexture == pressedWinTexture) currentButtonTexture = idleWinTexture;
+                else if (menu.isHeimBuild && currentButtonTexture == pressedHeimTexture) currentButtonTexture = idleHeimTexture;
+            }
         }
         //button is not being pressed anymore
         return false;
@@ -279,21 +297,24 @@ public class Button : MonoBehaviour
     //on release activate the button
     public bool isTouchReleased(Vector2 input)
     {
-        if (buttonRect.Contains(input))
+        if (isEnabled)
         {
-            //activate the button
-            if (buttonBehaviour != null && !checkBox)
+            if (buttonRect.Contains(input))
             {
-                buttonBehaviour.executeButton();
-            }
+                //activate the button
+                if (buttonBehaviour != null && !checkBox)
+                {
+                    buttonBehaviour.executeButton();
+                }
 
-            if (!checkBox)
-            {
-                if (!menu.isHeimBuild) currentButtonTexture = idleWinTexture;
-                else if (menu.isHeimBuild) currentButtonTexture = idleHeimTexture;
+                if (!checkBox)
+                {
+                    if (!menu.isHeimBuild) currentButtonTexture = idleWinTexture;
+                    else if (menu.isHeimBuild) currentButtonTexture = idleHeimTexture;
+                }
+                //return the true
+                return true;
             }
-            //return the true
-            return true;
         }
         return false;
     }

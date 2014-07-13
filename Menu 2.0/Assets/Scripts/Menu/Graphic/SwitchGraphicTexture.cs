@@ -92,4 +92,16 @@ public class SwitchGraphicTexture : MonoBehaviour
             return switchGaphicName;
         }
     }
+
+    public int interation
+    {
+        get
+        {
+            return iterateThrough+1;
+        }
+        set
+        {
+            iterateThrough = value - 1;
+        }
+    }
 }

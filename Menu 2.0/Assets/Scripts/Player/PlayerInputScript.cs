@@ -317,6 +317,10 @@ public class PlayerInputScript : MonoBehaviour
                 inactiveTimer = 60.0f;  //if there is input reset the timer to 60
             }
         }
+        else if (!inactiveTimerEnabled && !PlayerPrefs.HasKey("CreatedSettings"))
+        {
+            inactiveTimerEnabled = true;    //heim build is active... so use the inactive timer TUIO input only
+        }
     }
 
     private void escapeXboxControls()
