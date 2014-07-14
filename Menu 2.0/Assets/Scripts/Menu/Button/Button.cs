@@ -40,6 +40,7 @@ public class Button : MonoBehaviour
 
     private Vector2 scale = new Vector2();      //scale
     public bool isEnabled = true;               //if the button is enabled
+    public bool isDisabled = false;             //disables the execute button function
 
     public float originalWidth = 1920.0f;   //designed height and width for scaling
     public float originalHeight = 1080.0f;
@@ -47,11 +48,16 @@ public class Button : MonoBehaviour
     public bool heimButton = true;
     private Menu menu = null;
     private ButtonBehaviour buttonBehaviour = null; //behaviour tied to the button
-    public int layerID = 1; //second layer
 
+    public string textBoxName = "";
+    private TextBox textBox = null;
+    
+    public int layerID = 1; //second layer
     //menu animations
     private Vector2 oldWinPosition = new Vector2();
     private Vector2 oldHeimPosition = new Vector2();
+
+
 
     public void Awake()
     {
@@ -127,6 +133,18 @@ public class Button : MonoBehaviour
             buttonBehaviour.initialize(this);
         }
 
+        if(textBoxName != "")
+        {
+            TextBox[] textboxes = this.GetComponents<TextBox>();
+            foreach(TextBox aTextBox in textboxes)
+            {
+                if(aTextBox.textBoxName == textBoxName)
+                {
+                    textBox = aTextBox;
+                }
+            }
+        }
+
         if(switchGraphic)
         {
             SwitchGraphicTexture[] switchGraphicsList = this.GetComponents<SwitchGraphicTexture>();
@@ -163,9 +181,16 @@ public class Button : MonoBehaviour
         {
             if(switchGraphicTexture != null)
             {
-                return switchGraphicTexture.interation;
+                return switchGraphicTexture.iteration;
             }
             return 1;
+        }
+        set
+        {
+            if(switchGraphicTexture != null)
+            {
+                switchGraphicTexture.iteration = value;
+            }
         }
     }
 
@@ -233,7 +258,7 @@ public class Button : MonoBehaviour
     //check if the button is being touched, if so use the pressed texture
     public bool isTouched(Vector2 input)
     {
-        if (isEnabled)
+        if (isEnabled && !isDisabled)
         {
             //if the input is within the rectangle then it is being touched
             if (buttonRect.Contains(input))
@@ -272,10 +297,19 @@ public class Button : MonoBehaviour
             enabledBox = true;
         }
     }
+
+    public bool isEnabledBox
+    {
+        get
+        {
+            return enabledBox;
+        }
+    }
+
     //if it is still touching the button after movement
     public bool isStillTouching(Vector2 input)
     {
-        if (isEnabled)
+        if (isEnabled && !isDisabled)
         {
             if (buttonRect.Contains(input))
             {
@@ -297,7 +331,7 @@ public class Button : MonoBehaviour
     //on release activate the button
     public bool isTouchReleased(Vector2 input)
     {
-        if (isEnabled)
+        if (isEnabled && !isDisabled)
         {
             if (buttonRect.Contains(input))
             {
@@ -356,6 +390,26 @@ public class Button : MonoBehaviour
         get
         {
             return oldWinPosition.x;
+        }
+    }
+
+    public bool disabled
+    {
+        get
+        {
+            return isDisabled;
+        }
+        set
+        {
+            isDisabled = value;
+        }
+    }
+
+    public TextBox getTextbox
+    {
+        get
+        {
+            return textBox;
         }
     }
 }

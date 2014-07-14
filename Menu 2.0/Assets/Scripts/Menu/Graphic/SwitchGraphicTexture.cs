@@ -59,7 +59,14 @@ public class SwitchGraphicTexture : MonoBehaviour
 
     public void Update()
     {
-        if (currentTexture != textures[iterateThrough]) currentTexture = textures[iterateThrough];
+        if (!menu.isHeimBuild)
+        {
+            if (switchGaphicName == "ControlSet")
+            {
+                iteration = menu.selectedInputType; //quick fix
+            }
+            if (currentTexture != textures[iterateThrough]) currentTexture = textures[iterateThrough];
+        }
     }
 
     public void OnGUI()
@@ -93,11 +100,11 @@ public class SwitchGraphicTexture : MonoBehaviour
         }
     }
 
-    public int interation
+    public int iteration
     {
         get
         {
-            return iterateThrough+1;
+            return iterateThrough + 1;
         }
         set
         {

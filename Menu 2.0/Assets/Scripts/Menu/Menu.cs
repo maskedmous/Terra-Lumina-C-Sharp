@@ -15,6 +15,7 @@ public class Menu : MonoBehaviour
     public List<GameObject> states = new List<GameObject>();
     List<Button> buttonList = new List<Button>();
     List<Slider> sliderList = new List<Slider>();
+    List<GraphicTexture> graphicTextureList = new List<GraphicTexture>();
     List<InsertControlButton> insertControlList = new List<InsertControlButton>();
 
     private BloomAndLensFlares bloomScript = null;
@@ -51,6 +52,8 @@ public class Menu : MonoBehaviour
 
     private bool changingKey = false;
     private bool settingsChanged = false;
+    private bool settingsTimeoutBool = false;
+    private float applySettingsTimeout = 10.0f;
 
     //button animation
     private bool touchEnabled = true;
@@ -88,6 +91,130 @@ public class Menu : MonoBehaviour
         switchMenuState("MainMenu");    //handles initialize buttons
     }
 
+    private void initializeButtons()
+    {
+        //clear button list first
+        buttonList.Clear();
+        //get the current buttons and store them into a temp variable
+        Button[] buttons = currentState.GetComponents<Button>();
+        //go through the list of buttons and add them to the List<Button>
+        for (int i = 0; i < buttons.Length; ++i)
+        {
+            buttonList.Add(buttons[i]);
+        }
+    }
+    private void initializeSliders()
+    {
+        //clear slider list first
+        sliderList.Clear();
+        //get the current sliders and store them into a temp variable
+        Slider[] sliders = currentState.GetComponents<Slider>();
+
+        for (int i = 0; i < sliders.Length; ++i)
+        {
+            sliderList.Add(sliders[i]);
+        }
+    }
+    private void initializeInputControlButtons()
+    {
+        insertControlList.Clear();
+        InsertControlButton[] insertControlButtons = currentState.GetComponents<InsertControlButton>();
+
+        for (int i = 0; i < insertControlButtons.Length; ++i)
+        {
+            insertControlList.Add(insertControlButtons[i]);
+        }
+    }
+    private void initializeScripts()
+    {
+        roverAnim = GameObject.Find("RoverAnimMenu").GetComponent<Animator>();
+        bloomScript = Camera.main.GetComponent<BloomAndLensFlares>();
+        soundEngine = GameObject.Find("SoundEngine").GetComponent<SoundEngineScript>();
+
+        GameObject inputSources = GameObject.Find("TouchScript").transform.FindChild("Inputs").gameObject;
+
+        mouseInput = inputSources.GetComponent<TouchScript.InputSources.MouseInput>();
+        tuioInput = inputSources.GetComponent<TouchScript.InputSources.TuioInput>();
+        win7Input = inputSources.GetComponent<TouchScript.InputSources.Win7TouchInput>();
+        win8Input = inputSources.GetComponent<TouchScript.InputSources.Win8TouchInput>();
+
+
+        //setting font
+        customFont.font = (Font)Resources.Load("Fonts/sofachrome rg") as Font;
+
+        //setting color
+        Color fontColor = customFont.normal.textColor;
+
+        fontColor.b = 197.0f / 255.0f;
+        fontColor.g = 185.0f / 255.0f;
+        fontColor.r = 147.0f / 255.0f;
+
+        customFont.normal.textColor = fontColor;
+    }
+    private void initializeGraphicTextures()
+    {
+        GraphicTexture[] graphicTextures = currentState.GetComponents<GraphicTexture>();
+        foreach(GraphicTexture graphicTexture in graphicTextures)
+        {
+            graphicTextureList.Add(graphicTexture);
+        }
+    }
+
+    private void initalizeInput()
+    {
+
+        if (!heimBuild)
+        {
+            inputType = 1;  //default input type is 1 on non heim builds
+            loadSettings();
+        }
+        else
+        {
+            inputType = 0;
+        }
+
+        //tuio + mouse
+        if (inputType == 0)
+        {
+            mouseInput.enabled = true;
+            tuioInput.enabled = true;
+            win7Input.enabled = false;
+            win8Input.enabled = false;
+        }
+        //keyboard + mouse
+        else if (inputType == 1)
+        {
+            mouseInput.enabled = true;
+            tuioInput.enabled = true;
+            win7Input.enabled = false;
+            win8Input.enabled = false;
+        }
+        //win 7 touch
+        else if (inputType == 2)
+        {
+            mouseInput.enabled = false;
+            tuioInput.enabled = true;
+            win7Input.enabled = true;
+            win8Input.enabled = false;
+        }
+        //win 8 touch
+        else if (inputType == 3)
+        {
+            mouseInput.enabled = false;
+            tuioInput.enabled = true;
+            win7Input.enabled = false;
+            win8Input.enabled = true;
+        }
+        //xbox controller + mouse
+        else if (inputType == 4)
+        {
+            mouseInput.enabled = true;
+            tuioInput.enabled = true;
+            win7Input.enabled = false;
+            win8Input.enabled = false;
+        }
+    }
+
     public void switchMenuState(string stateName)
     {
         foreach (GameObject aState in states)
@@ -107,6 +234,8 @@ public class Menu : MonoBehaviour
                 initializeButtons();
                 //initialize the sliders of this state
                 initializeSliders();
+                //initialize graphicTextures
+                initializeGraphicTextures();
                 //initialize input control button changers
                 initializeInputControlButtons();
             }
@@ -242,121 +371,6 @@ public class Menu : MonoBehaviour
         roverAnim.SetBool(stateName, value);
     }
 
-    private void initializeButtons()
-    {
-        //clear button list first
-        buttonList.Clear();
-        //get the current buttons and store them into a temp variable
-        Button[] buttons = currentState.GetComponents<Button>();
-        //go through the list of buttons and add them to the List<Button>
-        for (int i = 0; i < buttons.Length; ++i)
-        {
-            buttonList.Add(buttons[i]);
-        }
-    }
-    private void initializeSliders()
-    {
-        //clear slider list first
-        sliderList.Clear();
-        //get the current sliders and store them into a temp variable
-        Slider[] sliders = currentState.GetComponents<Slider>();
-
-        for (int i = 0; i < sliders.Length; ++i)
-        {
-            sliderList.Add(sliders[i]);
-        }
-    }
-    private void initializeInputControlButtons()
-    {
-        insertControlList.Clear();
-        InsertControlButton[] insertControlButtons = currentState.GetComponents<InsertControlButton>();
-
-        for (int i = 0; i < insertControlButtons.Length; ++i)
-        {
-            insertControlList.Add(insertControlButtons[i]);
-        }
-    }
-    private void initializeScripts()
-    {
-        roverAnim = GameObject.Find("RoverAnimMenu").GetComponent<Animator>();
-        bloomScript = Camera.main.GetComponent<BloomAndLensFlares>();
-        soundEngine = GameObject.Find("SoundEngine").GetComponent<SoundEngineScript>();
-
-        GameObject inputSources = GameObject.Find("TouchScript").transform.FindChild("Inputs").gameObject;
-
-        mouseInput = inputSources.GetComponent<TouchScript.InputSources.MouseInput>();
-        tuioInput = inputSources.GetComponent<TouchScript.InputSources.TuioInput>();
-        win7Input = inputSources.GetComponent<TouchScript.InputSources.Win7TouchInput>();
-        win8Input = inputSources.GetComponent<TouchScript.InputSources.Win8TouchInput>();
-
-
-        //setting font
-        customFont.font = (Font)Resources.Load("Fonts/sofachrome rg") as Font;
-
-        //setting color
-        Color fontColor = customFont.normal.textColor;
-
-        fontColor.b = 197.0f / 255.0f;
-        fontColor.g = 185.0f / 255.0f;
-        fontColor.r = 147.0f / 255.0f;
-
-        customFont.normal.textColor = fontColor;
-    }
-
-    private void initalizeInput()
-    {
-
-        if (!heimBuild)
-        {
-            inputType = 1;  //default input type is 1 on non heim builds
-            loadSettings();
-        }
-        else
-        {
-            inputType = 0;
-        }
-
-        //tuio + mouse
-        if (inputType == 0)
-        {
-            mouseInput.enabled = true;
-            tuioInput.enabled = true;
-            win7Input.enabled = false;
-            win8Input.enabled = false;
-        }
-        //keyboard + mouse
-        else if (inputType == 1)
-        {
-            mouseInput.enabled = true;
-            tuioInput.enabled = true;
-            win7Input.enabled = false;
-            win8Input.enabled = false;
-        }
-        //win 7 touch
-        else if (inputType == 2)
-        {
-            mouseInput.enabled = false;
-            tuioInput.enabled = true;
-            win7Input.enabled = true;
-            win8Input.enabled = false;
-        }
-        //win 8 touch
-        else if (inputType == 3)
-        {
-            mouseInput.enabled = false;
-            tuioInput.enabled = true;
-            win7Input.enabled = false;
-            win8Input.enabled = true;
-        }
-        //xbox controller + mouse
-        else if (inputType == 4)
-        {
-            mouseInput.enabled = true;
-            tuioInput.enabled = true;
-            win7Input.enabled = false;
-            win8Input.enabled = false;
-        }
-    }
 
     public void changeVolume(float volume)
     {
@@ -768,6 +782,8 @@ public class Menu : MonoBehaviour
 
         PlayerPrefs.Save();
         Debug.Log("Saving Created Settings");
+        //load the newly saved settings
+        loadSettings();
     }
 
     public void saveSettings()
@@ -918,6 +934,94 @@ public class Menu : MonoBehaviour
         set
         {
             changingKey = value;
+        }
+    }
+
+    public bool settingsTimeout
+    {
+        get
+        {
+            return settingsTimeoutBool;
+        }
+        set
+        {
+            settingsTimeoutBool = value;
+        }
+    }
+
+    public float settingsTimeoutTimer
+    {
+        get
+        {
+            return applySettingsTimeout;
+        }
+        set
+        {
+            applySettingsTimeout = value;
+        }
+    }
+
+    public void enableGraphicTexture(string graphicName)
+    {
+        foreach (GraphicTexture aGraphicTexture in graphicTextureList)
+        {
+            if (aGraphicTexture.nameOfGraphicTexture == graphicName)
+            {
+                aGraphicTexture.isEnabled = true;
+            }
+        }
+    }
+
+    public void disableGraphicTexture(string graphicName)
+    {
+        foreach (GraphicTexture aGraphicTexture in graphicTextureList)
+        {
+            if (aGraphicTexture.nameOfGraphicTexture == graphicName)
+            {
+                aGraphicTexture.isEnabled = false;
+            }
+        }
+    }
+
+    public void disableAllButtons()
+    {
+        foreach(Button aButton in buttonList)
+        {
+            aButton.disabled = true;
+        }
+    }
+
+    public void enableAllButtons()
+    {
+        foreach(Button aButton in buttonList)
+        {
+            aButton.disabled = false;
+        }
+    }
+
+    public void enableTextBox(string textboxName)
+    {
+        TextBox[] textboxes = currentState.GetComponents<TextBox>();
+        
+        foreach(TextBox aTextbox in textboxes)
+        {
+            if(aTextbox.textBoxName == textboxName)
+            {
+                aTextbox.isEnabled = true;
+            }
+        }
+    }
+
+    public void disableTextBox(string textboxName)
+    {
+        TextBox[] textboxes = currentState.GetComponents<TextBox>();
+
+        foreach (TextBox aTextbox in textboxes)
+        {
+            if (aTextbox.textBoxName == textboxName)
+            {
+                aTextbox.isEnabled = false;
+            }
         }
     }
 

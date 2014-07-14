@@ -70,11 +70,14 @@
      <Compile Include="Assets\Scripts\Menu\Button\ButtonBehaviours\MainMenu\OptionsButton.cs" />
      <Compile Include="Assets\Scripts\Menu\Button\ButtonBehaviours\MainMenu\QuitButton.cs" />
      <Compile Include="Assets\Scripts\Menu\Button\ButtonBehaviours\MainMenu\StartButton.cs" />
+     <Compile Include="Assets\Scripts\Menu\Button\ButtonBehaviours\Options\AcceptChangesButton.cs" />
      <Compile Include="Assets\Scripts\Menu\Button\ButtonBehaviours\Options\ApplyControlsButton.cs" />
+     <Compile Include="Assets\Scripts\Menu\Button\ButtonBehaviours\Options\ApplyOptionsButton.cs" />
      <Compile Include="Assets\Scripts\Menu\Button\ButtonBehaviours\Options\BackToOptionsButton.cs" />
      <Compile Include="Assets\Scripts\Menu\Button\ButtonBehaviours\Options\BloomCheckBox.cs" />
      <Compile Include="Assets\Scripts\Menu\Button\ButtonBehaviours\Options\CustomizeKeyboardControlsButton.cs" />
      <Compile Include="Assets\Scripts\Menu\Button\ButtonBehaviours\Options\LeftArrowButton.cs" />
+     <Compile Include="Assets\Scripts\Menu\Button\ButtonBehaviours\Options\RevertChangesButton.cs" />
      <Compile Include="Assets\Scripts\Menu\Button\ButtonBehaviours\Options\RightArrowButton.cs" />
      <Compile Include="Assets\Scripts\Menu\Button\InsertControlButton.cs" />
      <Compile Include="Assets\Scripts\Menu\Graphic\GraphicTexture.cs" />
@@ -84,6 +87,7 @@
      <Compile Include="Assets\Scripts\Menu\Slider\Slider.cs" />
      <Compile Include="Assets\Scripts\Menu\Slider\SliderBehaviour.cs" />
      <Compile Include="Assets\Scripts\Menu\Slider\SliderBehaviours\VolumeSlider.cs" />
+     <Compile Include="Assets\Scripts\Menu\Text\TextBox.cs" />
      <Compile Include="Assets\Scripts\NPC\ChaseState.cs" />
      <Compile Include="Assets\Scripts\NPC\FleeState.cs" />
      <Compile Include="Assets\Scripts\NPC\MoveState.cs" />

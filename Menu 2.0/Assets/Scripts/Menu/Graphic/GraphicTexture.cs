@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GraphicTexture : MonoBehaviour
 {
+    public string graphicTextureName = "";  //name it for use in scripts
     public float x = 0.0f;              //x position of the graphic
     public float y = 0.0f;              //y position
 
@@ -79,6 +80,14 @@ public class GraphicTexture : MonoBehaviour
             scale = new Vector2(Screen.width / originalWidth, Screen.height / originalHeight);
             if (texture != null) textureRect = new Rect(x * scale.x, y * scale.y, texture.width * scale.x, texture.height * scale.y);
             if (heimTexture != null) heimTextureRect = new Rect(x * scale.x, y * scale.y, heimTexture.width * scale.x, heimTexture.height * scale.y);
+        }
+    }
+
+    public string nameOfGraphicTexture
+    {
+        get
+        {
+            return graphicTextureName;
         }
     }
 }
