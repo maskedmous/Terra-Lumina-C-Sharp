@@ -1,0 +1,170 @@
+fileFormatVersion: 2
+guid: 6ceb0d3ad821b3a4caa3a53b8025fc14
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Cone_Plant_CTRL
+    100002: Leaf10
+    100004: Leaf11
+    100006: Leaf5
+    100008: Leaf6
+    100010: Leaf7
+    100012: Leaf8
+    100014: Leaf9
+    100016: Mesh_grp
+    100018: //RootNode
+    100020: pPipe1
+    100022: pPipe2
+    100024: pPipe3
+    400000: Cone_Plant_CTRL
+    400002: Leaf10
+    400004: Leaf11
+    400006: Leaf5
+    400008: Leaf6
+    400010: Leaf7
+    400012: Leaf8
+    400014: Leaf9
+    400016: Mesh_grp
+    400018: //RootNode
+    400020: pPipe1
+    400022: pPipe2
+    400024: pPipe3
+    2300000: Leaf10
+    2300002: Leaf11
+    2300004: Leaf5
+    2300006: Leaf6
+    2300008: Leaf7
+    2300010: Leaf8
+    2300012: Leaf9
+    2300014: pPipe1
+    2300016: pPipe2
+    2300018: pPipe3
+    3300000: Leaf10
+    3300002: Leaf11
+    3300004: Leaf5
+    3300006: Leaf6
+    3300008: Leaf7
+    3300010: Leaf8
+    3300012: Leaf9
+    3300014: pPipe1
+    3300016: pPipe2
+    3300018: pPipe3
+    4300000: pPipe1
+    4300002: Leaf5
+    4300004: Leaf6
+    4300006: Leaf7
+    4300008: Leaf8
+    4300010: Leaf9
+    4300012: Leaf10
+    4300014: Leaf11
+    4300016: pPipe2
+    4300018: pPipe3
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 100
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Cone_Plant_CTRL
+        weight: 1
+      - path: Cone_Plant_CTRL/Mesh_grp
+        weight: 1
+      - path: Cone_Plant_CTRL/Mesh_grp/Leaf5
+        weight: 1
+      - path: Cone_Plant_CTRL/Mesh_grp/Leaf6
+        weight: 1
+      - path: Cone_Plant_CTRL/Mesh_grp/Leaf7
+        weight: 1
+      - path: Cone_Plant_CTRL/Mesh_grp/Leaf8
+        weight: 1
+      - path: Cone_Plant_CTRL/Mesh_grp/Leaf9
+        weight: 1
+      - path: Cone_Plant_CTRL/Mesh_grp/Leaf10
+        weight: 1
+      - path: Cone_Plant_CTRL/Mesh_grp/Leaf11
+        weight: 1
+      - path: Cone_Plant_CTRL/Mesh_grp/pPipe1
+        weight: 1
+      - path: Cone_Plant_CTRL/Mesh_grp/pPipe2
+        weight: 1
+      - path: Cone_Plant_CTRL/Mesh_grp/pPipe3
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 

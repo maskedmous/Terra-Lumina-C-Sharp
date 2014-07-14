@@ -1,0 +1,179 @@
+fileFormatVersion: 2
+guid: fc204cfd84cfba54aa31aafb72a8eb25
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Barrier
+    100002: //RootNode
+    100004: pCube77
+    100006: pCube78
+    100008: pCube79
+    100010: pCube80
+    100012: pCube81
+    100014: pCube82
+    100016: pCube83
+    100018: PlateauRockPiece1
+    100020: PlateauRockPiece3
+    100022: PlateauRockPiece4
+    100024: PlateauRockPiece5
+    100026: PlateauRockPiece6
+    400000: Barrier
+    400002: //RootNode
+    400004: pCube77
+    400006: pCube78
+    400008: pCube79
+    400010: pCube80
+    400012: pCube81
+    400014: pCube82
+    400016: pCube83
+    400018: PlateauRockPiece1
+    400020: PlateauRockPiece3
+    400022: PlateauRockPiece4
+    400024: PlateauRockPiece5
+    400026: PlateauRockPiece6
+    2300000: pCube77
+    2300002: pCube78
+    2300004: pCube79
+    2300006: pCube80
+    2300008: pCube81
+    2300010: pCube82
+    2300012: pCube83
+    2300014: PlateauRockPiece1
+    2300016: PlateauRockPiece3
+    2300018: PlateauRockPiece4
+    2300020: PlateauRockPiece5
+    2300022: PlateauRockPiece6
+    3300000: pCube77
+    3300002: pCube78
+    3300004: pCube79
+    3300006: pCube80
+    3300008: pCube81
+    3300010: pCube82
+    3300012: pCube83
+    3300014: PlateauRockPiece1
+    3300016: PlateauRockPiece3
+    3300018: PlateauRockPiece4
+    3300020: PlateauRockPiece5
+    3300022: PlateauRockPiece6
+    4300000: pCube77
+    4300002: pCube78
+    4300004: pCube79
+    4300006: pCube80
+    4300008: pCube81
+    4300010: pCube82
+    4300012: PlateauRockPiece1
+    4300014: PlateauRockPiece3
+    4300016: PlateauRockPiece4
+    4300018: PlateauRockPiece5
+    4300020: PlateauRockPiece6
+    4300022: pCube83
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Barrier
+        weight: 1
+      - path: Barrier/pCube77
+        weight: 1
+      - path: Barrier/pCube78
+        weight: 1
+      - path: Barrier/pCube79
+        weight: 1
+      - path: Barrier/pCube80
+        weight: 1
+      - path: Barrier/pCube81
+        weight: 1
+      - path: Barrier/pCube82
+        weight: 1
+      - path: Barrier/pCube83
+        weight: 1
+      - path: Barrier/PlateauRockPiece1
+        weight: 1
+      - path: Barrier/PlateauRockPiece3
+        weight: 1
+      - path: Barrier/PlateauRockPiece4
+        weight: 1
+      - path: Barrier/PlateauRockPiece5
+        weight: 1
+      - path: Barrier/PlateauRockPiece6
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 

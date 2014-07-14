@@ -1,0 +1,2022 @@
+fileFormatVersion: 2
+guid: 14516051d84fa194c8af2126f1713277
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: COM_Spine
+    100002: COM_Spine 1
+    100004: Ctrl_1
+    100006: Ctrl_2
+    100008: Ctrl_3
+    100010: Ctrl_4
+    100012: Ctrl_5
+    100014: Ctrl_6
+    100016: ikHandle1
+    100018: ikHandle1 1
+    100020: ikHandle10
+    100022: ikHandle10 1
+    100024: ikHandle2
+    100026: ikHandle2 1
+    100028: ikHandle3
+    100030: ikHandle3 1
+    100032: ikHandle4
+    100034: ikHandle4 1
+    100036: ikHandle6
+    100038: ikHandle6 1
+    100040: ikHandle7
+    100042: ikHandle7 1
+    100044: ikHandle8
+    100046: ikHandle8 1
+    100048: locator1
+    100050: locator1 1
+    100052: locator10
+    100054: locator10 1
+    100056: locator11
+    100058: locator11 1
+    100060: locator12
+    100062: locator12 1
+    100064: locator14
+    100066: locator14 1
+    100068: locator15
+    100070: locator15 1
+    100072: locator16
+    100074: locator16 1
+    100076: locator17
+    100078: locator17 1
+    100080: locator1_pointOnPolyConstraint1
+    100082: locator1_pointOnPolyConstraint1 1
+    100084: locator2
+    100086: locator2 1
+    100088: locator2_pointOnPolyConstraint1
+    100090: locator2_pointOnPolyConstraint1 1
+    100092: locator3
+    100094: locator3 1
+    100096: locator3_pointOnPolyConstraint1
+    100098: locator3_pointOnPolyConstraint1 1
+    100100: locator4
+    100102: locator4 1
+    100104: locator4_pointOnPolyConstraint1
+    100106: locator4_pointOnPolyConstraint1 1
+    100108: locator5
+    100110: locator5 1
+    100112: locator5_pointOnPolyConstraint1
+    100114: locator5_pointOnPolyConstraint1 1
+    100116: locator6
+    100118: locator6 1
+    100120: locator6_pointOnPolyConstraint1
+    100122: locator6_pointOnPolyConstraint1 1
+    100124: locator7
+    100126: locator7 1
+    100128: locator7_pointOnPolyConstraint1
+    100130: locator7_pointOnPolyConstraint1 1
+    100132: locator8
+    100134: locator8 1
+    100136: locator8_pointOnPolyConstraint1
+    100138: locator8_pointOnPolyConstraint1 1
+    100140: locator9
+    100142: locator9 1
+    100144: ori
+    100146: ori 1
+    100148: ori 10
+    100150: ori 11
+    100152: ori 12
+    100154: ori 13
+    100156: ori 2
+    100158: ori 3
+    100160: ori 4
+    100162: ori 5
+    100164: ori 6
+    100166: ori 7
+    100168: ori 8
+    100170: ori 9
+    100172: pCube1
+    100174: pCube2
+    100176: pCube3
+    100178: pCube4
+    100180: pCube5
+    100182: pCube6
+    100184: pCube7
+    100186: pCube8
+    100188: Pelvis_Spine
+    100190: Pelvis_Spine 1
+    100192: Poly_Spine
+    100194: Poly_Spine 1
+    100196: Real_Spine
+    100198: Real_Spine 1
+    100200: Rocks
+    100202: ruler
+    100204: ruler 1
+    100206: ruler 10
+    100208: ruler 11
+    100210: ruler 12
+    100212: ruler 13
+    100214: ruler 2
+    100216: ruler 3
+    100218: ruler 4
+    100220: ruler 5
+    100222: ruler 6
+    100224: ruler 7
+    100226: ruler 8
+    100228: ruler 9
+    100230: Shoulder_Spine
+    100232: Shoulder_Spine 1
+    100234: Slug_mesh
+    100236: //RootNode
+    100238: Spinal_column_grp
+    100240: Spinal_column_grp 1
+    100242: Spine_crv
+    100244: Spine_crv 1
+    100246: Spine_crvBase
+    100248: Spine_crvBase 1
+    100250: Spine_CTRL_grp
+    100252: Spine_CTRL_grp 1
+    100254: Spine_geo_influence
+    100256: Spine_geo_influence 1
+    100258: Spine_IK
+    100260: Spine_IK 1
+    100262: Spine_JT_grps
+    100264: Spine_JT_grps 1
+    100266: Spine_measure_1
+    100268: Spine_measure_1 1
+    100270: Spine_measure_2
+    100272: Spine_measure_2 1
+    100274: Spine_measure_3
+    100276: Spine_measure_3 1
+    100278: Spine_measure_4
+    100280: Spine_measure_4 1
+    100282: Spine_measure_5
+    100284: Spine_measure_5 1
+    100286: Spine_measure_6
+    100288: Spine_measure_6 1
+    100290: Spine_measure_7
+    100292: Spine_measure_7 1
+    100294: Spine_PV
+    100296: Spine_PV 1
+    100298: Spine_PV_grp
+    100300: Spine_PV_grp 1
+    100302: Spine_rotate_bnd3
+    100304: Spine_rotate_bnd3 1
+    100306: Spine_rotate_bnd3 2
+    100308: Spine_rotate_bnd3 3
+    100310: Spine_rotate_bnd4
+    100312: Spine_rotate_bnd4 1
+    100314: Spine_rotate_bnd4 2
+    100316: Spine_rotate_bnd4 3
+    100318: Spine_rotate_bnd5
+    100320: Spine_rotate_bnd5 1
+    100322: Spine_rotate_bnd5 2
+    100324: Spine_rotate_bnd5 3
+    100326: Spine_rotate_bnd6
+    100328: Spine_rotate_bnd6 1
+    100330: Spine_rotate_bnd6 2
+    100332: Spine_rotate_bnd6 3
+    100334: Spine_rotate_bnd7
+    100336: Spine_rotate_bnd7 1
+    100338: Spine_rotate_bnd7 2
+    100340: Spine_rotate_bnd7 3
+    100342: Spine_rotate_bnd8
+    100344: Spine_rotate_bnd8 1
+    100346: Spine_rotate_bnd8 2
+    100348: Spine_rotate_bnd8 3
+    100350: Spine_rotate_bnd9
+    100352: Spine_rotate_bnd9 1
+    100354: Spine_rotate_bnd9 2
+    100356: Spine_rotate_bnd9 3
+    100358: stretch_loc_grp
+    100360: stretch_loc_grp 1
+    100362: Transfer_Spine
+    100364: Transfer_Spine 1
+    100366: transform1
+    100368: transform1 1
+    100370: transform1 2
+    100372: transform1 3
+    100374: transform1 4
+    100376: transform1 5
+    100378: transform2
+    100380: transform3
+    400000: COM_Spine
+    400002: COM_Spine 1
+    400004: Ctrl_1
+    400006: Ctrl_2
+    400008: Ctrl_3
+    400010: Ctrl_4
+    400012: Ctrl_5
+    400014: Ctrl_6
+    400016: ikHandle1
+    400018: ikHandle1 1
+    400020: ikHandle10
+    400022: ikHandle10 1
+    400024: ikHandle2
+    400026: ikHandle2 1
+    400028: ikHandle3
+    400030: ikHandle3 1
+    400032: ikHandle4
+    400034: ikHandle4 1
+    400036: ikHandle6
+    400038: ikHandle6 1
+    400040: ikHandle7
+    400042: ikHandle7 1
+    400044: ikHandle8
+    400046: ikHandle8 1
+    400048: locator1
+    400050: locator1 1
+    400052: locator10
+    400054: locator10 1
+    400056: locator11
+    400058: locator11 1
+    400060: locator12
+    400062: locator12 1
+    400064: locator14
+    400066: locator14 1
+    400068: locator15
+    400070: locator15 1
+    400072: locator16
+    400074: locator16 1
+    400076: locator17
+    400078: locator17 1
+    400080: locator1_pointOnPolyConstraint1
+    400082: locator1_pointOnPolyConstraint1 1
+    400084: locator2
+    400086: locator2 1
+    400088: locator2_pointOnPolyConstraint1
+    400090: locator2_pointOnPolyConstraint1 1
+    400092: locator3
+    400094: locator3 1
+    400096: locator3_pointOnPolyConstraint1
+    400098: locator3_pointOnPolyConstraint1 1
+    400100: locator4
+    400102: locator4 1
+    400104: locator4_pointOnPolyConstraint1
+    400106: locator4_pointOnPolyConstraint1 1
+    400108: locator5
+    400110: locator5 1
+    400112: locator5_pointOnPolyConstraint1
+    400114: locator5_pointOnPolyConstraint1 1
+    400116: locator6
+    400118: locator6 1
+    400120: locator6_pointOnPolyConstraint1
+    400122: locator6_pointOnPolyConstraint1 1
+    400124: locator7
+    400126: locator7 1
+    400128: locator7_pointOnPolyConstraint1
+    400130: locator7_pointOnPolyConstraint1 1
+    400132: locator8
+    400134: locator8 1
+    400136: locator8_pointOnPolyConstraint1
+    400138: locator8_pointOnPolyConstraint1 1
+    400140: locator9
+    400142: locator9 1
+    400144: ori
+    400146: ori 1
+    400148: ori 10
+    400150: ori 11
+    400152: ori 12
+    400154: ori 13
+    400156: ori 2
+    400158: ori 3
+    400160: ori 4
+    400162: ori 5
+    400164: ori 6
+    400166: ori 7
+    400168: ori 8
+    400170: ori 9
+    400172: pCube1
+    400174: pCube2
+    400176: pCube3
+    400178: pCube4
+    400180: pCube5
+    400182: pCube6
+    400184: pCube7
+    400186: pCube8
+    400188: Pelvis_Spine
+    400190: Pelvis_Spine 1
+    400192: Poly_Spine
+    400194: Poly_Spine 1
+    400196: Real_Spine
+    400198: Real_Spine 1
+    400200: Rocks
+    400202: ruler
+    400204: ruler 1
+    400206: ruler 10
+    400208: ruler 11
+    400210: ruler 12
+    400212: ruler 13
+    400214: ruler 2
+    400216: ruler 3
+    400218: ruler 4
+    400220: ruler 5
+    400222: ruler 6
+    400224: ruler 7
+    400226: ruler 8
+    400228: ruler 9
+    400230: Shoulder_Spine
+    400232: Shoulder_Spine 1
+    400234: Slug_mesh
+    400236: //RootNode
+    400238: Spinal_column_grp
+    400240: Spinal_column_grp 1
+    400242: Spine_crv
+    400244: Spine_crv 1
+    400246: Spine_crvBase
+    400248: Spine_crvBase 1
+    400250: Spine_CTRL_grp
+    400252: Spine_CTRL_grp 1
+    400254: Spine_geo_influence
+    400256: Spine_geo_influence 1
+    400258: Spine_IK
+    400260: Spine_IK 1
+    400262: Spine_JT_grps
+    400264: Spine_JT_grps 1
+    400266: Spine_measure_1
+    400268: Spine_measure_1 1
+    400270: Spine_measure_2
+    400272: Spine_measure_2 1
+    400274: Spine_measure_3
+    400276: Spine_measure_3 1
+    400278: Spine_measure_4
+    400280: Spine_measure_4 1
+    400282: Spine_measure_5
+    400284: Spine_measure_5 1
+    400286: Spine_measure_6
+    400288: Spine_measure_6 1
+    400290: Spine_measure_7
+    400292: Spine_measure_7 1
+    400294: Spine_PV
+    400296: Spine_PV 1
+    400298: Spine_PV_grp
+    400300: Spine_PV_grp 1
+    400302: Spine_rotate_bnd3
+    400304: Spine_rotate_bnd3 1
+    400306: Spine_rotate_bnd3 2
+    400308: Spine_rotate_bnd3 3
+    400310: Spine_rotate_bnd4
+    400312: Spine_rotate_bnd4 1
+    400314: Spine_rotate_bnd4 2
+    400316: Spine_rotate_bnd4 3
+    400318: Spine_rotate_bnd5
+    400320: Spine_rotate_bnd5 1
+    400322: Spine_rotate_bnd5 2
+    400324: Spine_rotate_bnd5 3
+    400326: Spine_rotate_bnd6
+    400328: Spine_rotate_bnd6 1
+    400330: Spine_rotate_bnd6 2
+    400332: Spine_rotate_bnd6 3
+    400334: Spine_rotate_bnd7
+    400336: Spine_rotate_bnd7 1
+    400338: Spine_rotate_bnd7 2
+    400340: Spine_rotate_bnd7 3
+    400342: Spine_rotate_bnd8
+    400344: Spine_rotate_bnd8 1
+    400346: Spine_rotate_bnd8 2
+    400348: Spine_rotate_bnd8 3
+    400350: Spine_rotate_bnd9
+    400352: Spine_rotate_bnd9 1
+    400354: Spine_rotate_bnd9 2
+    400356: Spine_rotate_bnd9 3
+    400358: stretch_loc_grp
+    400360: stretch_loc_grp 1
+    400362: Transfer_Spine
+    400364: Transfer_Spine 1
+    400366: transform1
+    400368: transform1 1
+    400370: transform1 2
+    400372: transform1 3
+    400374: transform1 4
+    400376: transform1 5
+    400378: transform2
+    400380: transform3
+    2300000: pCube1
+    2300002: pCube2
+    2300004: pCube3
+    2300006: pCube4
+    2300008: pCube5
+    2300010: pCube6
+    2300012: pCube7
+    2300014: pCube8
+    3300000: pCube1
+    3300002: pCube2
+    3300004: pCube3
+    3300006: pCube4
+    3300008: pCube5
+    3300010: pCube6
+    3300012: pCube7
+    3300014: pCube8
+    4300000: Slug_mesh
+    4300002: Poly_Spine
+    4300004: Poly_Spine
+    4300006: pCube1
+    4300008: pCube2
+    4300010: pCube3
+    4300012: pCube4
+    4300014: pCube5
+    4300016: pCube6
+    4300018: pCube7
+    4300020: pCube8
+    7400000: Move
+    7400002: Disappear
+    7400004: Reappear
+    9500000: //RootNode
+    13700000: Poly_Spine
+    13700002: Poly_Spine 1
+    13700004: Slug_mesh
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Move
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Rocks
+        weight: 1
+      - path: Rocks/pCube1
+        weight: 1
+      - path: Rocks/pCube2
+        weight: 1
+      - path: Rocks/pCube3
+        weight: 1
+      - path: Rocks/pCube4
+        weight: 1
+      - path: Rocks/pCube5
+        weight: 1
+      - path: Rocks/pCube6
+        weight: 1
+      - path: Rocks/pCube7
+        weight: 1
+      - path: Rocks/pCube8
+        weight: 1
+      - path: Slug_mesh
+        weight: 1
+      - path: Spinal_column_grp
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_CTRL_grp 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_CTRL_grp 1/Spine_PV_grp
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_CTRL_grp 1/Spine_PV_grp
+          1/Spine_PV 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_geo_influence 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_geo_influence 1/Poly_Spine
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_geo_influence 1/Spine_crv
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_geo_influence 1/Spine_crvBase
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_geo_influence 1/Spine_IK
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_JT_grps 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator1 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator1 1/locator1_pointOnPolyConstraint1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator1 1/Spine_measure_1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator1 1/Spine_measure_1
+          1/ori 7
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator1 1/Spine_measure_1
+          1/ruler 7
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator2 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator2 1/ikHandle1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator2 1/locator2_pointOnPolyConstraint1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator2 1/Spine_measure_2
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator2 1/Spine_measure_2
+          1/ori 8
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator2 1/Spine_measure_2
+          1/ruler 8
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator3 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator3 1/ikHandle2
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator3 1/locator3_pointOnPolyConstraint1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator3 1/Spine_measure_3
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator3 1/Spine_measure_3
+          1/ori 9
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator3 1/Spine_measure_3
+          1/ruler 9
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator4 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator4 1/ikHandle3
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator4 1/locator4_pointOnPolyConstraint1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator4 1/Spine_measure_4
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator4 1/Spine_measure_4
+          1/ori 10
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator4 1/Spine_measure_4
+          1/ruler 10
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator5 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator5 1/ikHandle4
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator5 1/locator5_pointOnPolyConstraint1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator5 1/Spine_measure_5
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator5 1/Spine_measure_5
+          1/ori 11
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator5 1/Spine_measure_5
+          1/ruler 11
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator6 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator6 1/ikHandle6
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator6 1/locator6_pointOnPolyConstraint1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator6 1/Spine_measure_6
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator6 1/Spine_measure_6
+          1/ori 12
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator6 1/Spine_measure_6
+          1/ruler 12
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator7 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator7 1/ikHandle7
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator7 1/locator7_pointOnPolyConstraint1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator7 1/Spine_measure_7
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator7 1/Spine_measure_7
+          1/ori 13
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator7 1/Spine_measure_7
+          1/ruler 13
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator8 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator8 1/ikHandle8
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator8 1/locator8_pointOnPolyConstraint1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_1
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_1/transform1
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_1/transform1/Pelvis_Spine
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_2
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_2/transform1 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_2/transform1 1/COM_Spine
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_3
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_3/transform1 2
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_3/transform1 2/Shoulder_Spine
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_4
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_4/transform1 3
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_4/transform1 3/Pelvis_Spine 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_5
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_5/transform1 4
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_5/transform1 4/COM_Spine 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_6
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_6/transform1 5
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_6/transform1 5/Shoulder_Spine
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Spine_PV_grp
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Spine_PV_grp/Spine_PV
+        weight: 1
+      - path: Spinal_column_grp/Spine_geo_influence
+        weight: 1
+      - path: Spinal_column_grp/Spine_geo_influence/Poly_Spine
+        weight: 1
+      - path: Spinal_column_grp/Spine_geo_influence/Spine_crv
+        weight: 1
+      - path: Spinal_column_grp/Spine_geo_influence/Spine_crvBase
+        weight: 1
+      - path: Spinal_column_grp/Spine_geo_influence/Spine_IK
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/locator15
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/locator14
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/locator12
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/locator9
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/locator10
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/locator11
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/locator16
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/locator17
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/locator15 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/locator14 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/locator12 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/locator9 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/Spine_rotate_bnd6
+          2
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/Spine_rotate_bnd6
+          2/locator10 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/Spine_rotate_bnd6
+          2/Spine_rotate_bnd7 2
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/Spine_rotate_bnd6
+          2/Spine_rotate_bnd7 2/locator11 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/Spine_rotate_bnd6
+          2/Spine_rotate_bnd7 2/Spine_rotate_bnd8 2
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/Spine_rotate_bnd6
+          2/Spine_rotate_bnd7 2/Spine_rotate_bnd8 2/locator16 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/Spine_rotate_bnd6
+          2/Spine_rotate_bnd7 2/Spine_rotate_bnd8 2/Spine_rotate_bnd9 2
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/Spine_rotate_bnd6
+          2/Spine_rotate_bnd7 2/Spine_rotate_bnd8 2/Spine_rotate_bnd9 2/locator17
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/ikHandle10
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1/Spine_rotate_bnd3 3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1/Spine_rotate_bnd3 3/Spine_rotate_bnd4
+          3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1/Spine_rotate_bnd3 3/Spine_rotate_bnd4
+          3/Spine_rotate_bnd5 3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1/Spine_rotate_bnd3 3/Spine_rotate_bnd4
+          3/Spine_rotate_bnd5 3/Spine_rotate_bnd6 3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1/Spine_rotate_bnd3 3/Spine_rotate_bnd4
+          3/Spine_rotate_bnd5 3/Spine_rotate_bnd6 3/Spine_rotate_bnd7 3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1/Spine_rotate_bnd3 3/Spine_rotate_bnd4
+          3/Spine_rotate_bnd5 3/Spine_rotate_bnd6 3/Spine_rotate_bnd7 3/Spine_rotate_bnd8
+          3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1/Spine_rotate_bnd3 3/Spine_rotate_bnd4
+          3/Spine_rotate_bnd5 3/Spine_rotate_bnd6 3/Spine_rotate_bnd7 3/Spine_rotate_bnd8
+          3/Spine_rotate_bnd9 3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1/Spine_rotate_bnd3 3/Spine_rotate_bnd4
+          3/Spine_rotate_bnd5 3/Spine_rotate_bnd6 3/Spine_rotate_bnd7 3/Spine_rotate_bnd8
+          3/Spine_rotate_bnd9 3/ikHandle10 1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator1/locator1_pointOnPolyConstraint1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator1/Spine_measure_1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator1/Spine_measure_1/ori
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator1/Spine_measure_1/ruler
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator2
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator2/ikHandle1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator2/locator2_pointOnPolyConstraint1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator2/Spine_measure_2
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator2/Spine_measure_2/ori 1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator2/Spine_measure_2/ruler 1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator3
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator3/ikHandle2
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator3/locator3_pointOnPolyConstraint1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator3/Spine_measure_3
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator3/Spine_measure_3/ori 2
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator3/Spine_measure_3/ruler 2
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator4
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator4/ikHandle3
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator4/locator4_pointOnPolyConstraint1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator4/Spine_measure_4
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator4/Spine_measure_4/ori 3
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator4/Spine_measure_4/ruler 3
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator5
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator5/ikHandle4
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator5/locator5_pointOnPolyConstraint1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator5/Spine_measure_5
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator5/Spine_measure_5/ori 4
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator5/Spine_measure_5/ruler 4
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator6
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator6/ikHandle6
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator6/locator6_pointOnPolyConstraint1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator6/Spine_measure_6
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator6/Spine_measure_6/ori 5
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator6/Spine_measure_6/ruler 5
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator7
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator7/ikHandle7
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator7/locator7_pointOnPolyConstraint1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator7/Spine_measure_7
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator7/Spine_measure_7/ori 6
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator7/Spine_measure_7/ruler 6
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator8
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator8/ikHandle8
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator8/locator8_pointOnPolyConstraint1
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Disappear
+      takeName: Take 001
+      firstFrame: 25
+      lastFrame: 56
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Rocks
+        weight: 1
+      - path: Rocks/pCube1
+        weight: 1
+      - path: Rocks/pCube2
+        weight: 1
+      - path: Rocks/pCube3
+        weight: 1
+      - path: Rocks/pCube4
+        weight: 1
+      - path: Rocks/pCube5
+        weight: 1
+      - path: Rocks/pCube6
+        weight: 1
+      - path: Rocks/pCube7
+        weight: 1
+      - path: Rocks/pCube8
+        weight: 1
+      - path: Slug_mesh
+        weight: 1
+      - path: Spinal_column_grp
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_CTRL_grp 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_CTRL_grp 1/Spine_PV_grp
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_CTRL_grp 1/Spine_PV_grp
+          1/Spine_PV 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_geo_influence 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_geo_influence 1/Poly_Spine
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_geo_influence 1/Spine_crv
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_geo_influence 1/Spine_crvBase
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_geo_influence 1/Spine_IK
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_JT_grps 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator1 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator1 1/locator1_pointOnPolyConstraint1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator1 1/Spine_measure_1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator1 1/Spine_measure_1
+          1/ori 7
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator1 1/Spine_measure_1
+          1/ruler 7
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator2 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator2 1/ikHandle1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator2 1/locator2_pointOnPolyConstraint1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator2 1/Spine_measure_2
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator2 1/Spine_measure_2
+          1/ori 8
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator2 1/Spine_measure_2
+          1/ruler 8
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator3 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator3 1/ikHandle2
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator3 1/locator3_pointOnPolyConstraint1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator3 1/Spine_measure_3
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator3 1/Spine_measure_3
+          1/ori 9
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator3 1/Spine_measure_3
+          1/ruler 9
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator4 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator4 1/ikHandle3
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator4 1/locator4_pointOnPolyConstraint1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator4 1/Spine_measure_4
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator4 1/Spine_measure_4
+          1/ori 10
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator4 1/Spine_measure_4
+          1/ruler 10
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator5 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator5 1/ikHandle4
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator5 1/locator5_pointOnPolyConstraint1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator5 1/Spine_measure_5
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator5 1/Spine_measure_5
+          1/ori 11
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator5 1/Spine_measure_5
+          1/ruler 11
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator6 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator6 1/ikHandle6
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator6 1/locator6_pointOnPolyConstraint1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator6 1/Spine_measure_6
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator6 1/Spine_measure_6
+          1/ori 12
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator6 1/Spine_measure_6
+          1/ruler 12
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator7 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator7 1/ikHandle7
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator7 1/locator7_pointOnPolyConstraint1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator7 1/Spine_measure_7
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator7 1/Spine_measure_7
+          1/ori 13
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator7 1/Spine_measure_7
+          1/ruler 13
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator8 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator8 1/ikHandle8
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator8 1/locator8_pointOnPolyConstraint1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_1
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_1/transform1
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_1/transform1/Pelvis_Spine
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_2
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_2/transform1 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_2/transform1 1/COM_Spine
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_3
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_3/transform1 2
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_3/transform1 2/Shoulder_Spine
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_4
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_4/transform1 3
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_4/transform1 3/Pelvis_Spine 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_5
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_5/transform1 4
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_5/transform1 4/COM_Spine 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_6
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_6/transform1 5
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_6/transform1 5/Shoulder_Spine
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Spine_PV_grp
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Spine_PV_grp/Spine_PV
+        weight: 1
+      - path: Spinal_column_grp/Spine_geo_influence
+        weight: 1
+      - path: Spinal_column_grp/Spine_geo_influence/Poly_Spine
+        weight: 1
+      - path: Spinal_column_grp/Spine_geo_influence/Spine_crv
+        weight: 1
+      - path: Spinal_column_grp/Spine_geo_influence/Spine_crvBase
+        weight: 1
+      - path: Spinal_column_grp/Spine_geo_influence/Spine_IK
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/locator15
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/locator14
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/locator12
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/locator9
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/locator10
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/locator11
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/locator16
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/locator17
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/locator15 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/locator14 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/locator12 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/locator9 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/Spine_rotate_bnd6
+          2
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/Spine_rotate_bnd6
+          2/locator10 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/Spine_rotate_bnd6
+          2/Spine_rotate_bnd7 2
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/Spine_rotate_bnd6
+          2/Spine_rotate_bnd7 2/locator11 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/Spine_rotate_bnd6
+          2/Spine_rotate_bnd7 2/Spine_rotate_bnd8 2
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/Spine_rotate_bnd6
+          2/Spine_rotate_bnd7 2/Spine_rotate_bnd8 2/locator16 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/Spine_rotate_bnd6
+          2/Spine_rotate_bnd7 2/Spine_rotate_bnd8 2/Spine_rotate_bnd9 2
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/Spine_rotate_bnd6
+          2/Spine_rotate_bnd7 2/Spine_rotate_bnd8 2/Spine_rotate_bnd9 2/locator17
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/ikHandle10
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1/Spine_rotate_bnd3 3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1/Spine_rotate_bnd3 3/Spine_rotate_bnd4
+          3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1/Spine_rotate_bnd3 3/Spine_rotate_bnd4
+          3/Spine_rotate_bnd5 3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1/Spine_rotate_bnd3 3/Spine_rotate_bnd4
+          3/Spine_rotate_bnd5 3/Spine_rotate_bnd6 3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1/Spine_rotate_bnd3 3/Spine_rotate_bnd4
+          3/Spine_rotate_bnd5 3/Spine_rotate_bnd6 3/Spine_rotate_bnd7 3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1/Spine_rotate_bnd3 3/Spine_rotate_bnd4
+          3/Spine_rotate_bnd5 3/Spine_rotate_bnd6 3/Spine_rotate_bnd7 3/Spine_rotate_bnd8
+          3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1/Spine_rotate_bnd3 3/Spine_rotate_bnd4
+          3/Spine_rotate_bnd5 3/Spine_rotate_bnd6 3/Spine_rotate_bnd7 3/Spine_rotate_bnd8
+          3/Spine_rotate_bnd9 3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1/Spine_rotate_bnd3 3/Spine_rotate_bnd4
+          3/Spine_rotate_bnd5 3/Spine_rotate_bnd6 3/Spine_rotate_bnd7 3/Spine_rotate_bnd8
+          3/Spine_rotate_bnd9 3/ikHandle10 1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator1/locator1_pointOnPolyConstraint1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator1/Spine_measure_1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator1/Spine_measure_1/ori
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator1/Spine_measure_1/ruler
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator2
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator2/ikHandle1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator2/locator2_pointOnPolyConstraint1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator2/Spine_measure_2
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator2/Spine_measure_2/ori 1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator2/Spine_measure_2/ruler 1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator3
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator3/ikHandle2
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator3/locator3_pointOnPolyConstraint1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator3/Spine_measure_3
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator3/Spine_measure_3/ori 2
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator3/Spine_measure_3/ruler 2
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator4
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator4/ikHandle3
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator4/locator4_pointOnPolyConstraint1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator4/Spine_measure_4
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator4/Spine_measure_4/ori 3
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator4/Spine_measure_4/ruler 3
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator5
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator5/ikHandle4
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator5/locator5_pointOnPolyConstraint1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator5/Spine_measure_5
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator5/Spine_measure_5/ori 4
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator5/Spine_measure_5/ruler 4
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator6
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator6/ikHandle6
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator6/locator6_pointOnPolyConstraint1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator6/Spine_measure_6
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator6/Spine_measure_6/ori 5
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator6/Spine_measure_6/ruler 5
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator7
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator7/ikHandle7
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator7/locator7_pointOnPolyConstraint1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator7/Spine_measure_7
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator7/Spine_measure_7/ori 6
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator7/Spine_measure_7/ruler 6
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator8
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator8/ikHandle8
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator8/locator8_pointOnPolyConstraint1
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Reappear
+      takeName: Take 001
+      firstFrame: 57
+      lastFrame: 88
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Rocks
+        weight: 1
+      - path: Rocks/pCube1
+        weight: 1
+      - path: Rocks/pCube2
+        weight: 1
+      - path: Rocks/pCube3
+        weight: 1
+      - path: Rocks/pCube4
+        weight: 1
+      - path: Rocks/pCube5
+        weight: 1
+      - path: Rocks/pCube6
+        weight: 1
+      - path: Rocks/pCube7
+        weight: 1
+      - path: Rocks/pCube8
+        weight: 1
+      - path: Slug_mesh
+        weight: 1
+      - path: Spinal_column_grp
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_CTRL_grp 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_CTRL_grp 1/Spine_PV_grp
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_CTRL_grp 1/Spine_PV_grp
+          1/Spine_PV 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_geo_influence 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_geo_influence 1/Poly_Spine
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_geo_influence 1/Spine_crv
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_geo_influence 1/Spine_crvBase
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_geo_influence 1/Spine_IK
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/Spine_JT_grps 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator1 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator1 1/locator1_pointOnPolyConstraint1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator1 1/Spine_measure_1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator1 1/Spine_measure_1
+          1/ori 7
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator1 1/Spine_measure_1
+          1/ruler 7
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator2 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator2 1/ikHandle1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator2 1/locator2_pointOnPolyConstraint1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator2 1/Spine_measure_2
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator2 1/Spine_measure_2
+          1/ori 8
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator2 1/Spine_measure_2
+          1/ruler 8
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator3 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator3 1/ikHandle2
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator3 1/locator3_pointOnPolyConstraint1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator3 1/Spine_measure_3
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator3 1/Spine_measure_3
+          1/ori 9
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator3 1/Spine_measure_3
+          1/ruler 9
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator4 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator4 1/ikHandle3
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator4 1/locator4_pointOnPolyConstraint1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator4 1/Spine_measure_4
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator4 1/Spine_measure_4
+          1/ori 10
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator4 1/Spine_measure_4
+          1/ruler 10
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator5 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator5 1/ikHandle4
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator5 1/locator5_pointOnPolyConstraint1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator5 1/Spine_measure_5
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator5 1/Spine_measure_5
+          1/ori 11
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator5 1/Spine_measure_5
+          1/ruler 11
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator6 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator6 1/ikHandle6
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator6 1/locator6_pointOnPolyConstraint1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator6 1/Spine_measure_6
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator6 1/Spine_measure_6
+          1/ori 12
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator6 1/Spine_measure_6
+          1/ruler 12
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator7 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator7 1/ikHandle7
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator7 1/locator7_pointOnPolyConstraint1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator7 1/Spine_measure_7
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator7 1/Spine_measure_7
+          1/ori 13
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator7 1/Spine_measure_7
+          1/ruler 13
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator8 1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator8 1/ikHandle8
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spinal_column_grp 1/stretch_loc_grp 1/locator8 1/locator8_pointOnPolyConstraint1
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_1
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_1/transform1
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_1/transform1/Pelvis_Spine
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_2
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_2/transform1 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_2/transform1 1/COM_Spine
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_3
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_3/transform1 2
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_3/transform1 2/Shoulder_Spine
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_4
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_4/transform1 3
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_4/transform1 3/Pelvis_Spine 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_5
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_5/transform1 4
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_5/transform1 4/COM_Spine 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_6
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_6/transform1 5
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Ctrl_6/transform1 5/Shoulder_Spine
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Spine_PV_grp
+        weight: 1
+      - path: Spinal_column_grp/Spine_CTRL_grp/Spine_PV_grp/Spine_PV
+        weight: 1
+      - path: Spinal_column_grp/Spine_geo_influence
+        weight: 1
+      - path: Spinal_column_grp/Spine_geo_influence/Poly_Spine
+        weight: 1
+      - path: Spinal_column_grp/Spine_geo_influence/Spine_crv
+        weight: 1
+      - path: Spinal_column_grp/Spine_geo_influence/Spine_crvBase
+        weight: 1
+      - path: Spinal_column_grp/Spine_geo_influence/Spine_IK
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/locator15
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/locator14
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/locator12
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/locator9
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/locator10
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/locator11
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/locator16
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/locator17
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/locator15 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/locator14 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/locator12 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/locator9 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/Spine_rotate_bnd6
+          2
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/Spine_rotate_bnd6
+          2/locator10 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/Spine_rotate_bnd6
+          2/Spine_rotate_bnd7 2
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/Spine_rotate_bnd6
+          2/Spine_rotate_bnd7 2/locator11 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/Spine_rotate_bnd6
+          2/Spine_rotate_bnd7 2/Spine_rotate_bnd8 2
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/Spine_rotate_bnd6
+          2/Spine_rotate_bnd7 2/Spine_rotate_bnd8 2/locator16 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/Spine_rotate_bnd6
+          2/Spine_rotate_bnd7 2/Spine_rotate_bnd8 2/Spine_rotate_bnd9 2
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Real_Spine/Spine_rotate_bnd3/Spine_rotate_bnd4/Spine_rotate_bnd5/Spine_rotate_bnd6/Spine_rotate_bnd7/Spine_rotate_bnd8/Spine_rotate_bnd9/transform2/Real_Spine
+          1/Spine_rotate_bnd3 2/Spine_rotate_bnd4 2/Spine_rotate_bnd5 2/Spine_rotate_bnd6
+          2/Spine_rotate_bnd7 2/Spine_rotate_bnd8 2/Spine_rotate_bnd9 2/locator17
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/ikHandle10
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1/Spine_rotate_bnd3 3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1/Spine_rotate_bnd3 3/Spine_rotate_bnd4
+          3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1/Spine_rotate_bnd3 3/Spine_rotate_bnd4
+          3/Spine_rotate_bnd5 3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1/Spine_rotate_bnd3 3/Spine_rotate_bnd4
+          3/Spine_rotate_bnd5 3/Spine_rotate_bnd6 3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1/Spine_rotate_bnd3 3/Spine_rotate_bnd4
+          3/Spine_rotate_bnd5 3/Spine_rotate_bnd6 3/Spine_rotate_bnd7 3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1/Spine_rotate_bnd3 3/Spine_rotate_bnd4
+          3/Spine_rotate_bnd5 3/Spine_rotate_bnd6 3/Spine_rotate_bnd7 3/Spine_rotate_bnd8
+          3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1/Spine_rotate_bnd3 3/Spine_rotate_bnd4
+          3/Spine_rotate_bnd5 3/Spine_rotate_bnd6 3/Spine_rotate_bnd7 3/Spine_rotate_bnd8
+          3/Spine_rotate_bnd9 3
+        weight: 1
+      - path: Spinal_column_grp/Spine_JT_grps/Transfer_Spine/Spine_rotate_bnd3 1/Spine_rotate_bnd4
+          1/Spine_rotate_bnd5 1/Spine_rotate_bnd6 1/Spine_rotate_bnd7 1/Spine_rotate_bnd8
+          1/Spine_rotate_bnd9 1/transform3/Transfer_Spine 1/Spine_rotate_bnd3 3/Spine_rotate_bnd4
+          3/Spine_rotate_bnd5 3/Spine_rotate_bnd6 3/Spine_rotate_bnd7 3/Spine_rotate_bnd8
+          3/Spine_rotate_bnd9 3/ikHandle10 1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator1/locator1_pointOnPolyConstraint1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator1/Spine_measure_1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator1/Spine_measure_1/ori
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator1/Spine_measure_1/ruler
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator2
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator2/ikHandle1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator2/locator2_pointOnPolyConstraint1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator2/Spine_measure_2
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator2/Spine_measure_2/ori 1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator2/Spine_measure_2/ruler 1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator3
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator3/ikHandle2
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator3/locator3_pointOnPolyConstraint1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator3/Spine_measure_3
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator3/Spine_measure_3/ori 2
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator3/Spine_measure_3/ruler 2
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator4
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator4/ikHandle3
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator4/locator4_pointOnPolyConstraint1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator4/Spine_measure_4
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator4/Spine_measure_4/ori 3
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator4/Spine_measure_4/ruler 3
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator5
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator5/ikHandle4
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator5/locator5_pointOnPolyConstraint1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator5/Spine_measure_5
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator5/Spine_measure_5/ori 4
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator5/Spine_measure_5/ruler 4
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator6
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator6/ikHandle6
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator6/locator6_pointOnPolyConstraint1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator6/Spine_measure_6
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator6/Spine_measure_6/ori 5
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator6/Spine_measure_6/ruler 5
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator7
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator7/ikHandle7
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator7/locator7_pointOnPolyConstraint1
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator7/Spine_measure_7
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator7/Spine_measure_7/ori 6
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator7/Spine_measure_7/ruler 6
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator8
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator8/ikHandle8
+        weight: 1
+      - path: Spinal_column_grp/stretch_loc_grp/locator8/locator8_pointOnPolyConstraint1
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
