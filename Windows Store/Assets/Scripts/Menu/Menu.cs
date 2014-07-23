@@ -70,7 +70,8 @@ public class Menu : MonoBehaviour
     public void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
-
+        
+        loadSettings();
         initializeScripts();    //load scripts for communication
         initalizeInput();   //initialize the input from the inputtype (heim = TUIO)
 
@@ -152,10 +153,8 @@ public class Menu : MonoBehaviour
         }
     }
 
-    private void initalizeInput()
+    public void initalizeInput()
     {
-        inputType = 1;  //default input type is 1
-        loadSettings();
         //keyboard + mouse
         if (inputType == 1)
         {

@@ -7,7 +7,10 @@ public class ApplyControlsButton : ButtonBehaviour
     {
         //if button is pressed then save and go back to options menu
         menu.saveSettings();
+        menu.loadSettings();
+        menu.applyKeyboardSettingsToKeys();
         menu.switchMenuState("Options");
+        button.isEnabled = false;
     }
 
     public override void Update()

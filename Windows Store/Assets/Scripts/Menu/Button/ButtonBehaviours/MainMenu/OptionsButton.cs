@@ -13,6 +13,7 @@ public class OptionsButton : ButtonBehaviour
         if (menu.isAnimationDone && menu.menuAnimationButton == button.nameOfButton)
         {
             menu.switchMenuState("Options");
+            menu.changedSettings = false;
             menu.setRoverAnimation("settingsBool", true);
             menu.loadSettings();
             menu.isAnimationDone = false;

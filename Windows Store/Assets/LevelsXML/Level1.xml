@@ -35,438 +35,6 @@
   </GameLogic>
   <Level>
     <GameObject>
-      <Prefab>BumpyShroom 1</Prefab>
-      <Position>
-        <x>66.04071</x>
-        <y>-14.02076</y>
-        <z>14.73361</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>CrystalPickUp</Prefab>
-      <Position>
-        <x>111.5511</x>
-        <y>-8.389809</y>
-        <z>15.11737</z>
-      </Position>
-      <Rotation>
-        <x>270</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>CrystalPickUp</Prefab>
-      <Position>
-        <x>495.3068</x>
-        <y>-0.05985429</y>
-        <z>15</z>
-      </Position>
-      <Rotation>
-        <x>270</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>CrystalPickUp</Prefab>
-      <Position>
-        <x>313.8428</x>
-        <y>-13.32041</y>
-        <z>15</z>
-      </Position>
-      <Rotation>
-        <x>270</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>CrystalPickUp</Prefab>
-      <Position>
-        <x>248.0102</x>
-        <y>-6.51221</y>
-        <z>15</z>
-      </Position>
-      <Rotation>
-        <x>270</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>CrystalPickUp</Prefab>
-      <Position>
-        <x>402.8028</x>
-        <y>-9.625409</y>
-        <z>15</z>
-      </Position>
-      <Rotation>
-        <x>270</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>CrystalPickUp</Prefab>
-      <Position>
-        <x>139.284</x>
-        <y>-7.132961</y>
-        <z>15.11737</z>
-      </Position>
-      <Rotation>
-        <x>270</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>Crystals</Prefab>
-      <Position>
-        <x>445.2733</x>
-        <y>-9.269033</y>
-        <z>33.10506</z>
-      </Position>
-      <Rotation>
-        <x>43.59772</x>
-        <y>325.0312</y>
-        <z>357.982</z>
-      </Rotation>
-      <Scaling>
-        <x>9.803448</x>
-        <y>9.803453</y>
-        <z>9.803452</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>Crystals</Prefab>
-      <Position>
-        <x>181.1408</x>
-        <y>-14.16561</y>
-        <z>33.10506</z>
-      </Position>
-      <Rotation>
-        <x>0.1159114</x>
-        <y>335.4768</y>
-        <z>23.67705</z>
-      </Rotation>
-      <Scaling>
-        <x>9.803447</x>
-        <y>9.803454</y>
-        <z>9.803452</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>EndLevelTrigger</Prefab>
-      <Position>
-        <x>614.2537</x>
-        <y>-10.38405</y>
-        <z>15</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>8.210068</x>
-        <y>8.210069</y>
-        <z>8.210069</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>FlowerPerticle</Prefab>
-      <Position>
-        <x>201.3436</x>
-        <y>-2.970964</y>
-        <z>21.90997</z>
-      </Position>
-      <Rotation>
-        <x>287.1855</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>FlowerPerticle</Prefab>
-      <Position>
-        <x>611.0566</x>
-        <y>-7.564843</y>
-        <z>21.90997</z>
-      </Position>
-      <Rotation>
-        <x>287.1855</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>FlowerPerticle</Prefab>
-      <Position>
-        <x>479.5197</x>
-        <y>-2.447359</y>
-        <z>92.57298</z>
-      </Position>
-      <Rotation>
-        <x>287.1855</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>FlowerPerticle</Prefab>
-      <Position>
-        <x>-28.31313</x>
-        <y>-4.212804</y>
-        <z>21.90997</z>
-      </Position>
-      <Rotation>
-        <x>287.1855</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>FlowerPerticle</Prefab>
-      <Position>
-        <x>201.3436</x>
-        <y>-2.970964</y>
-        <z>99.08833</z>
-      </Position>
-      <Rotation>
-        <x>287.1855</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>FlowerPerticle</Prefab>
-      <Position>
-        <x>105.4469</x>
-        <y>-4.212804</y>
-        <z>21.90997</z>
-      </Position>
-      <Rotation>
-        <x>287.1855</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>FlowerPerticle</Prefab>
-      <Position>
-        <x>185.6465</x>
-        <y>-2.447359</y>
-        <z>21.90997</z>
-      </Position>
-      <Rotation>
-        <x>287.1855</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>FlowerPerticle</Prefab>
-      <Position>
-        <x>185.6465</x>
-        <y>-2.447359</y>
-        <z>99.08833</z>
-      </Position>
-      <Rotation>
-        <x>287.1855</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>FlowerPerticle</Prefab>
-      <Position>
-        <x>276.1724</x>
-        <y>-1.284238</y>
-        <z>21.90997</z>
-      </Position>
-      <Rotation>
-        <x>287.1855</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>FlowerPerticle</Prefab>
-      <Position>
-        <x>495.2168</x>
-        <y>-2.970964</y>
-        <z>92.57298</z>
-      </Position>
-      <Rotation>
-        <x>287.1855</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>FlowerPerticle</Prefab>
-      <Position>
-        <x>502.1118</x>
-        <y>1.326085</y>
-        <z>21.90997</z>
-      </Position>
-      <Rotation>
-        <x>287.1855</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>FoilegeCollection</Prefab>
-      <Position>
-        <x>138.6468</x>
-        <y>-9.925831</y>
-        <z>23.12554</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>FoilegeCollection</Prefab>
-      <Position>
-        <x>571.8909</x>
-        <y>-4.464445</y>
-        <z>23.12554</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1.508631</x>
-        <y>1.50863</y>
-        <z>1.50863</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>FoilegeCollection</Prefab>
-      <Position>
-        <x>395.7623</x>
-        <y>-4.464445</y>
-        <z>23.12554</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1.508631</x>
-        <y>1.50863</y>
-        <z>1.50863</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
       <Prefab>GodRay</Prefab>
       <Position>
         <x>-16.53117</x>
@@ -13453,14 +13021,14 @@
           </KeyboardTextureB>
           <XboxTextureA>
             <Texturename>Jump Bouncy Shroom</Texturename>
-            <x>930</x>
-            <y>320</y>
+            <x>650</x>
+            <y>720</y>
             <Timer>20</Timer>
           </XboxTextureA>
           <XboxTextureB>
             <Texturename>Bouncy tutorial image</Texturename>
-            <x>1650</x>
-            <y>250</y>
+            <x>1180</x>
+            <y>720</y>
             <Timer>20</Timer>
           </XboxTextureB>
         </Textures>
@@ -13520,36 +13088,18 @@
             <y>112</y>
             <Timer>100</Timer>
           </TextureA>
-          <TextureB>
-            <Texturename>Arrow2</Texturename>
-            <x>265</x>
-            <y>150</y>
-            <Timer>100</Timer>
-          </TextureB>
           <KeyboardTextureA>
             <Texturename>Charging in Sunlight</Texturename>
             <x>475</x>
             <y>112</y>
             <Timer>100</Timer>
           </KeyboardTextureA>
-          <KeyboardTextureB>
-            <Texturename>Arrow2</Texturename>
-            <x>265</x>
-            <y>150</y>
-            <Timer>100</Timer>
-          </KeyboardTextureB>
           <XboxTextureA>
             <Texturename>Charging in Sunlight</Texturename>
             <x>475</x>
             <y>112</y>
             <Timer>100</Timer>
           </XboxTextureA>
-          <XboxTextureB>
-            <Texturename>Arrow2</Texturename>
-            <x>265</x>
-            <y>150</y>
-            <Timer>100</Timer>
-          </XboxTextureB>
         </Textures>
         <DestroyOnExit>False</DestroyOnExit>
         <DestroyOnCompletion>True</DestroyOnCompletion>
@@ -13600,36 +13150,18 @@
             <y>400</y>
             <Timer>20</Timer>
           </TextureA>
-          <TextureB>
-            <Texturename>Arrow2</Texturename>
-            <x>1300</x>
-            <y>650</y>
-            <Timer>20</Timer>
-          </TextureB>
           <KeyboardTextureA>
             <Texturename>Seeds Explaination</Texturename>
             <x>800</x>
             <y>400</y>
             <Timer>20</Timer>
           </KeyboardTextureA>
-          <KeyboardTextureB>
-            <Texturename>Arrow2</Texturename>
-            <x>1300</x>
-            <y>650</y>
-            <Timer>20</Timer>
-          </KeyboardTextureB>
           <XboxTextureA>
             <Texturename>Seeds Explaination</Texturename>
             <x>800</x>
             <y>400</y>
             <Timer>20</Timer>
           </XboxTextureA>
-          <XboxTextureB>
-            <Texturename>Arrow2</Texturename>
-            <x>1300</x>
-            <y>650</y>
-            <Timer>20</Timer>
-          </XboxTextureB>
         </Textures>
         <DestroyOnExit>True</DestroyOnExit>
         <DestroyOnCompletion>False</DestroyOnCompletion>
@@ -13724,14 +13256,14 @@
           </KeyboardTextureB>
           <XboxTextureA>
             <Texturename>Xbox Flash Light</Texturename>
-            <x>280</x>
-            <y>100</y>
+            <x>650</x>
+            <y>720</y>
             <Timer>20</Timer>
           </XboxTextureA>
           <XboxTextureB>
             <Texturename>Use Flashlight Icon</Texturename>
-            <x>1180</x>
-            <y>170</y>
+            <x>1230</x>
+            <y>600</y>
             <Timer>20</Timer>
           </XboxTextureB>
         </Textures>
@@ -13841,11 +13373,29 @@
         </ButtonsEnabled>
         <Textures>
           <TextureA>
-            <Texturename>Arrow5</Texturename>
+            <Texturename>Shoot Mushroom</Texturename>
             <x>1560</x>
             <y>525</y>
             <Timer>20</Timer>
           </TextureA>
+          <TextureB>
+            <Texturename>Arrow5</Texturename>
+            <x>0</x>
+            <y>0</y>
+            <Timer>0</Timer>
+          </TextureB>
+          <KeyboardTextureA>
+            <Texturename>Keyboard Bouncy Shroom</Texturename>
+            <x>0</x>
+            <y>0</y>
+            <Timer>-1</Timer>
+          </KeyboardTextureA>
+          <XboxTextureA>
+            <Texturename>Xbox Bouncy Shroom</Texturename>
+            <x>650</x>
+            <y>850</y>
+            <Timer>-1</Timer>
+          </XboxTextureA>
         </Textures>
         <DestroyOnExit>True</DestroyOnExit>
         <DestroyOnCompletion>False</DestroyOnCompletion>
@@ -13889,44 +13439,6 @@
           <NormalShroomButton>True</NormalShroomButton>
           <BumpyShroomButton>True</BumpyShroomButton>
         </ButtonsEnabled>
-        <Textures>
-          <TextureA>
-            <Texturename>Arrow</Texturename>
-            <x>400</x>
-            <y>100</y>
-            <Timer>20</Timer>
-          </TextureA>
-          <TextureB>
-            <Texturename>Arrow2</Texturename>
-            <x>1400</x>
-            <y>100</y>
-            <Timer>20</Timer>
-          </TextureB>
-          <KeyboardTextureA>
-            <Texturename>Arrow</Texturename>
-            <x>400</x>
-            <y>100</y>
-            <Timer>20</Timer>
-          </KeyboardTextureA>
-          <KeyboardTextureB>
-            <Texturename>Arrow2</Texturename>
-            <x>1400</x>
-            <y>100</y>
-            <Timer>20</Timer>
-          </KeyboardTextureB>
-          <XboxTextureA>
-            <Texturename>Arrow</Texturename>
-            <x>400</x>
-            <y>100</y>
-            <Timer>20</Timer>
-          </XboxTextureA>
-          <XboxTextureB>
-            <Texturename>Arrow2</Texturename>
-            <x>1400</x>
-            <y>100</y>
-            <Timer>20</Timer>
-          </XboxTextureB>
-        </Textures>
         <DestroyOnExit>True</DestroyOnExit>
         <DestroyOnCompletion>False</DestroyOnCompletion>
         <BoundingBox>
@@ -13969,26 +13481,6 @@
           <NormalShroomButton>True</NormalShroomButton>
           <BumpyShroomButton>False</BumpyShroomButton>
         </ButtonsEnabled>
-        <Textures>
-          <TextureA>
-            <Texturename>aim to shoot</Texturename>
-            <x>800</x>
-            <y>400</y>
-            <Timer>20</Timer>
-          </TextureA>
-          <KeyboardTextureA>
-            <Texturename>aim to shoot</Texturename>
-            <x>800</x>
-            <y>400</y>
-            <Timer>20</Timer>
-          </KeyboardTextureA>
-          <XboxTextureA>
-            <Texturename>aim to shoot</Texturename>
-            <x>800</x>
-            <y>400</y>
-            <Timer>20</Timer>
-          </XboxTextureA>
-        </Textures>
         <DestroyOnExit>True</DestroyOnExit>
         <DestroyOnCompletion>False</DestroyOnCompletion>
         <BoundingBox>
@@ -14100,12 +13592,6 @@
             <y>845</y>
             <Timer>20</Timer>
           </TextureA>
-          <TextureB>
-            <Texturename>Arrow2</Texturename>
-            <x>362</x>
-            <y>880</y>
-            <Timer>20</Timer>
-          </TextureB>
           <KeyboardTextureA>
             <Texturename>Keyboard Jump</Texturename>
             <x>500</x>
@@ -14114,8 +13600,8 @@
           </KeyboardTextureA>
           <XboxTextureA>
             <Texturename>Xbox Jump</Texturename>
-            <x>500</x>
-            <y>845</y>
+            <x>650</x>
+            <y>740</y>
             <Timer>20</Timer>
           </XboxTextureA>
         </Textures>
@@ -14176,8 +13662,8 @@
           </KeyboardTextureA>
           <XboxTextureA>
             <Texturename>Collect Crystals</Texturename>
-            <x>800</x>
-            <y>300</y>
+            <x>650</x>
+            <y>720</y>
             <Timer>20</Timer>
           </XboxTextureA>
         </Textures>
@@ -14223,26 +13709,6 @@
           <NormalShroomButton>True</NormalShroomButton>
           <BumpyShroomButton>False</BumpyShroomButton>
         </ButtonsEnabled>
-        <Textures>
-          <TextureA>
-            <Texturename>Normal tutorial image</Texturename>
-            <x>1245</x>
-            <y>450</y>
-            <Timer>20</Timer>
-          </TextureA>
-          <KeyboardTextureA>
-            <Texturename>Normal tutorial image</Texturename>
-            <x>1245</x>
-            <y>450</y>
-            <Timer>20</Timer>
-          </KeyboardTextureA>
-          <XboxTextureA>
-            <Texturename>Normal tutorial image</Texturename>
-            <x>1245</x>
-            <y>450</y>
-            <Timer>20</Timer>
-          </XboxTextureA>
-        </Textures>
         <DestroyOnExit>True</DestroyOnExit>
         <DestroyOnCompletion>False</DestroyOnCompletion>
         <BoundingBox>
@@ -14310,12 +13776,6 @@
             <y>820</y>
             <Timer>20</Timer>
           </TextureA>
-          <TextureB>
-            <Texturename>Arrow</Texturename>
-            <x>1420</x>
-            <y>850</y>
-            <Timer>20</Timer>
-          </TextureB>
           <KeyboardTextureA>
             <Texturename>Keyboard Normal Shroom</Texturename>
             <x>875</x>
@@ -14324,8 +13784,8 @@
           </KeyboardTextureA>
           <XboxTextureA>
             <Texturename>Xbox Normal Shroom</Texturename>
-            <x>875</x>
-            <y>820</y>
+            <x>650</x>
+            <y>720</y>
             <Timer>20</Timer>
           </XboxTextureA>
         </Textures>
@@ -14677,6 +14137,438 @@
         <x>0.08072302</x>
         <y>0.05235811</y>
         <z>0.080723</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>BumpyShroom 1</Prefab>
+      <Position>
+        <x>66.04071</x>
+        <y>-14.02076</y>
+        <z>14.73361</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>CrystalPickUp</Prefab>
+      <Position>
+        <x>111.5511</x>
+        <y>-8.389809</y>
+        <z>15.11737</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>CrystalPickUp</Prefab>
+      <Position>
+        <x>495.3068</x>
+        <y>-0.05985429</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>CrystalPickUp</Prefab>
+      <Position>
+        <x>313.8428</x>
+        <y>-13.32041</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>CrystalPickUp</Prefab>
+      <Position>
+        <x>248.0102</x>
+        <y>-6.51221</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>CrystalPickUp</Prefab>
+      <Position>
+        <x>402.8028</x>
+        <y>-9.625409</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>CrystalPickUp</Prefab>
+      <Position>
+        <x>139.284</x>
+        <y>-7.132961</y>
+        <z>15.11737</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>Crystals</Prefab>
+      <Position>
+        <x>445.2733</x>
+        <y>-9.269033</y>
+        <z>33.10506</z>
+      </Position>
+      <Rotation>
+        <x>43.59772</x>
+        <y>325.0312</y>
+        <z>357.982</z>
+      </Rotation>
+      <Scaling>
+        <x>9.803448</x>
+        <y>9.803453</y>
+        <z>9.803452</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>Crystals</Prefab>
+      <Position>
+        <x>181.1408</x>
+        <y>-14.16561</y>
+        <z>33.10506</z>
+      </Position>
+      <Rotation>
+        <x>0.1159114</x>
+        <y>335.4768</y>
+        <z>23.67705</z>
+      </Rotation>
+      <Scaling>
+        <x>9.803447</x>
+        <y>9.803454</y>
+        <z>9.803452</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>EndLevelTrigger</Prefab>
+      <Position>
+        <x>614.2537</x>
+        <y>-10.38405</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>8.210068</x>
+        <y>8.210069</y>
+        <z>8.210069</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>FlowerPerticle</Prefab>
+      <Position>
+        <x>201.3436</x>
+        <y>-2.970964</y>
+        <z>21.90997</z>
+      </Position>
+      <Rotation>
+        <x>287.1855</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>FlowerPerticle</Prefab>
+      <Position>
+        <x>611.0566</x>
+        <y>-7.564843</y>
+        <z>21.90997</z>
+      </Position>
+      <Rotation>
+        <x>287.1855</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>FlowerPerticle</Prefab>
+      <Position>
+        <x>479.5197</x>
+        <y>-2.447359</y>
+        <z>92.57298</z>
+      </Position>
+      <Rotation>
+        <x>287.1855</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>FlowerPerticle</Prefab>
+      <Position>
+        <x>-28.31313</x>
+        <y>-4.212804</y>
+        <z>21.90997</z>
+      </Position>
+      <Rotation>
+        <x>287.1855</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>FlowerPerticle</Prefab>
+      <Position>
+        <x>201.3436</x>
+        <y>-2.970964</y>
+        <z>99.08833</z>
+      </Position>
+      <Rotation>
+        <x>287.1855</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>FlowerPerticle</Prefab>
+      <Position>
+        <x>105.4469</x>
+        <y>-4.212804</y>
+        <z>21.90997</z>
+      </Position>
+      <Rotation>
+        <x>287.1855</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>FlowerPerticle</Prefab>
+      <Position>
+        <x>185.6465</x>
+        <y>-2.447359</y>
+        <z>21.90997</z>
+      </Position>
+      <Rotation>
+        <x>287.1855</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>FlowerPerticle</Prefab>
+      <Position>
+        <x>185.6465</x>
+        <y>-2.447359</y>
+        <z>99.08833</z>
+      </Position>
+      <Rotation>
+        <x>287.1855</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>FlowerPerticle</Prefab>
+      <Position>
+        <x>276.1724</x>
+        <y>-1.284238</y>
+        <z>21.90997</z>
+      </Position>
+      <Rotation>
+        <x>287.1855</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>FlowerPerticle</Prefab>
+      <Position>
+        <x>495.2168</x>
+        <y>-2.970964</y>
+        <z>92.57298</z>
+      </Position>
+      <Rotation>
+        <x>287.1855</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>FlowerPerticle</Prefab>
+      <Position>
+        <x>502.1118</x>
+        <y>1.326085</y>
+        <z>21.90997</z>
+      </Position>
+      <Rotation>
+        <x>287.1855</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>FoilegeCollection</Prefab>
+      <Position>
+        <x>138.6468</x>
+        <y>-9.925831</y>
+        <z>23.12554</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>FoilegeCollection</Prefab>
+      <Position>
+        <x>571.8909</x>
+        <y>-4.464445</y>
+        <z>23.12554</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1.508631</x>
+        <y>1.50863</y>
+        <z>1.50863</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>FoilegeCollection</Prefab>
+      <Position>
+        <x>395.7623</x>
+        <y>-4.464445</y>
+        <z>23.12554</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1.508631</x>
+        <y>1.50863</y>
+        <z>1.50863</z>
       </Scaling>
     </GameObject>
   </Level>

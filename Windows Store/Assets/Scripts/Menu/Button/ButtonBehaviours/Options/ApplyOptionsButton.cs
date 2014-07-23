@@ -9,6 +9,7 @@ public class ApplyOptionsButton : ButtonBehaviour
         menu.enableGraphicTexture("AcceptSettingsBackground");
         menu.enableTextBox("RevertCountDown");
         menu.disableAllButtons();   //disable background buttons
+        menu.initalizeInput();
         //set the timer to 10 to revert settings after 10 seconds
         menu.settingsTimeoutTimer = 10.0f;
         //set the timer to count down

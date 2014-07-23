@@ -43,6 +43,7 @@ public class RevertChangesButton : ButtonBehaviour
                 //re-enable the options menu
                 menu.enableAllButtons();
                 button.iterator = menu.selectedInputType;
+                menu.initalizeInput();
             }
         }
         else
