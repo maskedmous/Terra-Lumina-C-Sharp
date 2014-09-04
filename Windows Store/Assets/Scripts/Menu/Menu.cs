@@ -33,7 +33,6 @@ public class Menu : MonoBehaviour
     private ArrayList xmlLevels = new ArrayList();
     private ArrayList levelIDs = new ArrayList();
     private string levelsXmlFilePath = "";
-    private int startLevelCount = 1;
 
     private Animator roverAnim = null;   //call animations of the rover
 

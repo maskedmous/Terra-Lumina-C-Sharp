@@ -228,7 +228,7 @@ public class TutorialTriggerScript : MonoBehaviour
     //show the textures on screen
     public void OnGUI()
     {
-        if (showTutorialTextures && !cameraMoving && !gameLogic.isPaused())
+        if (showTutorialTextures && !cameraMoving && !gameLogic.isPaused() && !gameLogic.isGameOver())
         {
             scaleTextures();
 

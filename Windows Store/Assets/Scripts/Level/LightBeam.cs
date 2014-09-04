@@ -7,12 +7,10 @@ public class LightBeam : MonoBehaviour
     private float increaseBatteryTimer = 0.4f;
 
     private GameLogic gameLogic = null;
-    private FunFactScript funFactScript = null;
 
     public void Awake()
     {
         gameLogic = (GameLogic)GameObject.Find("GameLogic").GetComponent<GameLogic>() as GameLogic;
-        funFactScript = (FunFactScript)GameObject.Find("Player").GetComponent<FunFactScript>() as FunFactScript;
     }
 
     public void OnTriggerEnter(Collider hit)
@@ -35,7 +33,7 @@ public class LightBeam : MonoBehaviour
         if (hit.gameObject.name == "Player")
         {
             charge(hit.gameObject);
-            displayFact();
+            //displayFact();
         }
     }
 
@@ -47,7 +45,7 @@ public class LightBeam : MonoBehaviour
             particleScript.stopChargeParticle();
             gameLogic.setCharging(false);
             gameLogic.setFullyChargedFalse();
-            stopDisplay();
+            //stopDisplay();
         }
     }
 
@@ -72,15 +70,5 @@ public class LightBeam : MonoBehaviour
         {
             secondTimer += Time.deltaTime;
         }
-    }
-
-    private void displayFact()
-    {
-        funFactScript.displayFact();
-    }
-
-    private void stopDisplay()
-    {
-        funFactScript.stopDisplay();
     }
 }

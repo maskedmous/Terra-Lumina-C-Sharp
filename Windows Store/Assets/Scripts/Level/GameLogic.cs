@@ -269,6 +269,19 @@ public class GameLogic : MonoBehaviour
         soundEngine.playSoundEffect("lose");
     }
 
+    public bool isGameOver()
+    {
+        if (levelTriggerScript != null)
+        {
+            bool checkA = levelTriggerScript.getLost();
+            bool checkB = levelTriggerScript.getFinished();
+
+            if (checkA || checkB) return true;
+        }
+
+        return false;
+    }
+
     //start the timer
     public void startTimer()
     {

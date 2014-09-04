@@ -134,21 +134,6 @@ public class GameHUD : MonoBehaviour
         crystalsTotal = gameLogic.getCrystalsToComplete();
         crystalsCollected = gameLogic.getCrystalsSampleCount();
 
-
-        if (showBattery && currentBatteryTexture != null)
-        {
-            GUI.DrawTexture(currentBatteryRect, currentBatteryTexture);
-
-            if (batteryBarTextures.Count > 0)
-            {
-                for (int j = 0; j < amountOfBatteryBars; j++)
-                {
-                    Texture2D batteryBarTexture = batteryBarTextures[j] as Texture2D;
-                    //draw from bot to top
-                    GUI.DrawTexture(new Rect(batteryBarRect.x, batteryBarRect.y, batteryBarRect.width, batteryBarRect.height), batteryBarTexture);
-                }
-            }
-        }
         if (scoreTexture != null)
         {
             string scoreText = gameLogic.getScore().ToString();
@@ -157,47 +142,66 @@ public class GameHUD : MonoBehaviour
             GUI.Label(scoreTextRect, scoreText, fontSkin);
         }
 
-        if (crystalActive != null && crystalInactive != null)
+        if (!gameLogic.isGameOver())
         {
-            //draw the crystals
-            for (int i = 0; i < crystalsTotal; ++i)
+            if (showBattery && currentBatteryTexture != null)
             {
-                //amount of crystals you've picked up
-                if (i < crystalsCollected && crystalsCollected != 0)
+                GUI.DrawTexture(currentBatteryRect, currentBatteryTexture);
+
+                if (batteryBarTextures.Count > 0)
                 {
-                    GUI.DrawTexture(new Rect(crystalActiveRect.x + i * crystalActiveRect.width, crystalActiveRect.y, crystalActiveRect.width, crystalActiveRect.height), crystalActive);
-                }
-                //amount of crystals you've not picked up yet
-                else
-                {
-                    GUI.DrawTexture(new Rect(crystalInactiveRect.x + i * crystalInactiveRect.width, crystalInactiveRect.y, crystalInactiveRect.width, crystalInactiveRect.height), crystalInactive);
+                    for (int j = 0; j < amountOfBatteryBars; j++)
+                    {
+                        Texture2D batteryBarTexture = batteryBarTextures[j] as Texture2D;
+                        //draw from bot to top
+                        GUI.DrawTexture(new Rect(batteryBarRect.x, batteryBarRect.y, batteryBarRect.width, batteryBarRect.height), batteryBarTexture);
+                    }
                 }
             }
-        }
-        if (normalSeedsTexture != null && bumpySeedsTexture != null)
-        {
-            GUI.DrawTexture(normalSeedsRect, normalSeedsTexture);
-            GUI.DrawTexture(bumpySeedsRect, bumpySeedsTexture);
-        }
-        if (infiniteAmmo == true && infinity != null)
-        {
-            //draw infinite sign
-            GUI.DrawTexture(normalSeedsInfinityRect, infinity);
-            GUI.DrawTexture(bumpySeedsInfinityRect, infinity);
-        }
-        else
-        {
-            fontSkin.fontSize = Mathf.RoundToInt(scale.x * 26);
 
-            int currentNormalAmmo = gameLogic.getCurrentNormalSeeds();
-            int maximumNormalAmmo = gameLogic.getMaximumNormalSeeds();
 
-            GUI.Label(scaleRect(new Rect(normalSeedsAmmoCountX, normalSeedsAmmoCountY, 100, 100)), currentNormalAmmo.ToString() + "/" + maximumNormalAmmo.ToString(), fontSkin);
+            if (crystalActive != null && crystalInactive != null)
+            {
+                //draw the crystals
+                for (int i = 0; i < crystalsTotal; ++i)
+                {
+                    //amount of crystals you've picked up
+                    if (i < crystalsCollected && crystalsCollected != 0)
+                    {
+                        GUI.DrawTexture(new Rect(crystalActiveRect.x + i * crystalActiveRect.width, crystalActiveRect.y, crystalActiveRect.width, crystalActiveRect.height), crystalActive);
+                    }
+                    //amount of crystals you've not picked up yet
+                    else
+                    {
+                        GUI.DrawTexture(new Rect(crystalInactiveRect.x + i * crystalInactiveRect.width, crystalInactiveRect.y, crystalInactiveRect.width, crystalInactiveRect.height), crystalInactive);
+                    }
+                }
+            }
+            if (normalSeedsTexture != null && bumpySeedsTexture != null)
+            {
+                GUI.DrawTexture(normalSeedsRect, normalSeedsTexture);
+                GUI.DrawTexture(bumpySeedsRect, bumpySeedsTexture);
+            }
+            if (infiniteAmmo == true && infinity != null)
+            {
+                //draw infinite sign
+                GUI.DrawTexture(normalSeedsInfinityRect, infinity);
+                GUI.DrawTexture(bumpySeedsInfinityRect, infinity);
+            }
+            else
+            {
+                fontSkin.fontSize = Mathf.RoundToInt(scale.x * 26);
 
-            int currentBumpyAmmo = gameLogic.getCurrentBumpySeeds();
-            int maximumBumpyAmmo = gameLogic.getMaximumBumpySeeds();
+                int currentNormalAmmo = gameLogic.getCurrentNormalSeeds();
+                int maximumNormalAmmo = gameLogic.getMaximumNormalSeeds();
 
-            GUI.Label(scaleRect(new Rect(bumpySeedsAmmoCountX, bumpySeedsAmmoCountY, 100, 100)), currentBumpyAmmo.ToString() + "/" + maximumBumpyAmmo.ToString(), fontSkin);
+                GUI.Label(scaleRect(new Rect(normalSeedsAmmoCountX, normalSeedsAmmoCountY, 100, 100)), currentNormalAmmo.ToString() + "/" + maximumNormalAmmo.ToString(), fontSkin);
+
+                int currentBumpyAmmo = gameLogic.getCurrentBumpySeeds();
+                int maximumBumpyAmmo = gameLogic.getMaximumBumpySeeds();
+
+                GUI.Label(scaleRect(new Rect(bumpySeedsAmmoCountX, bumpySeedsAmmoCountY, 100, 100)), currentBumpyAmmo.ToString() + "/" + maximumBumpyAmmo.ToString(), fontSkin);
+            }
         }
     }
 

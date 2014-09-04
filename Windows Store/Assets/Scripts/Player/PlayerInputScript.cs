@@ -153,7 +153,7 @@ public class PlayerInputScript : MonoBehaviour
             jumpKey = keyboardSettings[2];
             flashKey = keyboardSettings[3];
             normalShroomkey = keyboardSettings[4];
-            bumpyShroomKey = keyboardSettings[5];           
+            bumpyShroomKey = keyboardSettings[5];
             escapeKey = KeyCode.Escape;    //default key is always escape
         }
         else
@@ -232,12 +232,14 @@ public class PlayerInputScript : MonoBehaviour
                     useTouchInput = false;
                     useKeyboard = false;
                     useXboxController = true;
+                    Debug.Log("switching over to xbox controller");
                 }
             }
         }
         //disable the xbox controller because it is not connected anymore
         else if (Input.GetJoystickNames().Length == 0 && useXboxController)
         {
+            Debug.Log("happening");
             useXboxController = false;
             initializeInput();          //re-initialize old input
         }
@@ -288,9 +290,16 @@ public class PlayerInputScript : MonoBehaviour
         //else if the game is lost or finished stop the moment and control of the player
         else if (endLevelTriggerScript.getFinished() || endLevelTriggerScript.getLost())
         {
-            playerController.stopMovement();    //stop movement and controls the game has ended
-            playerController.stopControl();
-            endGame = true;
+            if (!endGame)
+            {
+                playerController.stopMovement();    //stop movement and controls the game has ended
+                playerController.stopControl();
+                endGame = true;
+            }
+            else if (Input.GetButtonDown("360_AButton") && endGame)
+            {
+                endLevelTriggerScript.loadMenu();
+            }
         }
 
         if (shootTimer > 0.0f) shootTimer -= Time.deltaTime;    //cool down for shooting shrooms
@@ -316,11 +325,6 @@ public class PlayerInputScript : MonoBehaviour
         if (Input.GetButtonDown("360_AButton") && skipButtonEnabled)
         {
             skipIntro();
-        }
-        //the game is lost or finished if pressing A returns to menu
-        else if (Input.GetButtonDown("360_AButton") && endGame)
-        {
-            endLevelTriggerScript.loadMenu();
         }
         //check if button A is pressed to activate the jump
         else if (Input.GetButtonDown("360_AButton") && jumpButtonEnabled)
@@ -361,7 +365,10 @@ public class PlayerInputScript : MonoBehaviour
         }
 
         //check if left-stick is to the left
-        if (Input.GetAxis("Horizontal") < 0 && movementLeftEnabled) playerController.moveLeft();
+        if (Input.GetAxis("Horizontal") < 0 && movementLeftEnabled)
+        {
+            playerController.moveLeft();
+        }
         //check if left-stick is to the right
         else if (Input.GetAxis("Horizontal") > 0 && movementRightEnabled) playerController.moveRight();
     }
@@ -700,12 +707,11 @@ public class PlayerInputScript : MonoBehaviour
     {
         if (endLevelTriggerObject != null)
         {
-
             if (!endLevelTriggerScript.getFinished() && !endLevelTriggerScript.getLost())
             {
                 //first scale the buttons before drawing them
                 scaleButtons();
-                
+
                 if (!gameLogic.isPaused())  //game is not paused so draw the buttons
                 {
                     if (useTouchInput)
@@ -789,7 +795,7 @@ public class PlayerInputScript : MonoBehaviour
 
             }
 
-            
+
         }
     }
     //check for blinking buttons, if so blink em!
