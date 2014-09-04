@@ -71,8 +71,8 @@ public class Menu : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject);
         
-        loadSettings();
         initializeScripts();    //load scripts for communication
+        loadSettings();
         initalizeInput();   //initialize the input from the inputtype (heim = TUIO)
 
         //load the levels that are in the xml
